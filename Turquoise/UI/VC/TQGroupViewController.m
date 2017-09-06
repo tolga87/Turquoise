@@ -8,6 +8,7 @@
 #import "TQNNTPGroup.h"
 #import "TQNNTPManager.h"
 #import "TQOverlaySlidingMenu.h"
+#import "TQUserInfoManager.h"
 
 @interface TQGroupViewController ()
 
@@ -43,6 +44,37 @@
 - (void)setGroup:(TQNNTPGroup *)group {
   _group = group;
   _expandedArticleForest = [_group.articleForest expandedForest];
+  _groupNameLabel.text = _group.groupId;
+}
+
+- (IBAction)newsgroupsButtonDidTap:(id)sender {
+  NSArray<NSString *> *subscribedGroupIds = [TQUserInfoManager sharedInstance].sortedSubscribedGroupIds;
+  NSMutableArray *callbacks = [NSMutableArray arrayWithCapacity:subscribedGroupIds.count];
+  for (NSString *subscribedGroupId in subscribedGroupIds) {
+    [callbacks addObject:[^{
+      NSLog(@"User selected new group: '%@'", subscribedGroupId);
+      [_nntpManager setGroup:subscribedGroupId completion:^(TQNNTPResponse *response, NSError *error) {
+        if ([response isOk]) {
+          //~TA
+          NSLog(@"OK");
+        } else {
+          // TODO: what should we do here?..
+          NSLog(@"not OK");
+        }
+      }];
+    } copy]];
+  }
+
+  UIButton *settingsButton = sender;
+  CGPoint position =
+      [settingsButton convertPoint:settingsButton.frame.origin
+                            toView:nil];
+  position.y += CGRectGetHeight(settingsButton.frame);
+
+  [TQOverlaySlidingMenu showSlidingMenuWithPosition:TQOverlaySlidingMenuPositionLeft
+                                     verticalOffset:position.y
+                                              texts:subscribedGroupIds
+                                          callbacks:callbacks];
 }
 
 - (IBAction)settingsButtonDidTap:(id)sender {
@@ -75,18 +107,11 @@
 }
 
 - (void)groupDidUpdate:(NSNotification *)notification {
-  NSString *groupId = notification.userInfo[kNNTPGroupDidUpdateNotificationGroupIdKey];
-  if ([groupId isEqualToString:_group.groupId]) {
-    NSLog(@"Group info updated!");
+  NSLog(@"Group info updated. Current group: '%@'", _nntpManager.currentGroup);
 
-    self.group = _nntpManager.currentGroup;
-    [self.tableView reloadData];
-  }
+  self.group = _nntpManager.currentGroup;
+  [self.tableView reloadData];
 }
-
-//- (void)reloadData {
-//  [_nntpManager refreshGroup];
-//}
 
 #pragma mark - UITableViewDataSource
 
@@ -139,19 +164,3 @@
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//~TA
-

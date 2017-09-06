@@ -32,7 +32,7 @@
   overlay.slidingMenu = menu;
   overlay.overlayView.manualLayout = YES;
 
-  const CGFloat menuWidth = 180;
+  const CGFloat menuWidth = 200;
   CGFloat menuOriginX = [menu calculateOriginXWithPosition:menu->_menuPosition
                                                      width:menuWidth
                                                     hidden:YES];
@@ -88,8 +88,8 @@
                      CGRect scrollingViewFrame = slidingMenu->_scrollingView.frame;
                      scrollingViewFrame.origin.x =
                          [slidingMenu calculateOriginXWithPosition:slidingMenu->_menuPosition
-                                                             width:CGRectGetWidth(overlay.scrollingView.frame)
-                                                            hidden:NO];
+                                                             width:CGRectGetWidth(slidingMenu->_scrollingView.frame)
+                                                            hidden:YES];
                      slidingMenu->_scrollingView.frame = scrollingViewFrame;
                    }
                    completion:^(BOOL finished) {
@@ -151,34 +151,3 @@
 
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//~TA
-

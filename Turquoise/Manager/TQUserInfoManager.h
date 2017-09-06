@@ -11,6 +11,7 @@ static NSString *const kUserSubscriptionsChangedNotification =
 @property(nonatomic, copy) NSString *password;
 @property(nonatomic, copy) NSString *fullName;
 @property(nonatomic, copy) NSString *email;
+@property(nonatomic, readonly) NSArray<NSString *> *sortedSubscribedGroupIds;
 
 + (instancetype)sharedInstance;
 

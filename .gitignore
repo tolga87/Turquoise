@@ -8,6 +8,7 @@
 
 RevealServer.framework/*
 .DS_Store
+connect.sh
 
 ## Build generated
 build/

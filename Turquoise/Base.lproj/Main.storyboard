@@ -194,6 +194,9 @@
                                             <constraint firstAttribute="width" secondItem="goc-t9-s86" secondAttribute="height" multiplier="1:1" id="XXv-RY-7z1"/>
                                         </constraints>
                                         <state key="normal" title="Button" image="news5.png"/>
+                                        <connections>
+                                            <action selector="newsgroupsButtonDidTap:" destination="y9E-We-q5x" eventType="touchUpInside" id="XMR-io-TTC"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lh-eC-Azy" userLabel="SettingsButton">
                                         <rect key="frame" x="311" y="0.0" width="32" height="32"/>

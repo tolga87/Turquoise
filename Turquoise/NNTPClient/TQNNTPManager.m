@@ -167,8 +167,10 @@ static NSError *GetError(NSString *errorMessage) {
 
         if (lineComps.count >= 4) {
           NSString *groupId = lineComps[0];
-          NSInteger minArticleNo = [lineComps[1] integerValue];
-          NSInteger maxArticleNo = [lineComps[2] integerValue];
+          NSInteger articleNo1 = [lineComps[1] integerValue];
+          NSInteger articleNo2 = [lineComps[2] integerValue];
+          NSInteger minArticleNo = MIN(articleNo1, articleNo2);
+          NSInteger maxArticleNo = MAX(articleNo1, articleNo2);
           BOOL moderated = ([[lineComps[3] lowercaseString] isEqualToString:@"m"]);
           TQNNTPGroup *group = [[TQNNTPGroup alloc] initWithGroupId:groupId
                                                        minArticleNo:minArticleNo
@@ -203,26 +205,17 @@ static NSError *GetError(NSString *errorMessage) {
     }
 
     [_currentGroup downloadHeadersWithCompletion:^() {
-      //..
       NSLog(@"All headers are downloaded");
-
+      [[NSNotificationCenter defaultCenter] postNotificationName:kNNTPGroupDidUpdateNotification
+                                                          object:self
+                                                        userInfo:nil];
       BLOCK_SAFE_RUN(completion, response, error);
     }];
   }];
 }
 
 - (void)refreshGroup {
-  __weak TQNNTPManager *weakSelf = self;
-  [self setGroup:_currentGroup.groupId completion:^(TQNNTPResponse *response, NSError *error) {
-    if ([response isOk]) {
-      NSDictionary *userInfo = @{
-        kNNTPGroupDidUpdateNotificationGroupIdKey : weakSelf.currentGroup.groupId
-      };
-      [[NSNotificationCenter defaultCenter] postNotificationName:kNNTPGroupDidUpdateNotification
-                                                          object:weakSelf
-                                                        userInfo:userInfo];
-    }
-  }];
+  [self setGroup:_currentGroup.groupId completion:nil];
 }
 
 - (void)requestBodyOfArticle:(TQNNTPArticle *)article completion:(TQNNTPRequestCallback)completion {

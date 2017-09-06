@@ -75,6 +75,10 @@ static NSString *const kGroupsKey = @"userInfo.groups";
   [self setUserInfoValue:email forKey:kEmailKey];
 }
 
+- (NSArray<NSString *> *)sortedSubscribedGroupIds {
+  return [_subscribedGroups.allKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+}
+
 #pragma mark -
 
 - (void)resetUserCredentials {

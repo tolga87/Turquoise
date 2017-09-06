@@ -21,12 +21,15 @@
     return nil;
   }
 
-  NSInteger minArticleNo;
-  NSInteger maxArticleNo;
+  NSInteger articleNo1;
+  NSInteger articleNo2;
   NSScanner *scanner = [NSScanner scannerWithString:response.message];
-  [scanner scanInteger:&minArticleNo];
-  [scanner scanInteger:&minArticleNo];  // ignore the first id. it is the number of articles in the group
-  [scanner scanInteger:&maxArticleNo];
+  [scanner scanInteger:&articleNo1];
+  [scanner scanInteger:&articleNo1];  // ignore the first id. it is the number of articles in the group
+  [scanner scanInteger:&articleNo2];
+
+  NSInteger minArticleNo = MIN(articleNo1, articleNo2);
+  NSInteger maxArticleNo = MAX(articleNo1, articleNo2);
 
   NSString *group;
   [scanner scanUpToString:@"\r\n" intoString:&group];

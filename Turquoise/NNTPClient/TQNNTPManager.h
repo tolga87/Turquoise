@@ -15,7 +15,6 @@ extern NSString *const TQNNTPManagerErrorDomain;
 
 static NSString *const kNNTPGroupListDidUpdateNotification = @"NNTPGroupListDidUpdate";
 static NSString *const kNNTPGroupDidUpdateNotification = @"NNTPGroupDidUpdate";
-static NSString *const kNNTPGroupDidUpdateNotificationGroupIdKey = @"groupId";
 
 @interface TQNNTPManager : NSObject
 
