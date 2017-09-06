@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="dungeon.ttf">
+            <string>Dungeon-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TQUserInfoInputView"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TQUserInfoInputView">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="180"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlc-w9-KHo" userLabel="Container View">
+                    <rect key="frame" x="10" y="10" width="280" height="160"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your name and email address. This info will be visible to other users of the news server." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ox6-To-mGF" userLabel="Info Label" customClass="TQLabel">
+                            <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="VGn-b0-hXK"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="horizontalInset">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09i-iB-FK6" userLabel="Name Text Field" customClass="TQTextField">
+                            <rect key="frame" x="4" y="50" width="272" height="32"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="jVE-s8-31e"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-7t-ure" userLabel="Email Text Field" customClass="TQTextField">
+                            <rect key="frame" x="4" y="82" width="272" height="32"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Tif-Wh-fyB"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qVe-uP-amF" userLabel="Proceed Button">
+                            <rect key="frame" x="156" y="122" width="120" height="30"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="VTZ-jD-gjK"/>
+                                <constraint firstAttribute="height" constant="30" id="tc6-WK-FHJ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
+                            <state key="normal" title="Proceed">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="proceedButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="yki-g7-rNb"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.29411764705882354" green="0.58823529411764708" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="ox6-To-mGF" firstAttribute="top" secondItem="wlc-w9-KHo" secondAttribute="top" id="78E-Sp-FDI"/>
+                        <constraint firstItem="ox6-To-mGF" firstAttribute="centerX" secondItem="wlc-w9-KHo" secondAttribute="centerX" id="7YT-dT-iKu"/>
+                        <constraint firstItem="09i-iB-FK6" firstAttribute="centerX" secondItem="wlc-w9-KHo" secondAttribute="centerX" id="Age-hN-yD3"/>
+                        <constraint firstItem="ox6-To-mGF" firstAttribute="width" secondItem="wlc-w9-KHo" secondAttribute="width" id="Cis-tY-gYG"/>
+                        <constraint firstAttribute="height" constant="160" id="EdA-uG-dEr"/>
+                        <constraint firstItem="Vjf-7t-ure" firstAttribute="centerX" secondItem="wlc-w9-KHo" secondAttribute="centerX" id="G8a-mG-E0A"/>
+                        <constraint firstAttribute="bottom" secondItem="qVe-uP-amF" secondAttribute="bottom" constant="8" id="Kmt-2M-YRo"/>
+                        <constraint firstItem="qVe-uP-amF" firstAttribute="top" secondItem="Vjf-7t-ure" secondAttribute="bottom" constant="8" id="QGE-ZR-6xZ"/>
+                        <constraint firstItem="09i-iB-FK6" firstAttribute="width" secondItem="Vjf-7t-ure" secondAttribute="width" id="UCs-v7-aec"/>
+                        <constraint firstAttribute="width" constant="280" id="fzD-sB-dPR"/>
+                        <constraint firstAttribute="trailing" secondItem="09i-iB-FK6" secondAttribute="trailing" constant="4" id="lBU-y9-SYX"/>
+                        <constraint firstItem="Vjf-7t-ure" firstAttribute="top" secondItem="09i-iB-FK6" secondAttribute="bottom" id="w9M-3a-fTQ"/>
+                        <constraint firstAttribute="trailing" secondItem="qVe-uP-amF" secondAttribute="trailing" constant="4" id="yGg-TP-eLP"/>
+                        <constraint firstItem="09i-iB-FK6" firstAttribute="leading" secondItem="wlc-w9-KHo" secondAttribute="leading" constant="4" id="zba-Od-2C6"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wlc-w9-KHo" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="AR5-kq-H2H"/>
+                <constraint firstAttribute="bottom" secondItem="wlc-w9-KHo" secondAttribute="bottom" constant="10" id="hT7-f6-nkD"/>
+                <constraint firstAttribute="trailing" secondItem="wlc-w9-KHo" secondAttribute="trailing" constant="10" id="l0F-S0-lwK"/>
+                <constraint firstItem="wlc-w9-KHo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="tsD-H6-uQn"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_userEmailTextField" destination="Vjf-7t-ure" id="AKm-C9-IUO"/>
+                <outlet property="_userFullNameTextField" destination="09i-iB-FK6" id="Dln-uB-5Mj"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="336"/>
+        </view>
+    </objects>
+</document>
