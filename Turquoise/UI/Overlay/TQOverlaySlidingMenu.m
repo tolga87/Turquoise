@@ -4,14 +4,16 @@
 @end
 
 @implementation TQOverlaySlidingMenu {
+  TQOverlaySlidingMenuPosition _menuPosition;
   UIView *_scrollingView;
   NSArray<NSString *> *_texts;
   NSArray<TQSlidingMenuCallback> *_callbacks;
 }
 
-+ (void)showSlidingMenuWithVerticalOffset:(CGFloat)verticalOffset
-                                    texts:(NSArray<NSString *> *)texts
-                                callbacks:(NSArray<TQSlidingMenuCallback> *)callbacks {
++ (void)showSlidingMenuWithPosition:(TQOverlaySlidingMenuPosition)position
+                     verticalOffset:(CGFloat)verticalOffset
+                              texts:(NSArray<NSString *> *)texts
+                          callbacks:(NSArray<TQSlidingMenuCallback> *)callbacks {
   if (texts.count == 0 || callbacks.count == 0 || callbacks.count < texts.count) {
     return;
   }
@@ -21,6 +23,7 @@
     return;
   }
 
+  menu->_menuPosition = position;
   menu->_texts = [texts copy];
   menu->_callbacks = [callbacks copy];
 
@@ -29,7 +32,10 @@
   overlay.slidingMenu = menu;
   overlay.overlayView.manualLayout = YES;
 
-  CGFloat menuOriginX = CGRectGetMaxX(overlay.overlayView.frame);
+  const CGFloat menuWidth = 180;
+  CGFloat menuOriginX = [menu calculateOriginXWithPosition:menu->_menuPosition
+                                                     width:menuWidth
+                                                    hidden:YES];
   CGFloat menuOriginY = verticalOffset;
 
   CGFloat maxMenuHeight = CGRectGetMaxY(overlay.overlayView.bounds) - menuOriginY;
@@ -44,7 +50,7 @@
 
   menu->_scrollingView = [[UIView alloc] initWithFrame:CGRectMake(menuOriginX,
                                                                   menuOriginY,
-                                                                  180,
+                                                                  menuWidth,
                                                                   menuHeight)];
   menu->_scrollingView.backgroundColor = [UIColor orangeColor];
 
@@ -62,9 +68,10 @@
   [overlay.overlayView addSubview:menu->_scrollingView];
   [UIView animateWithDuration:[[overlay class] animationDuration]
                    animations:^{
-                     CGFloat newX = CGRectGetMinX(menu->_scrollingView.frame) - CGRectGetWidth(menu->_scrollingView.frame);
                      CGRect newFrame = menu->_scrollingView.frame;
-                     newFrame.origin.x = newX;
+                     newFrame.origin.x = [menu calculateOriginXWithPosition:menu->_menuPosition
+                                                                      width:menuWidth
+                                                                     hidden:NO];
                      menu->_scrollingView.frame = newFrame;
                    }];
 }
@@ -79,7 +86,10 @@
   [UIView animateWithDuration:[[overlay class] animationDuration]
                    animations:^{
                      CGRect scrollingViewFrame = slidingMenu->_scrollingView.frame;
-                     scrollingViewFrame.origin.x = CGRectGetMaxX(overlay.overlayView.bounds);
+                     scrollingViewFrame.origin.x =
+                         [slidingMenu calculateOriginXWithPosition:slidingMenu->_menuPosition
+                                                             width:CGRectGetWidth(overlay.scrollingView.frame)
+                                                            hidden:NO];
                      slidingMenu->_scrollingView.frame = scrollingViewFrame;
                    }
                    completion:^(BOOL finished) {
@@ -92,6 +102,20 @@
                        completion(finished);
                      }
                    }];
+}
+
+- (CGFloat)calculateOriginXWithPosition:(TQOverlaySlidingMenuPosition)position
+                                  width:(CGFloat)width
+                                 hidden:(BOOL)hidden {
+  TQOverlay *overlay = [TQOverlay sharedInstance];
+  CGRect overlayBounds = overlay.overlayView.bounds;
+
+  switch (position) {
+    case TQOverlaySlidingMenuPositionRight:
+      return (hidden ? CGRectGetMaxX(overlayBounds) : CGRectGetMaxX(overlayBounds) - width);
+    case TQOverlaySlidingMenuPositionLeft:
+      return (hidden ? CGRectGetMinX(overlayBounds) - width :  CGRectGetMinX(overlayBounds));
+  }
 }
 
 #pragma mark - UITableViewDataSource

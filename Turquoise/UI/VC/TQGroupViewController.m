@@ -68,9 +68,10 @@
       [settingsButton convertPoint:settingsButton.frame.origin
                             toView:nil];
   position.y += CGRectGetHeight(settingsButton.frame);
-  [TQOverlaySlidingMenu showSlidingMenuWithVerticalOffset:position.y
-                                                    texts:options
-                                                callbacks:callbacks];
+  [TQOverlaySlidingMenu showSlidingMenuWithPosition:TQOverlaySlidingMenuPositionRight
+                                     verticalOffset:position.y
+                                              texts:options
+                                          callbacks:callbacks];
 }
 
 - (void)groupDidUpdate:(NSNotification *)notification {
