@@ -91,7 +91,7 @@
 
     if (shouldAskUserInfo) {
       TQUserInfoInputView *userInfoInputView =
-      [[[NSBundle mainBundle] loadNibNamed:@"TQUserInfoInputView" owner:self options:nil] firstObject];
+          [[[NSBundle mainBundle] loadNibNamed:@"TQUserInfoInputView" owner:self options:nil] firstObject];
       userInfoInputView.completionBlock = ^(NSString *userFullName, NSString *userEmail) {
         _userInfoManager.userName = userName;
         _userInfoManager.password = password;

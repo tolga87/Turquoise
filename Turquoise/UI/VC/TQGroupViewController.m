@@ -4,6 +4,7 @@
 #import "TQArticleComposerViewController.h"
 #import "TQArticleHeaderTableViewCell.h"
 #import "TQArticleViewController.h"
+#import "TQHeaderDownloadProgressView.h"
 #import "TQNNTPArticle.h"
 #import "TQNNTPGroup.h"
 #import "TQNNTPManager.h"
@@ -53,14 +54,12 @@
   for (NSString *subscribedGroupId in subscribedGroupIds) {
     [callbacks addObject:[^{
       NSLog(@"User selected new group: '%@'", subscribedGroupId);
+
+      TQHeaderDownloadProgressView *progressView =
+          [[TQHeaderDownloadProgressView alloc] initWithGroupId:subscribedGroupId];
+      [[TQOverlay sharedInstance] showWithView:progressView relativeVerticalPosition:.35 animated:NO];
       [_nntpManager setGroup:subscribedGroupId completion:^(TQNNTPResponse *response, NSError *error) {
-        if ([response isOk]) {
-          //~TA
-          NSLog(@"OK");
-        } else {
-          // TODO: what should we do here?..
-          NSLog(@"not OK");
-        }
+        [[TQOverlay sharedInstance] dismissAnimated:YES];
       }];
     } copy]];
   }

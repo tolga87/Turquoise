@@ -41,6 +41,10 @@
 		FD8746091F496B0000C95C5A /* TQGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746061F496B0000C95C5A /* TQGroupViewController.m */; };
 		FD8746101F49741400C95C5A /* TQArticleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87460F1F49741400C95C5A /* TQArticleHeaderTableViewCell.m */; };
 		FD8746111F49741400C95C5A /* TQArticleHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FD87460F1F49741400C95C5A /* TQArticleHeaderTableViewCell.m */; };
+		FD8E5A721F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */; };
+		FD8E5A731F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */; };
+		FD8E5A751F60B055008434F8 /* TQHeaderDownloadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */; };
+		FD8E5A761F60B055008434F8 /* TQHeaderDownloadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */; };
 		FD95D1B11F4E2A1C0088EDA6 /* TQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6571F4233E800BC2225 /* TQLoginViewController.m */; };
 		FD9CB6521F4233E800BC2225 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6511F4233E800BC2225 /* main.m */; };
 		FD9CB6551F4233E800BC2225 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6541F4233E800BC2225 /* AppDelegate.m */; };
@@ -122,6 +126,9 @@
 		FD8746061F496B0000C95C5A /* TQGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQGroupViewController.m; sourceTree = "<group>"; };
 		FD87460E1F49741400C95C5A /* TQArticleHeaderTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQArticleHeaderTableViewCell.h; sourceTree = "<group>"; };
 		FD87460F1F49741400C95C5A /* TQArticleHeaderTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQArticleHeaderTableViewCell.m; sourceTree = "<group>"; };
+		FD8E5A701F60B044008434F8 /* TQHeaderDownloadProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQHeaderDownloadProgressView.h; sourceTree = "<group>"; };
+		FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQHeaderDownloadProgressView.m; sourceTree = "<group>"; };
+		FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQHeaderDownloadProgressView.xib; sourceTree = "<group>"; };
 		FD9CB64D1F4233E800BC2225 /* Turquoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turquoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD9CB6511F4233E800BC2225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD9CB6531F4233E800BC2225 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -260,6 +267,9 @@
 				FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */,
 				FD12F62C1F57525C00415514 /* TQOverlayBackgroundView.h */,
 				FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */,
+				FD8E5A701F60B044008434F8 /* TQHeaderDownloadProgressView.h */,
+				FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */,
+				FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -453,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDA539E31F5A6550009C7526 /* check1.png in Resources */,
+				FD8E5A751F60B055008434F8 /* TQHeaderDownloadProgressView.xib in Resources */,
 				FDD365CD1F5A075300A80106 /* news4.png in Resources */,
 				FDD365D31F5A08AF00A80106 /* settings1.png in Resources */,
 				FDD365C41F5A052400A80106 /* news1.png in Resources */,
@@ -475,6 +486,7 @@
 				FD0478041F4FA23400AD61BB /* dungeon.ttf in Resources */,
 				FDD365D41F5A08B000A80106 /* settings1.png in Resources */,
 				FD5047FE1F5747800064466D /* TQUserInfoInputView.xib in Resources */,
+				FD8E5A761F60B055008434F8 /* TQHeaderDownloadProgressView.xib in Resources */,
 				FDD365CE1F5A075300A80106 /* news4.png in Resources */,
 				FDD365D01F5A07F700A80106 /* news5.png in Resources */,
 				FDA539E21F5A654F009C7526 /* check1.png in Resources */,
@@ -526,6 +538,7 @@
 				FDD365D71F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */,
 				FD44C5FD1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
 				FD0477FF1F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,
+				FD8E5A721F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
 				FD4C8A881F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,
 				FD44C60D1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD5048011F57478A0064466D /* TQUserInfoInputView.m in Sources */,
@@ -553,6 +566,7 @@
 				FD8746091F496B0000C95C5A /* TQGroupViewController.m in Sources */,
 				FD9CB8E71F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FD44C5F51F423F01003B3605 /* TQNNTPResponse.m in Sources */,
+				FD8E5A731F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
 				FD5048021F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,
 				FD4C8A891F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,

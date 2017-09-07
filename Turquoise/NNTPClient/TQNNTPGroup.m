@@ -70,7 +70,18 @@
 }
 
 - (void)downloadHeadersCurrentArticle:(NSInteger)articleNo completion:(void (^)(void))completion {
-  NSLog(@"Requesting headers for article #%ld", articleNo);
+//  NSLog(@"Requesting headers for article #%ld", articleNo);
+  NSInteger numArticles = _maxArticleNo - _minArticleNo;
+  if (numArticles == 0) {
+    numArticles = 1;
+  }
+  NSInteger progress = (articleNo - _minArticleNo) / (float)numArticles * 100;
+  NSLog(@"Downloading header %ld of %ld (%ld%%)", (articleNo - _minArticleNo), numArticles, progress);
+
+  NSDictionary *userInfo = @{ kHeaderDownloadProgressAmountKey : @(progress) };
+  [[NSNotificationCenter defaultCenter] postNotificationName:kHeaderDownloadProgressNotification
+                                                      object:self
+                                                    userInfo:userInfo];
 
   TQNNTPManager *theManager = [TQNNTPManager sharedInstance];
   NSString *headRequest = [NSString stringWithFormat:@"HEAD %ld\r\n", articleNo];

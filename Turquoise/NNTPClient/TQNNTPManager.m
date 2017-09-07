@@ -359,7 +359,8 @@ static NSError *GetError(NSString *errorMessage) {
                                                        encoding:NSUTF8StringEncoding];
       TQNNTPResponse *response = [[TQNNTPResponse alloc] initWithString:responseString];
 
-      const NSUInteger kMaxLengthToDisplay = 150;
+      const BOOL shouldTruncate = NO;
+      const NSUInteger kMaxLengthToDisplay = shouldTruncate ? 150 : NSUIntegerMax;
       if (responseString.length > kMaxLengthToDisplay) {
         NSLog(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
       } else {

@@ -6,6 +6,9 @@
 #import "TQNNTPManager.h"
 #import "TQNNTPResponse.h"
 
+static NSString *const kHeaderDownloadProgressNotification = @"kHeaderDownloadProgressNotification";
+static NSString *const kHeaderDownloadProgressAmountKey = @"progressAmount";
+
 @interface TQNNTPGroup : NSObject
 
 @property(nonatomic, readonly) NSString *groupId;
