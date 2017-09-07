@@ -66,40 +66,63 @@
   NSScanner *scanner;
   NSMutableString *mutString = [NSMutableString string];
 
+  char *decodingBuffer = malloc(sizeof(unichar));
+  int bufferIndex = 0;
+  NSString *decodedSequence = nil;
+
   for (NSUInteger charIndex = 0; charIndex < string.length; charIndex++) {
     unichar curChar = [string characterAtIndex:charIndex];
+
 
     if (curChar == '_') {
       [mutString appendString:@" "];
     } else if (curChar == '?') {
       break;
-    } else if (curChar == '=') {
-      if (charIndex + 5 >= string.length) {
+    } else if (curChar != '=') {
+      [mutString appendFormat:@"%c", curChar];
+    } else {
+      // curChar == '='
+
+      if (charIndex + 2 >= string.length) {
         NSLog(@"Error: Parsing error");
         break;
       }
 
-      NSString *encodedSequence = [string substringWithRange:NSMakeRange(charIndex + 1, 5)];
-      char *buffer = malloc(sizeof(unichar));
-      scanner = [NSScanner scannerWithString:encodedSequence];
+      NSString *encodedCharString = [string substringWithRange:NSMakeRange(charIndex + 1, 2)];
+      scanner = [NSScanner scannerWithString:encodedCharString];
 
-      unsigned int firstChar, secondChar;
-      [scanner scanHexInt:&firstChar];
-      buffer[0] = firstChar;
+      unsigned int decodedChar;
+      [scanner scanHexInt:&decodedChar];
+      decodingBuffer[bufferIndex] = decodedChar;
 
-      // skip the middle '='
-      [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"="]
-                          intoString:nil];
-      [scanner scanHexInt:&secondChar];
-      buffer[1] = secondChar;
+      if (bufferIndex == 1) {
+        // if this is the second byte we're reading, this should be a 2-byte character.
+        // if we can't convert it to something readable, there's something wrong.
+        NSData *data = [NSData dataWithBytes:decodingBuffer length:sizeof(unichar)];
+        decodedSequence = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if (decodedSequence.length == 0) {
+          decodedSequence = @"?";
+        }
+        bufferIndex = 0;
+        memset(decodingBuffer, 0, sizeof(unichar));
+      } else if (bufferIndex == 0) {
+        // if this is the first byte we're reading, this could be a 1-byte or a 2-byte character.
+        // try to decode the single byte first. if it fails, it must be a 2-byte character.
+        NSData *data = [NSData dataWithBytes:decodingBuffer length:sizeof(char)];
+        decodedSequence = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        if (decodedSequence.length == 0) {
+          bufferIndex = 1;
+        } else {
+          bufferIndex = 0;
+          memset(decodingBuffer, 0, sizeof(unichar));
+        }
+      }
 
-      NSData *data = [NSData dataWithBytes:buffer length:sizeof(unichar)];
-      NSString *decodedSequence = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+      if (decodedSequence.length > 0) {
+        [mutString appendString:decodedSequence];
+      }
 
-      [mutString appendString:decodedSequence];
-      charIndex += 5;
-    } else {
-      [mutString appendFormat:@"%c", curChar];
+      charIndex += 2;
     }
   }
 
