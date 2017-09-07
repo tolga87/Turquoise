@@ -11,6 +11,7 @@ typedef NS_ENUM(NSInteger, TQOverlaySlidingMenuPosition) {
 
 + (void)showSlidingMenuWithPosition:(TQOverlaySlidingMenuPosition)position
                      verticalOffset:(CGFloat)verticalOffset
+                              title:(NSString *)title
                               texts:(NSArray<NSString *> *)texts
                           callbacks:(NSArray<TQSlidingMenuCallback> *)callbacks;
 

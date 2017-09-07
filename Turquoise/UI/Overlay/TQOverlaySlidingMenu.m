@@ -6,12 +6,14 @@
 @implementation TQOverlaySlidingMenu {
   TQOverlaySlidingMenuPosition _menuPosition;
   UIView *_scrollingView;
+  NSString *_title;
   NSArray<NSString *> *_texts;
   NSArray<TQSlidingMenuCallback> *_callbacks;
 }
 
 + (void)showSlidingMenuWithPosition:(TQOverlaySlidingMenuPosition)position
                      verticalOffset:(CGFloat)verticalOffset
+                              title:(NSString *)title
                               texts:(NSArray<NSString *> *)texts
                           callbacks:(NSArray<TQSlidingMenuCallback> *)callbacks {
   if (texts.count == 0 || callbacks.count == 0 || callbacks.count < texts.count) {
@@ -24,6 +26,7 @@
   }
 
   menu->_menuPosition = position;
+  menu->_title = [title copy];
   menu->_texts = [texts copy];
   menu->_callbacks = [callbacks copy];
 
@@ -41,6 +44,9 @@
   CGFloat maxMenuHeight = CGRectGetMaxY(overlay.overlayView.bounds) - menuOriginY;
   const CGFloat kMenuCellHeight = 45;
   CGFloat menuHeight = kMenuCellHeight * menu->_texts.count;
+  if (menu->_title) {
+    menuHeight += kMenuCellHeight;
+  }
 
   BOOL tableShouldScroll = NO;
   if (menuHeight > maxMenuHeight) {
@@ -118,10 +124,22 @@
   }
 }
 
+- (NSUInteger)groupIndexForIndexPath:(NSIndexPath *)indexPath {
+  if (_title) {
+    return indexPath.row - 1;
+  } else {
+    return indexPath.row;
+  }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return _texts.count;
+  NSUInteger numRows = _texts.count;
+  if (_title) {
+    numRows++;
+  }
+  return numRows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -132,10 +150,21 @@
   cell.textLabel.backgroundColor = [UIColor clearColor];
   cell.textLabel.textColor = [UIColor whiteColor];
   cell.textLabel.font = [UIFont fontWithName:@"dungeon" size:12];
-  cell.textLabel.text = _texts[indexPath.row];
-  cell.contentView.backgroundColor = (indexPath.row % 2 == 0)
-  ? [UIColor colorWithRed:0 green:0 blue:.5 alpha:1]
-  : [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+
+  BOOL isTitleCell = _title && [indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]];
+  if (isTitleCell) {
+    cell.textLabel.font = [UIFont fontWithName:@"dungeon" size:13];
+    cell.textLabel.text = _title;
+    cell.contentView.backgroundColor = [UIColor blackColor];
+    cell.userInteractionEnabled = NO;
+  } else {
+    NSUInteger textIndex = [self groupIndexForIndexPath:indexPath];
+    cell.textLabel.text = _texts[textIndex];
+    cell.contentView.backgroundColor = (textIndex % 2 == 0)
+        ? [UIColor colorWithRed:0 green:0 blue:.5 alpha:1]
+        : [UIColor colorWithRed:0 green:0 blue:1 alpha:1];
+    cell.userInteractionEnabled = YES;
+  }
   return cell;
 }
 
@@ -143,11 +172,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-  TQSlidingMenuCallback callback = [_callbacks[indexPath.row] copy];
+  NSUInteger groupIndex = [self groupIndexForIndexPath:indexPath];
+  TQSlidingMenuCallback callback = [_callbacks[groupIndex] copy];
   [[self class] dismissSlidingMenuCompletion:^(BOOL finished) {
     callback();
   }];
 }
-
 
 @end

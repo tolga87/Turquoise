@@ -72,6 +72,7 @@
 
   [TQOverlaySlidingMenu showSlidingMenuWithPosition:TQOverlaySlidingMenuPositionLeft
                                      verticalOffset:position.y
+                                              title:@"Select newsgroup to display"
                                               texts:subscribedGroupIds
                                           callbacks:callbacks];
 }
@@ -101,6 +102,7 @@
   position.y += CGRectGetHeight(settingsButton.frame);
   [TQOverlaySlidingMenu showSlidingMenuWithPosition:TQOverlaySlidingMenuPositionRight
                                      verticalOffset:position.y
+                                              title:nil
                                               texts:options
                                           callbacks:callbacks];
 }
