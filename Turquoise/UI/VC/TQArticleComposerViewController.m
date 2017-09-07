@@ -20,7 +20,7 @@
 
   NSString *subject = @"";
   if (_parentArticle) {
-    subject = _parentArticle.subject;
+    subject = _parentArticle.decodedSubject;
     if (![subject hasPrefix:@"Re: "]) {
       subject = [NSString stringWithFormat:@"Re: %@", subject];
     }
