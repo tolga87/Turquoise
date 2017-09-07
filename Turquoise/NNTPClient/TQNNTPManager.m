@@ -359,7 +359,7 @@ static NSError *GetError(NSString *errorMessage) {
                                                        encoding:NSUTF8StringEncoding];
       TQNNTPResponse *response = [[TQNNTPResponse alloc] initWithString:responseString];
 
-      const BOOL shouldTruncate = NO;
+      const BOOL shouldTruncate = YES;
       const NSUInteger kMaxLengthToDisplay = shouldTruncate ? 150 : NSUIntegerMax;
       if (responseString.length > kMaxLengthToDisplay) {
         NSLog(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
@@ -369,40 +369,6 @@ static NSError *GetError(NSString *errorMessage) {
 
       BLOCK_SAFE_RUN(completion, response, nil);
     }];
-
-//    [_streamTask readDataOfMinLength:0
-//                           maxLength:10000
-//                             timeout:100
-//                   completionHandler:^(NSData * _Nullable data, BOOL atEOF, NSError * _Nullable error) {
-//
-//                     if (!data) {
-//                       BLOCK_SAFE_RUN(completion, nil, nil);  // TODO: error.
-//                       return;
-//                     }
-//
-//                     NSString *responseString = [[NSString alloc] initWithData:data
-//                                                                      encoding:NSUTF8StringEncoding];
-//                     TQNNTPResponse *response = [[TQNNTPResponse alloc] initWithString:responseString];
-//
-//                     NSLog(@"S: %@", responseString);
-//
-//
-////                     NSArray<NSString *> *responseLines = [responseString componentsSeparatedByString:@"\r\n"];
-////                     NSUInteger lineCount = responseLines.count;
-////
-////
-////                     if (lineCount == 2 && [responseLines[1] isEqualToString:@""]) {
-////                       lineCount = 1;
-////                     }
-////
-////                     if (lineCount > 1) {
-////                       NSLog(@"%@ [%ld MORE LINE%@]", responseLines[0], lineCount - 1, (lineCount == 2 ? @"" : @"S"));
-////                     } else {
-////                       NSLog(@"%@", responseString);
-////                     }
-//
-//                     BLOCK_SAFE_RUN(completion, response, nil);
-//                   }];
   }];
 }
 
