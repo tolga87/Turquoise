@@ -35,6 +35,8 @@
 		FD5047FE1F5747800064466D /* TQUserInfoInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */; };
 		FD5048011F57478A0064466D /* TQUserInfoInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5048001F57478A0064466D /* TQUserInfoInputView.m */; };
 		FD5048021F57478A0064466D /* TQUserInfoInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5048001F57478A0064466D /* TQUserInfoInputView.m */; };
+		FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
+		FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
 		FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746041F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746081F496B0000C95C5A /* TQGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746061F496B0000C95C5A /* TQGroupViewController.m */; };
@@ -120,6 +122,8 @@
 		FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TQUserInfoInputView.xib; sourceTree = "<group>"; };
 		FD5047FF1F57478A0064466D /* TQUserInfoInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TQUserInfoInputView.h; sourceTree = "<group>"; };
 		FD5048001F57478A0064466D /* TQUserInfoInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQUserInfoInputView.m; sourceTree = "<group>"; };
+		FD7DE1BA1F64A41F006200D8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		FD7DE1BB1F64A41F006200D8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD8746011F495D7300C95C5A /* TQNNTPArticleForest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TQNNTPArticleForest.h; path = NNTPClient/TQNNTPArticleForest.h; sourceTree = "<group>"; };
 		FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TQNNTPArticleForest.m; path = NNTPClient/TQNNTPArticleForest.m; sourceTree = "<group>"; };
 		FD8746051F496B0000C95C5A /* TQGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQGroupViewController.h; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 		FDF0F9641F58B493008FE181 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				FD7DE1BB1F64A41F006200D8 /* Reachability.h */,
+				FD7DE1BA1F64A41F006200D8 /* Reachability.m */,
 				FDF0F9651F58B4AF008FE181 /* TQUserInfoManager.h */,
 				FDF0F9661F58B4AF008FE181 /* TQUserInfoManager.m */,
 			);
@@ -519,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */,
 				FDF158511F54A35B001997FF /* TQTextField.m in Sources */,
 				FD15CB991F60729B00C64B88 /* TQSearchBar.m in Sources */,
 				FDF0F9671F58B4AF008FE181 /* TQUserInfoManager.m in Sources */,
@@ -555,6 +562,7 @@
 				FDCC42EB1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
 				FD0478081F4FA4A400AD61BB /* TQLabel.m in Sources */,
 				FD12F62F1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */,
+				FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */,
 				FDF158521F54A35B001997FF /* TQTextField.m in Sources */,
 				FD44C60E1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD44C6061F43F5AB003B3605 /* TQNNTPArticle.m in Sources */,

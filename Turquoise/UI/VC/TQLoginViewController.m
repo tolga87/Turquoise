@@ -31,10 +31,13 @@
 }
 
 - (void)loginButtonDidTap:(id)sender {
-  NSString *userName = [_userNameField.text tq_whitespaceAndNewlineStrippedString];
-  NSString *password = [_passwordField.password tq_whitespaceAndNewlineStrippedString];
-  if (userName.length > 0 && password.length > 0) {
-    [self loginWithUserName:userName password:password askUserInfo:YES];
+  BOOL foundUserCredentials = [self loginWithSavedCredentialsIfPossible];
+  if (!foundUserCredentials) {
+    NSString *userName = [_userNameField.text tq_whitespaceAndNewlineStrippedString];
+    NSString *password = [_passwordField.password tq_whitespaceAndNewlineStrippedString];
+    if (userName.length > 0 && password.length > 0) {
+      [self loginWithUserName:userName password:password askUserInfo:YES];
+    }
   }
 }
 
@@ -42,17 +45,20 @@
   [self.view endEditing:YES];
 }
 
-- (void)loginWithSavedCredentialsIfPossible {
+// returns YES if username and password are found in Keychain; NO otherwise
+- (BOOL)loginWithSavedCredentialsIfPossible {
   NSString *userName = _userInfoManager.userName;
   NSString *password = _userInfoManager.password;
 
   if (userName.length > 0 && password.length > 0) {
     NSLog(@"Logging in with credentials found in Keychain...");
     _userNameField.text = userName;
-    _passwordField.text = [[_passwordField class] hiddenStringForString:password];
+    _passwordField.text = password;
     [self loginWithUserName:userName password:password askUserInfo:NO];
+    return YES;
   } else {
     NSLog(@"User credentials not found in Keychain; user must log in manually.");
+    return NO;
   }
 }
 
@@ -66,11 +72,18 @@
   // dismiss keyboard if necessary
   [self.view endEditing:YES];
 
+  TQNNTPManager *manager = [TQNNTPManager sharedInstance];
+  if (!manager.networkReachable) {
+    _connectionStatusLabel.text = @"No network connection";
+    _loginButton.enabled = YES;
+    [_activityIndicator stopAnimating];
+    return;
+  }
+
   _connectionStatusLabel.text = @"Connecting...";
   _loginButton.enabled = NO;
   [_activityIndicator startAnimating];
 
-  TQNNTPManager *manager = [TQNNTPManager sharedInstance];
   [manager loginWithUserName:userName password:password completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isFailure]) {
       NSLog(@"Login Failed!");
@@ -116,6 +129,9 @@
     [manager setGroup:groupId completion:^(TQNNTPResponse *response, NSError *error) {
       if ([response isOk]) {
         [self performSegueWithIdentifier:@"ShowGroupSegueID" sender:self];
+        _connectionStatusLabel.text = nil;
+        _loginButton.enabled = YES;
+        [_activityIndicator stopAnimating];
       } else {
         // TODO: what should we do here?..
       }

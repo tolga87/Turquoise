@@ -6,6 +6,4 @@
 @property(nonatomic) BOOL isPassword;
 @property(nonatomic, readonly, copy) NSString *password;
 
-+ (NSString *)hiddenStringForString:(NSString *)string;
-
 @end

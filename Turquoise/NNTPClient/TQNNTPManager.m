@@ -2,16 +2,19 @@
 #import "TQNNTPManager.h"
 
 #import "NSString+TQEncoding.h"
+#import "Reachability.h"
 
 typedef void(^TQNNTPRequestCallback)(TQNNTPResponse *response, NSError *error);
 
 NSString *const TQNNTPManagerErrorDomain = @"TQNNTPManagerErrorDomain";
 NSString *const kNewsServerHostName = @"news.ceng.metu.edu.tr";
 const NSInteger kNewsServerPort = 563;
+const NSTimeInterval kTimeout = 10;
 
 static NSError *_genericError;
 
 @implementation TQNNTPManager {
+  Reachability *_reachability;
   NSURLSessionStreamTask *_streamTask;
   NSMutableData *_dataBuffer;
 
@@ -23,6 +26,12 @@ static NSError *_genericError;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     theManager = [[self alloc] init];
+    theManager->_reachability = [Reachability reachabilityWithHostName:kNewsServerHostName];
+    [[NSNotificationCenter defaultCenter] addObserver:theManager
+                                             selector:@selector(reachabilityDidChange:)
+                                                 name:kReachabilityChangedNotification
+                                               object:nil];
+    [theManager->_reachability startNotifier];
   });
 
   return theManager;
@@ -44,6 +53,19 @@ static NSError *GetError(NSString *errorMessage) {
   return [NSError errorWithDomain:TQNNTPManagerErrorDomain
                              code:0
                          userInfo:@{ NSLocalizedDescriptionKey : errorMessage }];
+}
+
+- (BOOL)networkReachable {
+  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+  return (networkStatus == ReachableViaWiFi || networkStatus == ReachableViaWWAN);
+}
+
+- (void)reachabilityDidChange:(NSNotification *)notification {
+//  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+////  NotReachable = 0,
+////  ReachableViaWiFi,
+////  ReachableViaWWAN
+//  NSLog(@"ns = %@", @(networkStatus));
 }
 
 #pragma mark - Properties
@@ -107,13 +129,12 @@ static NSError *GetError(NSString *errorMessage) {
 
   [_streamTask readDataOfMinLength:0
                          maxLength:4096
-                           timeout:100
+                           timeout:kTimeout
                  completionHandler:^(NSData * _Nullable data, BOOL atEOF, NSError * _Nullable error) {
                    TQNNTPResponse *response;
                    if (data) {
                      NSString *responseString = [[NSString alloc] initWithData:data
                                                                       encoding:NSUTF8StringEncoding];
-//                     NSLog(@"S: %@", responseString);
                      response = [[TQNNTPResponse alloc] initWithString:responseString];
                    }
 
@@ -278,7 +299,7 @@ static NSError *GetError(NSString *errorMessage) {
 - (void)bufferDataWithPartNo:(NSInteger)partNo completion:(void (^)(NSData *data))completion {
   [_streamTask readDataOfMinLength:0
                          maxLength:10000
-                           timeout:100
+                           timeout:kTimeout
                  completionHandler:^(NSData * _Nullable data, BOOL atEOF, NSError * _Nullable error) {
                    if (!data) {
                      BLOCK_SAFE_RUN(completion, nil);
@@ -343,7 +364,7 @@ static NSError *GetError(NSString *errorMessage) {
   }
 
   NSData *requestData = [requestString dataUsingEncoding:NSUTF8StringEncoding];
-  [_streamTask writeData:requestData timeout:100 completionHandler:^(NSError * _Nullable error) {
+  [_streamTask writeData:requestData timeout:kTimeout completionHandler:^(NSError * _Nullable error) {
     if (error) {
       BLOCK_SAFE_RUN(completion, nil, nil);  // TODO: error.
       return;

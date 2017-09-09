@@ -18,6 +18,7 @@ static NSString *const kNNTPGroupDidUpdateNotification = @"NNTPGroupDidUpdate";
 
 @interface TQNNTPManager : NSObject
 
+@property(nonatomic, readonly) BOOL networkReachable;
 @property(nonatomic, readonly) BOOL connected;
 @property(nonatomic, copy, readonly) NSArray<TQNNTPGroup *> *allGroups;
 @property(nonatomic, readonly) TQNNTPGroup *currentGroup;

@@ -40,6 +40,16 @@ static const NSUInteger kMaxPasswordLength = 64;
   }
 }
 
+- (void)setText:(NSString *)text {
+  if (_isPassword) {
+    _password = [text mutableCopy];
+    [super setText:[[self class] hiddenStringForString:_password]];
+  } else {
+    _password = [NSMutableString string];
+    [super setText:text];
+  }
+}
+
 - (NSString *)password {
   return [_password copy];
 }
