@@ -10,6 +10,7 @@
 #import "TQNNTPGroup.h"
 #import "TQNNTPManager.h"
 #import "TQOverlaySlidingMenu.h"
+#import "TQReleaseNotesView.h"
 #import "TQUserInfoManager.h"
 
 @interface TQGroupViewController ()
@@ -97,7 +98,8 @@
       [[TQOverlay sharedInstance] showWithView:logoutView relativeVerticalPosition:.35 animated:NO];
     },
     ^{
-      NSLog(@"Will show Release notes");
+      TQReleaseNotesView *releaseNotesView = [[TQReleaseNotesView alloc] init];
+      [[TQOverlay sharedInstance] showWithView:releaseNotesView relativeVerticalPosition:.35 animated:YES];
     },
   ];
 

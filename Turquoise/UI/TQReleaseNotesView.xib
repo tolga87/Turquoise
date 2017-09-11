@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="dungeon.ttf">
+            <string>Dungeon-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TQReleaseNotesView">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="450"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A1L-8J-Ryk" userLabel="ContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="450"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="imW-DT-E9U">
+                            <rect key="frame" x="131.5" y="100" width="37" height="37"/>
+                        </activityIndicatorView>
+                        <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-Af-Vrz">
+                            <rect key="frame" x="0.0" y="46" width="300" height="396"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <wkWebViewConfiguration key="configuration">
+                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                <wkPreferences key="preferences"/>
+                            </wkWebViewConfiguration>
+                        </wkWebView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rh-Bk-r4m">
+                            <rect key="frame" x="202" y="8" width="90" height="32"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="5dm-ma-88u"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
+                            <state key="normal" title="Close">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="closeButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="6Yz-Ha-qzC"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="imW-DT-E9U" firstAttribute="centerX" secondItem="A1L-8J-Ryk" secondAttribute="centerX" id="0xV-6z-kRJ"/>
+                        <constraint firstAttribute="width" constant="300" id="1Yf-uS-Fta"/>
+                        <constraint firstItem="lPF-Af-Vrz" firstAttribute="leading" secondItem="A1L-8J-Ryk" secondAttribute="leading" id="A64-ww-D4t"/>
+                        <constraint firstItem="lPF-Af-Vrz" firstAttribute="top" secondItem="6rh-Bk-r4m" secondAttribute="bottom" constant="6" id="YiV-gm-Frs"/>
+                        <constraint firstAttribute="trailing" secondItem="6rh-Bk-r4m" secondAttribute="trailing" constant="8" id="Yw2-76-8Pv"/>
+                        <constraint firstAttribute="height" constant="450" id="awX-m4-9uh"/>
+                        <constraint firstAttribute="bottom" secondItem="lPF-Af-Vrz" secondAttribute="bottom" constant="8" id="jOe-0n-T41"/>
+                        <constraint firstItem="6rh-Bk-r4m" firstAttribute="top" secondItem="A1L-8J-Ryk" secondAttribute="top" constant="8" id="nQf-bA-jS9"/>
+                        <constraint firstItem="lPF-Af-Vrz" firstAttribute="top" secondItem="imW-DT-E9U" secondAttribute="bottom" constant="-91" id="r0E-yK-SXB"/>
+                        <constraint firstAttribute="trailing" secondItem="lPF-Af-Vrz" secondAttribute="trailing" id="wf1-rF-b0Q"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="A1L-8J-Ryk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="1QC-D1-K1e"/>
+                <constraint firstItem="A1L-8J-Ryk" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="5Lh-ba-a6D"/>
+                <constraint firstItem="A1L-8J-Ryk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Bkd-hW-Bdm"/>
+                <constraint firstItem="A1L-8J-Ryk" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="MeO-kR-35j"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="_activityIndicator" destination="imW-DT-E9U" id="Bbu-O5-4ls"/>
+                <outlet property="_webView" destination="lPF-Af-Vrz" id="6Uo-ke-kra"/>
+            </connections>
+        </view>
+    </objects>
+</document>
