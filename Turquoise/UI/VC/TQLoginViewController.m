@@ -88,7 +88,6 @@
     if ([response isFailure]) {
       NSLog(@"Login Failed!");
       _connectionStatusLabel.text = @"Invalid username/password";
-      [_userInfoManager resetUserCredentials];
       [_activityIndicator stopAnimating];
       _loginButton.enabled = YES;
       return;
