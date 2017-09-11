@@ -22,6 +22,7 @@ static NSString *const kGroupsKey = @"userInfo.groups";
 @implementation TQUserInfoManager {
   KeychainWrapper *_keychain;
   NSMutableDictionary<NSString *, NSNumber *> *_subscribedGroups;
+  // TODO: change this back to a property
 }
 
 + (instancetype)sharedInstance {
@@ -85,6 +86,10 @@ static NSString *const kGroupsKey = @"userInfo.groups";
 
 - (void)resetUserCredentials {
   [_keychain resetKeychainItem];
+
+  _subscribedGroups = [@{ @"metu.ceng.test" : @1 } mutableCopy];
+  [[NSUserDefaults standardUserDefaults] setObject:_subscribedGroups
+                                            forKey:kGroupsKey];
   [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidLogoutNotification
                                                       object:self];
 }
