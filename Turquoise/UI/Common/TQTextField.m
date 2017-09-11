@@ -76,6 +76,12 @@ static const NSUInteger kMaxPasswordLength = 64;
   return YES;
 }
 
+- (BOOL)textFieldShouldClear:(UITextField *)textField {
+  // text field will be cleared, clear password as well.
+  _password = [NSMutableString string];
+  return YES;
+}
+
 #pragma mark - UITextField Overrides
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
