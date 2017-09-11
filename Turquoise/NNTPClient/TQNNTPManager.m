@@ -61,11 +61,13 @@ static NSError *GetError(NSString *errorMessage) {
 }
 
 - (void)reachabilityDidChange:(NSNotification *)notification {
-//  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
-////  NotReachable = 0,
-////  ReachableViaWiFi,
-////  ReachableViaWWAN
-//  NSLog(@"ns = %@", @(networkStatus));
+  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+  NSArray *status = @[
+    @"NotReachable",
+    @"ReachableViaWiFi",
+    @"ReachableViaWWAN"
+  ];
+  NSLog(@"~TA NETWORK STATUS = %@", status[networkStatus]);
 }
 
 #pragma mark - Properties

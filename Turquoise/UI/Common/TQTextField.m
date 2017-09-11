@@ -23,6 +23,7 @@ static const NSUInteger kMaxPasswordLength = 64;
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
+    _password = [NSMutableString string];
     self.delegate = self;
     self.autocorrectionType = UITextAutocorrectionTypeNo;
     [self addTarget:self
@@ -42,7 +43,11 @@ static const NSUInteger kMaxPasswordLength = 64;
 
 - (void)setText:(NSString *)text {
   if (_isPassword) {
-    _password = [text mutableCopy];
+    if (_password.length != text.length) {
+      // this only happens when the text is modified programmatically.
+      // when change is done through the UI, we already have the correct password here.
+      _password = [text mutableCopy];
+    }
     [super setText:[[self class] hiddenStringForString:_password]];
   } else {
     _password = [NSMutableString string];
@@ -56,7 +61,7 @@ static const NSUInteger kMaxPasswordLength = 64;
 
 - (void)textUpdated {
   if (_isPassword) {
-    self.text = [[self class] hiddenStringForString:self.text];
+    self.text = _password;
   }
 }
 

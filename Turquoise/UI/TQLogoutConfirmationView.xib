@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="dungeon.ttf">
+            <string>Dungeon-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TQLogoutConfirmationView">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="83"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXd-XP-fR5" userLabel="ContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="83"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vgw-cy-QwU">
+                            <rect key="frame" x="8" y="0.0" width="284" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="dQf-Ud-2oq"/>
+                            </constraints>
+                            <string key="text">Are you sure you want to logout?
+This will reset your newsgroup subscriptions.</string>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aq5-iR-5cL">
+                            <rect key="frame" x="8" y="45" width="90" height="30"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="rCN-ts-Drb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancelButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="7cR-pQ-5lh"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KFJ-AQ-qrf">
+                            <rect key="frame" x="202" y="45" width="90" height="30"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="xSH-ka-Gg3"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
+                            <state key="normal" title="Logout">
+                                <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="logoutButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="hbx-0A-SsW"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="vgw-cy-QwU" firstAttribute="top" secondItem="wXd-XP-fR5" secondAttribute="top" id="0mo-t0-QwQ"/>
+                        <constraint firstAttribute="bottom" secondItem="KFJ-AQ-qrf" secondAttribute="bottom" constant="8" id="EXF-7L-b19"/>
+                        <constraint firstAttribute="width" constant="300" id="LEq-kV-u8P"/>
+                        <constraint firstAttribute="bottom" secondItem="Aq5-iR-5cL" secondAttribute="bottom" constant="8" id="OEg-1L-weU"/>
+                        <constraint firstAttribute="trailing" secondItem="KFJ-AQ-qrf" secondAttribute="trailing" constant="8" id="OcV-Pj-RDt"/>
+                        <constraint firstItem="vgw-cy-QwU" firstAttribute="leading" secondItem="wXd-XP-fR5" secondAttribute="leading" constant="8" id="jlf-6p-3Wc"/>
+                        <constraint firstAttribute="trailing" secondItem="vgw-cy-QwU" secondAttribute="trailing" constant="8" id="mvW-px-RSq"/>
+                        <constraint firstAttribute="height" constant="83" id="svP-Aw-Q9s"/>
+                        <constraint firstItem="Aq5-iR-5cL" firstAttribute="top" secondItem="vgw-cy-QwU" secondAttribute="bottom" id="tt9-af-tvJ"/>
+                        <constraint firstItem="Aq5-iR-5cL" firstAttribute="leading" secondItem="wXd-XP-fR5" secondAttribute="leading" constant="8" id="uEn-Qc-6ld"/>
+                        <constraint firstItem="KFJ-AQ-qrf" firstAttribute="top" secondItem="vgw-cy-QwU" secondAttribute="bottom" id="yad-1O-Skq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wXd-XP-fR5" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="dmv-5x-CnS"/>
+                <constraint firstItem="wXd-XP-fR5" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="o2f-mB-fGM"/>
+                <constraint firstItem="wXd-XP-fR5" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="rWp-k8-4j5"/>
+                <constraint firstItem="wXd-XP-fR5" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="rex-MQ-Tad"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="34" y="76.5"/>
+        </view>
+    </objects>
+</document>

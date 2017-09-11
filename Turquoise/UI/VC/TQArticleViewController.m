@@ -66,37 +66,4 @@
   articleComposer.parentArticle = _article;
 }
 
-//#pragma mark - TQArticleComposerViewControllerDelegate
-//
-//- (void)articleComposerViewControllerDidCancel:(TQArticleComposerViewController *)articleComposerVC {
-//  if (self.presentedViewController == articleComposerVC) {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//  } else {
-//    NSLog(@"Cannot dismiss article composer; it is not currently being presented by this controller.");
-//  }
-//}
-//
-//- (void)articleComposerViewController:(TQArticleComposerViewController *)articleComposerVC
-//          didFinishPostingWithSuccess:(BOOL)success {
-//  if (self.presentedViewController == articleComposerVC) {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//  } else {
-//    NSLog(@"Cannot dismiss article composer; it is not currently being presented by this controller.");
-//  }
-//
-//  if (success) {
-//    NSLog(@"Article posted");
-//
-////    [self reloadDataCompletion:^(BOOL success) {
-////      if (success) {
-////        NSLog(@"Group reload complete.");
-////      } else {
-////        NSLog(@"Could not reload group.");
-////      }
-////    }];
-//  } else {
-//    NSLog(@"Could not post article");
-//  }
-//}
-
 @end

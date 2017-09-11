@@ -2,8 +2,8 @@
 
 #import "TQNNTPGroup.h"
 
-static NSString *const kUserSubscriptionsChangedNotification =
-    @"kUserSubscriptionsChangedNotification";
+extern NSString *const kUserSubscriptionsDidChangeNotification;
+extern NSString *const kUserDidLogoutNotification;
 
 @interface TQUserInfoManager : NSObject
 

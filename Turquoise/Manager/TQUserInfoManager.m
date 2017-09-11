@@ -8,6 +8,8 @@
 #define kFullNameKey ((NSString *)kSecAttrLabel)
 #define kEmailKey ((NSString *)kSecAttrService)
 
+NSString *const kUserSubscriptionsDidChangeNotification = @"kUserSubscriptionsChangedNotification";
+NSString *const kUserDidLogoutNotification = @"kUserDidLogoutNotification";
 static NSString *const kGroupsKey = @"userInfo.groups";
 
 @interface TQUserInfoManager ()
@@ -83,6 +85,8 @@ static NSString *const kGroupsKey = @"userInfo.groups";
 
 - (void)resetUserCredentials {
   [_keychain resetKeychainItem];
+  [[NSNotificationCenter defaultCenter] postNotificationName:kUserDidLogoutNotification
+                                                      object:self];
 }
 
 - (BOOL)isSubscribedToGroup:(TQNNTPGroup *)group {
@@ -99,7 +103,7 @@ static NSString *const kGroupsKey = @"userInfo.groups";
 
   _subscribedGroups[group.groupId] = @1;
   [[NSUserDefaults standardUserDefaults] setObject:_subscribedGroups forKey:kGroupsKey];
-  [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsChangedNotification
+  [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsDidChangeNotification
                                                       object:self];
   NSLog(@"[INFO] Subscribed to group '%@'", group.groupId);
 }
@@ -111,7 +115,7 @@ static NSString *const kGroupsKey = @"userInfo.groups";
 
   [_subscribedGroups removeObjectForKey:group.groupId];
   [[NSUserDefaults standardUserDefaults] setObject:_subscribedGroups forKey:kGroupsKey];
-  [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsChangedNotification
+  [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsDidChangeNotification
                                                       object:self];
   NSLog(@"[INFO] Unsubscribed from group '%@'", group.groupId);
 }

@@ -5,6 +5,7 @@
 #import "TQArticleHeaderTableViewCell.h"
 #import "TQArticleViewController.h"
 #import "TQHeaderDownloadProgressView.h"
+#import "TQLogoutConfirmationView.h"
 #import "TQNNTPArticle.h"
 #import "TQNNTPGroup.h"
 #import "TQNNTPManager.h"
@@ -39,6 +40,10 @@
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(groupDidUpdate:)
                                                name:kNNTPGroupDidUpdateNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(userDidLogout:)
+                                               name:kUserDidLogoutNotification
                                              object:nil];
 }
 
@@ -80,7 +85,7 @@
 - (IBAction)settingsButtonDidTap:(id)sender {
   NSArray *options = @[
     @"Manage newsgroup subscriptions",
-    @"Settings",
+    @"Logout",
     @"Release notes"
   ];
   NSArray *callbacks = @[
@@ -88,7 +93,8 @@
       [self performSegueWithIdentifier:@"ManageSubscriptionsSegueId" sender:self];
     },
     ^{
-      NSLog(@"Will show Settings");
+      TQLogoutConfirmationView *logoutView = [[TQLogoutConfirmationView alloc] init];
+      [[TQOverlay sharedInstance] showWithView:logoutView relativeVerticalPosition:.35 animated:NO];
     },
     ^{
       NSLog(@"Will show Release notes");
@@ -112,6 +118,10 @@
 
   self.group = _nntpManager.currentGroup;
   [self.tableView reloadData];
+}
+
+- (void)userDidLogout:(NSNotification *)notification {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource

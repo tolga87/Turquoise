@@ -7,6 +7,7 @@
 #import "TQOverlay.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
+#import "UIView+NibLoader.h"
 
 @implementation TQLoginViewController {
   TQUserInfoManager *_userInfoManager;
@@ -14,8 +15,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
   [super viewWillAppear:animated];
+
   _loginButton.enabled = YES;
   [self loginWithSavedCredentialsIfPossible];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(userDidLogout)
+                                               name:kUserDidLogoutNotification
+                                             object:nil];
 }
 
 - (void)viewDidLoad {
@@ -30,12 +36,17 @@
   [_activityIndicator stopAnimating];
 }
 
+- (void)userDidLogout {
+  _userNameField.text = @"";
+  _passwordField.text = @"";
+}
+
 - (void)loginButtonDidTap:(id)sender {
   BOOL foundUserCredentials = [self loginWithSavedCredentialsIfPossible];
   if (!foundUserCredentials) {
     NSString *userName = [_userNameField.text tq_whitespaceAndNewlineStrippedString];
     NSString *password = [_passwordField.password tq_whitespaceAndNewlineStrippedString];
-    if (userName.length > 0 && password.length > 0) {
+    if (userName.length > 0 && password.length > 1) {
       [self loginWithUserName:userName password:password askUserInfo:YES];
     }
   }
@@ -50,7 +61,7 @@
   NSString *userName = _userInfoManager.userName;
   NSString *password = _userInfoManager.password;
 
-  if (userName.length > 0 && password.length > 0) {
+  if (userName.length > 0 && password.length > 1) {
     NSLog(@"Logging in with credentials found in Keychain...");
     _userNameField.text = userName;
     _passwordField.text = password;
@@ -65,7 +76,7 @@
 - (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
               askUserInfo:(BOOL)shouldAskUserInfo {
-  if (userName.length == 0 || password.length == 0) {
+  if (userName.length == 0 || password.length < 1) {
     return;
   }
 
@@ -103,7 +114,7 @@
 
     if (shouldAskUserInfo) {
       TQUserInfoInputView *userInfoInputView =
-          [[[NSBundle mainBundle] loadNibNamed:@"TQUserInfoInputView" owner:self options:nil] firstObject];
+      (TQUserInfoInputView *)[UIView tq_loadFromNib:@"TQUserInfoInputView" owner:self];
       userInfoInputView.completionBlock = ^(NSString *userFullName, NSString *userEmail) {
         _userInfoManager.userName = userName;
         _userInfoManager.password = password;
@@ -116,14 +127,14 @@
                                       animated:YES];
     }
 
-//    NSString *groupId = @"metu.ceng.ses";
+    //    NSString *groupId = @"metu.ceng.ses";
     NSString *groupId = @"metu.ceng.test";
-//    NSString *groupId = @"metu.ceng.announce.jobs";
-//      NSString *groupId = @"metu.ceng.announce.sales";
-//    NSString *groupId = @"metu.ceng.kult.kitap";
-//    NSString *groupId = @"metu.ceng.course.465";
-//    NSString *groupId = @"metu.ceng.course.140";
-//      NSString *groupId = @"metu.ceng.course.316";
+    //    NSString *groupId = @"metu.ceng.announce.jobs";
+    //      NSString *groupId = @"metu.ceng.announce.sales";
+    //    NSString *groupId = @"metu.ceng.kult.kitap";
+    //    NSString *groupId = @"metu.ceng.course.465";
+    //    NSString *groupId = @"metu.ceng.course.140";
+    //      NSString *groupId = @"metu.ceng.course.316";
 
     [manager setGroup:groupId completion:^(TQNNTPResponse *response, NSError *error) {
       if ([response isOk]) {

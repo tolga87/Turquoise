@@ -37,6 +37,12 @@
 		FD5048021F57478A0064466D /* TQUserInfoInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD5048001F57478A0064466D /* TQUserInfoInputView.m */; };
 		FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
 		FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
+		FD7DE1C41F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */; };
+		FD7DE1C51F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */; };
+		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
+		FD7DE1C81F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
+		FD7DE1CB1F64B547006200D8 /* UIView+NibLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */; };
+		FD7DE1CC1F64B547006200D8 /* UIView+NibLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */; };
 		FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746041F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746081F496B0000C95C5A /* TQGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746061F496B0000C95C5A /* TQGroupViewController.m */; };
@@ -124,6 +130,11 @@
 		FD5048001F57478A0064466D /* TQUserInfoInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TQUserInfoInputView.m; sourceTree = "<group>"; };
 		FD7DE1BA1F64A41F006200D8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		FD7DE1BB1F64A41F006200D8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FD7DE1C21F64B1EF006200D8 /* TQLogoutConfirmationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQLogoutConfirmationView.h; sourceTree = "<group>"; };
+		FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQLogoutConfirmationView.m; sourceTree = "<group>"; };
+		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
+		FD7DE1C91F64B547006200D8 /* UIView+NibLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoader.h"; sourceTree = "<group>"; };
+		FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoader.m"; sourceTree = "<group>"; };
 		FD8746011F495D7300C95C5A /* TQNNTPArticleForest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TQNNTPArticleForest.h; path = NNTPClient/TQNNTPArticleForest.h; sourceTree = "<group>"; };
 		FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TQNNTPArticleForest.m; path = NNTPClient/TQNNTPArticleForest.m; sourceTree = "<group>"; };
 		FD8746051F496B0000C95C5A /* TQGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQGroupViewController.h; sourceTree = "<group>"; };
@@ -227,6 +238,8 @@
 				FDF158501F54A35B001997FF /* TQTextField.m */,
 				FD15CB971F60729B00C64B88 /* TQSearchBar.h */,
 				FD15CB981F60729B00C64B88 /* TQSearchBar.m */,
+				FD7DE1C91F64B547006200D8 /* UIView+NibLoader.h */,
+				FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -274,6 +287,9 @@
 				FD8E5A701F60B044008434F8 /* TQHeaderDownloadProgressView.h */,
 				FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */,
 				FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */,
+				FD7DE1C21F64B1EF006200D8 /* TQLogoutConfirmationView.h */,
+				FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */,
+				FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -476,6 +492,7 @@
 				FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */,
 				FD9CB6601F4233E800BC2225 /* LaunchScreen.storyboard in Resources */,
 				FDD365D11F5A07F700A80106 /* news5.png in Resources */,
+				FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */,
 				FD9CB65D1F4233E800BC2225 /* Assets.xcassets in Resources */,
 				FDD365CA1F5A06CB00A80106 /* news3.png in Resources */,
 				FD9CB65B1F4233E800BC2225 /* Main.storyboard in Resources */,
@@ -496,6 +513,7 @@
 				FDD365CE1F5A075300A80106 /* news4.png in Resources */,
 				FDD365D01F5A07F700A80106 /* news5.png in Resources */,
 				FDA539E21F5A654F009C7526 /* check1.png in Resources */,
+				FD7DE1C81F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */,
 				FDD365CB1F5A06CB00A80106 /* news3.png in Resources */,
 				FDD365C81F5A05F200A80106 /* news2.png in Resources */,
 			);
@@ -526,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */,
+				FD7DE1C41F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */,
 				FDF158511F54A35B001997FF /* TQTextField.m in Sources */,
 				FD15CB991F60729B00C64B88 /* TQSearchBar.m in Sources */,
 				FDF0F9671F58B4AF008FE181 /* TQUserInfoManager.m in Sources */,
@@ -550,6 +569,7 @@
 				FD44C60D1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD5048011F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD44C5F41F423F01003B3605 /* TQNNTPResponse.m in Sources */,
+				FD7DE1CB1F64B547006200D8 /* UIView+NibLoader.m in Sources */,
 				FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -572,8 +592,10 @@
 				FD44C5FE1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
 				FD15CB9A1F60729B00C64B88 /* TQSearchBar.m in Sources */,
 				FD8746091F496B0000C95C5A /* TQGroupViewController.m in Sources */,
+				FD7DE1CC1F64B547006200D8 /* UIView+NibLoader.m in Sources */,
 				FD9CB8E71F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FD44C5F51F423F01003B3605 /* TQNNTPResponse.m in Sources */,
+				FD7DE1C51F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */,
 				FD8E5A731F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
 				FD5048021F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,

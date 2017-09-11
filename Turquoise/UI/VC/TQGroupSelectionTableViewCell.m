@@ -26,7 +26,7 @@
   // TODO: make this notification system smarter.
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(userSubscriptionsDidUpdate:)
-                                               name:kUserSubscriptionsChangedNotification
+                                               name:kUserSubscriptionsDidChangeNotification
                                              object:nil];
 }
 
