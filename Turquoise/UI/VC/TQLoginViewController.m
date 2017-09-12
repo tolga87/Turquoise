@@ -17,11 +17,12 @@
   [super viewWillAppear:animated];
 
   _loginButton.enabled = YES;
-  [self loginWithSavedCredentialsIfPossible];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(userDidLogout)
-                                               name:kUserDidLogoutNotification
-                                             object:nil];
+
+  // TODO: separate this logic from view lifecycle methods
+  if ([TQNNTPManager sharedInstance].networkReachable) {
+    // don't attempt to connect if we appeared because of a network disconnection
+    [self loginWithSavedCredentialsIfPossible];
+  }
 }
 
 - (void)viewDidLoad {
@@ -34,6 +35,21 @@
                    action:@selector(loginButtonDidTap:)
          forControlEvents:UIControlEventTouchUpInside];
   [_activityIndicator stopAnimating];
+
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(userDidLogout)
+                                               name:kUserDidLogoutNotification
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(networkConnectionLost)
+                                               name:kNetworkConnectionLostNotification
+                                             object:nil];
+}
+
+- (void)networkConnectionLost {
+  NSLog(@"Disconnected from server!");
+  [self dismissViewControllerAnimated:YES completion:nil];
+  _connectionStatusLabel.text = @"Disconnected from server, please login again.";
 }
 
 - (void)userDidLogout {

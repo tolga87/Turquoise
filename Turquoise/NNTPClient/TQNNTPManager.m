@@ -6,6 +6,10 @@
 
 typedef void(^TQNNTPRequestCallback)(TQNNTPResponse *response, NSError *error);
 
+NSString *const kNetworkConnectionLostNotification = @"kNetworkConnectionLostNotification";
+NSString *const kNNTPGroupListDidUpdateNotification = @"NNTPGroupListDidUpdate";
+NSString *const kNNTPGroupDidUpdateNotification = @"NNTPGroupDidUpdate";
+
 NSString *const TQNNTPManagerErrorDomain = @"TQNNTPManagerErrorDomain";
 NSString *const kNewsServerHostName = @"news.ceng.metu.edu.tr";
 const NSInteger kNewsServerPort = 563;
@@ -19,6 +23,9 @@ static NSError *_genericError;
   NSMutableData *_dataBuffer;
 
   NSMutableArray<TQNNTPGroup *> *_allGroups;
+
+  NetworkStatus _lastNetworkStatus;
+  NSTimeInterval _lastNetworkStatusUpdateTimestamp;
 }
 
 + (instancetype)sharedInstance {
@@ -27,6 +34,8 @@ static NSError *_genericError;
   dispatch_once(&onceToken, ^{
     theManager = [[self alloc] init];
     theManager->_reachability = [Reachability reachabilityWithHostName:kNewsServerHostName];
+    theManager->_lastNetworkStatus = -1;
+    theManager->_lastNetworkStatusUpdateTimestamp = 0;
     [[NSNotificationCenter defaultCenter] addObserver:theManager
                                              selector:@selector(reachabilityDidChange:)
                                                  name:kReachabilityChangedNotification
@@ -62,12 +71,34 @@ static NSError *GetError(NSString *errorMessage) {
 
 - (void)reachabilityDidChange:(NSNotification *)notification {
   NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+
+  // for some reason, we receive duplicate notifications for single events.
+  // set up a time threshold and drop redundant notifications.
+  NSTimeInterval nowTimestamp = [NSDate timeIntervalSinceReferenceDate];
+  const NSTimeInterval timestampThreshold = .1;
+  BOOL timeThresholdExceeded = (nowTimestamp - _lastNetworkStatusUpdateTimestamp >= timestampThreshold);
+
+  if (networkStatus == _lastNetworkStatus && !timeThresholdExceeded) {
+    // this is a duplicate notification. ignore it.
+    NSLog(@"~TA this is a duplicate notification. ignore it.");
+    return;
+  }
+
   NSArray *status = @[
     @"NotReachable",
     @"ReachableViaWiFi",
     @"ReachableViaWWAN"
   ];
-  NSLog(@"~TA NETWORK STATUS = %@", status[networkStatus]);
+  NSLog(@"NETWORK STATUS UPDATED: %@", status[networkStatus]);
+
+  _lastNetworkStatus = networkStatus;
+  _lastNetworkStatusUpdateTimestamp = nowTimestamp;
+
+  if (networkStatus == NotReachable) {
+    [_streamTask stopSecureConnection];
+    _streamTask = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNetworkConnectionLostNotification object:self];
+  }
 }
 
 #pragma mark - Properties
@@ -98,14 +129,11 @@ static NSError *GetError(NSString *errorMessage) {
 //  _streamTask = [[NSURLSession sharedSession] streamTaskWithHostName:kNewsServerHostName
 //                                                                port:kNewsServerPort];
 
-
   // TODO: is this necessary?
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
                                                           delegate:nil
                                                      delegateQueue:[NSOperationQueue mainQueue]];
   _streamTask = [session streamTaskWithHostName:kNewsServerHostName port:kNewsServerPort];
-
-
   [_streamTask startSecureConnection];
 
   void(^sendUserNameBlock)(NSString *, TQNNTPRequestCallback) = ^(NSString *userName, TQNNTPRequestCallback callback) {

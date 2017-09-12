@@ -13,13 +13,13 @@ typedef void(^TQNNTPRequestCallback)(TQNNTPResponse *response, NSError *error);
 
 extern NSString *const TQNNTPManagerErrorDomain;
 
-static NSString *const kNNTPGroupListDidUpdateNotification = @"NNTPGroupListDidUpdate";
-static NSString *const kNNTPGroupDidUpdateNotification = @"NNTPGroupDidUpdate";
+extern NSString *const kNetworkConnectionLostNotification;
+extern NSString *const kNNTPGroupListDidUpdateNotification;
+extern NSString *const kNNTPGroupDidUpdateNotification;
 
 @interface TQNNTPManager : NSObject
 
 @property(nonatomic, readonly) BOOL networkReachable;
-@property(nonatomic, readonly) BOOL connected;
 @property(nonatomic, copy, readonly) NSArray<TQNNTPGroup *> *allGroups;
 @property(nonatomic, readonly) TQNNTPGroup *currentGroup;
 
