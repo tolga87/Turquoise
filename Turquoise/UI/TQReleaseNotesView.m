@@ -1,28 +1,30 @@
 #import "TQReleaseNotesView.h"
 
-#import <WebKit/WebKit.h>
-
 #import "UIView+NibLoader.h"
 #import "TQOverlay.h"
 
 static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/release-notes.php";
 
-@interface TQReleaseNotesView ()<WKNavigationDelegate>
+// TODO: convert this to WKWebView when possible
+@interface TQReleaseNotesView ()<UIWebViewDelegate>
 @end
 
 @implementation TQReleaseNotesView {
-  IBOutlet WKWebView *_webView;
+  IBOutlet UIWebView *_webView;
   IBOutlet UIActivityIndicatorView *_activityIndicator;
 }
 
 - (IBAction)closeButtonDidTap:(id)sender {
+  _webView.delegate = nil;  // this is assign, not weak. (sigh)
   [[TQOverlay sharedInstance] dismissAnimated:YES];
 }
 
 - (instancetype)init {
   self = (TQReleaseNotesView *)[UIView tq_loadFromNib:@"TQReleaseNotesView" owner:self];
   if (self) {
-    _webView.navigationDelegate = self;
+//    _webView.navigationDelegate = self;
+    _webView.delegate = self;
+    _webView.scalesPageToFit = YES;
     _activityIndicator.hidesWhenStopped = YES;
     // make the spinner a little bigger
     _activityIndicator.transform = CGAffineTransformMakeScale(1.25, 1.25);
@@ -37,25 +39,46 @@ static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/r
   [_activityIndicator startAnimating];
 }
 
-#pragma mark - WKNavigationDelegate
+#pragma mark - UIWebViewDelegate
 
-- (void)webView:(WKWebView *)webView
-    decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
-                    decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-  NSURL *url = navigationAction.request.URL;
+- (BOOL)webView:(UIWebView *)webView
+    shouldStartLoadWithRequest:(NSURLRequest *)request
+                navigationType:(UIWebViewNavigationType)navigationType {
+  NSURL *url = request.URL;
   if ([url.absoluteString isEqualToString:kReleaseNotesAddress]) {
-    decisionHandler(WKNavigationActionPolicyAllow);
+    return YES;
   } else {
     UIApplication *application = [UIApplication sharedApplication];
     if ([application canOpenURL:url]) {
       [application openURL:url options:@{} completionHandler:nil];
     }
-    decisionHandler(WKNavigationActionPolicyCancel);
+    return NO;
   }
 }
 
-- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
   [_activityIndicator stopAnimating];
 }
+
+//#pragma mark - WKNavigationDelegate
+//
+//- (void)webView:(WKWebView *)webView
+//    decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction
+//                    decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+//  NSURL *url = navigationAction.request.URL;
+//  if ([url.absoluteString isEqualToString:kReleaseNotesAddress]) {
+//    decisionHandler(WKNavigationActionPolicyAllow);
+//  } else {
+//    UIApplication *application = [UIApplication sharedApplication];
+//    if ([application canOpenURL:url]) {
+//      [application openURL:url options:@{} completionHandler:nil];
+//    }
+//    decisionHandler(WKNavigationActionPolicyCancel);
+//  }
+//}
+//
+//- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+//  [_activityIndicator stopAnimating];
+//}
 
 @end

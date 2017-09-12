@@ -26,14 +26,10 @@
                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="imW-DT-E9U">
                             <rect key="frame" x="131.5" y="100" width="37" height="37"/>
                         </activityIndicatorView>
-                        <wkWebView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-Af-Vrz">
+                        <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPF-Af-Vrz">
                             <rect key="frame" x="0.0" y="46" width="300" height="396"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <wkWebViewConfiguration key="configuration">
-                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                <wkPreferences key="preferences"/>
-                            </wkWebViewConfiguration>
-                        </wkWebView>
+                        </webView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6rh-Bk-r4m">
                             <rect key="frame" x="202" y="8" width="90" height="32"/>
                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
