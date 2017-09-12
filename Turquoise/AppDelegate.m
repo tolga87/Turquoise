@@ -1,11 +1,3 @@
-//
-//  AppDelegate.m
-//  Turquoise
-//
-//  Created by Tolga AKIN on 8/14/17.
-//  Copyright © 2017 Tolga AKIN. All rights reserved.
-//
-
 #import "AppDelegate.h"
 
 @interface AppDelegate ()

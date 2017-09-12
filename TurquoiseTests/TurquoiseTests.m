@@ -1,11 +1,3 @@
-//
-//  TurquoiseTests.m
-//  TurquoiseTests
-//
-//  Created by Tolga AKIN on 8/14/17.
-//  Copyright © 2017 Tolga AKIN. All rights reserved.
-//
-
 #import <XCTest/XCTest.h>
 
 @interface TurquoiseTests : XCTestCase
