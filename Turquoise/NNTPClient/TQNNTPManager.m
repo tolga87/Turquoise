@@ -121,7 +121,7 @@ static NSError *GetError(NSString *errorMessage) {
     @"ReachableViaWiFi",
     @"ReachableViaWWAN"
   ];
-  NSLog(@"NETWORK STATUS UPDATED: %@", status[networkStatus]);
+  TQLogInfo(@"NETWORK STATUS UPDATED: %@", status[networkStatus]);
 
   _lastNetworkStatus = networkStatus;
   _lastNetworkStatusUpdateTimestamp = nowTimestamp;
@@ -240,7 +240,7 @@ static NSError *GetError(NSString *errorMessage) {
 }
 
 - (void)listGroupsCompletion:(TQNNTPRequestCallback)completion {
-  NSLog(@"Requesting list of all newsgroups...");
+  TQLogInfo(@"Requesting list of all newsgroups...");
 
   [self sendRequest:@"LIST\r\n" completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isOk]) {
@@ -292,7 +292,7 @@ static NSError *GetError(NSString *errorMessage) {
     }
 
     [_currentGroup downloadHeadersWithCompletion:^() {
-      NSLog(@"All headers are downloaded");
+      TQLogInfo(@"All headers are downloaded");
       [[NSNotificationCenter defaultCenter] postNotificationName:kNNTPGroupDidUpdateNotification
                                                           object:self
                                                         userInfo:nil];
@@ -390,7 +390,7 @@ static NSError *GetError(NSString *errorMessage) {
                        //       if this happens, something's wrong. look into this.
                      }
                    } else {
-                     NSLog(@"\t\t <<< received partial response: part %ld >>>", partNo);
+                     TQLogInfo(@"\t\t <<< received partial response: part %ld >>>", partNo);
                    }
 
                    if (!isMultiLine) {
@@ -449,9 +449,9 @@ static NSError *GetError(NSString *errorMessage) {
       const BOOL shouldTruncate = YES;
       const NSUInteger kMaxLengthToDisplay = shouldTruncate ? 150 : NSUIntegerMax;
       if (responseString.length > kMaxLengthToDisplay) {
-        NSLog(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
+        TQLogDebug(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
       } else {
-        NSLog(@"S: %@", responseString);
+        TQLogDebug(@"S: %@", responseString);
       }
 
       BLOCK_SAFE_RUN(completion, response, nil);

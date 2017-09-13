@@ -1,0 +1,6 @@
+#ifndef TQPrefixHeader_pch
+#define TQPrefixHeader_pch
+
+#import "TQLogger.h"
+
+#endif /* TQPrefixHeader_pch */

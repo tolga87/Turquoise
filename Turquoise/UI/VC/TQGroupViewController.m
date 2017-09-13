@@ -59,7 +59,7 @@
   NSMutableArray *callbacks = [NSMutableArray arrayWithCapacity:subscribedGroupIds.count];
   for (NSString *subscribedGroupId in subscribedGroupIds) {
     [callbacks addObject:[^{
-      NSLog(@"User selected new group: '%@'", subscribedGroupId);
+      TQLogInfo(@"User selected new group: '%@'", subscribedGroupId);
 
       TQHeaderDownloadProgressView *progressView =
           [[TQHeaderDownloadProgressView alloc] initWithGroupId:subscribedGroupId];
@@ -116,7 +116,7 @@
 }
 
 - (void)groupDidUpdate:(NSNotification *)notification {
-  NSLog(@"Group info updated. Current group: '%@'", _nntpManager.currentGroup);
+  TQLogInfo(@"Group info updated. Current group: '%@'", _nntpManager.currentGroup);
 
   self.group = _nntpManager.currentGroup;
   [self.tableView reloadData];

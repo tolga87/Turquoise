@@ -1,4 +1,3 @@
-
 #import "NSString+TQEncoding.h"
 
 @implementation NSString (TQEncoding)
@@ -28,7 +27,7 @@
 
   BOOL charSetRead = [scanner scanUpToString:@"?" intoString:nil];
   if (!charSetRead) {
-    NSLog(@"Error: Invalid character set");
+    TQLogError(@"Invalid character set");
     return self;
   }
   [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]
@@ -36,7 +35,7 @@
 
   BOOL encodingRead = [scanner scanUpToString:@"?" intoString:&encoding];
   if (!encodingRead) {
-    NSLog(@"Error: Invalid encoding");
+    TQLogError(@"Invalid encoding");
     return self;
   }
   [scanner scanCharactersFromSet:[NSCharacterSet characterSetWithCharactersInString:@"?"]
@@ -84,7 +83,7 @@
       // curChar == '='
 
       if (charIndex + 2 >= string.length) {
-        NSLog(@"Error: Parsing error");
+        TQLogError(@"Parsing error");
         break;
       }
 

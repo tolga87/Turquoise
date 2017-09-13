@@ -51,13 +51,13 @@
 }
 
 - (void)networkConnectionLost {
-  NSLog(@"Disconnected from server!");
+  TQLogInfo(@"Disconnected from server!");
   [self dismissViewControllerAnimated:YES completion:nil];
   _connectionStatusLabel.text = @"Disconnected from server, please login again.";
 }
 
 - (void)nntpManagerDidReset {
-  NSLog(@"NNTP manager was reset");
+  TQLogInfo(@"NNTP manager was reset");
   [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -87,13 +87,13 @@
   NSString *password = _userInfoManager.password;
 
   if (userName.length > 0 && password.length > 1) {
-    NSLog(@"Logging in with credentials found in Keychain...");
+    TQLogInfo(@"Logging in with credentials found in Keychain...");
     _userNameField.text = userName;
     _passwordField.text = password;
     [self loginWithUserName:userName password:password askUserInfo:NO];
     return YES;
   } else {
-    NSLog(@"User credentials not found in Keychain; user must log in manually.");
+    TQLogInfo(@"User credentials not found in Keychain; user must log in manually.");
     return NO;
   }
 }
@@ -122,7 +122,7 @@
 
   [manager loginWithUserName:userName password:password completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isFailure]) {
-      NSLog(@"Login Failed!");
+      TQLogInfo(@"Login Failed!");
       _connectionStatusLabel.text = @"Invalid username/password";
       [_activityIndicator stopAnimating];
       _loginButton.enabled = YES;
@@ -134,7 +134,7 @@
     }
 
     // login successful.
-    NSLog(@"Login Successful!");
+    TQLogInfo(@"Login Successful!");
     _connectionStatusLabel.text = @"Login successful, downloading data from server...";
 
     if (shouldAskUserInfo) {

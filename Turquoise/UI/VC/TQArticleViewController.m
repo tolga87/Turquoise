@@ -31,9 +31,9 @@
   TQNNTPArticle *cancelArticle = [TQNNTPArticle cancelArticleFromArticle:_article];
   [_nntpManager postArticle:cancelArticle completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isOk]) {
-      NSLog(@"Message canceled");
+      TQLogInfo(@"Message canceled");
     } else {
-      NSLog(@"Message could not be canceled: %@", error);
+      TQLogError(@"Message could not be canceled: %@", error);
     }
 
     [self dismissViewControllerAnimated:YES completion:nil];

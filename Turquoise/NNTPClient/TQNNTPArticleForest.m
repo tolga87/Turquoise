@@ -96,8 +96,7 @@
     }
   }
   [mutString appendFormat:@"%@ (%ld)", [article.subject tq_decodedString] , article.articleNo];
-
-  NSLog(@"%@", mutString);
+  TQLogDebug(@"%@", mutString);
 
   for (TQNNTPArticle *child in article.childArticles) {
     [self printTreeNode:child level:(level + 1)];

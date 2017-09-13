@@ -70,13 +70,12 @@
 }
 
 - (void)downloadHeadersCurrentArticle:(NSInteger)articleNo completion:(void (^)(void))completion {
-//  NSLog(@"Requesting headers for article #%ld", articleNo);
   NSInteger numArticles = _maxArticleNo - _minArticleNo;
   if (numArticles == 0) {
     numArticles = 1;
   }
   NSInteger progress = (articleNo - _minArticleNo) / (float)numArticles * 100;
-  NSLog(@"Downloading header %ld of %ld (%ld%%)", (articleNo - _minArticleNo), numArticles, progress);
+  TQLogInfo(@"Downloading header %ld of %ld (%ld%%)", (articleNo - _minArticleNo), numArticles, progress);
 
   NSDictionary *userInfo = @{ kHeaderDownloadProgressAmountKey : @(progress) };
   [[NSNotificationCenter defaultCenter] postNotificationName:kHeaderDownloadProgressNotification
@@ -88,7 +87,7 @@
   [theManager sendRequest:headRequest completion:^(TQNNTPResponse *response, NSError *error) {
     if (![response isOk]) {
       // this article could be deleted. keep fetching others.
-      NSLog(@"Could not get headers of article #%ld", articleNo);
+      TQLogInfo(@"Could not get headers of article #%ld", articleNo);
     }
 
     TQNNTPArticle *article = [[TQNNTPArticle alloc] initWithResponse:response];

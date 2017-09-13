@@ -40,11 +40,11 @@
 - (IBAction)postArticle:(id)sender {
   if ([_articleSubjectField.text tq_isEmpty]) {
     // TODO: alert
-    NSLog(@"Cannot post message with empty subject");
+    TQLogError(@"Cannot post message with empty subject");
     return;
   } else if ([_articleBodyView.text tq_isEmpty]) {
     // TODO: alert
-    NSLog(@"Cannot post message with empty body");
+    TQLogError(@"Cannot post message with empty body");
     return;
   }
 
@@ -57,15 +57,15 @@
     if (!article) {
       // something went wrong. cannot post article.
       // TODO: show error.
-      NSLog(@"Not implemented yet!");
+      TQLogError(@"Not implemented yet!");
       return;
     }
 
   [_nntpManager postArticle:article completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isOk]) {
-      NSLog(@"Article posted");
+      TQLogInfo(@"Article posted");
     } else {
-      NSLog(@"Could not post article: %@", error);
+      TQLogError(@"Could not post article: %@", error);
     }
 
     [self dismissArticleComposer];

@@ -110,7 +110,7 @@ static NSString *const kGroupsKey = @"userInfo.groups";
   [[NSUserDefaults standardUserDefaults] setObject:_subscribedGroups forKey:kGroupsKey];
   [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsDidChangeNotification
                                                       object:self];
-  NSLog(@"[INFO] Subscribed to group '%@'", group.groupId);
+  TQLogInfo(@"Subscribed to group '%@'", group.groupId);
 }
 
 - (void)unsubscribeFromGroup:(TQNNTPGroup *)group {
@@ -122,7 +122,7 @@ static NSString *const kGroupsKey = @"userInfo.groups";
   [[NSUserDefaults standardUserDefaults] setObject:_subscribedGroups forKey:kGroupsKey];
   [[NSNotificationCenter defaultCenter] postNotificationName:kUserSubscriptionsDidChangeNotification
                                                       object:self];
-  NSLog(@"[INFO] Unsubscribed from group '%@'", group.groupId);
+  TQLogInfo(@"Unsubscribed from group '%@'", group.groupId);
 }
 
 - (id)userInfoValueForKey:(NSString *)key {
