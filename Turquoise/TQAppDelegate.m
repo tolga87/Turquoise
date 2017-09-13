@@ -1,11 +1,6 @@
-#import "AppDelegate.h"
+#import "TQAppDelegate.h"
 
-@interface AppDelegate ()
-
-@end
-
-@implementation AppDelegate
-
+@implementation TQAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // Override point for customization after application launch.

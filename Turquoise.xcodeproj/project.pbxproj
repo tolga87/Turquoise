@@ -55,7 +55,7 @@
 		FD8E5A761F60B055008434F8 /* TQHeaderDownloadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */; };
 		FD95D1B11F4E2A1C0088EDA6 /* TQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6571F4233E800BC2225 /* TQLoginViewController.m */; };
 		FD9CB6521F4233E800BC2225 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6511F4233E800BC2225 /* main.m */; };
-		FD9CB6551F4233E800BC2225 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6541F4233E800BC2225 /* AppDelegate.m */; };
+		FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6541F4233E800BC2225 /* TQAppDelegate.m */; };
 		FD9CB6581F4233E800BC2225 /* TQLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6571F4233E800BC2225 /* TQLoginViewController.m */; };
 		FD9CB65B1F4233E800BC2225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD9CB6591F4233E800BC2225 /* Main.storyboard */; };
 		FD9CB65D1F4233E800BC2225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD9CB65C1F4233E800BC2225 /* Assets.xcassets */; };
@@ -151,8 +151,8 @@
 		FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQHeaderDownloadProgressView.xib; sourceTree = "<group>"; };
 		FD9CB64D1F4233E800BC2225 /* Turquoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turquoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD9CB6511F4233E800BC2225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FD9CB6531F4233E800BC2225 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FD9CB6541F4233E800BC2225 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FD9CB6531F4233E800BC2225 /* TQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQAppDelegate.h; sourceTree = "<group>"; };
+		FD9CB6541F4233E800BC2225 /* TQAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQAppDelegate.m; sourceTree = "<group>"; };
 		FD9CB6561F4233E800BC2225 /* TQLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQLoginViewController.h; sourceTree = "<group>"; };
 		FD9CB6571F4233E800BC2225 /* TQLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQLoginViewController.m; sourceTree = "<group>"; };
 		FD9CB65A1F4233E800BC2225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -335,9 +335,9 @@
 				FD0478011F4FA20C00AD61BB /* Resources */,
 				FDCC42E71F4BA844001EC1BC /* String */,
 				FD87460D1F4973B400C95C5A /* UI */,
-				FD9CB6531F4233E800BC2225 /* AppDelegate.h */,
 				FD44C5F61F423F1B003B3605 /* NNTPClient */,
-				FD9CB6541F4233E800BC2225 /* AppDelegate.m */,
+				FD9CB6531F4233E800BC2225 /* TQAppDelegate.h */,
+				FD9CB6541F4233E800BC2225 /* TQAppDelegate.m */,
 				FD9CB65C1F4233E800BC2225 /* Assets.xcassets */,
 				FD9CB65E1F4233E800BC2225 /* LaunchScreen.storyboard */,
 				FD9CB6611F4233E800BC2225 /* Info.plist */,
@@ -566,7 +566,7 @@
 				FDF0F9671F58B4AF008FE181 /* TQUserInfoManager.m in Sources */,
 				FD0478071F4FA4A400AD61BB /* TQLabel.m in Sources */,
 				FD9CB6581F4233E800BC2225 /* TQLoginViewController.m in Sources */,
-				FD9CB6551F4233E800BC2225 /* AppDelegate.m in Sources */,
+				FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */,
 				FDCC42EA1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
 				FDA449101F672449004E7079 /* TQReleaseNotesView.m in Sources */,
 				FD15CB9F1F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */,
