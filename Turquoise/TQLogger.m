@@ -9,7 +9,7 @@ typedef NS_ENUM(NSUInteger, TQLoggingLevel) {
 
 @implementation TQLogger
 
-static const TQLoggingLevel LoggingLevel = TQLoggingLevelDebug;
+static const TQLoggingLevel LoggingLevel = TQLoggingLevelOff;
 
 void TQLog(NSUInteger level, NSString *string) {
   if (level >= LoggingLevel) {
