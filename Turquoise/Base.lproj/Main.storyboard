@@ -606,7 +606,7 @@
                                     <constraint firstItem="TIh-3F-QTg" firstAttribute="top" secondItem="iWq-vr-e1k" secondAttribute="bottom" constant="1" id="e4E-1O-IVw"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-VX-vTr">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6qT-VX-vTr">
                                 <rect key="frame" x="8" y="118" width="359" height="541"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -620,8 +620,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-r2-SEC">
                                                     <rect key="frame" x="4" y="4" width="36" height="36"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="G6q-mV-ycD"/>
-                                                        <constraint firstAttribute="width" constant="36" id="iyV-gX-Jwu"/>
+                                                        <constraint firstAttribute="width" secondItem="5g4-r2-SEC" secondAttribute="height" multiplier="1:1" id="hgG-Wy-CgY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="metu.ceng.test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0U-Sc-u2b">
