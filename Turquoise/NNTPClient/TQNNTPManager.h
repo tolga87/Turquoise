@@ -14,6 +14,7 @@ typedef void(^TQNNTPRequestCallback)(TQNNTPResponse *response, NSError *error);
 extern NSString *const TQNNTPManagerErrorDomain;
 
 extern NSString *const kNetworkConnectionLostNotification;
+extern NSString *const kNetworkStreamDidResetNotification;
 extern NSString *const kNNTPGroupListDidUpdateNotification;
 extern NSString *const kNNTPGroupDidUpdateNotification;
 

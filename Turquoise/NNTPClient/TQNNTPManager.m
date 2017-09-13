@@ -1,5 +1,6 @@
-
 #import "TQNNTPManager.h"
+
+#import <UIKit/UIKit.h>
 
 #import "NSString+TQEncoding.h"
 #import "Reachability.h"
@@ -7,6 +8,7 @@
 typedef void(^TQNNTPRequestCallback)(TQNNTPResponse *response, NSError *error);
 
 NSString *const kNetworkConnectionLostNotification = @"kNetworkConnectionLostNotification";
+NSString *const kNetworkStreamDidResetNotification = @"kNetworkStreamDidResetNotification";
 NSString *const kNNTPGroupListDidUpdateNotification = @"NNTPGroupListDidUpdate";
 NSString *const kNNTPGroupDidUpdateNotification = @"NNTPGroupDidUpdate";
 
@@ -24,6 +26,7 @@ static NSError *_genericError;
 
   NSMutableArray<TQNNTPGroup *> *_allGroups;
 
+  NSTimer *_streamResetTimer;
   NetworkStatus _lastNetworkStatus;
   NSTimeInterval _lastNetworkStatusUpdateTimestamp;
 }
@@ -36,9 +39,18 @@ static NSError *_genericError;
     theManager->_reachability = [Reachability reachabilityWithHostName:kNewsServerHostName];
     theManager->_lastNetworkStatus = -1;
     theManager->_lastNetworkStatusUpdateTimestamp = 0;
+
     [[NSNotificationCenter defaultCenter] addObserver:theManager
                                              selector:@selector(reachabilityDidChange:)
                                                  name:kReachabilityChangedNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:theManager
+                                             selector:@selector(appDidEnterBackground)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:theManager
+                                             selector:@selector(appDidBecomeActive)
+                                                 name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     [theManager->_reachability startNotifier];
   });
@@ -69,6 +81,27 @@ static NSError *GetError(NSString *errorMessage) {
   return (networkStatus == ReachableViaWiFi || networkStatus == ReachableViaWWAN);
 }
 
+- (void)appDidEnterBackground {
+  const NSTimeInterval kTimerTimeInterval = 5 * 60;  // reset after 5 minutes
+  [_streamResetTimer invalidate];
+  _streamResetTimer = [NSTimer scheduledTimerWithTimeInterval:kTimerTimeInterval
+                                                       target:self
+                                                     selector:@selector(inactivityPeriodDidExpire)
+                                                     userInfo:nil
+                                                      repeats:NO];
+}
+
+- (void)appDidBecomeActive {
+  [_streamResetTimer invalidate];
+  _streamResetTimer = nil;
+}
+
+- (void)inactivityPeriodDidExpire {
+  [_streamTask stopSecureConnection];
+  _streamTask = nil;
+  [[NSNotificationCenter defaultCenter] postNotificationName:kNetworkStreamDidResetNotification object:self];
+}
+
 - (void)reachabilityDidChange:(NSNotification *)notification {
   NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
 
@@ -80,7 +113,6 @@ static NSError *GetError(NSString *errorMessage) {
 
   if (networkStatus == _lastNetworkStatus && !timeThresholdExceeded) {
     // this is a duplicate notification. ignore it.
-    NSLog(@"~TA this is a duplicate notification. ignore it.");
     return;
   }
 
@@ -109,6 +141,18 @@ static NSError *GetError(NSString *errorMessage) {
 
 #pragma mark -
 
+- (void)setupStream {
+//  _streamTask = [[NSURLSession sharedSession] streamTaskWithHostName:kNewsServerHostName
+//                                                                port:kNewsServerPort];
+
+  // TODO: is this necessary?
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
+                                                          delegate:nil
+                                                     delegateQueue:[NSOperationQueue mainQueue]];
+  _streamTask = [session streamTaskWithHostName:kNewsServerHostName port:kNewsServerPort];
+  [_streamTask startSecureConnection];
+}
+
 - (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
                completion:(TQNNTPRequestCallback)loginCallback {
@@ -126,15 +170,7 @@ static NSError *GetError(NSString *errorMessage) {
     return;
   }
 
-//  _streamTask = [[NSURLSession sharedSession] streamTaskWithHostName:kNewsServerHostName
-//                                                                port:kNewsServerPort];
-
-  // TODO: is this necessary?
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]
-                                                          delegate:nil
-                                                     delegateQueue:[NSOperationQueue mainQueue]];
-  _streamTask = [session streamTaskWithHostName:kNewsServerHostName port:kNewsServerPort];
-  [_streamTask startSecureConnection];
+  [self setupStream];
 
   void(^sendUserNameBlock)(NSString *, TQNNTPRequestCallback) = ^(NSString *userName, TQNNTPRequestCallback callback) {
     NSString *command = [NSString stringWithFormat:@"AUTHINFO USER %@\r\n", userName];

@@ -44,12 +44,21 @@
                                            selector:@selector(networkConnectionLost)
                                                name:kNetworkConnectionLostNotification
                                              object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(nntpManagerDidReset)
+                                               name:kNetworkStreamDidResetNotification
+                                             object:nil];
 }
 
 - (void)networkConnectionLost {
   NSLog(@"Disconnected from server!");
   [self dismissViewControllerAnimated:YES completion:nil];
   _connectionStatusLabel.text = @"Disconnected from server, please login again.";
+}
+
+- (void)nntpManagerDidReset {
+  NSLog(@"NNTP manager was reset");
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)userDidLogout {

@@ -87,6 +87,7 @@
         // Delete the keychain item in preparation for resetting the values:
         OSStatus errorcode = SecItemDelete((__bridge CFDictionaryRef)tmpDictionary);
 //        NSAssert(errorcode == noErr, @"Problem deleting current keychain item." );
+        #pragma unused (errorcode)
     }
 
     // Default generic data for Keychain Item:

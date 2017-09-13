@@ -101,18 +101,3 @@ const NSTimeInterval kAnimationDuration = .2;
 }
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-//~TA
-
-

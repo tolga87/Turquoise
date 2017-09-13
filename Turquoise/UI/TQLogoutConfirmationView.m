@@ -16,7 +16,6 @@
 }
 
 - (IBAction)logoutButtonDidTap:(id)sender {
-  NSLog(@"~TA LOGOUT BUTTON TAPPED!");
   [[TQUserInfoManager sharedInstance] resetUserCredentials];
   [[TQOverlay sharedInstance] dismissAnimated:YES];
 }
