@@ -119,7 +119,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="jf3-Pv-c2b"/>
-                                    <constraint firstAttribute="width" constant="109" id="mDf-zz-O6O"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="109" id="mDf-zz-O6O"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="20"/>
                                 <state key="normal" title="Proceed">
@@ -309,7 +309,7 @@
                                 <rect key="frame" x="165" y="627" width="194" height="32"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="194" id="RG1-5Z-hO6"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="194" id="RG1-5Z-hO6"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                 <state key="normal" title="Post New Message">
@@ -368,15 +368,15 @@
                                         <rect key="frame" x="0.0" y="10" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-e0-DlE" userLabel="Article Subject Label" customClass="TQLabel">
-                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYo-9V-ZBb" customClass="TQLabel">
-                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="74" id="5EV-hm-Ptl"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="5EV-hm-Ptl"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -398,14 +398,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kM-0j-JbZ" userLabel="Sender Line Container">
                                         <rect key="frame" x="0.0" y="30" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="From:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel">
-                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="From:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel">
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKK-Pb-XX8" userLabel="Article Sender Label" customClass="TQLabel">
-                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -426,13 +426,13 @@
                                         <rect key="frame" x="0.0" y="50" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-Ch-xGP" customClass="TQLabel">
-                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-R8-EIa" userLabel="Article Date Label" customClass="TQLabel">
-                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -457,7 +457,9 @@
                                     <constraint firstItem="5kM-0j-JbZ" firstAttribute="width" secondItem="4Vt-jc-7wd" secondAttribute="width" id="7TB-V3-DMI"/>
                                     <constraint firstAttribute="height" constant="80" id="86z-Xk-8eY"/>
                                     <constraint firstItem="2lZ-10-Yu7" firstAttribute="height" secondItem="5kM-0j-JbZ" secondAttribute="height" id="8sS-ct-Cbs"/>
+                                    <constraint firstItem="JKx-GI-2lB" firstAttribute="leading" secondItem="4Vt-jc-7wd" secondAttribute="leading" id="9r8-ue-Dzz"/>
                                     <constraint firstItem="JKx-GI-2lB" firstAttribute="width" secondItem="4Vt-jc-7wd" secondAttribute="width" id="Aeq-ay-7D7"/>
+                                    <constraint firstItem="5kM-0j-JbZ" firstAttribute="leading" secondItem="4Vt-jc-7wd" secondAttribute="leading" id="AoD-eU-3IR"/>
                                     <constraint firstItem="JKx-GI-2lB" firstAttribute="top" secondItem="5kM-0j-JbZ" secondAttribute="bottom" id="By2-x7-HNe"/>
                                     <constraint firstItem="2lZ-10-Yu7" firstAttribute="centerX" secondItem="4Vt-jc-7wd" secondAttribute="centerX" id="G9s-6J-eY3"/>
                                     <constraint firstItem="5kM-0j-JbZ" firstAttribute="top" secondItem="2lZ-10-Yu7" secondAttribute="bottom" id="GLp-Xl-svB"/>
@@ -482,7 +484,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="2SA-iM-1tN"/>
-                                    <constraint firstAttribute="width" constant="80" id="BTF-fC-5XU"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="BTF-fC-5XU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                 <state key="normal" title="Reply">
@@ -496,7 +498,7 @@
                                 <rect key="frame" x="16" y="629" width="80" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="t2A-o5-jks"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="t2A-o5-jks"/>
                                     <constraint firstAttribute="height" constant="30" id="ygN-vc-jir"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
@@ -512,7 +514,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="26N-VO-fHq"/>
-                                    <constraint firstAttribute="width" constant="160" id="ByJ-Kl-GzA"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="ByJ-Kl-GzA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                 <state key="normal" title="Delete Message">
@@ -585,7 +587,7 @@
                                         <rect key="frame" x="279" y="1" width="80" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="gYG-vg-6HT"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="gYG-vg-6HT"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                         <state key="normal" title="Done">
@@ -692,7 +694,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="Csr-If-DjJ"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="Csr-If-DjJ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                         <state key="normal" title="Cancel">
@@ -706,7 +708,7 @@
                                         <rect key="frame" x="263" y="0.0" width="80" height="32"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="j2Y-OG-mbW"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="j2Y-OG-mbW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                         <state key="normal" title="Send">
@@ -728,8 +730,8 @@
                                     <constraint firstAttribute="trailing" secondItem="fEE-VS-v1I" secondAttribute="trailing" id="zDM-c8-Rdc"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Subject" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTs-q8-wck" customClass="TQTextField">
-                                <rect key="frame" x="16" y="58" width="343" height="30"/>
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Subject" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTs-q8-wck" customClass="TQTextField">
+                                <rect key="frame" x="16" y="60" width="343" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="WSo-in-G0f"/>
@@ -738,8 +740,8 @@
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bAy-7i-4O5">
-                                <rect key="frame" x="16" y="96" width="343" height="551"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bAy-7i-4O5">
+                                <rect key="frame" x="16" y="98" width="343" height="549"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
