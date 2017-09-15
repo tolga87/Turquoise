@@ -55,6 +55,10 @@
           headerName = [headerName substringToIndex:(headerName.length - 1)];
         }
 
+        // TODO: sometimes, the subject field is broken into multiple lines.
+        //       I've seen this with subjects containing Emoji characters.
+        //       fix this.
+
         [scanner scanUpToString:@"\r\n" intoString:&headerValue];
 
         _headers[headerName] = headerValue;
