@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
 
-#import "TQLabel.h"
-#import "TQTextField.h"
+@class TQLabel;
+@class TQTextField;
 
 @interface TQLoginViewController : UIViewController
 

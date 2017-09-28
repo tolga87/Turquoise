@@ -2,12 +2,11 @@
 
 #import "TQOverlay.h"
 #import "TQUserInfoManager.h"
-#import "UIView+NibLoader.h"
 
 @implementation TQLogoutConfirmationView
 
 - (instancetype)init {
-  self = (TQLogoutConfirmationView *) [UIView tq_loadFromNib:@"TQLogoutConfirmationView" owner:self];
+  self = (TQLogoutConfirmationView *) [UIView tq_loadFrom:@"TQLogoutConfirmationView" owner:self];
   return self;
 }
 

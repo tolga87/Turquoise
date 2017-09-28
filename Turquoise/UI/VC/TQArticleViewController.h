@@ -1,7 +1,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TQLabel.h"
 #import "TQNNTPArticle.h"
 #import "TQNNTPGroup.h"
 

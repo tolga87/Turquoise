@@ -1,6 +1,5 @@
 #import "TQReleaseNotesView.h"
 
-#import "UIView+NibLoader.h"
 #import "TQOverlay.h"
 
 static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/release-notes.php";
@@ -20,9 +19,8 @@ static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/r
 }
 
 - (instancetype)init {
-  self = (TQReleaseNotesView *)[UIView tq_loadFromNib:@"TQReleaseNotesView" owner:self];
+  self = (TQReleaseNotesView *)[UIView tq_loadFrom:@"TQReleaseNotesView" owner:self];
   if (self) {
-//    _webView.navigationDelegate = self;
     _webView.delegate = self;
     _webView.scalesPageToFit = YES;
     _activityIndicator.hidesWhenStopped = YES;

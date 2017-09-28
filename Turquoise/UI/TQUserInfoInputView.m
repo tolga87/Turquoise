@@ -4,7 +4,6 @@
 #import "NSString+TQEncoding.h"
 #import "TQNNTPManager.h"
 #import "TQOverlay.h"
-#import "TQTextField.h"
 
 @implementation TQUserInfoInputView {
   IBOutlet TQTextField *_userFullNameTextField;

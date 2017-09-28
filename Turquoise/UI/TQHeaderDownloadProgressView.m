@@ -1,7 +1,6 @@
 #import "TQHeaderDownloadProgressView.h"
 
 #import "TQNNTPGroup.h"
-#import "UIView+NibLoader.h"
 
 @implementation TQHeaderDownloadProgressView {
   NSString *_groupId;
@@ -28,7 +27,7 @@
 }
 
 - (instancetype)init {
-  self = (TQHeaderDownloadProgressView *)[UIView tq_loadFromNib:@"TQHeaderDownloadProgressView" owner:self];
+  self = (TQHeaderDownloadProgressView *)[UIView tq_loadFrom:@"TQHeaderDownloadProgressView" owner:self];
   return self;
 }
 

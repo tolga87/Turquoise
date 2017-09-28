@@ -2,5 +2,6 @@
 #define TQPrefixHeader_pch
 
 #import "TQLogger.h"
+#import "Turquoise-Swift.h"
 
 #endif /* TQPrefixHeader_pch */

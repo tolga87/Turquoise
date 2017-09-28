@@ -11,14 +11,10 @@
 		FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0477FE1F4E2F8E00AD61BB /* TQArticleViewController.m */; };
 		FD0478031F4FA23400AD61BB /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0478021F4FA23400AD61BB /* dungeon.ttf */; };
 		FD0478041F4FA23400AD61BB /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0478021F4FA23400AD61BB /* dungeon.ttf */; };
-		FD0478071F4FA4A400AD61BB /* TQLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0478061F4FA4A400AD61BB /* TQLabel.m */; };
-		FD0478081F4FA4A400AD61BB /* TQLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0478061F4FA4A400AD61BB /* TQLabel.m */; };
 		FD12F62A1F574C4500415514 /* TQOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F6291F574C4500415514 /* TQOverlay.m */; };
 		FD12F62B1F574C4500415514 /* TQOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F6291F574C4500415514 /* TQOverlay.m */; };
 		FD12F62E1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */; };
 		FD12F62F1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */; };
-		FD15CB991F60729B00C64B88 /* TQSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB981F60729B00C64B88 /* TQSearchBar.m */; };
-		FD15CB9A1F60729B00C64B88 /* TQSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB981F60729B00C64B88 /* TQSearchBar.m */; };
 		FD15CB9F1F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */; };
 		FD15CBA01F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */; };
 		FD1D37C51F69AF10002E5978 /* TQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D37C41F69AF10002E5978 /* TQLogger.m */; };
@@ -43,8 +39,6 @@
 		FD7DE1C51F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */; };
 		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
 		FD7DE1C81F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
-		FD7DE1CB1F64B547006200D8 /* UIView+NibLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */; };
-		FD7DE1CC1F64B547006200D8 /* UIView+NibLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */; };
 		FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746041F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */; };
 		FD8746081F496B0000C95C5A /* TQGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD8746061F496B0000C95C5A /* TQGroupViewController.m */; };
@@ -91,10 +85,16 @@
 		FDD365D81F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD365D61F5A0C9700A80106 /* TQGroupSelectionViewController.m */; };
 		FDD365DB1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD365DA1F5A106700A80106 /* TQGroupSelectionTableViewCell.m */; };
 		FDD365DC1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FDD365DA1F5A106700A80106 /* TQGroupSelectionTableViewCell.m */; };
+		FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */; };
+		FDE7CBAA1F7D73F100E6E89E /* TQLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */; };
+		FDE7CBAC1F7D7B9800E6E89E /* TQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBAB1F7D7B9800E6E89E /* TQTextField.swift */; };
+		FDE7CBAD1F7D7B9800E6E89E /* TQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBAB1F7D7B9800E6E89E /* TQTextField.swift */; };
+		FDE7CBAF1F7D993900E6E89E /* TQSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBAE1F7D993900E6E89E /* TQSearchBar.swift */; };
+		FDE7CBB01F7D993900E6E89E /* TQSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBAE1F7D993900E6E89E /* TQSearchBar.swift */; };
+		FDE7CBB21F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */; };
+		FDE7CBB31F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */; };
 		FDF0F9671F58B4AF008FE181 /* TQUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0F9661F58B4AF008FE181 /* TQUserInfoManager.m */; };
 		FDF0F9681F58B4AF008FE181 /* TQUserInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF0F9661F58B4AF008FE181 /* TQUserInfoManager.m */; };
-		FDF158511F54A35B001997FF /* TQTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF158501F54A35B001997FF /* TQTextField.m */; };
-		FDF158521F54A35B001997FF /* TQTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FDF158501F54A35B001997FF /* TQTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,14 +111,10 @@
 		FD0477FD1F4E2F8E00AD61BB /* TQArticleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQArticleViewController.h; sourceTree = "<group>"; };
 		FD0477FE1F4E2F8E00AD61BB /* TQArticleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQArticleViewController.m; sourceTree = "<group>"; };
 		FD0478021F4FA23400AD61BB /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = "<group>"; };
-		FD0478051F4FA4A400AD61BB /* TQLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQLabel.h; sourceTree = "<group>"; };
-		FD0478061F4FA4A400AD61BB /* TQLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQLabel.m; sourceTree = "<group>"; };
 		FD12F6281F574C4500415514 /* TQOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlay.h; sourceTree = "<group>"; };
 		FD12F6291F574C4500415514 /* TQOverlay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlay.m; sourceTree = "<group>"; };
 		FD12F62C1F57525C00415514 /* TQOverlayBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlayBackgroundView.h; sourceTree = "<group>"; };
 		FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlayBackgroundView.m; sourceTree = "<group>"; };
-		FD15CB971F60729B00C64B88 /* TQSearchBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQSearchBar.h; sourceTree = "<group>"; };
-		FD15CB981F60729B00C64B88 /* TQSearchBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQSearchBar.m; sourceTree = "<group>"; };
 		FD15CB9C1F60756600C64B88 /* TQOverlay+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQOverlay+Extensions.h"; sourceTree = "<group>"; };
 		FD15CB9D1F6075F200C64B88 /* TQOverlaySlidingMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlaySlidingMenu.h; sourceTree = "<group>"; };
 		FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlaySlidingMenu.m; sourceTree = "<group>"; };
@@ -143,8 +139,6 @@
 		FD7DE1C21F64B1EF006200D8 /* TQLogoutConfirmationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQLogoutConfirmationView.h; sourceTree = "<group>"; };
 		FD7DE1C31F64B1EF006200D8 /* TQLogoutConfirmationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQLogoutConfirmationView.m; sourceTree = "<group>"; };
 		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
-		FD7DE1C91F64B547006200D8 /* UIView+NibLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+NibLoader.h"; sourceTree = "<group>"; };
-		FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+NibLoader.m"; sourceTree = "<group>"; };
 		FD8746011F495D7300C95C5A /* TQNNTPArticleForest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TQNNTPArticleForest.h; path = NNTPClient/TQNNTPArticleForest.h; sourceTree = "<group>"; };
 		FD8746021F495D7300C95C5A /* TQNNTPArticleForest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TQNNTPArticleForest.m; path = NNTPClient/TQNNTPArticleForest.m; sourceTree = "<group>"; };
 		FD8746051F496B0000C95C5A /* TQGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQGroupViewController.h; sourceTree = "<group>"; };
@@ -188,10 +182,12 @@
 		FDD365D61F5A0C9700A80106 /* TQGroupSelectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQGroupSelectionViewController.m; sourceTree = "<group>"; };
 		FDD365D91F5A106700A80106 /* TQGroupSelectionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQGroupSelectionTableViewCell.h; sourceTree = "<group>"; };
 		FDD365DA1F5A106700A80106 /* TQGroupSelectionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQGroupSelectionTableViewCell.m; sourceTree = "<group>"; };
+		FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQLabel.swift; sourceTree = "<group>"; };
+		FDE7CBAB1F7D7B9800E6E89E /* TQTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQTextField.swift; sourceTree = "<group>"; };
+		FDE7CBAE1F7D993900E6E89E /* TQSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQSearchBar.swift; sourceTree = "<group>"; };
+		FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoader.swift"; sourceTree = "<group>"; };
 		FDF0F9651F58B4AF008FE181 /* TQUserInfoManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQUserInfoManager.h; sourceTree = "<group>"; };
 		FDF0F9661F58B4AF008FE181 /* TQUserInfoManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQUserInfoManager.m; sourceTree = "<group>"; };
-		FDF1584F1F54A35B001997FF /* TQTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQTextField.h; sourceTree = "<group>"; };
-		FDF158501F54A35B001997FF /* TQTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,14 +243,10 @@
 		FD12F6301F57563100415514 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				FD0478051F4FA4A400AD61BB /* TQLabel.h */,
-				FD0478061F4FA4A400AD61BB /* TQLabel.m */,
-				FDF1584F1F54A35B001997FF /* TQTextField.h */,
-				FDF158501F54A35B001997FF /* TQTextField.m */,
-				FD15CB971F60729B00C64B88 /* TQSearchBar.h */,
-				FD15CB981F60729B00C64B88 /* TQSearchBar.m */,
-				FD7DE1C91F64B547006200D8 /* UIView+NibLoader.h */,
-				FD7DE1CA1F64B547006200D8 /* UIView+NibLoader.m */,
+				FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */,
+				FDE7CBAB1F7D7B9800E6E89E /* TQTextField.swift */,
+				FDE7CBAE1F7D993900E6E89E /* TQSearchBar.swift */,
+				FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -475,9 +467,11 @@
 					FD9CB64C1F4233E800BC2225 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = 286BN4BY9J;
+						LastSwiftMigration = 0900;
 					};
 					FD9CB6651F4233E800BC2225 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0900;
 						TestTargetID = FD9CB64C1F4233E800BC2225;
 					};
 				};
@@ -569,10 +563,7 @@
 			files = (
 				FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */,
 				FD7DE1C41F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */,
-				FDF158511F54A35B001997FF /* TQTextField.m in Sources */,
-				FD15CB991F60729B00C64B88 /* TQSearchBar.m in Sources */,
 				FDF0F9671F58B4AF008FE181 /* TQUserInfoManager.m in Sources */,
-				FD0478071F4FA4A400AD61BB /* TQLabel.m in Sources */,
 				FD1D37C51F69AF10002E5978 /* TQLogger.m in Sources */,
 				FD9CB6581F4233E800BC2225 /* TQLoginViewController.m in Sources */,
 				FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */,
@@ -589,13 +580,16 @@
 				FD9CB8E61F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FDD365D71F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */,
 				FD44C5FD1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
+				FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */,
 				FD0477FF1F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,
+				FDE7CBAF1F7D993900E6E89E /* TQSearchBar.swift in Sources */,
+				FDE7CBB21F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */,
 				FD8E5A721F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
+				FDE7CBAC1F7D7B9800E6E89E /* TQTextField.swift in Sources */,
 				FD4C8A881F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,
 				FD44C60D1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD5048011F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD44C5F41F423F01003B3605 /* TQNNTPResponse.m in Sources */,
-				FD7DE1CB1F64B547006200D8 /* UIView+NibLoader.m in Sources */,
 				FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -604,22 +598,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE7CBB31F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */,
 				FDD365D81F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */,
+				FDE7CBAA1F7D73F100E6E89E /* TQLabel.swift in Sources */,
 				FDCC42EB1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
-				FD0478081F4FA4A400AD61BB /* TQLabel.m in Sources */,
 				FD12F62F1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */,
 				FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */,
 				FDA449111F672449004E7079 /* TQReleaseNotesView.m in Sources */,
-				FDF158521F54A35B001997FF /* TQTextField.m in Sources */,
 				FD44C60E1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD44C6061F43F5AB003B3605 /* TQNNTPArticle.m in Sources */,
 				FD9CB66B1F4233E800BC2225 /* TurquoiseTests.m in Sources */,
 				FD15CBA01F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */,
 				FD95D1B11F4E2A1C0088EDA6 /* TQLoginViewController.m in Sources */,
 				FD44C5FE1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
-				FD15CB9A1F60729B00C64B88 /* TQSearchBar.m in Sources */,
+				FDE7CBB01F7D993900E6E89E /* TQSearchBar.swift in Sources */,
 				FD8746091F496B0000C95C5A /* TQGroupViewController.m in Sources */,
-				FD7DE1CC1F64B547006200D8 /* UIView+NibLoader.m in Sources */,
 				FD9CB8E71F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FD44C5F51F423F01003B3605 /* TQNNTPResponse.m in Sources */,
 				FD7DE1C51F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */,
@@ -628,6 +621,7 @@
 				FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,
 				FD1D37C61F69AF10002E5978 /* TQLogger.m in Sources */,
 				FD4C8A891F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,
+				FDE7CBAD1F7D7B9800E6E89E /* TQTextField.swift in Sources */,
 				FD12F62B1F574C4500415514 /* TQOverlay.m in Sources */,
 				FDD365DC1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */,
 				FD8746111F49741400C95C5A /* TQArticleHeaderTableViewCell.m in Sources */,
@@ -770,8 +764,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 286BN4BY9J;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -790,6 +786,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.ayran;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -797,7 +795,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEBUG_ACTIVITY_MODE = "";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 286BN4BY9J;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Turquoise/TQPrefixHeader.pch;
@@ -806,17 +806,22 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.ayran;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		FD9CB6731F4233E800BC2225 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TurquoiseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.TurquoiseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turquoise.app/Turquoise";
 			};
 			name = Debug;
@@ -824,11 +829,14 @@
 		FD9CB6741F4233E800BC2225 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TurquoiseTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.TurquoiseTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Turquoise.app/Turquoise";
 			};
 			name = Release;

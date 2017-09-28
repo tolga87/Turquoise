@@ -2,8 +2,9 @@
 
 #import "TQGroupSelectionTableViewCell.h"
 #import "TQNNTPManager.h"
-#import "TQSearchBar.h"
 #import "TQUserInfoManager.h"
+
+@class TQSearchBar;
 
 @implementation TQGroupSelectionViewController {
   IBOutlet UITableView *_tableView;

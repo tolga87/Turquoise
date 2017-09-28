@@ -7,7 +7,6 @@
 #import "TQOverlay.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
-#import "UIView+NibLoader.h"
 
 @implementation TQLoginViewController {
   TQUserInfoManager *_userInfoManager;
@@ -139,7 +138,7 @@
 
     if (shouldAskUserInfo) {
       TQUserInfoInputView *userInfoInputView =
-      (TQUserInfoInputView *)[UIView tq_loadFromNib:@"TQUserInfoInputView" owner:self];
+      (TQUserInfoInputView *)[UIView tq_loadFrom:@"TQUserInfoInputView" owner:self];
       userInfoInputView.completionBlock = ^(NSString *userFullName, NSString *userEmail) {
         _userInfoManager.userName = userName;
         _userInfoManager.password = password;
