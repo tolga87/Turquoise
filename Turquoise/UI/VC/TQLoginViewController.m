@@ -123,6 +123,7 @@
   [manager loginWithUserName:userName password:password completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isFailure]) {
       TQLogInfo(@"Login Failed!");
+      [_userInfoManager resetUserCredentials];
       _connectionStatusLabel.text = @"Invalid username/password";
       [_activityIndicator stopAnimating];
       _loginButton.enabled = YES;
