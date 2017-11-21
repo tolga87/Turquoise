@@ -1,6 +1,5 @@
 #import "TQLogoutConfirmationView.h"
 
-#import "TQOverlay.h"
 #import "TQUserInfoManager.h"
 
 @implementation TQLogoutConfirmationView
@@ -11,12 +10,12 @@
 }
 
 - (IBAction)cancelButtonDidTap:(id)sender {
-  [[TQOverlay sharedInstance] dismissAnimated:YES];
+  [[TQOverlay sharedInstance] dismissWithAnimated:YES];
 }
 
 - (IBAction)logoutButtonDidTap:(id)sender {
   [[TQUserInfoManager sharedInstance] resetUserCredentials];
-  [[TQOverlay sharedInstance] dismissAnimated:YES];
+  [[TQOverlay sharedInstance] dismissWithAnimated:YES];
 }
 
 @end

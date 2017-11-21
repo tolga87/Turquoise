@@ -3,7 +3,6 @@
 
 #import "NSString+TQEncoding.h"
 #import "TQNNTPManager.h"
-#import "TQOverlay.h"
 
 @implementation TQUserInfoInputView {
   IBOutlet TQTextField *_userFullNameTextField;
@@ -17,7 +16,7 @@
   if (userFullName.length > 0 && userEmail.length > 0) {
     // TODO: verify email format
     BLOCK_SAFE_RUN(_completionBlock, userFullName, userEmail);
-    [[TQOverlay sharedInstance] dismissAnimated:YES];
+    [[TQOverlay sharedInstance] dismissWithAnimated:YES];
   }
 }
 

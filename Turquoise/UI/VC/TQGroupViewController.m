@@ -9,9 +9,11 @@
 #import "TQNNTPArticle.h"
 #import "TQNNTPGroup.h"
 #import "TQNNTPManager.h"
-#import "TQOverlaySlidingMenu.h"
 #import "TQReleaseNotesView.h"
 #import "TQUserInfoManager.h"
+
+@class TQOverlay;
+@class TQOverlaySlidingMenu;
 
 @interface TQGroupViewController ()
 
@@ -63,9 +65,9 @@
 
       TQHeaderDownloadProgressView *progressView =
           [[TQHeaderDownloadProgressView alloc] initWithGroupId:subscribedGroupId];
-      [[TQOverlay sharedInstance] showWithView:progressView relativeVerticalPosition:.35 animated:NO];
+      [[TQOverlay sharedInstance] showWith:progressView relativeVerticalPosition:.35 animated:NO];
       [_nntpManager setGroup:subscribedGroupId completion:^(TQNNTPResponse *response, NSError *error) {
-        [[TQOverlay sharedInstance] dismissAnimated:YES];
+        [[TQOverlay sharedInstance] dismissWithAnimated:YES];
       }];
     } copy]];
   }
@@ -95,11 +97,11 @@
     },
     ^{
       TQLogoutConfirmationView *logoutView = [[TQLogoutConfirmationView alloc] init];
-      [[TQOverlay sharedInstance] showWithView:logoutView relativeVerticalPosition:.35 animated:NO];
+      [[TQOverlay sharedInstance] showWith:logoutView relativeVerticalPosition:.35 animated:NO];
     },
     ^{
       TQReleaseNotesView *releaseNotesView = [[TQReleaseNotesView alloc] init];
-      [[TQOverlay sharedInstance] showWithView:releaseNotesView relativeVerticalPosition:.35 animated:YES];
+      [[TQOverlay sharedInstance] showWith:releaseNotesView relativeVerticalPosition:.35 animated:YES];
     },
   ];
 

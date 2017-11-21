@@ -1,6 +1,6 @@
 #import "TQReleaseNotesView.h"
 
-#import "TQOverlay.h"
+@class TQOverlay;
 
 static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/release-notes.php";
 
@@ -15,7 +15,7 @@ static NSString *const kReleaseNotesAddress = @"http://tolgaakin.com/Turquoise/r
 
 - (IBAction)closeButtonDidTap:(id)sender {
   _webView.delegate = nil;  // this is assign, not weak. (sigh)
-  [[TQOverlay sharedInstance] dismissAnimated:YES];
+  [[TQOverlay sharedInstance] dismissWithAnimated:YES];
 }
 
 - (instancetype)init {

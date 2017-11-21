@@ -4,7 +4,6 @@
 #import "NSString+TQEncoding.h"
 #import "TQNNTPManager.h"
 #import "TQNNTPResponse.h"
-#import "TQOverlay.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
 
@@ -146,9 +145,9 @@
         _userInfoManager.email = userEmail;
 
       };
-      [[TQOverlay sharedInstance] showWithView:userInfoInputView
-                      relativeVerticalPosition:.3
-                                      animated:YES];
+      [[TQOverlay sharedInstance] showWith:userInfoInputView
+                  relativeVerticalPosition:.3
+                                  animated:YES];
     }
 
     //    NSString *groupId = @"metu.ceng.ses";

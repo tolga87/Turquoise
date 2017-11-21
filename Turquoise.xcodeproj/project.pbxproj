@@ -11,14 +11,14 @@
 		FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD0477FE1F4E2F8E00AD61BB /* TQArticleViewController.m */; };
 		FD0478031F4FA23400AD61BB /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0478021F4FA23400AD61BB /* dungeon.ttf */; };
 		FD0478041F4FA23400AD61BB /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0478021F4FA23400AD61BB /* dungeon.ttf */; };
-		FD12F62A1F574C4500415514 /* TQOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F6291F574C4500415514 /* TQOverlay.m */; };
-		FD12F62B1F574C4500415514 /* TQOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F6291F574C4500415514 /* TQOverlay.m */; };
-		FD12F62E1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */; };
-		FD12F62F1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */ = {isa = PBXBuildFile; fileRef = FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */; };
-		FD15CB9F1F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */; };
-		FD15CBA01F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */; };
 		FD1D37C51F69AF10002E5978 /* TQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D37C41F69AF10002E5978 /* TQLogger.m */; };
 		FD1D37C61F69AF10002E5978 /* TQLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = FD1D37C41F69AF10002E5978 /* TQLogger.m */; };
+		FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83901FC36910007227D0 /* TQOverlay.swift */; };
+		FD1E83921FC36910007227D0 /* TQOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83901FC36910007227D0 /* TQOverlay.swift */; };
+		FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */; };
+		FD1E83981FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */; };
+		FD1E839A1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */; };
+		FD1E839B1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */; };
 		FD44C5F41F423F01003B3605 /* TQNNTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44C5F31F423F01003B3605 /* TQNNTPResponse.m */; };
 		FD44C5F51F423F01003B3605 /* TQNNTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44C5F31F423F01003B3605 /* TQNNTPResponse.m */; };
 		FD44C5FD1F4248A3003B3605 /* TQNNTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FD44C5FB1F4248A3003B3605 /* TQNNTPManager.m */; };
@@ -111,16 +111,12 @@
 		FD0477FD1F4E2F8E00AD61BB /* TQArticleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQArticleViewController.h; sourceTree = "<group>"; };
 		FD0477FE1F4E2F8E00AD61BB /* TQArticleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQArticleViewController.m; sourceTree = "<group>"; };
 		FD0478021F4FA23400AD61BB /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = "<group>"; };
-		FD12F6281F574C4500415514 /* TQOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlay.h; sourceTree = "<group>"; };
-		FD12F6291F574C4500415514 /* TQOverlay.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlay.m; sourceTree = "<group>"; };
-		FD12F62C1F57525C00415514 /* TQOverlayBackgroundView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlayBackgroundView.h; sourceTree = "<group>"; };
-		FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlayBackgroundView.m; sourceTree = "<group>"; };
-		FD15CB9C1F60756600C64B88 /* TQOverlay+Extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TQOverlay+Extensions.h"; sourceTree = "<group>"; };
-		FD15CB9D1F6075F200C64B88 /* TQOverlaySlidingMenu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQOverlaySlidingMenu.h; sourceTree = "<group>"; };
-		FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQOverlaySlidingMenu.m; sourceTree = "<group>"; };
 		FD1D37C31F69AF10002E5978 /* TQLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQLogger.h; sourceTree = "<group>"; };
 		FD1D37C41F69AF10002E5978 /* TQLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TQLogger.m; sourceTree = "<group>"; };
 		FD1D37C91F69B25D002E5978 /* TQPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQPrefixHeader.pch; sourceTree = "<group>"; };
+		FD1E83901FC36910007227D0 /* TQOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlay.swift; sourceTree = "<group>"; };
+		FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlayBackgroundView.swift; sourceTree = "<group>"; };
+		FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlaySlidingMenu.swift; sourceTree = "<group>"; };
 		FD44C5F21F423F01003B3605 /* TQNNTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TQNNTPResponse.h; path = NNTPClient/TQNNTPResponse.h; sourceTree = "<group>"; };
 		FD44C5F31F423F01003B3605 /* TQNNTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TQNNTPResponse.m; path = NNTPClient/TQNNTPResponse.m; sourceTree = "<group>"; };
 		FD44C5FB1F4248A3003B3605 /* TQNNTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TQNNTPManager.m; path = NNTPClient/TQNNTPManager.m; sourceTree = "<group>"; };
@@ -254,11 +250,9 @@
 		FD15CB9B1F6074D300C64B88 /* Overlay */ = {
 			isa = PBXGroup;
 			children = (
-				FD12F6281F574C4500415514 /* TQOverlay.h */,
-				FD12F6291F574C4500415514 /* TQOverlay.m */,
-				FD15CB9C1F60756600C64B88 /* TQOverlay+Extensions.h */,
-				FD15CB9D1F6075F200C64B88 /* TQOverlaySlidingMenu.h */,
-				FD15CB9E1F6075F200C64B88 /* TQOverlaySlidingMenu.m */,
+				FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */,
+				FD1E83901FC36910007227D0 /* TQOverlay.swift */,
+				FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */,
 			);
 			path = Overlay;
 			sourceTree = "<group>";
@@ -289,8 +283,6 @@
 				FD5047FF1F57478A0064466D /* TQUserInfoInputView.h */,
 				FD5048001F57478A0064466D /* TQUserInfoInputView.m */,
 				FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */,
-				FD12F62C1F57525C00415514 /* TQOverlayBackgroundView.h */,
-				FD12F62D1F57525C00415514 /* TQOverlayBackgroundView.m */,
 				FD8E5A701F60B044008434F8 /* TQHeaderDownloadProgressView.h */,
 				FD8E5A711F60B044008434F8 /* TQHeaderDownloadProgressView.m */,
 				FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */,
@@ -569,14 +561,12 @@
 				FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */,
 				FDCC42EA1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
 				FDA449101F672449004E7079 /* TQReleaseNotesView.m in Sources */,
-				FD15CB9F1F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */,
 				FD8746101F49741400C95C5A /* TQArticleHeaderTableViewCell.m in Sources */,
 				FD44C6051F43F5AB003B3605 /* TQNNTPArticle.m in Sources */,
-				FD12F62E1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */,
+				FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FDD365DB1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */,
 				FD8746081F496B0000C95C5A /* TQGroupViewController.m in Sources */,
 				FD9CB6521F4233E800BC2225 /* main.m in Sources */,
-				FD12F62A1F574C4500415514 /* TQOverlay.m in Sources */,
 				FD9CB8E61F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FDD365D71F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */,
 				FD44C5FD1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
@@ -587,10 +577,12 @@
 				FD8E5A721F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
 				FDE7CBAC1F7D7B9800E6E89E /* TQTextField.swift in Sources */,
 				FD4C8A881F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,
+				FD1E839A1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */,
 				FD44C60D1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD5048011F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD44C5F41F423F01003B3605 /* TQNNTPResponse.m in Sources */,
 				FD8746031F495D7300C95C5A /* TQNNTPArticleForest.m in Sources */,
+				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,13 +594,12 @@
 				FDD365D81F5A0C9700A80106 /* TQGroupSelectionViewController.m in Sources */,
 				FDE7CBAA1F7D73F100E6E89E /* TQLabel.swift in Sources */,
 				FDCC42EB1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
-				FD12F62F1F57525C00415514 /* TQOverlayBackgroundView.m in Sources */,
 				FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */,
 				FDA449111F672449004E7079 /* TQReleaseNotesView.m in Sources */,
 				FD44C60E1F450AD6003B3605 /* TQNNTPGroup.m in Sources */,
 				FD44C6061F43F5AB003B3605 /* TQNNTPArticle.m in Sources */,
 				FD9CB66B1F4233E800BC2225 /* TurquoiseTests.m in Sources */,
-				FD15CBA01F6075F200C64B88 /* TQOverlaySlidingMenu.m in Sources */,
+				FD1E839B1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */,
 				FD95D1B11F4E2A1C0088EDA6 /* TQLoginViewController.m in Sources */,
 				FD44C5FE1F4248A3003B3605 /* TQNNTPManager.m in Sources */,
 				FDE7CBB01F7D993900E6E89E /* TQSearchBar.swift in Sources */,
@@ -616,13 +607,14 @@
 				FD9CB8E71F55273B000755D6 /* KeychainWrapper.m in Sources */,
 				FD44C5F51F423F01003B3605 /* TQNNTPResponse.m in Sources */,
 				FD7DE1C51F64B1EF006200D8 /* TQLogoutConfirmationView.m in Sources */,
+				FD1E83981FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FD8E5A731F60B044008434F8 /* TQHeaderDownloadProgressView.m in Sources */,
+				FD1E83921FC36910007227D0 /* TQOverlay.swift in Sources */,
 				FD5048021F57478A0064466D /* TQUserInfoInputView.m in Sources */,
 				FD0478001F4E2F8E00AD61BB /* TQArticleViewController.m in Sources */,
 				FD1D37C61F69AF10002E5978 /* TQLogger.m in Sources */,
 				FD4C8A891F4FB6E40046C4A4 /* TQArticleComposerViewController.m in Sources */,
 				FDE7CBAD1F7D7B9800E6E89E /* TQTextField.swift in Sources */,
-				FD12F62B1F574C4500415514 /* TQOverlay.m in Sources */,
 				FDD365DC1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */,
 				FD8746111F49741400C95C5A /* TQArticleHeaderTableViewCell.m in Sources */,
 				FDF0F9681F58B4AF008FE181 /* TQUserInfoManager.m in Sources */,
@@ -705,7 +697,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -752,7 +744,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
