@@ -3,7 +3,6 @@
 
 #import "TQNNTPArticle.h"
 #import "TQNNTPGroup.h"
-#import "TQNNTPResponse.h"
 
 #define BLOCK_SAFE_RUN(block, ...) block ? block(__VA_ARGS__) : nil
 

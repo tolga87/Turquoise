@@ -4,7 +4,6 @@
 #import "TQNNTPArticle.h"
 #import "TQNNTPArticleForest.h"
 #import "TQNNTPManager.h"
-#import "TQNNTPResponse.h"
 
 static NSString *const kHeaderDownloadProgressNotification = @"kHeaderDownloadProgressNotification";
 static NSString *const kHeaderDownloadProgressAmountKey = @"progressAmount";

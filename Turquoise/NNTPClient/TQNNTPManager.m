@@ -176,7 +176,8 @@ static NSError *GetError(NSString *errorMessage) {
     NSString *command = [NSString stringWithFormat:@"AUTHINFO USER %@\r\n", userName];
 
     [self sendRequest:command completion:^(TQNNTPResponse *response, NSError *error) {
-      if (response.responseCode == TQNNTPResponseCodeEnterPassword) {
+      // TODO: get rid of "responseCodeValue"
+      if (response.responseCodeValue == TQNNTPResponseCodeEnterPassword) {
         BLOCK_SAFE_RUN(callback, response, nil);
       } else {
         BLOCK_SAFE_RUN(callback, nil, GetGenericError());
@@ -204,7 +205,7 @@ static NSError *GetError(NSString *errorMessage) {
                      response = [[TQNNTPResponse alloc] initWithString:responseString];
                    }
 
-                   if (response.responseCode != TQNNTPResponseCodeServerReady) {
+                   if (response.responseCodeValue != TQNNTPResponseCodeServerReady) {
                      // something's wrong
                      NSError *error = [NSError errorWithDomain:TQNNTPManagerErrorDomain
                                                           code:-1002

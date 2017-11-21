@@ -3,9 +3,10 @@
 
 #import "NSString+TQEncoding.h"
 #import "TQNNTPManager.h"
-#import "TQNNTPResponse.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
+
+@class TQNNTPResponse;
 
 @implementation TQLoginViewController {
   TQUserInfoManager *_userInfoManager;

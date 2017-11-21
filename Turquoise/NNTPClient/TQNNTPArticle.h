@@ -1,9 +1,8 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TQNNTPResponse.h"
-
 @class TQNNTPGroup;
+@class TQNNTPResponse;
 
 @interface TQNNTPArticle : NSObject
 
