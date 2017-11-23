@@ -2,7 +2,7 @@ import Foundation
 
 public class TQNNTPGroup : NSObject {
   public static let headerDownloadProgressNotification = Notification.Name("headerDownloadProgressNotification")
-  public static let headerDownloadProgressAmountKey = Notification.Name("progressAmount")
+  public static let headerDownloadProgressAmountKey = "progressAmount"
 
   public private(set) var groupId: String
   public private(set) var minArticleNo = -1
@@ -52,16 +52,6 @@ public class TQNNTPGroup : NSObject {
     self.articlesNos = [:]
     self.messageIds = [:]
   }
-
-//  - (NSArray *)articles {
-//  return _articles;
-//  }
-
-
-//  override convenience init() {
-//    self.minArticleNo = -1
-//    self.maxArticleNo = -1
-//  }
 
   private func downloadHeader(currentArticle: Int,
                               completion: @escaping (() -> Void)) {

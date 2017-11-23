@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -176,7 +176,7 @@
         <!--Group View Controller-->
         <scene sceneID="Erp-t5-dWc">
             <objects>
-                <viewController id="y9E-We-q5x" customClass="TQGroupViewController" sceneMemberID="viewController">
+                <viewController id="y9E-We-q5x" customClass="TQGroupViewController" customModule="Turquoise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="rBE-T1-ORn"/>
                         <viewControllerLayoutGuide type="bottom" id="7ME-Rc-xYF"/>
@@ -195,7 +195,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="news5.png"/>
                                         <connections>
-                                            <action selector="newsgroupsButtonDidTap:" destination="y9E-We-q5x" eventType="touchUpInside" id="XMR-io-TTC"/>
+                                            <action selector="newsgroupsButtonDidTap:" destination="y9E-We-q5x" eventType="touchUpInside" id="GmN-Kv-Vr3"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9lh-eC-Azy" userLabel="SettingsButton">
@@ -205,7 +205,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="settings1.png"/>
                                         <connections>
-                                            <action selector="settingsButtonDidTap:" destination="y9E-We-q5x" eventType="touchUpInside" id="Xmk-Xp-9Fr"/>
+                                            <action selector="settingsButtonDidTap:" destination="y9E-We-q5x" eventType="touchUpInside" id="59J-cS-KD0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -231,7 +231,7 @@
                                 <rect key="frame" x="16" y="96" width="343" height="523"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleSubjectCell" id="xnn-ts-ntI" customClass="TQArticleHeaderTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleSubjectCell" id="xnn-ts-ntI" customClass="TQArticleHeaderTableViewCell" customModule="Turquoise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xnn-ts-ntI" id="MBY-sO-UUC">
@@ -297,10 +297,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="articleSenderLabel" destination="xWc-cR-dMh" id="Y5Z-gW-gwR"/>
-                                            <outlet property="articleTitleLabel" destination="jvS-Il-CBZ" id="WXO-90-dVZ"/>
-                                            <outlet property="paddingView" destination="FdA-Pn-FRM" id="BsD-6A-Dim"/>
-                                            <outlet property="paddingViewWidthConstraint" destination="UBe-Zq-ORL" id="Gcc-PH-NgP"/>
+                                            <outlet property="articleSenderLabel" destination="xWc-cR-dMh" id="NMt-k6-AcP"/>
+                                            <outlet property="articleTitleLabel" destination="jvS-Il-CBZ" id="MfP-gb-3qA"/>
+                                            <outlet property="paddingView" destination="FdA-Pn-FRM" id="3tG-co-fzT"/>
+                                            <outlet property="paddingViewWidthConstraint" destination="UBe-Zq-ORL" id="5qW-nB-hz8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -339,8 +339,8 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="_groupNameLabel" destination="Iqo-Ey-vwh" id="7eG-wm-9i6"/>
-                        <outlet property="tableView" destination="h75-3P-t8u" id="JbT-Rt-IkJ"/>
+                        <outlet property="groupNameLabel" destination="Iqo-Ey-vwh" id="AzL-f7-dw0"/>
+                        <outlet property="tableView" destination="h75-3P-t8u" id="5bk-m2-yb1"/>
                         <segue destination="BZi-gZ-a14" kind="show" identifier="ShowBodySegueID" id="n4U-hD-a51"/>
                         <segue destination="Fao-1C-UKF" kind="presentation" identifier="ManageSubscriptionsSegueId" id="vdA-u9-jI6"/>
                     </connections>
@@ -644,7 +644,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="groupNameLabel" destination="d0U-Sc-u2b" id="wUy-3r-DYI"/>
+                                            <outlet property="groupNameLabel" destination="d0U-Sc-u2b" id="yyO-FQ-ZQK"/>
                                             <outlet property="statusIconView" destination="5g4-r2-SEC" id="B8H-0j-Xr9"/>
                                         </connections>
                                     </tableViewCell>

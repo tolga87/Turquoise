@@ -21,7 +21,7 @@ public typealias TQSlidingMenuCallback = () -> Void
   //       code correspond to the closures (TQSlidingMenuCallback) here. This will be fixed in an upcoming commit.
   public class func showSlidingMenu(position: TQOverlaySlidingMenuPosition,
                              verticalOffset: CGFloat,
-                             title: String,
+                             title: String?,
                              texts: [String],
                              callbacks: Array<Any>) {
     guard !texts.isEmpty && !callbacks.isEmpty && callbacks.count >= texts.count else {

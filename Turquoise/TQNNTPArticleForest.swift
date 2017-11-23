@@ -75,7 +75,7 @@ import Foundation
       string += String(repeatElement("-", count: level))
     }
     string += "\(article.subject.tq_decodedString) (\(article.articleNo)"
-    //~TA
+    //~TA TODO: fix
 //    TQLogDebug(@"%@", mutString);
 
     for child in article.childArticles {
