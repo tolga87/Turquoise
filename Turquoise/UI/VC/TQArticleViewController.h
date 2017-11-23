@@ -1,9 +1,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TQNNTPArticle.h"
-#import "TQNNTPGroup.h"
-
 @interface TQArticleViewController : UIViewController
 
 @property(nonatomic) TQNNTPArticle *article;

@@ -1,0 +1,456 @@
+import Foundation
+
+public typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: Error?) -> Void
+
+public class TQNNTPManager : NSObject {
+  public static let sharedInstance = TQNNTPManager()
+
+  public let NetworkConnectionLostNotification = "NetworkConnectionLostNotification"
+  public static let networkStreamDidResetNotification = Notification.Name("NetworkStreamDidResetNotification")
+  public let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
+  public let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
+
+  // TODO: revamp these errors
+  let TQNNTPManagerErrorDomain = "TQNNTPManagerErrorDomain"
+  let newsServerHostName = "news.ceng.metu.edu.tr"
+  let newsServerPort = 563
+  let timeout: TimeInterval = 10;
+
+
+  public var networkReachable: Bool {
+    // TODO: fix
+    //  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+    //  return (networkStatus == ReachableViaWiFi || networkStatus == ReachableViaWWAN);
+    return true
+  }
+  public private(set) var allGroups: [TQNNTPGroup] = []
+  public private(set) var currentGroup: TQNNTPGroup?
+
+//  var reachability: Reachability
+
+  private var streamTask: URLSessionStreamTask?
+  private var dataBuffer: Data?
+  private var allgroups: [TQNNTPGroup] = []
+
+  private var streamResetTimer: Timer?
+//  private var lastNetworkStatus: NetworkStatus
+
+  private var lastNetworkStatusUpdateTimestamp: TimeInterval
+
+  override init() {
+    //    self.reachability = [Reachability reachabilityWithHostName:kNewsServerHostName];
+    //    self.lastNetworkStatus = -1;
+    self.lastNetworkStatusUpdateTimestamp = 0;
+
+    super.init()
+
+    let notificationCenter = NotificationCenter.default
+    // TODO: fix
+    //  notificationCenter.addObserver(self,
+    //                                 selector: #selector(reachabilityDidChange(_:)),
+    //                                 name: kReachabilityChangedNotification,
+    //                                 object: nil)
+
+    notificationCenter.addObserver(self,
+                                   selector: #selector(appDidEnterBackground),
+                                   name: Notification.Name.UIApplicationDidEnterBackground,
+                                   object: nil)
+    notificationCenter.addObserver(self,
+                                   selector: #selector(appDidBecomeActive),
+                                   name: Notification.Name.UIApplicationDidBecomeActive,
+                                   object: nil)
+  }
+
+  // TODO: Convert NSErrors to Errors
+  func GetGenericError() -> NSError {
+    return NSError(domain: self.TQNNTPManagerErrorDomain,
+                   code: -1003,
+                   userInfo: [ NSLocalizedDescriptionKey : "Something went wrong"])
+  }
+
+  func GetError(message: String?) -> NSError {
+    let defaultErrorMessage = "Something went wrong"
+    return NSError(domain: self.TQNNTPManagerErrorDomain,
+                   code: 0,
+                   userInfo: [ NSLocalizedDescriptionKey : (message ?? defaultErrorMessage) ])
+  }
+
+  @objc public func reachabilityDidChange(_ notification: Notification) {
+//  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
+//
+//  // for some reason, we receive duplicate notifications for single events.
+//  // set up a time threshold and drop redundant notifications.
+//  NSTimeInterval nowTimestamp = [NSDate timeIntervalSinceReferenceDate];
+//  const NSTimeInterval timestampThreshold = .1;
+//  BOOL timeThresholdExceeded = (nowTimestamp - _lastNetworkStatusUpdateTimestamp >= timestampThreshold);
+//
+//  if (networkStatus == _lastNetworkStatus && !timeThresholdExceeded) {
+//    // this is a duplicate notification. ignore it.
+//    return;
+//  }
+//
+//  NSArray *status = @[
+//    @"NotReachable",
+//    @"ReachableViaWiFi",
+//    @"ReachableViaWWAN"
+//  ];
+//  TQLogInfo(@"NETWORK STATUS UPDATED: %@", status[networkStatus]);
+//
+//  _lastNetworkStatus = networkStatus;
+//  _lastNetworkStatusUpdateTimestamp = nowTimestamp;
+//
+//  if (networkStatus == NotReachable) {
+//    [_streamTask stopSecureConnection];
+//    _streamTask = nil;
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNetworkConnectionLostNotification object:self];
+//  }
+  }
+
+  func setupStream() {
+//  _streamTask = [[NSURLSession sharedSession] streamTaskWithHostName:kNewsServerHostName
+//                                                                port:kNewsServerPort];
+    // TODO: is this necessary?
+    let session = URLSession(configuration: URLSessionConfiguration.default,
+                             delegate: nil,
+                             delegateQueue: OperationQueue.main)
+    self.streamTask = session.streamTask(withHostName: self.newsServerHostName,
+                                         port: self.newsServerPort)
+    self.streamTask?.startSecureConnection()
+  }
+
+
+
+  @objc public func appDidEnterBackground() {
+    let timerTimeInterval = TimeInterval(5 * 60)  // reset after 5 minutes
+
+    self.streamResetTimer?.invalidate()
+    self.streamResetTimer = Timer.scheduledTimer(withTimeInterval: timerTimeInterval,
+                                                 repeats: false,
+                                                 block: { (timer: Timer) in
+                                                  self.streamTask?.stopSecureConnection()
+                                                  self.streamTask = nil
+                                                  NotificationCenter.default.post(name: TQNNTPManager.networkStreamDidResetNotification,
+                                                                                  object: self)
+
+    })
+  }
+
+  public func login(userName: String,
+             password: String,
+             completion loginCallback: @escaping TQNNTPRequestCallback) {
+    if userName.isEmpty {
+      let error = NSError(domain: self.TQNNTPManagerErrorDomain,
+                          code: -1000,
+                          userInfo: [ NSLocalizedDescriptionKey : "Invalid user name"] )
+      loginCallback(nil, error)
+      return
+    } else if password.isEmpty {
+      let error = NSError(domain: self.TQNNTPManagerErrorDomain,
+                          code: -1001,
+                          userInfo: [ NSLocalizedDescriptionKey : "Invalid password"] )
+      loginCallback(nil, error)
+      return
+    }
+
+    self.setupStream()
+
+    guard let streamTask = self.streamTask else {
+      return
+    }
+
+    let sendUserNameBlock = { (userName: String, callback: @escaping TQNNTPRequestCallback) -> Void in
+      let command = "AUTHINFO USER \(userName)\r\n"
+
+      self.sendRequest(command, completion: { (response, error) in
+        // TODO: get rid of "responseCodeValue"
+        if response != nil && response!.responseCodeValue == TQNNTPResponseCode.enterPassword.rawValue {
+          callback(response, nil)
+        } else {
+          callback(nil, self.GetGenericError())
+        }
+      })
+    }
+
+    let sendPasswordBlock =  { (password: String, callback: @escaping TQNNTPRequestCallback) -> Void in
+      let command = "AUTHINFO PASS \(password)\r\n"
+
+      self.sendRequest(command, completion: { (response, error) in
+        callback(response, error)
+      })
+    }
+
+    streamTask.readData(ofMinLength: 0,
+                        maxLength: 4096,
+                        timeout: self.timeout) { (data, atEOF, error) in
+                          var response: TQNNTPResponse?
+                          if let data = data {
+                            let responseString = String(data: data, encoding: .utf8)
+                            response = TQNNTPResponse(string: responseString)
+                          }
+
+                          // TODO: fix
+                          if response != nil && response!.responseCodeValue != TQNNTPResponseCode.serverReady.rawValue {
+                            // something's wrong
+                            let error = NSError(domain: self.TQNNTPManagerErrorDomain,
+                                                code: -1002,
+                                                userInfo: [ NSLocalizedDescriptionKey : "Server not ready" ])
+                            loginCallback(nil, error)
+                            return
+                          }
+
+
+                          sendUserNameBlock(userName, { (response, error) -> Void in
+                            guard let _ = response else {
+                              // sending user name failed.
+                              loginCallback(nil, self.GetGenericError())
+                              return
+                            }
+
+                            sendPasswordBlock(password, { (response, error) -> Void in
+                              guard let _ = response else {
+                                // sending password failed.
+                                loginCallback(nil, self.GetGenericError())
+                                return
+                              }
+
+                              // login successful, download list of groups.
+                              self.listGroups(completion: { (response, error) in
+                                loginCallback(response, error)
+                              })
+                            })
+                          })
+    }
+    streamTask.resume()
+  }
+
+  func listGroups(completion: @escaping TQNNTPRequestCallback) {
+    // TQLogInfo(@"Requesting list of all newsgroups...");
+
+    self.sendRequest("LIST\r\n") { (response, error) in
+      if let response = response, response.isOk() {
+        self.allGroups = []
+
+        if let message = response.message {
+          let lines = message.components(separatedBy: "\r\n")
+          for line in lines.dropFirst() {
+            // skip the 0th line, it just contains information about the syntax.
+            let lineComps = line.components(separatedBy: .whitespaces)
+
+            if lineComps.count >= 4 {
+              let groupId = lineComps[0]
+              let articleNo1 = Int(lineComps[1]) ?? 0
+              let articleNo2 = Int(lineComps[2]) ?? 0
+              let minArticleNo = min(articleNo1, articleNo2)
+              let maxArticleNo = max(articleNo1, articleNo2)
+              let moderated = lineComps[3].lowercased() == "m"
+              let group = TQNNTPGroup(groupId: groupId,
+                                      minArticleNo: minArticleNo,
+                                      maxArticleNo: maxArticleNo,
+                                      moderated: moderated)
+              if let group = group {
+                self.allGroups.append(group)
+              }
+            }
+          }
+        }
+      }
+
+      self.allGroups.sort {
+        $0.groupId.localizedCaseInsensitiveCompare($1.groupId) == .orderedAscending
+      }
+      NotificationCenter.default.post(name: self.NNTPGroupListDidUpdateNotification, object: nil)
+      completion(response, error)
+    }
+  }
+
+  public func setGroup(groupId: String, completion: @escaping TQNNTPRequestCallback) {
+    let requestString = "GROUP \(groupId)\r\n"
+
+    self.sendRequest(requestString) { (response, error) in
+      if let response = response, response.isOk() {
+        self.currentGroup = TQNNTPGroup(response: response)
+      }
+
+      self.currentGroup?.downloadHeaders(completion: {
+        // TQLogInfo(@"All headers are downloaded");
+        NotificationCenter.default.post(name: self.NNTPGroupDidUpdateNotification,
+                                        object: self,
+                                        userInfo: nil)
+        completion(response, error)
+      })
+    }
+  }
+
+  func refreshGroup() {
+    guard let groupId = self.currentGroup?.groupId else {
+      // TODO: error
+      return
+    }
+
+    self.setGroup(groupId: groupId) { (_, _) in }
+  }
+
+  public func requestBody(of article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
+    let requestString = "BODY \(article.messageId)\r\n"
+    self.sendRequest(requestString) { (response, error) in
+      if let response = response, response.isOk() {
+        article.body = response.getArticleBody() ?? ""
+      }
+      completion(response, error)
+    }
+  }
+
+  public func post(article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
+    let requestString = "POST\r\n"
+    self.sendRequest(requestString) { (response, error) in
+      guard let response = response, let message = response.message else {
+        // TODO: error
+        return
+      }
+
+      guard response.isOkSoFar() else {
+        completion(response, self.GetError(message: "Server does not accept message posting"))
+        return
+      }
+
+      var messageId = ""
+      if message.lowercased().contains("recommended message-id") {
+        let messageComps = message.components(separatedBy: .whitespaces)
+
+        for i in 0 ..< messageComps.count {
+          if messageComps[i].lowercased() == "message-id" {
+            messageId = messageComps[i + 1].tq_newlineStrippedString
+            break
+          }
+        }
+      } else {
+        // TODO: handle this case (generate a random message-ID).
+      }
+
+      article.messageId = messageId
+      let postRequestString = article.buildPostRequest()
+      self.sendRequest(postRequestString, completion: { (response, error) in
+        if let response = response, response.isOk() {
+          // success
+          self.refreshGroup()
+        } else {
+          // failure
+        }
+
+        completion(response, error)
+      })
+    }
+
+  }
+
+  func bufferData(partNo: Int, completion: @escaping (_ data: Data?) -> Void) {
+    guard let streamTask = self.streamTask else {
+      return
+    }
+
+    streamTask.readData(ofMinLength: 0,
+                        maxLength: 10000,
+                        timeout: self.timeout) { (data: Data?, atEOF: Bool, error: Error?) in
+                          guard let data = data else {
+                            completion(nil)
+                            return
+                          }
+
+                          var isMultiLine: Bool = true
+
+
+                          if partNo == 0 {
+                            self.dataBuffer = Data()
+                            var statusCode = 0
+
+                            if data.count >= 3 {
+                              // first 3 bytes must contain the status code.
+                              let responseCodeData = data.subdata(in: 0..<3)
+                              let responseCodeString = String(data: responseCodeData, encoding: .utf8) ?? ""
+                              statusCode = Int(responseCodeString) ?? 0
+                              isMultiLine = TQNNTPResponse.isMultiLine(statusCode)
+                            } else {
+                              // TODO: we shouldn't receive fewer than 3 bytes in the first part.
+                              //       if this happens, something's wrong. look into this.
+                            }
+                          } else {
+                            // TODO: fix
+                            // TQLogInfo(@"\t\t <<< received partial response: part %ld >>>", partNo);
+                          }
+
+
+                          if !isMultiLine {
+                            completion(data)
+                            return
+                          }
+
+                          // here, we know we are dealing with a multi-line response.
+                          self.dataBuffer?.append(data)
+
+                          var isFinished = false
+                          guard let dataBuffer = self.dataBuffer else {
+                            return
+                          }
+                          if dataBuffer.count >= 5 {
+                            let subData = dataBuffer[dataBuffer.count - 5 ..< dataBuffer.count]
+                            let terminatingString = String(data: subData, encoding: .utf8)
+                            if terminatingString == "\r\n.\r\n" {
+                              isFinished = true
+                            }
+                          }
+
+                          if isFinished {
+                            completion(self.dataBuffer)
+                          } else {
+                            self.bufferData(partNo: (partNo + 1), completion: completion)
+                          }
+    }
+}
+
+  func sendRequest(_ requestString: String, completion: @escaping TQNNTPRequestCallback) {
+    guard !requestString.isEmpty else {
+      completion(nil, nil)  // TODO: error.
+      return
+    }
+    guard let streamTask = self.streamTask else {
+      completion(nil, nil)  // TODO: error.
+      return
+    }
+
+    let requestData = requestString.data(using: .utf8)!
+
+    streamTask.write(requestData,
+                     timeout: self.timeout) { (error: Error?) in
+                      if error != nil {
+                        completion(nil, nil)  // TODO: error.
+                        return
+                      }
+
+                      self.bufferData(partNo: 0, completion: { (data: Data?) in
+                        guard let data = data else {
+                          completion(nil, nil)  // TODO: error.
+                          return
+                        }
+
+                        let responseString = String(data: data, encoding: .utf8)
+                        let response = TQNNTPResponse(string: responseString)
+
+                        let shouldTruncate = true
+                        let maxLengthToDisplay = shouldTruncate ? 150 : Int.max
+                        let responseLength = Int(responseString?.count ?? 0)
+                        if responseLength > maxLengthToDisplay {
+                          // TQLogDebug(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
+                        } else {
+                          // TQLogDebug(@"S: %@", responseString);
+                        }
+
+                        completion(response, nil)
+                      })
+    }
+}
+
+  @objc public func appDidBecomeActive() {
+    self.streamResetTimer?.invalidate()
+    self.streamResetTimer = nil
+  }
+}

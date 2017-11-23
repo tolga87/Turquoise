@@ -2,7 +2,8 @@
 #import "TQArticleComposerViewController.h"
 
 #import "NSString+TQEncoding.h"
-#import "TQNNTPManager.h"
+
+@class TQNNTPManager;
 
 @implementation TQArticleComposerViewController {
   TQNNTPManager *_nntpManager;
@@ -54,6 +55,7 @@
                                                           message:message
                                                         newsGroup:_newsGroup
                                                     parentArticle:_parentArticle];
+  
     if (!article) {
       // something went wrong. cannot post article.
       // TODO: show error.
@@ -61,7 +63,7 @@
       return;
     }
 
-  [_nntpManager postArticle:article completion:^(TQNNTPResponse *response, NSError *error) {
+  [_nntpManager postWithArticle:article completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isOk]) {
       TQLogInfo(@"Article posted");
     } else {

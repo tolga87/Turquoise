@@ -1,7 +1,5 @@
 #import "TQHeaderDownloadProgressView.h"
 
-#import "TQNNTPGroup.h"
-
 @implementation TQHeaderDownloadProgressView {
   NSString *_groupId;
 
@@ -20,7 +18,7 @@
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(progressDidUpdate:)
-                                                 name:kHeaderDownloadProgressNotification
+                                                 name:TQNNTPGroup.headerDownloadProgressNotification
                                                object:nil];
   }
   return self;
@@ -32,7 +30,7 @@
 }
 
 - (void)progressDidUpdate:(NSNotification *)notification {
-  NSNumber *progress = notification.userInfo[kHeaderDownloadProgressAmountKey];
+  NSNumber *progress = notification.userInfo[TQNNTPGroup.headerDownloadProgressAmountKey];
   if (progress) {
     _progressLabel.text = [NSString stringWithFormat:@"%@%%", progress];
   }

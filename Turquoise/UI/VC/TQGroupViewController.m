@@ -6,12 +6,10 @@
 #import "TQArticleViewController.h"
 #import "TQHeaderDownloadProgressView.h"
 #import "TQLogoutConfirmationView.h"
-#import "TQNNTPArticle.h"
-#import "TQNNTPGroup.h"
-#import "TQNNTPManager.h"
 #import "TQReleaseNotesView.h"
 #import "TQUserInfoManager.h"
 
+@class TQNNTPManager;
 @class TQOverlay;
 @class TQOverlaySlidingMenu;
 
@@ -42,7 +40,7 @@
 
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(groupDidUpdate:)
-                                               name:kNNTPGroupDidUpdateNotification
+                                               name:TQNNTPManager.sharedInstance.NNTPGroupDidUpdateNotification
                                              object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(userDidLogout:)
@@ -66,7 +64,7 @@
       TQHeaderDownloadProgressView *progressView =
           [[TQHeaderDownloadProgressView alloc] initWithGroupId:subscribedGroupId];
       [[TQOverlay sharedInstance] showWith:progressView relativeVerticalPosition:.35 animated:NO];
-      [_nntpManager setGroup:subscribedGroupId completion:^(TQNNTPResponse *response, NSError *error) {
+      [_nntpManager setGroupWithGroupId:subscribedGroupId completion:^(TQNNTPResponse *response, NSError *error) {
         [[TQOverlay sharedInstance] dismissWithAnimated:YES];
       }];
     } copy]];
@@ -166,7 +164,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   _selectedArticle = _expandedArticleForest[indexPath.row];
-  [_nntpManager requestBodyOfArticle:_selectedArticle completion:^(TQNNTPResponse *response, NSError *error) {
+  [_nntpManager requestBodyOf:_selectedArticle completion:^(TQNNTPResponse *response, NSError *error) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if ([response isOk]) {

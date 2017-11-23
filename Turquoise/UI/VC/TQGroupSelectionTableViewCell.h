@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import "TQNNTPGroup.h"
-
 @interface TQGroupSelectionTableViewCell : UITableViewCell
 
 @property(nonatomic) TQNNTPGroup *group;

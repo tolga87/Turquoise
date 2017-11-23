@@ -2,10 +2,10 @@
 #import "TQLoginViewController.h"
 
 #import "NSString+TQEncoding.h"
-#import "TQNNTPManager.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
 
+@class TQNNTPManager;
 @class TQNNTPResponse;
 
 @implementation TQLoginViewController {
@@ -39,14 +39,15 @@
                                            selector:@selector(userDidLogout)
                                                name:kUserDidLogoutNotification
                                              object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(networkConnectionLost)
-                                               name:kNetworkConnectionLostNotification
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(nntpManagerDidReset)
-                                               name:kNetworkStreamDidResetNotification
-                                             object:nil];
+  //~TA TODO: fix
+//  [[NSNotificationCenter defaultCenter] addObserver:self
+//                                           selector:@selector(networkConnectionLost)
+//                                               name:kNetworkConnectionLostNotification
+//                                             object:nil];
+//  [[NSNotificationCenter defaultCenter] addObserver:self
+//                                           selector:@selector(nntpManagerDidReset)
+//                                               name:kNetworkStreamDidResetNotification
+//                                             object:nil];
 }
 
 - (void)networkConnectionLost {
@@ -160,7 +161,7 @@
     //    NSString *groupId = @"metu.ceng.course.140";
     //      NSString *groupId = @"metu.ceng.course.316";
 
-    [manager setGroup:groupId completion:^(TQNNTPResponse *response, NSError *error) {
+    [manager setGroupWithGroupId:groupId completion:^(TQNNTPResponse *response, NSError *error) {
       if ([response isOk]) {
         [self performSegueWithIdentifier:@"ShowGroupSegueID" sender:self];
         _connectionStatusLabel.text = nil;

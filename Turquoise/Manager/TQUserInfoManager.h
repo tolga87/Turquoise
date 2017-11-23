@@ -1,7 +1,5 @@
 #import <Foundation/Foundation.h>
 
-#import "TQNNTPGroup.h"
-
 extern NSString *const kUserSubscriptionsDidChangeNotification;
 extern NSString *const kUserDidLogoutNotification;
 

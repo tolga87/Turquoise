@@ -2,8 +2,9 @@
 #import "TQArticleViewController.h"
 
 #import "TQArticleComposerViewController.h"
-#import "TQNNTPManager.h"
 #import "TQUserInfoManager.h"
+
+@class TQNNTPManager;
 
 @implementation TQArticleViewController {
   TQNNTPManager *_nntpManager;
@@ -28,8 +29,8 @@
 }
 
 - (IBAction)cancelArticle:(id)sender {
-  TQNNTPArticle *cancelArticle = [TQNNTPArticle cancelArticleFromArticle:_article];
-  [_nntpManager postArticle:cancelArticle completion:^(TQNNTPResponse *response, NSError *error) {
+  TQNNTPArticle *cancelArticle = [TQNNTPArticle cancelArticleFrom:_article];
+  [_nntpManager postWithArticle:cancelArticle completion:^(TQNNTPResponse *response, NSError *error) {
     if ([response isOk]) {
       TQLogInfo(@"Message canceled");
     } else {

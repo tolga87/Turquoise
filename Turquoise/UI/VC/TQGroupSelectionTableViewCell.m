@@ -2,6 +2,8 @@
 
 #import "TQUserInfoManager.h"
 
+@class TQNNTPGroup;
+
 @implementation TQGroupSelectionTableViewCell
 
 + (UIColor *)evenColor {

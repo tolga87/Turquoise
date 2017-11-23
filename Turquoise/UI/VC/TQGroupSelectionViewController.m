@@ -1,9 +1,9 @@
 #import "TQGroupSelectionViewController.h"
 
 #import "TQGroupSelectionTableViewCell.h"
-#import "TQNNTPManager.h"
 #import "TQUserInfoManager.h"
 
+@class TQNNTPManager;
 @class TQSearchBar;
 
 @implementation TQGroupSelectionViewController {
@@ -27,7 +27,7 @@
   _nntpManager = [TQNNTPManager sharedInstance];
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(newsGroupsDidUpdate:)
-                                               name:kNNTPGroupListDidUpdateNotification
+                                               name:TQNNTPManager.sharedInstance.NNTPGroupListDidUpdateNotification
                                              object:nil];
 }
 
