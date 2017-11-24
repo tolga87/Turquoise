@@ -352,7 +352,7 @@
         <!--Article View Controller-->
         <scene sceneID="tTT-YT-xCO">
             <objects>
-                <viewController id="BZi-gZ-a14" customClass="TQArticleViewController" sceneMemberID="viewController">
+                <viewController id="BZi-gZ-a14" customClass="TQArticleViewController" customModule="Turquoise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WSx-zv-5dN"/>
                         <viewControllerLayoutGuide type="bottom" id="1h5-q1-lCe"/>
@@ -506,7 +506,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="dismiss:" destination="BZi-gZ-a14" eventType="touchUpInside" id="hpa-pk-p64"/>
+                                    <action selector="dismiss:" destination="BZi-gZ-a14" eventType="touchUpInside" id="h4k-cb-atb"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiR-zE-bnQ">
@@ -521,7 +521,7 @@
                                     <color key="titleColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelArticle:" destination="BZi-gZ-a14" eventType="touchUpInside" id="7fb-QR-7Qk"/>
+                                    <action selector="cancelArticle:" destination="BZi-gZ-a14" eventType="touchUpInside" id="N2W-v4-xDj"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -545,12 +545,12 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="articleBodyTextView" destination="x0N-aT-CWN" id="bV2-8T-1wL"/>
-                        <outlet property="articleDateLabel" destination="Mw7-R8-EIa" id="Hje-x0-b6r"/>
-                        <outlet property="articleSenderLabel" destination="dKK-Pb-XX8" id="kqO-dW-dW2"/>
-                        <outlet property="articleSubjectLabel" destination="GL4-e0-DlE" id="GhB-iS-hio"/>
-                        <outlet property="deleteArticleButton" destination="aiR-zE-bnQ" id="zyn-W1-Sbp"/>
-                        <outlet property="deleteButtonHeight" destination="26N-VO-fHq" id="c0I-He-BV8"/>
+                        <outlet property="articleBodyTextView" destination="x0N-aT-CWN" id="iVC-mJ-Zue"/>
+                        <outlet property="articleDateLabel" destination="Mw7-R8-EIa" id="8iD-0I-ZsK"/>
+                        <outlet property="articleSenderLabel" destination="dKK-Pb-XX8" id="Xek-j4-Cez"/>
+                        <outlet property="articleSubjectLabel" destination="GL4-e0-DlE" id="cRz-Wa-nUQ"/>
+                        <outlet property="deleteArticleButton" destination="aiR-zE-bnQ" id="upW-8V-eQN"/>
+                        <outlet property="deleteButtonHeight" destination="26N-VO-fHq" id="oLR-2r-s9G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xB1-D8-lFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -678,7 +678,7 @@
         <!--Article Composer View Controller-->
         <scene sceneID="Fx9-v5-DVO">
             <objects>
-                <viewController id="37d-aA-TiD" customClass="TQArticleComposerViewController" sceneMemberID="viewController">
+                <viewController id="37d-aA-TiD" customClass="TQArticleComposerViewController" customModule="Turquoise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mvy-uC-yHq"/>
                         <viewControllerLayoutGuide type="bottom" id="PFC-4j-eE9"/>
@@ -701,7 +701,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="dismiss:" destination="37d-aA-TiD" eventType="touchUpInside" id="ESg-eG-6jS"/>
+                                            <action selector="dismiss:" destination="37d-aA-TiD" eventType="touchUpInside" id="Wjf-5s-tPr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fEE-VS-v1I">
@@ -715,7 +715,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="postArticle:" destination="37d-aA-TiD" eventType="touchUpInside" id="fLY-9c-7Fc"/>
+                                            <action selector="postArticle:" destination="37d-aA-TiD" eventType="touchUpInside" id="VPU-hX-Geh"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -730,7 +730,7 @@
                                     <constraint firstAttribute="trailing" secondItem="fEE-VS-v1I" secondAttribute="trailing" id="zDM-c8-Rdc"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Subject" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTs-q8-wck" customClass="TQTextField">
+                            <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Subject" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rTs-q8-wck" customClass="TQTextField" customModule="Turquoise" customModuleProvider="target">
                                 <rect key="frame" x="16" y="60" width="343" height="30"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -764,8 +764,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="articleBodyView" destination="bAy-7i-4O5" id="22K-vj-kwa"/>
-                        <outlet property="articleSubjectField" destination="rTs-q8-wck" id="WuT-zB-gd1"/>
+                        <outlet property="articleBodyView" destination="bAy-7i-4O5" id="KYI-zi-UNH"/>
+                        <outlet property="articleSubjectField" destination="rTs-q8-wck" id="PYV-gs-Udu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zxu-yf-gRW" userLabel="First Responder" sceneMemberID="firstResponder"/>

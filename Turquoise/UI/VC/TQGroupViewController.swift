@@ -175,21 +175,17 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
       return
     }
 
-    //~TA TODO: fix
-    print("Not implemented yet.")
+    switch segueId {
+    case "ShowBodySegueID":
+      let articleViewController = segue.destination as! TQArticleViewController
+      articleViewController.newsGroup = self.group
+      articleViewController.article = self.selectedArticle
 
-//    switch segueId {
-//    case "ShowBodySegueID":
-//      let articleViewController = segue.destination as! TQArticleViewController
-//      articleViewController.newsGroup = self.group
-//      articleViewController.article = self.selectedArticle
-//
-//    case "ShowBodySegueID":
-//      let articleComposerViewController = segue.destination as! TQArticleComposerViewController
-//      articleComposerViewController.newsGroup = self.group
-//
-//    default:
-//      ()
-//    }
+    case "ShowBodySegueID":
+      let articleComposerViewController = segue.destination as! TQArticleComposerViewController
+      articleComposerViewController.newsGroup = self.group
+    default:
+      ()
+    }
   }
 }

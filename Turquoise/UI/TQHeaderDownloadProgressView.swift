@@ -24,7 +24,7 @@ public class TQHeaderDownloadProgressView : UIView {
     view.groupId = groupId
     view.progressLabel.text = "0%"
     view.progressIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-    NotificationCenter.default.addObserver(self,
+    NotificationCenter.default.addObserver(view,
                                            selector: #selector(progressDidUpdate(_:)),
                                            name: TQNNTPGroup.headerDownloadProgressNotification,
                                            object: nil)
@@ -33,7 +33,7 @@ public class TQHeaderDownloadProgressView : UIView {
 
   func progressDidUpdate(_ notification: Notification) {
     if let progress = notification.userInfo?[TQNNTPGroup.headerDownloadProgressAmountKey] {
-      self.progressLabel.text = "\(progress)%%"
+      self.progressLabel.text = "\(progress)%"
     }
   }
 }
