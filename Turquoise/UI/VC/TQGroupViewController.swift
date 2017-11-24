@@ -181,7 +181,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
       articleViewController.newsGroup = self.group
       articleViewController.article = self.selectedArticle
 
-    case "ShowBodySegueID":
+    case "PostNewMessageSegueID":
       let articleComposerViewController = segue.destination as! TQArticleComposerViewController
       articleComposerViewController.newsGroup = self.group
     default:

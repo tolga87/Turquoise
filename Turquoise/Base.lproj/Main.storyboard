@@ -368,13 +368,13 @@
                                         <rect key="frame" x="0.0" y="10" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-e0-DlE" userLabel="Article Subject Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
+                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYo-9V-ZBb" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="5EV-hm-Ptl"/>
                                                 </constraints>
@@ -399,13 +399,13 @@
                                         <rect key="frame" x="0.0" y="30" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="From:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKK-Pb-XX8" userLabel="Article Sender Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
+                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -426,13 +426,13 @@
                                         <rect key="frame" x="0.0" y="50" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-Ch-xGP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-R8-EIa" userLabel="Article Date Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
+                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>

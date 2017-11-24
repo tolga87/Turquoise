@@ -1,7 +1,6 @@
 
 #import "TQLoginViewController.h"
 
-#import "NSString+TQEncoding.h"
 #import "TQUserInfoInputView.h"
 #import "TQUserInfoManager.h"
 
@@ -69,8 +68,11 @@
 - (void)loginButtonDidTap:(id)sender {
   BOOL foundUserCredentials = [self loginWithSavedCredentialsIfPossible];
   if (!foundUserCredentials) {
-    NSString *userName = [_userNameField.text tq_whitespaceAndNewlineStrippedString];
-    NSString *password = [_passwordField.password tq_whitespaceAndNewlineStrippedString];
+    //~TA TODO: fix
+//    NSString *userName = [_userNameField.text tq_whitespaceAndNewlineStrippedString];
+//    NSString *password = [_passwordField.password tq_whitespaceAndNewlineStrippedString];
+    NSString *userName = _userNameField.text;
+    NSString *password = _passwordField.password;
     if (userName.length > 0 && password.length > 1) {
       [self loginWithUserName:userName password:password askUserInfo:YES];
     }

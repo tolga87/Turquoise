@@ -55,8 +55,6 @@
 		FDB6ED321FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */; };
 		FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
 		FDB6ED351FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
-		FDCC42EA1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCC42E91F4BA8EA001EC1BC /* NSString+TQEncoding.m */; };
-		FDCC42EB1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = FDCC42E91F4BA8EA001EC1BC /* NSString+TQEncoding.m */; };
 		FDD365C41F5A052400A80106 /* news1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C31F5A007900A80106 /* news1.png */; };
 		FDD365C51F5A052500A80106 /* news1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C31F5A007900A80106 /* news1.png */; };
 		FDD365C71F5A05F100A80106 /* news2.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C61F5A05DB00A80106 /* news2.png */; };
@@ -150,8 +148,6 @@
 		FDB6ED2D1FC4BC6200BACC8A /* TQNNTPGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPGroup.swift; sourceTree = "<group>"; };
 		FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticle.swift; sourceTree = "<group>"; };
 		FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticleForest.swift; sourceTree = "<group>"; };
-		FDCC42E81F4BA8EA001EC1BC /* NSString+TQEncoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+TQEncoding.h"; sourceTree = "<group>"; };
-		FDCC42E91F4BA8EA001EC1BC /* NSString+TQEncoding.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+TQEncoding.m"; sourceTree = "<group>"; };
 		FDD365C31F5A007900A80106 /* news1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news1.png; sourceTree = "<group>"; };
 		FDD365C61F5A05DB00A80106 /* news2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news2.png; sourceTree = "<group>"; };
 		FDD365C91F5A06C600A80106 /* news3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news3.png; sourceTree = "<group>"; };
@@ -357,8 +353,6 @@
 			isa = PBXGroup;
 			children = (
 				FD7E83641FC5159B00025211 /* String+TQEncoding.swift */,
-				FDCC42E81F4BA8EA001EC1BC /* NSString+TQEncoding.h */,
-				FDCC42E91F4BA8EA001EC1BC /* NSString+TQEncoding.m */,
 			);
 			path = String;
 			sourceTree = "<group>";
@@ -543,7 +537,6 @@
 				FDE86E721FC77F27009C0466 /* TQGroupViewController.swift in Sources */,
 				FDF0E17B1FC3FF42003AEA1B /* TQNNTPResponse.swift in Sources */,
 				FDB6ED311FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */,
-				FDCC42EA1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
 				FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FDD365DB1F5A106700A80106 /* TQGroupSelectionTableViewCell.m in Sources */,
 				FD7E83681FC517F500025211 /* TQNNTPManager.swift in Sources */,
@@ -577,7 +570,6 @@
 				FDB6ED2F1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
 				FDE7CBAA1F7D73F100E6E89E /* TQLabel.swift in Sources */,
 				FDE86E7F1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
-				FDCC42EB1F4BA8EA001EC1BC /* NSString+TQEncoding.m in Sources */,
 				FDE86E731FC77F27009C0466 /* TQGroupViewController.swift in Sources */,
 				FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */,
 				FD9CB66B1F4233E800BC2225 /* TurquoiseTests.m in Sources */,

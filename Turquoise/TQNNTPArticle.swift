@@ -126,7 +126,7 @@ public class TQNNTPArticle : NSObject {
     //~TA TODO: fix
 //    let userInfoManager = TQUserInfoManager.sharedInstance
 //    self.from = "\(userInfoManager.fullName) <\(userInfoManager.email)>"
-    self.from = ""
+    self.from = "tolga <tolga.ceng@gmail.com>"
     // TODO: we should probaby escape some stuff here
 
     if let parentArticle = self.parentArticle {
