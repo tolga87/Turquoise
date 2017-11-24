@@ -17,13 +17,11 @@ public typealias TQSlidingMenuCallback = () -> Void
   var texts: [String] = []
   var callbacks: [TQSlidingMenuCallback] = []
 
-  // TODO: "callbacks" is currently borked, because the Obj-C<->Swift bridging cannot figure out the blocks in the Obj-C
-  //       code correspond to the closures (TQSlidingMenuCallback) here. This will be fixed in an upcoming commit.
   public class func showSlidingMenu(position: TQOverlaySlidingMenuPosition,
                              verticalOffset: CGFloat,
                              title: String?,
                              texts: [String],
-                             callbacks: Array<Any>) {
+                             callbacks: [TQSlidingMenuCallback]) {
     guard !texts.isEmpty && !callbacks.isEmpty && callbacks.count >= texts.count else {
       return
     }
@@ -32,8 +30,7 @@ public typealias TQSlidingMenuCallback = () -> Void
     menu.menuPosition = position
     menu.title = title
     menu.texts = texts
-    // TODO: fix
-//    menu.callbacks = callbacks as! [TQSlidingMenuCallback]
+    menu.callbacks = callbacks
 
     let overlay = TQOverlay.sharedInstance
     overlay.show(with: nil, animated: false)
@@ -180,11 +177,10 @@ public typealias TQSlidingMenuCallback = () -> Void
   public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
     let groupIndex = self.groupIndexFor(indexPath: indexPath)
-    // TODO: fix
-//    let callback = self.callbacks[groupIndex]
-//    TQOverlaySlidingMenu.dismissSlidingMenu { (finished: Bool) in
-//      callback()
-//    }
+    let callback = self.callbacks[groupIndex]
+    TQOverlaySlidingMenu.dismissSlidingMenu { (finished: Bool) in
+      callback()
+    }
   }
 
 }
