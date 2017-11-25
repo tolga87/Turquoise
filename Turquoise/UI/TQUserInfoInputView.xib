@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13178.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,14 +16,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TQUserInfoInputView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TQUserInfoInputView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TQUserInfoInputView" customModule="Turquoise" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="300" height="180"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlc-w9-KHo" userLabel="Container View">
                     <rect key="frame" x="10" y="10" width="280" height="160"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your name and email address. This info will be visible to other users of the news server." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ox6-To-mGF" userLabel="Info Label" customClass="TQLabel">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your name and email address. This info will be visible to other users of the news server." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ox6-To-mGF" userLabel="Info Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="280" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="VGn-b0-hXK"/>
@@ -37,7 +37,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09i-iB-FK6" userLabel="Name Text Field" customClass="TQTextField">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Full Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09i-iB-FK6" userLabel="Name Text Field" customClass="TQTextField" customModule="Turquoise" customModuleProvider="target">
                             <rect key="frame" x="4" y="50" width="272" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -47,7 +47,7 @@
                             <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-7t-ure" userLabel="Email Text Field" customClass="TQTextField">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vjf-7t-ure" userLabel="Email Text Field" customClass="TQTextField" customModule="Turquoise" customModuleProvider="target">
                             <rect key="frame" x="4" y="82" width="272" height="32"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -69,7 +69,7 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="proceedButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="yki-g7-rNb"/>
+                                <action selector="proceedButtonDidTap:" destination="iN0-l3-epB" eventType="touchUpInside" id="Pid-jl-qet"/>
                             </connections>
                         </button>
                     </subviews>
@@ -101,8 +101,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="_userEmailTextField" destination="Vjf-7t-ure" id="AKm-C9-IUO"/>
-                <outlet property="_userFullNameTextField" destination="09i-iB-FK6" id="Dln-uB-5Mj"/>
+                <outlet property="userEmailTextField" destination="Vjf-7t-ure" id="lsQ-26-uU3"/>
+                <outlet property="userFullNameTextField" destination="09i-iB-FK6" id="pOi-SM-eQX"/>
             </connections>
             <point key="canvasLocation" x="33" y="336"/>
         </view>
