@@ -39,19 +39,16 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
                                            selector: #selector(groupDidUpdate(_:)),
                                            name: TQNNTPManager.sharedInstance.NNTPGroupDidUpdateNotification,
                                            object: nil)
-    //~TA TODO: fix
-//    NotificationCenter.default.addObserver(self,
-//                                           selector: #selector(userDidLogout(_:)),
-//                                           name: kUserDidLogoutNotification,
-//                                           object: nil)
+    NotificationCenter.default.addObserver(self,
+                                           selector: #selector(userDidLogout(_:)),
+                                           name: TQUserInfoManager.sharedInstance.userDidLogoutNotification,
+                                           object: nil)
   }
 
   @IBAction func newsgroupsButtonDidTap(_ sender: UIButton) {
-    //~TA TODO: fix
-    let subscribedGroupIds = [ "metu.ceng.test", "metu.ceng.news" ]
-//  NSArray<NSString *> *subscribedGroupIds = [TQUserInfoManager sharedInstance].sortedSubscribedGroupIds;
-
+    let subscribedGroupIds: [String] = TQUserInfoManager.sharedInstance.sortedSubscribedGroupIds ?? []
     var callbacks: [() -> Void] = []
+
     for subscribedGroupId in subscribedGroupIds {
       callbacks.append {
         // TQLogInfo(@"User selected new group: '%@'", subscribedGroupId);

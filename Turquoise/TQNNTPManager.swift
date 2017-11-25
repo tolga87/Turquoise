@@ -5,8 +5,8 @@ public typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: 
 public class TQNNTPManager : NSObject {
   public static let sharedInstance = TQNNTPManager()
 
-  public let NetworkConnectionLostNotification = "NetworkConnectionLostNotification"
-  public static let networkStreamDidResetNotification = Notification.Name("NetworkStreamDidResetNotification")
+  public let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
+  public let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
   public let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
   public let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
 
@@ -118,19 +118,18 @@ public class TQNNTPManager : NSObject {
     self.streamTask?.startSecureConnection()
   }
 
-
-
   @objc public func appDidEnterBackground() {
     let timerTimeInterval = TimeInterval(5 * 60)  // reset after 5 minutes
 
     self.streamResetTimer?.invalidate()
-    self.streamResetTimer = Timer.scheduledTimer(withTimeInterval: timerTimeInterval,
-                                                 repeats: false,
-                                                 block: { (timer: Timer) in
-                                                  self.streamTask?.stopSecureConnection()
-                                                  self.streamTask = nil
-                                                  NotificationCenter.default.post(name: TQNNTPManager.networkStreamDidResetNotification,
-                                                                                  object: self)
+    self.streamResetTimer =
+      Timer.scheduledTimer(withTimeInterval: timerTimeInterval,
+                           repeats: false,
+                           block: { (timer: Timer) in
+                            self.streamTask?.stopSecureConnection()
+                            self.streamTask = nil
+                            NotificationCenter.default.post(name: TQNNTPManager.sharedInstance.networkStreamDidResetNotification,
+                                                            object: self)
 
     })
   }

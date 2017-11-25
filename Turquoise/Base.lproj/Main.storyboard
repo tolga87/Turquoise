@@ -19,7 +19,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TQLoginViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TQLoginViewController" customModule="Turquoise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -152,22 +152,22 @@
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="top" secondItem="H0h-I4-sx3" secondAttribute="bottom" id="yjt-Mb-aho"/>
                         </constraints>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="kBH-3m-3Gk" appends="YES" id="rpw-qx-GOY"/>
+                            <outletCollection property="gestureRecognizers" destination="GHu-9u-TpX" appends="YES" id="fsZ-ih-8TP"/>
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="IPE-F0-cpO" id="dr6-9Z-5HZ"/>
-                        <outlet property="connectionStatusLabel" destination="zKD-un-F8l" id="Ipx-rj-hvf"/>
-                        <outlet property="loginButton" destination="y81-cZ-b9E" id="4AL-A3-ZN8"/>
-                        <outlet property="passwordField" destination="NO6-Zt-0uG" id="mVa-4Q-2CV"/>
-                        <outlet property="userNameField" destination="C6R-my-hzE" id="JUK-pG-9sJ"/>
+                        <outlet property="activityIndicator" destination="IPE-F0-cpO" id="5RP-9A-0Q5"/>
+                        <outlet property="connectionStatusLabel" destination="zKD-un-F8l" id="bDK-KV-4FA"/>
+                        <outlet property="loginButton" destination="y81-cZ-b9E" id="W4D-uw-OTp"/>
+                        <outlet property="passwordField" destination="NO6-Zt-0uG" id="Ohv-Dc-2jB"/>
+                        <outlet property="userNameField" destination="C6R-my-hzE" id="Qlm-Iy-2eH"/>
                         <segue destination="y9E-We-q5x" kind="show" identifier="ShowGroupSegueID" id="yLt-1q-huA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="kBH-3m-3Gk">
+                <tapGestureRecognizer id="GHu-9u-TpX">
                     <connections>
-                        <action selector="backgroundDidTap:" destination="BYZ-38-t0r" id="zfg-uN-m3s"/>
+                        <action selector="backgroundDidTapWithSender:" destination="BYZ-38-t0r" id="g0h-qN-cKo"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -368,13 +368,13 @@
                                         <rect key="frame" x="0.0" y="10" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-e0-DlE" userLabel="Article Subject Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYo-9V-ZBb" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="5EV-hm-Ptl"/>
                                                 </constraints>
@@ -399,13 +399,13 @@
                                         <rect key="frame" x="0.0" y="30" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="From:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKK-Pb-XX8" userLabel="Article Sender Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -426,13 +426,13 @@
                                         <rect key="frame" x="0.0" y="50" width="375" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-Ch-xGP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="315" height="20"/>
+                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-R8-EIa" userLabel="Article Date Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="333" y="0.0" width="32" height="20"/>
+                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -560,7 +560,7 @@
         <!--Group Selection View Controller-->
         <scene sceneID="Ya3-Wp-e58">
             <objects>
-                <viewController id="Fao-1C-UKF" customClass="TQGroupSelectionViewController" sceneMemberID="viewController">
+                <viewController id="Fao-1C-UKF" customClass="TQGroupSelectionViewController" customModule="Turquoise" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iKV-Cr-hZf"/>
                         <viewControllerLayoutGuide type="bottom" id="rxQ-DC-uD3"/>
@@ -580,7 +580,7 @@
                                             <string>Title</string>
                                         </scopeButtonTitles>
                                         <connections>
-                                            <outlet property="delegate" destination="Fao-1C-UKF" id="agd-bD-pWf"/>
+                                            <outlet property="delegate" destination="Fao-1C-UKF" id="bKd-1H-aE1"/>
                                         </connections>
                                     </searchBar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWq-vr-e1k" userLabel="DoneButton">
@@ -594,7 +594,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doneButtonDidTap:" destination="Fao-1C-UKF" eventType="touchUpInside" id="j5q-GE-oi2"/>
+                                            <action selector="doneButtonDidTap:" destination="Fao-1C-UKF" eventType="touchUpInside" id="fwe-Ug-ZzE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -612,7 +612,7 @@
                                 <rect key="frame" x="8" y="118" width="359" height="541"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="Fyn-VY-qQj" customClass="TQGroupSelectionTableViewCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="Fyn-VY-qQj" customClass="TQGroupSelectionTableViewCell" customModule="Turquoise" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="359" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fyn-VY-qQj" id="Iul-ps-oLW">
@@ -644,14 +644,14 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="groupNameLabel" destination="d0U-Sc-u2b" id="yyO-FQ-ZQK"/>
-                                            <outlet property="statusIconView" destination="5g4-r2-SEC" id="B8H-0j-Xr9"/>
+                                            <outlet property="groupNameLabel" destination="d0U-Sc-u2b" id="hMJ-Rd-hGO"/>
+                                            <outlet property="statusIconView" destination="5g4-r2-SEC" id="SQr-e9-dvk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="Fao-1C-UKF" id="x40-Jc-yOU"/>
-                                    <outlet property="delegate" destination="Fao-1C-UKF" id="c6g-n1-eYl"/>
+                                    <outlet property="dataSource" destination="Fao-1C-UKF" id="qgG-We-M8Y"/>
+                                    <outlet property="delegate" destination="Fao-1C-UKF" id="pGX-Cb-4hY"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -667,8 +667,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="_searchBar" destination="TIh-3F-QTg" id="chN-Iv-kVm"/>
-                        <outlet property="_tableView" destination="6qT-VX-vTr" id="BT8-8r-8Iq"/>
+                        <outlet property="searchBar" destination="TIh-3F-QTg" id="dtQ-7T-fps"/>
+                        <outlet property="tableView" destination="6qT-VX-vTr" id="s4a-XO-na2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pAm-Yu-odc" userLabel="First Responder" sceneMemberID="firstResponder"/>
