@@ -1,6 +1,0 @@
-#ifndef TQPrefixHeader_pch
-#define TQPrefixHeader_pch
-
-#import "Turquoise-Swift.h"
-
-#endif /* TQPrefixHeader_pch */
