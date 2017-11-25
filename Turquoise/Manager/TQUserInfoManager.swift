@@ -1,19 +1,19 @@
 import Foundation
 import Security
 
-public class TQUserInfoManager {
+class TQUserInfoManager {
   let kUserNameKey = kSecAttrAccount as String
   let kPasswordKey = kSecValueData as String
   let kFullNameKey = kSecAttrLabel as String
   let kEmailKey = kSecAttrService as String
 
-  public let userSubscriptionsDidChangeNotification = Notification.Name("userSubscriptionsDidChangeNotification")
-  public let userDidLogoutNotification = Notification.Name("userDidLogoutNotification")
-  public let groupsKey = "userInfo.groups"
+  let userSubscriptionsDidChangeNotification = Notification.Name("userSubscriptionsDidChangeNotification")
+  let userDidLogoutNotification = Notification.Name("userDidLogoutNotification")
+  let groupsKey = "userInfo.groups"
 
-  public static let sharedInstance = TQUserInfoManager()
+  static let sharedInstance = TQUserInfoManager()
 
-  public var userName: String? {
+  var userName: String? {
     get {
       return self.userInfoValueFor(key: kUserNameKey) as! String?
     }
@@ -22,7 +22,7 @@ public class TQUserInfoManager {
     }
   }
 
-  public var password: String? {
+  var password: String? {
     get {
       return self.userInfoValueFor(key: kPasswordKey) as! String?
     }
@@ -31,7 +31,7 @@ public class TQUserInfoManager {
     }
   }
 
-  public var fullName: String? {
+  var fullName: String? {
     get {
       return self.userInfoValueFor(key: kFullNameKey) as! String?
     }
@@ -40,7 +40,7 @@ public class TQUserInfoManager {
     }
   }
 
-  public var email: String? {
+  var email: String? {
     get {
       return self.userInfoValueFor(key: kEmailKey) as! String?
     }
@@ -48,7 +48,7 @@ public class TQUserInfoManager {
       self.setUserInfo(value: newValue as NSCoding?, forKey: kEmailKey)
     }
   }
-  public var sortedSubscribedGroupIds: [String]? {
+  var sortedSubscribedGroupIds: [String]? {
     get {
       guard let subscribedGroups = self.subscribedGroups else {
         return nil
@@ -61,9 +61,9 @@ public class TQUserInfoManager {
   }
 
   private var keychain: KeychainWrapper!
-  public var subscribedGroups: [String : Any]?
+  var subscribedGroups: [String : Any]?
 
-  public init() {
+  init() {
     let serviceName = Bundle.main.bundleIdentifier ?? "AyranKeychainService"
     self.keychain = KeychainWrapper(serviceName: serviceName)
 
@@ -76,7 +76,7 @@ public class TQUserInfoManager {
 
   // MARK: -
 
-  public func resetUserCredentials() {
+  func resetUserCredentials() {
     // TODO: it's probably a good idea to check the return value here.
     _ = self.keychain.removeAllKeys()
     self.subscribedGroups = [ "metu.ceng.test" : 1 ]
@@ -84,7 +84,7 @@ public class TQUserInfoManager {
     NotificationCenter.default.post(name: self.userDidLogoutNotification, object: self)
   }
 
-  public func isSubscribedTo(group: TQNNTPGroup) -> Bool {
+  func isSubscribedTo(group: TQNNTPGroup) -> Bool {
     if self.subscribedGroups == nil {
       // TODO: error
       return false
@@ -92,7 +92,7 @@ public class TQUserInfoManager {
     return self.subscribedGroups![group.groupId] != nil
   }
 
-  public func subscribeTo(group: TQNNTPGroup) {
+  func subscribeTo(group: TQNNTPGroup) {
     if self.subscribedGroups == nil {
       // TODO: error
       return
@@ -104,7 +104,7 @@ public class TQUserInfoManager {
     printInfo("Subscribed to group '\(group.groupId)'")
   }
 
-  public func unsubscribeFrom(group: TQNNTPGroup) {
+  func unsubscribeFrom(group: TQNNTPGroup) {
     if self.subscribedGroups == nil {
       // TODO: error
       return
@@ -116,11 +116,11 @@ public class TQUserInfoManager {
     printInfo("Unsubscribed from group '\(group.groupId)'")
   }
 
-  public func userInfoValueFor(key: String) -> Any? {
+  func userInfoValueFor(key: String) -> Any? {
     return self.keychain.object(forKey: key)
   }
 
-  public func setUserInfo(value: NSCoding?, forKey key: String) {
+  func setUserInfo(value: NSCoding?, forKey key: String) {
     if let value = value {
       self.keychain.set(value, forKey: key)
     } else {

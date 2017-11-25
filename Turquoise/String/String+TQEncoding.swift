@@ -1,6 +1,6 @@
 import Foundation
 
-public extension String {
+extension String {
   var tq_decodedString: String {
 
     if self.count < 4 {

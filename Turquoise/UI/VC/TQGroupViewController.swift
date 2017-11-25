@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class TQGroupViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TQGroupViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
   @IBOutlet var tableView: UITableView!
   @IBOutlet var groupNameLabel: UILabel!
 
@@ -20,7 +20,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
   var selectedArticle: TQNNTPArticle?
   let nntpManager = TQNNTPManager.sharedInstance
 
-  public override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
 
     self.tableView.dataSource = self
@@ -115,14 +115,14 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
 
   // MARK: - UITableViewDataSource
 
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     guard let articleForest = self.group?.articleForest else {
       return 0
     }
     return articleForest.numArticles
   }
 
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleSubjectCell",
                                              for: indexPath) as! TQArticleHeaderTableViewCell
     guard let article = self.expandedArticleForest?[indexPath.row] else {
@@ -141,7 +141,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
 
   // MARK: - UITableViewDelegate
 
-  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     self.selectedArticle = self.expandedArticleForest![indexPath.row]
     guard let selectedArticle = self.selectedArticle else {
       // TODO: error
@@ -164,7 +164,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
   // MARK: - Navigation
 
   // In a storyboard-based application, you will often want to do a little preparation before navigation
-  public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let segueId = segue.identifier else {
       return
     }

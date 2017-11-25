@@ -1,6 +1,6 @@
 import Foundation
 
-@objc public enum TQNNTPResponseCode : Int {
+@objc enum TQNNTPResponseCode : Int {
   case other              = 0
   case serverReady        = 200
   case groupSelected      = 211
@@ -13,7 +13,7 @@ import Foundation
   case alreadyAuth        = 502
 }
 
-@objc public enum TQNNTPResponseType : Int {
+@objc enum TQNNTPResponseType : Int {
   case informative = 1
   case OK          = 2
   case OKSoFar     = 3
@@ -21,7 +21,7 @@ import Foundation
   case unavailable = 5
 }
 
-@objc public enum TQNNTPResponseCategory : Int {
+@objc enum TQNNTPResponseCategory : Int {
   case articleSelection = 2
 }
 
@@ -31,20 +31,20 @@ import Foundation
 //4xx - Command was syntactically correct but failed for some reason
 //5xx - Command unknown, unsupported, unavailable, or syntax error
 
-@objc public class TQNNTPResponse : NSObject {
-  public private(set) var responseCodeValue: Int = 0
-  public var responseCode: TQNNTPResponseCode? {
+@objc class TQNNTPResponse : NSObject {
+  private(set) var responseCodeValue: Int = 0
+  var responseCode: TQNNTPResponseCode? {
     get {
       return TQNNTPResponseCode(rawValue: self.responseCodeValue)
     }
   }
-  public private(set) var message: String?
+  private(set) var message: String?
 
   class func responseFor(value rawValue: Int) -> TQNNTPResponseCode {
     return TQNNTPResponseCode(rawValue: rawValue) ?? .other
   }
 
-  public class func isMultiLine(_ statusCode: Int) -> Bool {
+  class func isMultiLine(_ statusCode: Int) -> Bool {
     let firstDigit = statusCode / 100 % 10
     let secondDigit = statusCode / 10 % 10
     //  let thirdDigit = statusCode.rawValue % 10
@@ -55,7 +55,7 @@ import Foundation
     return (firstDigit == TQNNTPResponseType.OK.rawValue && secondDigit == TQNNTPResponseCategory.articleSelection.rawValue)
   }
 
-  public init?(string: String?) {
+  init?(string: String?) {
     guard let string = string, string.count > 0 else {
       return nil
     }
@@ -80,20 +80,20 @@ import Foundation
     self.message = responseMessage
   }
 
-  public func isOk() -> Bool {
+  func isOk() -> Bool {
     // TODO: reimplement these enums to make them more Swift-friendly
     return self.responseCodeValue / 100 == TQNNTPResponseType.OK.rawValue
   }
 
-  public func isOkSoFar() -> Bool {
+  func isOkSoFar() -> Bool {
     return self.responseCodeValue / 100 == TQNNTPResponseType.OKSoFar.rawValue
   }
 
-  public func isFailure() -> Bool {
+  func isFailure() -> Bool {
     return self.responseCodeValue / 100 == TQNNTPResponseType.failed.rawValue
   }
 
-  public func getArticleBody() -> String? {
+  func getArticleBody() -> String? {
     if self.responseCode != .articleBodyFollows {
       return nil
     }
@@ -118,7 +118,7 @@ import Foundation
 
   // MARK: - CustomDebugStringConvertible
 
-  public override var debugDescription: String {
+  override var debugDescription: String {
     return "\(self.responseCodeValue) \(self.message ?? "")"
   }
 }

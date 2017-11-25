@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class TQArticleViewController : UIViewController {
+class TQArticleViewController : UIViewController {
 
   var article: TQNNTPArticle?
   var newsGroup: TQNNTPGroup?
@@ -13,7 +13,7 @@ public class TQArticleViewController : UIViewController {
   @IBOutlet var deleteArticleButton: UIButton!
   @IBOutlet var deleteButtonHeight: NSLayoutConstraint!
 
-  public override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
 
     self.articleSubjectLabel.text = self.article?.decodedSubject
@@ -68,7 +68,7 @@ public class TQArticleViewController : UIViewController {
   // MARK: - Navigation
 
   // In a storyboard-based application, you will often want to do a little preparation before navigation
-  public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if let articleComposer = segue.destination as? TQArticleComposerViewController {
       articleComposer.newsGroup = self.newsGroup
       articleComposer.parentArticle = self.article

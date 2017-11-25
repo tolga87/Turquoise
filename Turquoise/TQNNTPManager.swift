@@ -1,15 +1,15 @@
 import Foundation
 
-public typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: Error?) -> Void
+typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: Error?) -> Void
 
-public class TQNNTPManager : NSObject {
-  public static let sharedInstance = TQNNTPManager()
+class TQNNTPManager : NSObject {
+  static let sharedInstance = TQNNTPManager()
   private let reachability: Reachability!
 
-  public let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
-  public let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
-  public let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
-  public let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
+  let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
+  let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
+  let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
+  let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
 
   // TODO: revamp these errors
   let TQNNTPManagerErrorDomain = "TQNNTPManagerErrorDomain"
@@ -17,11 +17,11 @@ public class TQNNTPManager : NSObject {
   let newsServerPort = 563
   let timeout: TimeInterval = 10
 
-  public var networkReachable: Bool {
+  var networkReachable: Bool {
     return self.reachability.connection != .none
   }
-  public private(set) var allGroups: [TQNNTPGroup] = []
-  public private(set) var currentGroup: TQNNTPGroup?
+  private(set) var allGroups: [TQNNTPGroup] = []
+  private(set) var currentGroup: TQNNTPGroup?
 
   private var streamTask: URLSessionStreamTask?
   private var dataBuffer: Data?
@@ -92,7 +92,7 @@ public class TQNNTPManager : NSObject {
     self.streamTask?.startSecureConnection()
   }
 
-  @objc public func appDidEnterBackground() {
+  @objc func appDidEnterBackground() {
     let timerTimeInterval = TimeInterval(5 * 60)  // reset after 5 minutes
 
     self.streamResetTimer?.invalidate()
@@ -108,7 +108,7 @@ public class TQNNTPManager : NSObject {
     })
   }
 
-  public func login(userName: String,
+  func login(userName: String,
              password: String,
              completion loginCallback: @escaping TQNNTPRequestCallback) {
     if userName.isEmpty {
@@ -236,7 +236,7 @@ public class TQNNTPManager : NSObject {
     }
   }
 
-  public func setGroup(groupId: String, completion: @escaping TQNNTPRequestCallback) {
+  func setGroup(groupId: String, completion: @escaping TQNNTPRequestCallback) {
     let requestString = "GROUP \(groupId)\r\n"
 
     self.sendRequest(requestString) { (response, error) in
@@ -263,7 +263,7 @@ public class TQNNTPManager : NSObject {
     self.setGroup(groupId: groupId) { (_, _) in }
   }
 
-  public func requestBody(of article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
+  func requestBody(of article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
     let requestString = "BODY \(article.messageId)\r\n"
     self.sendRequest(requestString) { (response, error) in
       if let response = response, response.isOk() {
@@ -273,7 +273,7 @@ public class TQNNTPManager : NSObject {
     }
   }
 
-  public func post(article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
+  func post(article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
     let requestString = "POST\r\n"
     self.sendRequest(requestString) { (response, error) in
       guard let response = response, let message = response.message else {
@@ -427,7 +427,7 @@ public class TQNNTPManager : NSObject {
     }
 }
 
-  @objc public func appDidBecomeActive() {
+  @objc func appDidBecomeActive() {
     self.streamResetTimer?.invalidate()
     self.streamResetTimer = nil
   }

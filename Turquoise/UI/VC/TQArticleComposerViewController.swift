@@ -1,14 +1,14 @@
 import Foundation
 import UIKit
 
-public class TQArticleComposerViewController : UIViewController {
+class TQArticleComposerViewController : UIViewController {
   @IBOutlet var articleSubjectField: UITextField!
   @IBOutlet var articleBodyView: UITextView!
 
   var newsGroup: TQNNTPGroup?
   var parentArticle: TQNNTPArticle?
 
-  public override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
 
     let placeholderTextColor = UIColor(white: 0.6, alpha: 1)

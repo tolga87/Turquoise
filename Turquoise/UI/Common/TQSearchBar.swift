@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
 
-public class TQSearchBar : UISearchBar {
+class TQSearchBar : UISearchBar {
   private var theTextField: UITextField?
 
-  public var tq_textField: UITextField? {
+  var tq_textField: UITextField? {
     get {
       if theTextField == nil {
         theTextField = findTextFieldRecursivelyStarting(at: self)

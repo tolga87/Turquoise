@@ -1,19 +1,19 @@
 import Foundation
 import UIKit
 
-public class TQTextField : UITextField, UITextFieldDelegate {
+class TQTextField : UITextField, UITextFieldDelegate {
   static let kMaxPasswordLength = 64
 
-  public var isPassword: Bool = false {
+  var isPassword: Bool = false {
     didSet {
       text = ""
       password = isPassword ? "" : nil
     }
   }
 
-  public private(set) var password: String? = ""
+  private(set) var password: String? = ""
 
-  public override var text: String? {
+  override var text: String? {
     get {
       return super.text
     }
@@ -42,7 +42,7 @@ public class TQTextField : UITextField, UITextFieldDelegate {
     }
   }
 
-  public required init?(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
     password = ""
     delegate = self
@@ -58,7 +58,7 @@ public class TQTextField : UITextField, UITextFieldDelegate {
 
   // MARK: - UITextFieldDelegate
 
-  public func textField(_ textField: UITextField,
+  func textField(_ textField: UITextField,
                  shouldChangeCharactersIn range: NSRange,
                  replacementString string: String) -> Bool {
     if isPassword {
@@ -69,7 +69,7 @@ public class TQTextField : UITextField, UITextFieldDelegate {
     return true
   }
 
-  public func textFieldShouldClear(_ textField: UITextField) -> Bool {
+  func textFieldShouldClear(_ textField: UITextField) -> Bool {
     // text field will be cleared, clear password as well.
     password = ""
     return true
@@ -77,11 +77,11 @@ public class TQTextField : UITextField, UITextFieldDelegate {
 
   // MARK: - UITextField Overrides
 
-  public override func textRect(forBounds bounds: CGRect) -> CGRect {
+  override func textRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.insetBy(dx: 10, dy: 0)
   }
 
-  public override func editingRect(forBounds bounds: CGRect) -> CGRect {
+  override func editingRect(forBounds bounds: CGRect) -> CGRect {
     return bounds.insetBy(dx: 10, dy: 0)
   }
 }

@@ -1,21 +1,21 @@
 import Foundation
 import UIKit
 
-public typealias TQSlidingMenuCallback = () -> Void
+typealias TQSlidingMenuCallback = () -> Void
 
-@objc public enum TQOverlaySlidingMenuPosition : Int {
+@objc enum TQOverlaySlidingMenuPosition : Int {
   case right
   case left
 }
 
-@objc public class TQOverlaySlidingMenu : NSObject, UITableViewDataSource, UITableViewDelegate {
+@objc class TQOverlaySlidingMenu : NSObject, UITableViewDataSource, UITableViewDelegate {
   var menuPosition = TQOverlaySlidingMenuPosition.right
   var scrollingView: UIView?
   var title: String?
   var texts: [String] = []
   var callbacks: [TQSlidingMenuCallback] = []
 
-  public class func showSlidingMenu(position: TQOverlaySlidingMenuPosition,
+  class func showSlidingMenu(position: TQOverlaySlidingMenuPosition,
                              verticalOffset: CGFloat,
                              title: String?,
                              texts: [String],
@@ -84,7 +84,7 @@ public typealias TQSlidingMenuCallback = () -> Void
     }
   }
 
-  public class func dismissSlidingMenu(completion: ((Bool) -> Void)?) {
+  class func dismissSlidingMenu(completion: ((Bool) -> Void)?) {
     let overlay = TQOverlay.sharedInstance
     guard let slidingMenu = overlay.slidingMenu, let scrollingView = slidingMenu.scrollingView else {
       return
@@ -138,7 +138,7 @@ public typealias TQSlidingMenuCallback = () -> Void
 
   // MARK: - UITableViewDataSource
 
-  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     var numRows = self.texts.count
     if self.title != nil {
       numRows += 1
@@ -146,7 +146,7 @@ public typealias TQSlidingMenuCallback = () -> Void
     return numRows
   }
 
-  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsSliderCell", for: indexPath)
     cell.textLabel?.numberOfLines = 2
     cell.textLabel?.backgroundColor = .clear
@@ -172,7 +172,7 @@ public typealias TQSlidingMenuCallback = () -> Void
 
   // MARK: - UITableViewDelegate
 
-  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: false)
     let groupIndex = self.groupIndexFor(indexPath: indexPath)
     let callback = self.callbacks[groupIndex]

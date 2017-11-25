@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class TQArticleHeaderTableViewCell : UITableViewCell {
+class TQArticleHeaderTableViewCell : UITableViewCell {
   @IBOutlet var paddingView: UIView!
   @IBOutlet var articleTitleLabel: UILabel!
   @IBOutlet var articleSenderLabel: UILabel!

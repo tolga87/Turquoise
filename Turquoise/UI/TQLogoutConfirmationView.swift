@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-public class TQLogoutConfirmationView : UIView {
-  public class func loadFromNib() -> TQLogoutConfirmationView? {
+class TQLogoutConfirmationView : UIView {
+  class func loadFromNib() -> TQLogoutConfirmationView? {
     return UIView.tq_load(from: "TQLogoutConfirmationView", owner: self) as? TQLogoutConfirmationView
   }
 

@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class TQHeaderDownloadProgressView : UIView {
+class TQHeaderDownloadProgressView : UIView {
   var groupId: String? {
     didSet {
       var text = "Downloading headers"
@@ -16,7 +16,7 @@ public class TQHeaderDownloadProgressView : UIView {
   @IBOutlet var infoLabel: UILabel!
   @IBOutlet var progressLabel: UILabel!
 
-  public class func loadFromNib(groupId: String) -> TQHeaderDownloadProgressView? {
+  class func loadFromNib(groupId: String) -> TQHeaderDownloadProgressView? {
     guard let view = UIView.tq_load(from: "TQHeaderDownloadProgressView", owner: self) as? TQHeaderDownloadProgressView else {
       return nil
     }

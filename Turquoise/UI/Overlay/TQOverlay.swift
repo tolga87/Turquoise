@@ -1,8 +1,8 @@
 import Foundation
 import UIKit
 
-public class TQOverlay : NSObject, UIGestureRecognizerDelegate {
-  public static let sharedInstance = TQOverlay()
+class TQOverlay : NSObject, UIGestureRecognizerDelegate {
+  static let sharedInstance = TQOverlay()
 
   static let animationDuration = TimeInterval(0.2)
 
@@ -12,11 +12,11 @@ public class TQOverlay : NSObject, UIGestureRecognizerDelegate {
   var scrollingView: UIView?
   private(set) var overlayView: TQOverlayBackgroundView?
 
-  public func show(with contentView: UIView?, animated: Bool) {
+  func show(with contentView: UIView?, animated: Bool) {
     self.show(with: contentView, relativeVerticalPosition: 0.5, animated: animated)
   }
 
-  public func show(with contentView: UIView?, relativeVerticalPosition: CGFloat, animated: Bool) {
+  func show(with contentView: UIView?, relativeVerticalPosition: CGFloat, animated: Bool) {
     self.overlayView?.removeFromSuperview()
 
     let window = UIApplication.shared.keyWindow!
@@ -52,7 +52,7 @@ public class TQOverlay : NSObject, UIGestureRecognizerDelegate {
   }
 
   // TODO: Fix all the "dismissWithAnimated"s in obj-c code
-  public func dismiss(animated: Bool) {
+  func dismiss(animated: Bool) {
     let completion: (Bool) -> Void = { (finished: Bool) -> Void in
       self.overlayView?.removeFromSuperview()
       self.overlayView = nil
@@ -80,7 +80,7 @@ public class TQOverlay : NSObject, UIGestureRecognizerDelegate {
 
   // MARK: - UIGestureRecognizerDelegate
 
-  @objc public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+  @objc func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
     return touch.view == self.overlayView
   }
 

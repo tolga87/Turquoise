@@ -1,16 +1,16 @@
 import Foundation
 
-public class TQNNTPGroup : NSObject {
-  public static let headerDownloadProgressNotification = Notification.Name("headerDownloadProgressNotification")
-  public static let headerDownloadProgressAmountKey = "progressAmount"
+class TQNNTPGroup : NSObject {
+  static let headerDownloadProgressNotification = Notification.Name("headerDownloadProgressNotification")
+  static let headerDownloadProgressAmountKey = "progressAmount"
 
-  public private(set) var groupId: String
-  public private(set) var minArticleNo = -1
-  public private(set) var maxArticleNo = -1
-  public private(set) var moderated = false
-  public private(set) var articles: [TQNNTPArticle]
-  public private(set) var articleForest: TQNNTPArticleForest?
-  public private(set) var headersDownloaded = false
+  private(set) var groupId: String
+  private(set) var minArticleNo = -1
+  private(set) var maxArticleNo = -1
+  private(set) var moderated = false
+  private(set) var articles: [TQNNTPArticle]
+  private(set) var articleForest: TQNNTPArticleForest?
+  private(set) var headersDownloaded = false
 
   private var articlesNos: [Int : TQNNTPArticle] = [:]
   private var messageIds: [String : TQNNTPArticle] = [:]
@@ -121,7 +121,7 @@ public class TQNNTPGroup : NSObject {
 
   // MARK: - CustomDebugStringConvertible
 
-  public override var debugDescription: String {
+  override var debugDescription: String {
     return "Group '\(self.groupId)' Articles: \(self.minArticleNo) -> \(self.maxArticleNo)"
   }
 

@@ -1,12 +1,12 @@
 import Foundation
 
-@objc public class TQNNTPArticleForest : NSObject {
-  public var trees: [TQNNTPArticle] {
+@objc class TQNNTPArticleForest : NSObject {
+  var trees: [TQNNTPArticle] {
     get {
       return self.rootArticles
     }
   }
-  public var numArticles: Int {
+  var numArticles: Int {
     get {
       return self.messageIds.count
     }
@@ -14,7 +14,7 @@ import Foundation
   private var messageIds: [String : TQNNTPArticle]
   private var rootArticles: [TQNNTPArticle]
 
-  public init(articles: [TQNNTPArticle]) {
+  init(articles: [TQNNTPArticle]) {
     self.rootArticles = []
     self.messageIds = [:]
 
@@ -40,7 +40,7 @@ import Foundation
     self.rootArticles.sort { $1.articleNo < $0.articleNo }
   }
 
-  public func expandedForest() -> [TQNNTPArticle] {
+  func expandedForest() -> [TQNNTPArticle] {
     var forest: [TQNNTPArticle] = []
     for rootArticle in self.rootArticles {
       forest.append(contentsOf: self.expandedForest(from: rootArticle))

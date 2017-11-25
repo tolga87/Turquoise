@@ -1,18 +1,18 @@
 import Foundation
 
-public class TQNNTPArticle : NSObject {
-  public private(set) var articleNo = -1
-  public var messageId = ""
-  public private(set) var cancelingMessageId: String?
-  public private(set) var from = ""
-  public private(set) var decodedFrom = ""
-  public private(set) var subject = ""
-  public private(set) var decodedSubject = ""
-  public var body = ""
-  public private(set) var date = ""
-  public private(set) var newsgroups = [String]()
-  public private(set) var references = [String]()
-  public var depth: Int {
+class TQNNTPArticle : NSObject {
+  private(set) var articleNo = -1
+  var messageId = ""
+  private(set) var cancelingMessageId: String?
+  private(set) var from = ""
+  private(set) var decodedFrom = ""
+  private(set) var subject = ""
+  private(set) var decodedSubject = ""
+  var body = ""
+  private(set) var date = ""
+  private(set) var newsgroups = [String]()
+  private(set) var references = [String]()
+  var depth: Int {
     get {
       if self.references.count > 0 && self.parentArticle == nil {
         // article was posted as a reply to some deleted article. treat this as a root.
@@ -27,7 +27,7 @@ public class TQNNTPArticle : NSObject {
 
   private var headers = [String : String]()
 
-  public class func cancelArticle(from article: TQNNTPArticle) -> TQNNTPArticle? {
+  class func cancelArticle(from article: TQNNTPArticle) -> TQNNTPArticle? {
     guard let cancelArticle = TQNNTPArticle(subject: "cancel \(article.messageId)",
                                             message: "This message was canceled.",
                                             newsGroup: nil,
@@ -41,7 +41,7 @@ public class TQNNTPArticle : NSObject {
     return cancelArticle
   }
 
-  public init?(response: TQNNTPResponse) {
+  init?(response: TQNNTPResponse) {
     super.init()
 
     guard response.isOk() else {
@@ -108,7 +108,7 @@ public class TQNNTPArticle : NSObject {
     self.childArticles = []
   }
 
-  public init?(subject: String,
+  init?(subject: String,
         message: String,
         newsGroup: TQNNTPGroup?,
         parentArticle: TQNNTPArticle?) {
@@ -181,7 +181,7 @@ public class TQNNTPArticle : NSObject {
 
   // MARK: - CustomDebugStringConvertible
 
-  public override var debugDescription: String {
+  override var debugDescription: String {
     let desc = NSMutableString()
     desc.append("Article #\(self.articleNo) '\(self.messageId)'\n")
     desc.append("Subject: '\(self.subject)'\n")

@@ -6,7 +6,7 @@ enum TQLoggingLevel : Int {
   case info  = 2  // log info and error messages
   case debug = 1  // log everything (verbose)
 
-  public static func >= (x: TQLoggingLevel, y: TQLoggingLevel) -> Bool {
+  static func >= (x: TQLoggingLevel, y: TQLoggingLevel) -> Bool {
     return x.rawValue >= y.rawValue
   }
 }
@@ -14,15 +14,15 @@ enum TQLoggingLevel : Int {
 // This is the constant that controls the amount of logging in the entire app.
 let loggingLevel: TQLoggingLevel = .off
 
-public func printDebug(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+func printDebug(_ items: Any..., separator: String = " ", terminator: String = "\n") {
   tq_print(.debug, items, separator: separator, terminator: terminator)
 }
 
-public func printInfo(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+func printInfo(_ items: Any..., separator: String = " ", terminator: String = "\n") {
   tq_print(.info, items, separator: separator, terminator: terminator)
 }
 
-public func printError(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+func printError(_ items: Any..., separator: String = " ", terminator: String = "\n") {
   tq_print(.error, items, separator: separator, terminator: terminator)
 }
 

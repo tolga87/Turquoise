@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 // TODO: convert this to WKWebView when possible
-public class TQReleaseNotesView : UIView, UIWebViewDelegate {
+class TQReleaseNotesView : UIView, UIWebViewDelegate {
   let releaseNotesAddress = "http://tolgaakin.com/Turquoise/release-notes.php"
 
   @IBOutlet var webView: UIWebView!
@@ -13,7 +13,7 @@ public class TQReleaseNotesView : UIView, UIWebViewDelegate {
     TQOverlay.sharedInstance.dismiss(animated: true)
   }
 
-  public class func loadFromNib() -> TQReleaseNotesView? {
+  class func loadFromNib() -> TQReleaseNotesView? {
     let view = UIView.tq_load(from: "TQReleaseNotesView", owner: self) as? TQReleaseNotesView
     if let view = view {
       view.webView.delegate = view
@@ -35,7 +35,7 @@ public class TQReleaseNotesView : UIView, UIWebViewDelegate {
 
   // MARK: - UIWebViewDelegate
 
-  public func webView(_ webView: UIWebView,
+  func webView(_ webView: UIWebView,
                       shouldStartLoadWith request: URLRequest,
                       navigationType: UIWebViewNavigationType) -> Bool {
     guard let url = request.url else {
@@ -53,7 +53,7 @@ public class TQReleaseNotesView : UIView, UIWebViewDelegate {
     }
   }
 
-  public func webViewDidFinishLoad(_ webView: UIWebView) {
+  func webViewDidFinishLoad(_ webView: UIWebView) {
     self.activityIndicator.stopAnimating()
   }
 

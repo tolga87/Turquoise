@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-public class TQLoginViewController : UIViewController {
+class TQLoginViewController : UIViewController {
 
   @IBOutlet var userNameField: TQTextField!
   @IBOutlet var passwordField: TQTextField!
@@ -9,7 +9,7 @@ public class TQLoginViewController : UIViewController {
   @IBOutlet var connectionStatusLabel: TQLabel!
   @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
-  public override func viewWillAppear(_ animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     self.loginButton.isEnabled = true
@@ -20,7 +20,7 @@ public class TQLoginViewController : UIViewController {
     }
   }
 
-  public override func viewDidLoad() {
+  override func viewDidLoad() {
     super.viewDidLoad()
 
     self.passwordField.isPassword = true

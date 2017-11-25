@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
 
-public typealias TQUserInfoInputViewCompletionBlock = (String, String) -> Void
+typealias TQUserInfoInputViewCompletionBlock = (String, String) -> Void
 
-public class TQUserInfoInputView : UIView {
-  public var completionBlock: TQUserInfoInputViewCompletionBlock?
+class TQUserInfoInputView : UIView {
+  var completionBlock: TQUserInfoInputViewCompletionBlock?
 
   @IBOutlet var userFullNameTextField: TQTextField!
   @IBOutlet var userEmailTextField: TQTextField!
