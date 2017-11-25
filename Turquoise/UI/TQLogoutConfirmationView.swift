@@ -11,8 +11,7 @@ public class TQLogoutConfirmationView : UIView {
   }
 
   @IBAction func logoutButtonDidTap(_ sender: Any?) {
-    //~TA TODO: fix
-    // [[TQUserInfoManager sharedInstance] resetUserCredentials];
+    TQUserInfoManager.sharedInstance.resetUserCredentials()
     TQOverlay.sharedInstance.dismiss(animated: true)
   }
 }

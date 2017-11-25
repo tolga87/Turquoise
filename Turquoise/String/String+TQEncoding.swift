@@ -27,14 +27,14 @@ public extension String {
 
     let charSetRead = scanner.scanUpTo("?", into: nil)
     if !charSetRead {
-      // TQLogError(@"Invalid character set");
+      printError("Invalid character set")
       return self
     }
     scanner.scanCharacters(from: CharacterSet(charactersIn: "?"), into: nil)
 
     let encodingRead = scanner.scanUpTo("?", into: &encoding)
     if !encodingRead {
-      // TQLogError(@"Invalid encoding");
+      printError("Invalid encoding")
       return self
     }
     scanner.scanCharacters(from: CharacterSet(charactersIn: "?"), into: nil)
@@ -89,7 +89,7 @@ public extension String {
 
         let startIndex = string.index(string.startIndex, offsetBy: charIndex)
         if string.index(startIndex, offsetBy: 2) >= string.endIndex {
-          // TQLogError(@"Parsing error in Q-decoding");
+          printError("Parsing error in Q-decoding")
           break
         }
 

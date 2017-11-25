@@ -61,7 +61,7 @@ public class TQNNTPGroup : NSObject {
     }
 
     let progress = Int(Double(currentArticle - self.minArticleNo) / Double(numArticles) * 100.0)
-    //  TQLogInfo(@"Downloading header %ld of %ld (%ld%%)", (articleNo - _minArticleNo), numArticles, progress);
+    printInfo("Downloading header \(currentArticle - self.minArticleNo) of \(numArticles) (\(progress)%)")
 
     let userInfo = [ TQNNTPGroup.headerDownloadProgressAmountKey : progress ]
     NotificationCenter.default.post(name: TQNNTPGroup.headerDownloadProgressNotification,
@@ -74,7 +74,7 @@ public class TQNNTPGroup : NSObject {
     theManager.sendRequest(headRequest) { (response, error) in
       if response == nil || !response!.isOk() {
         // this article could be deleted. keep fetching others.
-        // TQLogInfo(@"Could not get headers of article #%ld", articleNo);
+        printInfo("Could not get headers of article #\(currentArticle)")
       }
 
       if let response = response {

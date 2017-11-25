@@ -45,19 +45,19 @@ public class TQLoginViewController : UIViewController {
   }
 
   func networkConnectionLost(_ notification: Notification) {
-    //  TQLogInfo(@"Disconnected from server!");
+    printInfo("Disconnected from server!")
     self.dismiss(animated: true, completion: nil)
     self.connectionStatusLabel.text = "Disconnected from server, please login again."
   }
 
   func nntpManagerDidReset(_ notification: Notification) {
-    //  TQLogInfo(@"NNTP manager was reset");
+    printInfo("NNTP manager was reset")
     self.dismiss(animated: true, completion: nil)
   }
 
   func userDidLogout(_ notification: Notification) {
-    self.userNameField.text = "";
-    self.passwordField.text = "";
+    self.userNameField.text = ""
+    self.passwordField.text = ""
   }
 
   func loginButtonDidTap(_ sender: Any?) {
@@ -83,13 +83,13 @@ public class TQLoginViewController : UIViewController {
     let password = userInfoManager.password ?? ""
 
     if !userName.isEmpty && password.count > 1 {
-      // TQLogInfo(@"Logging in with credentials found in Keychain...");
+      printInfo("Logging in with credentials found in Keychain...")
       self.userNameField.text = userName
       self.passwordField.text = password
       self.login(userName: userName, password: password, askUserInfo: false)
       return true
     } else {
-      // TQLogInfo(@"User credentials not found in Keychain; user must log in manually.");
+      printInfo("User credentials not found in Keychain; user must log in manually.")
       return false
     }
   }
@@ -121,7 +121,7 @@ public class TQLoginViewController : UIViewController {
       }
 
       if response.isFailure() {
-        // TQLogInfo(@"Login Failed!");
+        printInfo("Login Failed!")
         self.connectionStatusLabel.text = "Invalid username/password"
         self.activityIndicator.stopAnimating()
         self.loginButton.isEnabled = true
@@ -133,7 +133,7 @@ public class TQLoginViewController : UIViewController {
       }
 
       // login successful.
-      // TQLogInfo(@"Login Successful!");
+      printInfo("Login Successful!")
       self.connectionStatusLabel.text = "Login successful, downloading data from server..."
 
       if askUserInfo {

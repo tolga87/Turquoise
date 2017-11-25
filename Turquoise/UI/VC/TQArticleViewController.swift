@@ -41,10 +41,9 @@ public class TQArticleViewController : UIViewController {
 
     TQNNTPManager.sharedInstance.post(article: cancelArticle) { (response, error) in
       if let response = response, response.isOk() {
-        //~TA TODO: fix
-        // TQLogInfo(@"Message canceled");
+        printInfo("Message canceled")
       } else {
-        // TQLogError(@"Message could not be canceled: %@", error);
+        printError("Message could not be canceled: \(error != nil ? error.debugDescription : "")")
       }
 
       self.dismiss(animated: true, completion: nil)
@@ -53,13 +52,12 @@ public class TQArticleViewController : UIViewController {
 
   func canDeleteMessage() -> Bool {
     // TODO: make this method more robust
-    // TODO: fix
-    //  TQUserInfoManager *userInfoManager = [TQUserInfoManager sharedInstance];
-    //  NSString *userFullName = userInfoManager.fullName;
-    //  NSString *userEmail = userInfoManager.email;
-    //
-    //  return [_article.from containsString:userFullName] && [_article.from containsString:userEmail];
-    return true
+    let userInfoManager = TQUserInfoManager.sharedInstance
+    guard let article = self.article, let userFullName = userInfoManager.fullName, let userEmail = userInfoManager.email else {
+      return false
+    }
+
+    return article.from.contains(userFullName) && article.from.contains(userEmail)
   }
 
   func setDeleteMessageButtonHidden(_ hidden: Bool) {

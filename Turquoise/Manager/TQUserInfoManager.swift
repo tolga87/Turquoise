@@ -101,7 +101,7 @@ public class TQUserInfoManager {
     self.subscribedGroups![group.groupId] = 1
     UserDefaults.standard.set(self.subscribedGroups, forKey: self.groupsKey)
     NotificationCenter.default.post(name: self.userSubscriptionsDidChangeNotification, object: self)
-    // TQLogInfo(@"Subscribed to group '%@'", group.groupId);
+    printInfo("Subscribed to group '\(group.groupId)'")
   }
 
   public func unsubscribeFrom(group: TQNNTPGroup) {
@@ -113,7 +113,7 @@ public class TQUserInfoManager {
     self.subscribedGroups!.removeValue(forKey: group.groupId)
     UserDefaults.standard.set(self.subscribedGroups!, forKey: self.groupsKey)
     NotificationCenter.default.post(name: self.userSubscriptionsDidChangeNotification, object: self)
-    // TQLogInfo(@"Unsubscribed from group '%@'", group.groupId);
+    printInfo("Unsubscribed from group '\(group.groupId)'")
   }
 
   public func userInfoValueFor(key: String) -> Any? {

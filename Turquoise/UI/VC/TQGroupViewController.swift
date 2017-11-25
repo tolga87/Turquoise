@@ -2,13 +2,8 @@ import Foundation
 import UIKit
 
 public class TQGroupViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-
   @IBOutlet var tableView: UITableView!
   @IBOutlet var groupNameLabel: UILabel!
-
-//  @property(nonatomic) TQNNTPGroup *group;
-//  @property(nonatomic) NSArray<TQNNTPArticle *> *expandedArticleForest;
-//  @property(nonatomic) TQNNTPArticle *selectedArticle;
 
   var group: TQNNTPGroup? {
     didSet {
@@ -51,7 +46,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
 
     for subscribedGroupId in subscribedGroupIds {
       callbacks.append {
-        // TQLogInfo(@"User selected new group: '%@'", subscribedGroupId);
+        printInfo("User selected new group: '%@'", subscribedGroupId)
         if let progressView = TQHeaderDownloadProgressView.loadFromNib(groupId: subscribedGroupId) {
           TQOverlay.sharedInstance.show(with: progressView, relativeVerticalPosition: 0.35, animated: false)
           self.nntpManager.setGroup(groupId: subscribedGroupId,
@@ -78,7 +73,7 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
       "Manage newsgroup subscriptions",
       "Logout",
       "Release notes"
-    ];
+    ]
     let callbacks = [
       {
         self.performSegue(withIdentifier: "ManageSubscriptionsSegueId", sender: self)
@@ -107,7 +102,9 @@ public class TQGroupViewController : UIViewController, UITableViewDataSource, UI
 
 
   @objc func groupDidUpdate(_ notification: Notification) {
-    // TQLogInfo(@"Group info updated. Current group: '%@'", _nntpManager.currentGroup);
+    if let currentGroup = self.nntpManager.currentGroup {
+      printInfo("Group info updated. Current group: '\(currentGroup)'")
+    }
     self.group = self.nntpManager.currentGroup
     self.tableView.reloadData()
   }

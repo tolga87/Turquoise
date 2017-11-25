@@ -3,8 +3,6 @@ import UIKit
 
 public typealias TQSlidingMenuCallback = () -> Void
 
-//typedef void(^TQSlidingMenuCallback)();
-
 @objc public enum TQOverlaySlidingMenuPosition : Int {
   case right
   case left

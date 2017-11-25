@@ -15,7 +15,7 @@ public class TQNNTPManager : NSObject {
   let TQNNTPManagerErrorDomain = "TQNNTPManagerErrorDomain"
   let newsServerHostName = "news.ceng.metu.edu.tr"
   let newsServerPort = 563
-  let timeout: TimeInterval = 10;
+  let timeout: TimeInterval = 10
 
   public var networkReachable: Bool {
     return self.reachability.connection != .none
@@ -43,8 +43,7 @@ public class TQNNTPManager : NSObject {
     do {
       try self.reachability.startNotifier()
     } catch {
-      //~TA TODO: convert this print statement
-      print("Could not start reachability notifier: \(error)")
+      printError("Could not start reachability notifier: \(error)")
     }
 
     let notificationCenter = NotificationCenter.default
@@ -198,7 +197,7 @@ public class TQNNTPManager : NSObject {
   }
 
   func listGroups(completion: @escaping TQNNTPRequestCallback) {
-    // TQLogInfo(@"Requesting list of all newsgroups...");
+    printInfo("Requesting list of all newsgroups...")
 
     self.sendRequest("LIST\r\n") { (response, error) in
       if let response = response, response.isOk() {
@@ -246,7 +245,7 @@ public class TQNNTPManager : NSObject {
       }
 
       self.currentGroup?.downloadHeaders(completion: {
-        // TQLogInfo(@"All headers are downloaded");
+        printInfo("All headers are downloaded")
         NotificationCenter.default.post(name: self.NNTPGroupDidUpdateNotification,
                                         object: self,
                                         userInfo: nil)
@@ -348,8 +347,7 @@ public class TQNNTPManager : NSObject {
                               //       if this happens, something's wrong. look into this.
                             }
                           } else {
-                            // TODO: fix
-                            // TQLogInfo(@"\t\t <<< received partial response: part %ld >>>", partNo);
+                            printInfo("\t\t <<< received partial response: part \(partNo) >>>")
                           }
 
 
@@ -412,10 +410,16 @@ public class TQNNTPManager : NSObject {
                         let shouldTruncate = true
                         let maxLengthToDisplay = shouldTruncate ? 150 : Int.max
                         let responseLength = Int(responseString?.count ?? 0)
-                        if responseLength > maxLengthToDisplay {
-                          // TQLogDebug(@"S: %@ <TRUNCATED>", [responseString substringToIndex:kMaxLengthToDisplay]);
-                        } else {
-                          // TQLogDebug(@"S: %@", responseString);
+
+                        if let responseString = responseString {
+                          if responseLength > maxLengthToDisplay {
+                            let truncatedResponseStringEndIndex = responseString.index(responseString.startIndex,
+                                                                                       offsetBy: maxLengthToDisplay)
+                            let truncatedResponseString = responseString.substring(to: truncatedResponseStringEndIndex)
+                            printDebug("S: \(truncatedResponseString) <TRUNCATED>")
+                          } else {
+                            printDebug("S: \(responseString)")
+                          }
                         }
 
                         completion(response, nil)

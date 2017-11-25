@@ -46,8 +46,8 @@ import Foundation
 
   public class func isMultiLine(_ statusCode: Int) -> Bool {
     let firstDigit = statusCode / 100 % 10
-    let secondDigit = statusCode / 10 % 10;
-    //  let thirdDigit = statusCode.rawValue % 10;
+    let secondDigit = statusCode / 10 % 10
+    //  let thirdDigit = statusCode.rawValue % 10
 
     if self.responseFor(value: statusCode) == .informationFollows {
       return true

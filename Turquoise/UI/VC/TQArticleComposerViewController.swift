@@ -37,12 +37,12 @@ public class TQArticleComposerViewController : UIViewController {
   @IBAction func postArticle(_ sender: Any?) {
     guard let articleSubjectText = self.articleSubjectField.text, !articleSubjectText.tq_isEmpty else {
       // TODO: alert
-      // TQLogError(@"Cannot post message with empty subject");
+      printError("Cannot post message with empty subject")
       return
     }
     guard let articleBodyText = self.articleBodyView.text, !articleBodyText.tq_isEmpty else {
       // TODO: alert
-      // TQLogError(@"Cannot post message with empty body");
+      printError("Cannot post message with empty body")
       return
     }
 
@@ -54,15 +54,15 @@ public class TQArticleComposerViewController : UIViewController {
                                 parentArticle: self.parentArticle) else {
                                   // something went wrong. cannot post article.
                                   // TODO: show error.
-                                  // TQLogError(@"Not implemented yet!");
+                                  printError("Not implemented yet!")
                                   return
     }
 
     TQNNTPManager.sharedInstance.post(article: article) { (response, error) in
       if let response = response, response.isOk() {
-        // TQLogInfo(@"Article posted");
+        printInfo("Article posted")
       } else {
-        // TQLogError(@"Could not post article: %@", error);
+        printError("Could not post article: \(error != nil ? error.debugDescription : "")")
       }
 
       self.dismissArticleComposer()

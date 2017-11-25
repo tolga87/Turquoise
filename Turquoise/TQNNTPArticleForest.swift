@@ -75,8 +75,7 @@ import Foundation
       string += String(repeatElement("-", count: level))
     }
     string += "\(article.subject.tq_decodedString) (\(article.articleNo)"
-    //~TA TODO: fix
-//    TQLogDebug(@"%@", mutString);
+    printDebug(string)
 
     for child in article.childArticles {
       self.printTreeNode(child, level: (level + 1))

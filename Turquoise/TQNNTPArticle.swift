@@ -16,7 +16,7 @@ public class TQNNTPArticle : NSObject {
     get {
       if self.references.count > 0 && self.parentArticle == nil {
         // article was posted as a reply to some deleted article. treat this as a root.
-        return 0;
+        return 0
       } else {
         return self.references.count
       }
@@ -123,10 +123,8 @@ public class TQNNTPArticle : NSObject {
     // TODO: handle multiple newsgroups.
     self.parentArticle = parentArticle
 
-    //~TA TODO: fix
-//    let userInfoManager = TQUserInfoManager.sharedInstance
-//    self.from = "\(userInfoManager.fullName) <\(userInfoManager.email)>"
-    self.from = "tolga <tolga.ceng@gmail.com>"
+    let userInfoManager = TQUserInfoManager.sharedInstance
+    self.from = "\(userInfoManager.fullName ?? "?") <\(userInfoManager.email ?? "?")>"
     // TODO: we should probaby escape some stuff here
 
     if let parentArticle = self.parentArticle {
