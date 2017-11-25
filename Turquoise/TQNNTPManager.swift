@@ -4,6 +4,7 @@ public typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: 
 
 public class TQNNTPManager : NSObject {
   public static let sharedInstance = TQNNTPManager()
+  private let reachability: Reachability!
 
   public let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
   public let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
@@ -16,41 +17,37 @@ public class TQNNTPManager : NSObject {
   let newsServerPort = 563
   let timeout: TimeInterval = 10;
 
-
   public var networkReachable: Bool {
-    // TODO: fix
-    //  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
-    //  return (networkStatus == ReachableViaWiFi || networkStatus == ReachableViaWWAN);
-    return true
+    return self.reachability.connection != .none
   }
   public private(set) var allGroups: [TQNNTPGroup] = []
   public private(set) var currentGroup: TQNNTPGroup?
-
-//  var reachability: Reachability
 
   private var streamTask: URLSessionStreamTask?
   private var dataBuffer: Data?
   private var allgroups: [TQNNTPGroup] = []
 
   private var streamResetTimer: Timer?
-//  private var lastNetworkStatus: NetworkStatus
-
-  private var lastNetworkStatusUpdateTimestamp: TimeInterval
 
   override init() {
-    //    self.reachability = [Reachability reachabilityWithHostName:kNewsServerHostName];
-    //    self.lastNetworkStatus = -1;
-    self.lastNetworkStatusUpdateTimestamp = 0;
-
+    self.reachability = Reachability(hostname: self.newsServerHostName)
     super.init()
 
-    let notificationCenter = NotificationCenter.default
-    // TODO: fix
-    //  notificationCenter.addObserver(self,
-    //                                 selector: #selector(reachabilityDidChange(_:)),
-    //                                 name: kReachabilityChangedNotification,
-    //                                 object: nil)
+    self.reachability.whenReachable = { (reachability) -> Void in
+      self.reachabilityChanged(connection: reachability.connection)
+    }
+    self.reachability.whenUnreachable = { (reachability) -> Void in
+      self.reachabilityChanged(connection: reachability.connection)
+    }
 
+    do {
+      try self.reachability.startNotifier()
+    } catch {
+      //~TA TODO: convert this print statement
+      print("Could not start reachability notifier: \(error)")
+    }
+
+    let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self,
                                    selector: #selector(appDidEnterBackground),
                                    name: Notification.Name.UIApplicationDidEnterBackground,
@@ -75,35 +72,13 @@ public class TQNNTPManager : NSObject {
                    userInfo: [ NSLocalizedDescriptionKey : (message ?? defaultErrorMessage) ])
   }
 
-  @objc public func reachabilityDidChange(_ notification: Notification) {
-//  NetworkStatus networkStatus = [_reachability currentReachabilityStatus];
-//
-//  // for some reason, we receive duplicate notifications for single events.
-//  // set up a time threshold and drop redundant notifications.
-//  NSTimeInterval nowTimestamp = [NSDate timeIntervalSinceReferenceDate];
-//  const NSTimeInterval timestampThreshold = .1;
-//  BOOL timeThresholdExceeded = (nowTimestamp - _lastNetworkStatusUpdateTimestamp >= timestampThreshold);
-//
-//  if (networkStatus == _lastNetworkStatus && !timeThresholdExceeded) {
-//    // this is a duplicate notification. ignore it.
-//    return;
-//  }
-//
-//  NSArray *status = @[
-//    @"NotReachable",
-//    @"ReachableViaWiFi",
-//    @"ReachableViaWWAN"
-//  ];
-//  TQLogInfo(@"NETWORK STATUS UPDATED: %@", status[networkStatus]);
-//
-//  _lastNetworkStatus = networkStatus;
-//  _lastNetworkStatusUpdateTimestamp = nowTimestamp;
-//
-//  if (networkStatus == NotReachable) {
-//    [_streamTask stopSecureConnection];
-//    _streamTask = nil;
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNetworkConnectionLostNotification object:self];
-//  }
+  func reachabilityChanged(connection: Reachability.Connection) {
+    print("Reachability changed: \(connection.description)")
+    if connection == .none {
+      self.streamTask?.stopSecureConnection()
+      self.streamTask = nil
+      NotificationCenter.default.post(name: self.networkConnectionLostNotification, object: self)
+    }
   }
 
   func setupStream() {

@@ -25,8 +25,6 @@
 		FD5A1B791FC8E4C300789626 /* TQUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */; };
 		FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6443221FC8D855006CE187 /* KeychainWrapper.swift */; };
 		FD6443241FC8D855006CE187 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6443221FC8D855006CE187 /* KeychainWrapper.swift */; };
-		FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
-		FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7DE1BA1F64A41F006200D8 /* Reachability.m */; };
 		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
 		FD7DE1C81F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
 		FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E83641FC5159B00025211 /* String+TQEncoding.swift */; };
@@ -41,6 +39,8 @@
 		FD90FD9E1FC8F1B6005449F1 /* TQGroupSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90FD9C1FC8F1B5005449F1 /* TQGroupSelectionTableViewCell.swift */; };
 		FD90FDA01FC8F62E005449F1 /* TQGroupSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90FD9F1FC8F62E005449F1 /* TQGroupSelectionViewController.swift */; };
 		FD90FDA11FC8F62E005449F1 /* TQGroupSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90FD9F1FC8F62E005449F1 /* TQGroupSelectionViewController.swift */; };
+		FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91EF631FCA0D23009CB0F5 /* Reachability.swift */; };
+		FD91EF651FCA0D24009CB0F5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91EF631FCA0D23009CB0F5 /* Reachability.swift */; };
 		FD9CB6521F4233E800BC2225 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6511F4233E800BC2225 /* main.m */; };
 		FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD9CB6541F4233E800BC2225 /* TQAppDelegate.m */; };
 		FD9CB65B1F4233E800BC2225 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD9CB6591F4233E800BC2225 /* Main.storyboard */; };
@@ -122,8 +122,6 @@
 		FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoManager.swift; sourceTree = "<group>"; };
 		FD6443221FC8D855006CE187 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
-		FD7DE1BA1F64A41F006200D8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		FD7DE1BB1F64A41F006200D8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
 		FD7E83641FC5159B00025211 /* String+TQEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TQEncoding.swift"; sourceTree = "<group>"; };
 		FD7E83671FC517F500025211 /* TQNNTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPManager.swift; sourceTree = "<group>"; };
@@ -131,6 +129,7 @@
 		FD8E5A741F60B055008434F8 /* TQHeaderDownloadProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQHeaderDownloadProgressView.xib; sourceTree = "<group>"; };
 		FD90FD9C1FC8F1B5005449F1 /* TQGroupSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQGroupSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		FD90FD9F1FC8F62E005449F1 /* TQGroupSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQGroupSelectionViewController.swift; sourceTree = "<group>"; };
+		FD91EF631FCA0D23009CB0F5 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		FD9CB64D1F4233E800BC2225 /* Turquoise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Turquoise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD9CB6511F4233E800BC2225 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD9CB6531F4233E800BC2225 /* TQAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TQAppDelegate.h; sourceTree = "<group>"; };
@@ -367,8 +366,7 @@
 		FDF0F9641F58B493008FE181 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				FD7DE1BB1F64A41F006200D8 /* Reachability.h */,
-				FD7DE1BA1F64A41F006200D8 /* Reachability.m */,
+				FD91EF631FCA0D23009CB0F5 /* Reachability.swift */,
 				FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */,
 			);
 			path = Manager;
@@ -522,7 +520,6 @@
 				FDE86E811FC898F7009C0466 /* TQArticleViewController.swift in Sources */,
 				FD90FD9D1FC8F1B6005449F1 /* TQGroupSelectionTableViewCell.swift in Sources */,
 				FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */,
-				FD7DE1BC1F64A420006200D8 /* Reachability.m in Sources */,
 				FD1D37C51F69AF10002E5978 /* TQLogger.m in Sources */,
 				FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */,
 				FD9CB6551F4233E800BC2225 /* TQAppDelegate.m in Sources */,
@@ -549,6 +546,7 @@
 				FDE86E781FC78CE6009C0466 /* TQReleaseNotesView.swift in Sources */,
 				FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
+				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,
 				FDE86E7B1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,7 +564,6 @@
 				FD5A1B791FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FDE86E7F1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDE86E731FC77F27009C0466 /* TQGroupViewController.swift in Sources */,
-				FD7DE1BD1F64A420006200D8 /* Reachability.m in Sources */,
 				FD9CB66B1F4233E800BC2225 /* TurquoiseTests.m in Sources */,
 				FDADC7541FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */,
 				FDE86E761FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,
@@ -575,6 +572,7 @@
 				FDF0E17C1FC3FF42003AEA1B /* TQNNTPResponse.swift in Sources */,
 				FD833CB41FC89EDD003A9FA0 /* TQArticleComposerViewController.swift in Sources */,
 				FDE7CBB01F7D993900E6E89E /* TQSearchBar.swift in Sources */,
+				FD91EF651FCA0D24009CB0F5 /* Reachability.swift in Sources */,
 				FD7E83661FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FDE86E7C1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift in Sources */,
 				FD1E83981FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
