@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -367,18 +367,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2lZ-10-Yu7" userLabel="Subject Line Container">
                                         <rect key="frame" x="0.0" y="10" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-e0-DlE" userLabel="Article Subject Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
-                                                <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="13"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject:" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.80000000000000004" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uYo-9V-ZBb" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="74" id="5EV-hm-Ptl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYo-9V-ZBb" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="5EV-hm-Ptl"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GL4-e0-DlE" userLabel="Article Subject Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
+                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
+                                                <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="13"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -398,14 +398,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kM-0j-JbZ" userLabel="Sender Line Container">
                                         <rect key="frame" x="0.0" y="30" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="From:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="From:" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.80000000000000004" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="423-K8-ZcP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKK-Pb-XX8" userLabel="Article Sender Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
+                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -425,14 +425,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JKx-GI-2lB" userLabel="Date Line Container">
                                         <rect key="frame" x="0.0" y="50" width="375" height="20"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-Ch-xGP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="10" y="0.0" width="309" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" minimumScaleFactor="0.80000000000000004" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6Y-Ch-xGP" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="0.0" width="74" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mw7-R8-EIa" userLabel="Article Date Label" customClass="TQLabel" customModule="Turquoise" customModuleProvider="target">
-                                                <rect key="frame" x="327" y="0.0" width="38" height="20"/>
+                                                <rect key="frame" x="92" y="0.0" width="273" height="20"/>
                                                 <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
@@ -778,6 +778,6 @@
         <image name="settings1.png" width="240" height="240"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OXr-oG-ZzU"/>
+        <segue reference="06l-Kk-UM3"/>
     </inferredMetricsTieBreakers>
 </document>
