@@ -65,16 +65,28 @@ extension String {
     var scanner = Scanner()
     var mutString = ""
 
-    var decodingBuffer: [UInt8] = Array.init(repeating: UInt8(0), count: 2)
+    // The maximum number of bytes per character is 4
+    let bufferLength = 4
+    var decodingBuffer: [UInt8] = Array.init(repeating: UInt8(0), count: bufferLength)
     var bufferIndex = 0
     var decodedSequence: String?
 
     func resetDecodingBuffer() {
-      decodingBuffer[0] = UInt8(0)
-      decodingBuffer[1] = UInt8(0)
+      for i in 0..<bufferLength {
+        decodingBuffer[i] = UInt8(0)
+      }
     }
 
-    for var charIndex in 0 ..< string.count {
+    // I can't mutate the for loop index inside the loop,
+    // so I use this variable to skip particular indexes.
+    var indexesToSkip = 0
+
+    for charIndex in 0 ..< string.count {
+      if indexesToSkip > 0 {
+        indexesToSkip -= 1
+        continue
+      }
+
       let curChar = string[string.index(string.startIndex, offsetBy: charIndex)]
       if curChar == "_" {
         mutString += " "
@@ -84,8 +96,6 @@ extension String {
         mutString += String(curChar)
       } else {
         // curChar == '='
-
-
 
         let startIndex = string.index(string.startIndex, offsetBy: charIndex)
         if string.index(startIndex, offsetBy: 2) >= string.endIndex {
@@ -101,9 +111,9 @@ extension String {
         scanner.scanHexInt32(&decodedChar)
         decodingBuffer[bufferIndex] = UInt8(decodedChar)
 
-        if bufferIndex == 1 {
-          // if this is the second byte we're reading, this should be a 2-byte character.
-          // if we can't convert it to something readable, there's something wrong.
+        if bufferIndex == bufferLength - 1 {
+          // this is the last byte of this multi-byte character.
+          // if we can't convert it to something readable here, there's something wrong.
           let data = Data(bytes: decodingBuffer)
           decodedSequence = String(data: data, encoding: .utf8)
           if decodedSequence == nil || decodedSequence == "" {
@@ -111,13 +121,13 @@ extension String {
           }
           bufferIndex = 0
           resetDecodingBuffer()
-        } else if bufferIndex == 0 {
-          // if this is the first byte we're reading, this could be a 1-byte or a 2-byte character.
-          // try to decode the single byte first. if it fails, it must be a 2-byte character.
-          let data = Data(bytes: decodingBuffer[0...0])
+        } else {
+          // this could be a 1-, 2-, 3- or 4-byte character.
+          // try to decode byte(s) we have first. if it fails, this must be a longer character.
+          let data = Data(bytes: decodingBuffer[0...bufferIndex])
           decodedSequence = String(data: data, encoding: .utf8)
           if decodedSequence == nil || decodedSequence == "" {
-            bufferIndex = 1
+            bufferIndex += 1
           } else {
             bufferIndex = 0
             resetDecodingBuffer()
@@ -128,10 +138,9 @@ extension String {
           mutString += decodedSequence
         }
 
-        charIndex += 2
+        indexesToSkip = 2
       }
     }
-
 
     return mutString
   }
