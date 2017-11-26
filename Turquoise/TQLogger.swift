@@ -9,25 +9,43 @@ enum TQLoggingLevel : Int {
   static func >= (x: TQLoggingLevel, y: TQLoggingLevel) -> Bool {
     return x.rawValue >= y.rawValue
   }
+
+  func icon() -> String? {
+    switch self {
+    case .error:
+      return "⛔"
+    case .info:
+      return "⚠️"
+    default:
+      return nil
+    }
+  }
 }
 
 // This is the constant that controls the amount of logging in the entire app.
-let loggingLevel: TQLoggingLevel = .off
+let loggingLevel: TQLoggingLevel = .debug
 
 func printDebug(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-  tq_print(.debug, items, separator: separator, terminator: terminator)
+  let output = items.map { "\($0)" }.joined(separator: separator)
+  tq_print(.debug, output)
 }
 
 func printInfo(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-  tq_print(.info, items, separator: separator, terminator: terminator)
+  let output = items.map { "\($0)" }.joined(separator: separator)
+  tq_print(.info, output)
 }
 
 func printError(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-  tq_print(.error, items, separator: separator, terminator: terminator)
+  let output = items.map { "\($0)" }.joined(separator: separator)
+  tq_print(.error, output)
 }
 
-func tq_print(_ level: TQLoggingLevel, _ items: Any..., separator: String = " ", terminator: String = "\n") {
+func tq_print(_ level: TQLoggingLevel, _ message: String) {
   if level >= loggingLevel {
-    print(items, separator, terminator)
+    var string = message
+    if let icon = level.icon() {
+      string = "\(icon) \(message)"
+    }
+    print(string, separator: " ", terminator: "\n")
   }
 }

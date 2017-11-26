@@ -72,7 +72,7 @@ class TQNNTPManager : NSObject {
   }
 
   func reachabilityChanged(connection: Reachability.Connection) {
-    print("Reachability changed: \(connection.description)")
+    printInfo("Reachability changed: \(connection.description)")
     if connection == .none {
       self.streamTask?.stopSecureConnection()
       self.streamTask = nil
@@ -347,7 +347,7 @@ class TQNNTPManager : NSObject {
                               //       if this happens, something's wrong. look into this.
                             }
                           } else {
-                            printInfo("\t\t <<< received partial response: part \(partNo) >>>")
+                            printDebug("\t\t <<< received partial response: part \(partNo) >>>")
                           }
 
 

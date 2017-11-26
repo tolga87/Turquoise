@@ -61,7 +61,7 @@ class TQNNTPGroup : NSObject {
     }
 
     let progress = Int(Double(currentArticle - self.minArticleNo) / Double(numArticles) * 100.0)
-    printInfo("Downloading header \(currentArticle - self.minArticleNo) of \(numArticles) (\(progress)%)")
+    printDebug("Downloading header \(currentArticle - self.minArticleNo) of \(numArticles) (\(progress)%)")
 
     let userInfo = [ TQNNTPGroup.headerDownloadProgressAmountKey : progress ]
     NotificationCenter.default.post(name: TQNNTPGroup.headerDownloadProgressNotification,
