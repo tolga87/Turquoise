@@ -24,6 +24,7 @@ class TQArticleViewController : UIViewController {
     let shouldShowDeleteButton = self.canDeleteMessage()
     self.setDeleteMessageButtonHidden(!shouldShowDeleteButton)
     self.articleBodyTextView.contentOffset = .zero
+    self.articleBodyTextView.dataDetectorTypes = .link
   }
 
   @IBAction func dismiss(_ sender: Any?) {
