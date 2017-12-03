@@ -72,7 +72,8 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
     let options = [
       "Manage newsgroup subscriptions",
       "Logout",
-      "Release notes"
+      "Release notes",
+      "View Source"
     ]
     let callbacks = [
       {
@@ -87,6 +88,12 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
         if let releaseNotesView = TQReleaseNotesView.loadFromNib() {
           TQOverlay.sharedInstance.show(with: releaseNotesView, relativeVerticalPosition: 0.35, animated: true)
         }
+      },
+      {
+        guard let url = URL(string: "https://github.com/tolga87/Turquoise") else {
+          return
+        }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
       }
     ]
 
