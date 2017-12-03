@@ -136,13 +136,22 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grr-2p-WHm" customClass="TQProgressView" customModule="Turquoise" customModuleProvider="target">
+                                <rect key="frame" x="52" y="324.5" width="270" height="4"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="SOP-HY-717"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="H0h-I4-sx3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4XW-ni-N5e"/>
+                            <constraint firstItem="grr-2p-WHm" firstAttribute="width" secondItem="zKD-un-F8l" secondAttribute="width" id="DvW-Uk-kKS"/>
                             <constraint firstItem="zKD-un-F8l" firstAttribute="centerX" secondItem="3cD-Gq-JId" secondAttribute="centerX" id="EP4-kL-Qvt"/>
                             <constraint firstItem="zKD-un-F8l" firstAttribute="height" secondItem="y81-cZ-b9E" secondAttribute="height" id="Hol-Zg-XqA"/>
+                            <constraint firstItem="grr-2p-WHm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KNt-De-xui"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="leading" secondItem="IPE-F0-cpO" secondAttribute="trailing" constant="8" id="OFI-3B-4uM"/>
                             <constraint firstItem="IPE-F0-cpO" firstAttribute="centerY" secondItem="y81-cZ-b9E" secondAttribute="centerY" id="QnR-ey-PCU"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="trailing" secondItem="H0h-I4-sx3" secondAttribute="trailing" id="kaA-0k-6HZ"/>
@@ -150,6 +159,7 @@
                             <constraint firstItem="H0h-I4-sx3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="uOT-ie-j9N"/>
                             <constraint firstItem="zKD-un-F8l" firstAttribute="width" secondItem="3cD-Gq-JId" secondAttribute="width" id="ud6-1B-UAC"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="top" secondItem="H0h-I4-sx3" secondAttribute="bottom" id="yjt-Mb-aho"/>
+                            <constraint firstItem="grr-2p-WHm" firstAttribute="top" secondItem="zKD-un-F8l" secondAttribute="bottom" id="yw1-HR-Yyo"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="GHu-9u-TpX" appends="YES" id="fsZ-ih-8TP"/>
@@ -171,7 +181,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-321" y="90"/>
+            <point key="canvasLocation" x="-322.39999999999998" y="89.505247376311857"/>
         </scene>
         <!--Group View Controller-->
         <scene sceneID="Erp-t5-dWc">
@@ -617,10 +627,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupCell" id="Fyn-VY-qQj" customClass="TQGroupSelectionTableViewCell" customModule="Turquoise" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="363" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="367" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fyn-VY-qQj" id="Iul-ps-oLW">
-                                            <rect key="frame" x="0.0" y="0.0" width="363" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-r2-SEC">
@@ -630,7 +640,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="metu.ceng.test" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0U-Sc-u2b">
-                                                    <rect key="frame" x="44" y="4" width="311" height="36"/>
+                                                    <rect key="frame" x="44" y="4" width="319" height="36"/>
                                                     <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="11"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
