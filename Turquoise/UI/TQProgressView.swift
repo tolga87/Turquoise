@@ -46,7 +46,7 @@ class TQProgressView : UIView {
                                               self.setProgress(progress, animated: true)
                                             }
     }
-    NotificationCenter.default.addObserver(forName: TQNNTPManager.sharedInstance.NNTPGroupDidUpdateNotification,
+    NotificationCenter.default.addObserver(forName: TQNNTPManager.NNTPGroupDidUpdateNotification,
                                            object: nil,
                                            queue: .main) { (notification) in
                                             NotificationCenter.default.removeObserver(self)

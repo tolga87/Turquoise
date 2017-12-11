@@ -6,10 +6,12 @@ class TQNNTPManager : NSObject {
   static let sharedInstance = TQNNTPManager()
   private let reachability: Reachability!
 
-  let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
-  let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
-  let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
-  let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
+  static let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
+  static let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
+  static let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
+  static let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
+  static let didReceiveArticleBodyNotification = Notification.Name("didReceiveArticleBodyNotification")
+  static let didPostArticleNotification = Notification.Name("didPostArticleNotification")
 
   // TODO: revamp these errors
   let TQNNTPManagerErrorDomain = "TQNNTPManagerErrorDomain"
@@ -76,7 +78,7 @@ class TQNNTPManager : NSObject {
     if connection == .none {
       self.streamTask?.stopSecureConnection()
       self.streamTask = nil
-      NotificationCenter.default.post(name: self.networkConnectionLostNotification, object: self)
+      NotificationCenter.default.post(name: TQNNTPManager.networkConnectionLostNotification, object: self)
     }
   }
 
@@ -102,7 +104,7 @@ class TQNNTPManager : NSObject {
                            block: { (timer: Timer) in
                             self.streamTask?.stopSecureConnection()
                             self.streamTask = nil
-                            NotificationCenter.default.post(name: TQNNTPManager.sharedInstance.networkStreamDidResetNotification,
+                            NotificationCenter.default.post(name: TQNNTPManager.networkStreamDidResetNotification,
                                                             object: self)
 
     })
@@ -231,7 +233,7 @@ class TQNNTPManager : NSObject {
       self.allGroups.sort {
         $0.groupId.localizedCaseInsensitiveCompare($1.groupId) == .orderedAscending
       }
-      NotificationCenter.default.post(name: self.NNTPGroupListDidUpdateNotification, object: nil)
+      NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupListDidUpdateNotification, object: self)
       completion(response, error)
     }
   }
@@ -246,7 +248,7 @@ class TQNNTPManager : NSObject {
 
       self.currentGroup?.downloadHeaders(completion: {
         printInfo("All headers are downloaded")
-        NotificationCenter.default.post(name: self.NNTPGroupDidUpdateNotification,
+        NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupDidUpdateNotification,
                                         object: self,
                                         userInfo: nil)
         completion(response, error)
@@ -267,6 +269,9 @@ class TQNNTPManager : NSObject {
     let requestString = "BODY \(article.messageId)\r\n"
     self.sendRequest(requestString) { (response, error) in
       if let response = response, response.isOk() {
+        NotificationCenter.default.post(name: TQNNTPManager.didReceiveArticleBodyNotification,
+                                        object: self,
+                                        userInfo: nil)
         article.body = response.getArticleBody() ?? ""
       }
       completion(response, error)
@@ -305,6 +310,7 @@ class TQNNTPManager : NSObject {
       self.sendRequest(postRequestString, completion: { (response, error) in
         if let response = response, response.isOk() {
           // success
+          NotificationCenter.default.post(name: TQNNTPManager.didPostArticleNotification, object: self)
           self.refreshGroup()
         } else {
           // failure

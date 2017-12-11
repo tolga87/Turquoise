@@ -23,6 +23,9 @@ class TQLoginViewController : UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Make sure the review manager is instantiated and listening for notifications.
+    let _ = TQReviewManager.sharedInstance
+
     self.passwordField.isPassword = true
 
     self.loginButton.addTarget(self,
@@ -36,11 +39,11 @@ class TQLoginViewController : UIViewController {
                                            object: nil)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(networkConnectionLost(_:)),
-                                           name: TQNNTPManager.sharedInstance.networkConnectionLostNotification,
+                                           name: TQNNTPManager.networkConnectionLostNotification,
                                            object: nil)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(nntpManagerDidReset(_:)),
-                                           name: TQNNTPManager.sharedInstance.networkStreamDidResetNotification,
+                                           name: TQNNTPManager.networkStreamDidResetNotification,
                                            object: nil)
   }
 

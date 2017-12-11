@@ -1,5 +1,8 @@
 import Swift
 
+// This is the constant that controls the amount of logging in the entire app.
+let loggingLevel: TQLoggingLevel = .debug
+
 enum TQLoggingLevel : Int {
   case off   = 4  // do not log anything
   case error = 3  // log only errors
@@ -21,9 +24,6 @@ enum TQLoggingLevel : Int {
     }
   }
 }
-
-// This is the constant that controls the amount of logging in the entire app.
-let loggingLevel: TQLoggingLevel = .debug
 
 func printDebug(_ items: Any..., separator: String = " ", terminator: String = "\n") {
   let output = items.map { "\($0)" }.joined(separator: separator)

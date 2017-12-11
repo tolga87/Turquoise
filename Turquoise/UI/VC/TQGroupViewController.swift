@@ -19,6 +19,7 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
   var expandedArticleForest: [TQNNTPArticle]?
   var selectedArticle: TQNNTPArticle?
   let nntpManager = TQNNTPManager.sharedInstance
+  static let userDidChangeGroupNotification = Notification.Name("userDidChangeGroupNotification")
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,7 +33,7 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(groupDidUpdate(_:)),
-                                           name: TQNNTPManager.sharedInstance.NNTPGroupDidUpdateNotification,
+                                           name: TQNNTPManager.NNTPGroupDidUpdateNotification,
                                            object: nil)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(userDidLogout(_:)),
@@ -46,12 +47,13 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
 
     for subscribedGroupId in subscribedGroupIds {
       callbacks.append {
-        printInfo("User selected new group: '%@'", subscribedGroupId)
+        printInfo("User selected new group: \(subscribedGroupId)")
         if let progressView = TQHeaderDownloadProgressView.loadFromNib(groupId: subscribedGroupId) {
           TQOverlay.sharedInstance.show(with: progressView, relativeVerticalPosition: 0.35, animated: false)
           self.nntpManager.setGroup(groupId: subscribedGroupId,
                                     completion: { (response, error) in
                                       TQOverlay.sharedInstance.dismiss(animated: true)
+                                      NotificationCenter.default.post(name: TQGroupViewController.userDidChangeGroupNotification, object: self)
           })
         }
       }
@@ -73,7 +75,8 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
       "Manage newsgroup subscriptions",
       "Logout",
       "Release notes",
-      "View Source"
+      "View Source",
+      "Rate Ayran\u{00A0}2.0 on the App Store",  // \u{00A0} is the nbsp chararacter
     ]
     let callbacks = [
       {
@@ -94,6 +97,9 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
           return
         }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+      },
+      {
+        TQReviewManager.sharedInstance.showReviewPrompt()
       }
     ]
 

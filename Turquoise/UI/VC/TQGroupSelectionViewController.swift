@@ -18,7 +18,7 @@ class TQGroupSelectionViewController : UIViewController, UISearchBarDelegate, UI
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(newsGroupsDidUpdate(_:)),
-                                           name: TQNNTPManager.sharedInstance.NNTPGroupListDidUpdateNotification,
+                                           name: TQNNTPManager.NNTPGroupListDidUpdateNotification,
                                            object: nil)
   }
 
