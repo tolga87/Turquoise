@@ -143,7 +143,7 @@
                                     <constraint firstAttribute="height" constant="4" id="SOP-HY-717"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v20.0.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-xP-8oD">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="version" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-xP-8oD">
                                 <rect key="frame" x="242" y="617" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="99c-g6-ccO"/>
