@@ -143,6 +143,16 @@
                                     <constraint firstAttribute="height" constant="4" id="SOP-HY-717"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v20.0.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-xP-8oD">
+                                <rect key="frame" x="242" y="617" width="80" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="99c-g6-ccO"/>
+                                    <constraint firstAttribute="height" constant="30" id="Ieq-c0-TYB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Dungeon-Regular" family="Dungeon" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -154,10 +164,12 @@
                             <constraint firstItem="grr-2p-WHm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KNt-De-xui"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="leading" secondItem="IPE-F0-cpO" secondAttribute="trailing" constant="8" id="OFI-3B-4uM"/>
                             <constraint firstItem="IPE-F0-cpO" firstAttribute="centerY" secondItem="y81-cZ-b9E" secondAttribute="centerY" id="QnR-ey-PCU"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XCv-xP-8oD" secondAttribute="bottom" constant="20" id="T3b-qp-0zu"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="trailing" secondItem="H0h-I4-sx3" secondAttribute="trailing" id="kaA-0k-6HZ"/>
                             <constraint firstItem="zKD-un-F8l" firstAttribute="top" secondItem="y81-cZ-b9E" secondAttribute="bottom" constant="8" id="le2-Uw-F2J"/>
                             <constraint firstItem="H0h-I4-sx3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.6" id="uOT-ie-j9N"/>
                             <constraint firstItem="zKD-un-F8l" firstAttribute="width" secondItem="3cD-Gq-JId" secondAttribute="width" id="ud6-1B-UAC"/>
+                            <constraint firstItem="XCv-xP-8oD" firstAttribute="trailing" secondItem="H0h-I4-sx3" secondAttribute="trailing" id="vuo-9Z-c13"/>
                             <constraint firstItem="y81-cZ-b9E" firstAttribute="top" secondItem="H0h-I4-sx3" secondAttribute="bottom" id="yjt-Mb-aho"/>
                             <constraint firstItem="grr-2p-WHm" firstAttribute="top" secondItem="zKD-un-F8l" secondAttribute="bottom" id="yw1-HR-Yyo"/>
                         </constraints>
@@ -171,6 +183,7 @@
                         <outlet property="loginButton" destination="y81-cZ-b9E" id="W4D-uw-OTp"/>
                         <outlet property="passwordField" destination="NO6-Zt-0uG" id="Ohv-Dc-2jB"/>
                         <outlet property="userNameField" destination="C6R-my-hzE" id="Qlm-Iy-2eH"/>
+                        <outlet property="versionNumberLabel" destination="XCv-xP-8oD" id="COq-Hi-V7B"/>
                         <segue destination="y9E-We-q5x" kind="show" identifier="ShowGroupSegueID" id="yLt-1q-huA"/>
                     </connections>
                 </viewController>
@@ -793,6 +806,6 @@
         <image name="settings1.png" width="240" height="240"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="06l-Kk-UM3"/>
+        <segue reference="OXr-oG-ZzU"/>
     </inferredMetricsTieBreakers>
 </document>

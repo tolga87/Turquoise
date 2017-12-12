@@ -8,6 +8,7 @@ class TQLoginViewController : UIViewController {
   @IBOutlet var loginButton: UIButton!
   @IBOutlet var connectionStatusLabel: TQLabel!
   @IBOutlet var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet var versionNumberLabel: UILabel!
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -32,6 +33,12 @@ class TQLoginViewController : UIViewController {
                                action: #selector(loginButtonDidTap(_:)),
                                for: .touchUpInside)
     self.activityIndicator.stopAnimating()
+
+    if let appVersionString = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+      self.versionNumberLabel.text = "v\(appVersionString)"
+    } else {
+      self.versionNumberLabel.text = ""
+    }
 
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(userDidLogout(_:)),
