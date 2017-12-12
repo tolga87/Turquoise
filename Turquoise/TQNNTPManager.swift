@@ -273,6 +273,7 @@ class TQNNTPManager : NSObject {
                                         object: self,
                                         userInfo: nil)
         article.body = response.getArticleBody() ?? ""
+        TQReadArticlesManager.sharedInstance.markAsRead(article)
       }
       completion(response, error)
     }

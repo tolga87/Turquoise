@@ -142,12 +142,10 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
       return cell
     }
 
-    cell.articleTitleLabel.text = article.decodedSubject
-    cell.articleSenderLabel.text = article.decodedFrom
-    cell.articleLevel = article.depth
+    cell.updateWith(article: article)
     cell.contentView.backgroundColor = (indexPath.row % 2 == 0)
-      ? TQArticleHeaderTableViewCell.evenColor()
-      : TQArticleHeaderTableViewCell.oddColor()
+      ? TQArticleHeaderTableViewCell.evenColor
+      : TQArticleHeaderTableViewCell.oddColor
 
     return cell
   }
