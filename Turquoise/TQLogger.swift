@@ -1,7 +1,11 @@
 import Swift
 
 // This is the constant that controls the amount of logging in the entire app.
-let loggingLevel: TQLoggingLevel = .debug
+#if RELEASE
+  let loggingLevel: TQLoggingLevel = .off
+#else
+  let loggingLevel: TQLoggingLevel = .debug
+#endif
 
 enum TQLoggingLevel : Int {
   case off   = 4  // do not log anything
