@@ -144,7 +144,7 @@ class TQLoginViewController : UIViewController {
 
       // login successful.
       printInfo("Login Successful!")
-      self.connectionStatusLabel.text = "Login successful, downloading data from server..."
+      self.connectionStatusLabel.text = "Login successful!"
 
       if askUserInfo {
         let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView

@@ -9,7 +9,7 @@ class TQNNTPManager : NSObject {
   static let networkConnectionLostNotification = Notification.Name("networkConnectionLostNotification")
   static let networkStreamDidResetNotification = Notification.Name("networkStreamDidResetNotification")
   static let NNTPGroupListDidUpdateNotification = Notification.Name("NNTPGroupListDidUpdateNotification")
-  static let NNTPGroupDidUpdateNotification = Notification.Name("NNTPGroupDidUpdateNotification")
+  static let NNTPGroupDidReceiveHeadersNotification = Notification.Name("NNTPGroupDidReceiveHeadersNotification")
   static let didReceiveArticleBodyNotification = Notification.Name("didReceiveArticleBodyNotification")
   static let didPostArticleNotification = Notification.Name("didPostArticleNotification")
 
@@ -244,14 +244,14 @@ class TQNNTPManager : NSObject {
     self.sendRequest(requestString) { (response, error) in
       if let response = response, response.isOk() {
         self.currentGroup = TQNNTPGroup(response: response)
+        completion(response, error)
       }
 
       self.currentGroup?.downloadHeaders(completion: {
         printInfo("All headers are downloaded")
-        NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupDidUpdateNotification,
+        NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupDidReceiveHeadersNotification,
                                         object: self,
                                         userInfo: nil)
-        completion(response, error)
       })
     }
   }

@@ -1,22 +1,12 @@
 import Foundation
 import UIKit
 
-class TQGroupViewController : UIViewController, UITableViewDataSource, UITableViewDelegate {
-  @IBOutlet var tableView: UITableView!
+class TQGroupViewController : UIViewController, UITableViewDelegate {
+  @IBOutlet var tableView: TQRefreshableTableView!
   @IBOutlet var groupNameLabel: UILabel!
 
-  var group: TQNNTPGroup? {
-    didSet {
-      if let group = self.group {
-        self.expandedArticleForest = group.articleForest?.expandedForest()
-        self.groupNameLabel.text = group.groupId
-      } else {
-        self.expandedArticleForest = nil
-        self.groupNameLabel.text = nil
-      }
-    }
-  }
-  var expandedArticleForest: [TQNNTPArticle]?
+  var dataSource: TQGroupTableViewDataSource!
+
   var selectedArticle: TQNNTPArticle?
   let nntpManager = TQNNTPManager.sharedInstance
   static let userDidChangeGroupNotification = Notification.Name("userDidChangeGroupNotification")
@@ -24,17 +14,26 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.tableView.dataSource = self
     self.tableView.delegate = self
 
-    self.group = self.nntpManager.currentGroup
-    self.groupNameLabel.text = self.group?.groupId
-    self.expandedArticleForest = self.group?.articleForest?.expandedForest()
+    self.dataSource = TQGroupTableViewDataSource(tableView: self.tableView,
+                                                 group: self.nntpManager.currentGroup)
+    self.dataSource.refreshCallback = {
+      guard let groupId = self.dataSource.group?.groupId else {
+        return
+      }
 
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(groupDidUpdate(_:)),
-                                           name: TQNNTPManager.NNTPGroupDidUpdateNotification,
-                                           object: nil)
+      self.nntpManager.setGroup(groupId: groupId) { (response, error) in
+        self.tableView?.reloadData()
+      }
+    }
+    self.tableView.dataSource = self.dataSource
+    self.dataSource.tableView = self.tableView
+
+    self.tableView.beginRefreshing()
+
+    self.groupNameLabel.text = self.nntpManager.currentGroup?.groupId
+
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(userDidLogout(_:)),
                                            name: TQUserInfoManager.sharedInstance.userDidLogoutNotification,
@@ -48,14 +47,18 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
     for subscribedGroupId in subscribedGroupIds {
       callbacks.append {
         printInfo("User selected new group: \(subscribedGroupId)")
-        if let progressView = TQHeaderDownloadProgressView.loadFromNib(groupId: subscribedGroupId) {
-          TQOverlay.sharedInstance.show(with: progressView, relativeVerticalPosition: 0.35, animated: false)
-          self.nntpManager.setGroup(groupId: subscribedGroupId,
-                                    completion: { (response, error) in
-                                      TQOverlay.sharedInstance.dismiss(animated: true)
-                                      NotificationCenter.default.post(name: TQGroupViewController.userDidChangeGroupNotification, object: self)
-          })
-        }
+        self.nntpManager.setGroup(groupId: subscribedGroupId,
+                                  completion: { (response, error) in
+                                    if let response = response, response.isOk() {
+                                      self.dataSource.group = self.nntpManager.currentGroup
+                                      self.groupNameLabel.text = self.nntpManager.currentGroup?.groupId
+
+                                      self.tableView.reloadData()
+                                      self.tableView.beginRefreshing()
+                                      NotificationCenter.default.post(name: TQGroupViewController.userDidChangeGroupNotification,
+                                                                      object: self)
+                                    }
+        })
       }
     }
 
@@ -114,52 +117,31 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
   }
 
 
-  @objc func groupDidUpdate(_ notification: Notification) {
+  func groupDidChange(_ notification: Notification) {
     if let currentGroup = self.nntpManager.currentGroup {
-      printInfo("Group info updated. Current group: '\(currentGroup)'")
+      printInfo("Group changed. Current group: '\(currentGroup)'")
     }
-    self.group = self.nntpManager.currentGroup
+
+    self.dataSource = TQGroupTableViewDataSource(tableView: self.tableView,
+                                                 group: self.nntpManager.currentGroup)
     self.tableView.reloadData()
+    self.groupNameLabel.text = self.nntpManager.currentGroup?.groupId
   }
 
-  @objc func userDidLogout(_ notification: Notification) {
+  func userDidLogout(_ notification: Notification) {
     self.dismiss(animated: true, completion: nil)
-  }
-
-  // MARK: - UITableViewDataSource
-
-  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    guard let articleForest = self.group?.articleForest else {
-      return 0
-    }
-    return articleForest.numArticles
-  }
-
-  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleSubjectCell",
-                                             for: indexPath) as! TQArticleHeaderTableViewCell
-    guard let article = self.expandedArticleForest?[indexPath.row] else {
-      return cell
-    }
-
-    cell.updateWith(article: article)
-    cell.contentView.backgroundColor = (indexPath.row % 2 == 0)
-      ? TQArticleHeaderTableViewCell.evenColor
-      : TQArticleHeaderTableViewCell.oddColor
-
-    return cell
   }
 
   // MARK: - UITableViewDelegate
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.selectedArticle = self.expandedArticleForest![indexPath.row]
-    guard let selectedArticle = self.selectedArticle else {
+    guard let selectedArticle = self.dataSource.articleAt(indexPath: indexPath) else {
       // TODO: error
       tableView.deselectRow(at: indexPath, animated: true)
       return
     }
 
+    self.selectedArticle = selectedArticle
     self.nntpManager.requestBody(of: selectedArticle) { (response, error) in
       tableView.deselectRow(at: indexPath, animated: true)
 
@@ -183,12 +165,12 @@ class TQGroupViewController : UIViewController, UITableViewDataSource, UITableVi
     switch segueId {
     case "ShowBodySegueID":
       let articleViewController = segue.destination as! TQArticleViewController
-      articleViewController.newsGroup = self.group
+      articleViewController.newsGroup = self.dataSource.group
       articleViewController.article = self.selectedArticle
 
     case "PostNewMessageSegueID":
       let articleComposerViewController = segue.destination as! TQArticleComposerViewController
-      articleComposerViewController.newsGroup = self.group
+      articleComposerViewController.newsGroup = self.dataSource.group
     default:
       ()
     }

@@ -12,9 +12,10 @@
 		FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */; };
 		FD1E839A1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */; };
 		FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */; };
-		FD59B5CE1FD35E6F00B90E74 /* TQProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD59B5CD1FD35E6F00B90E74 /* TQProgressView.swift */; };
 		FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */; };
 		FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */; };
+		FD5E51C6202A3278006E4C7E /* TQRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5E51C5202A3278006E4C7E /* TQRefreshView.xib */; };
+		FD5E51C8202A329D006E4C7E /* TQRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5E51C7202A329D006E4C7E /* TQRefreshView.swift */; };
 		FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6443221FC8D855006CE187 /* KeychainWrapper.swift */; };
 		FD77E29A1FDF4D7C00029503 /* TQReadArticlesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD77E2991FDF4D7C00029503 /* TQReadArticlesManager.swift */; };
 		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
@@ -36,9 +37,11 @@
 		FDA539E31F5A6550009C7526 /* check1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA539E11F5A6542009C7526 /* check1.png */; };
 		FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */; };
 		FDADC7561FC8CF0F00F76A94 /* TQLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */; };
+		FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */; };
 		FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED2D1FC4BC6200BACC8A /* TQNNTPGroup.swift */; };
 		FDB6ED311FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */; };
 		FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
+		FDB7DE73202A261B00273BE0 /* TQRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */; };
 		FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */; };
 		FDD1D0691FCB8A0C0052B6B8 /* TQReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D0681FCB8A0C0052B6B8 /* TQReviewManager.swift */; };
 		FDD365C41F5A052400A80106 /* news1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C31F5A007900A80106 /* news1.png */; };
@@ -68,10 +71,11 @@
 		FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlayBackgroundView.swift; sourceTree = "<group>"; };
 		FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlaySlidingMenu.swift; sourceTree = "<group>"; };
 		FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TQUserInfoInputView.xib; sourceTree = "<group>"; };
-		FD59B5CD1FD35E6F00B90E74 /* TQProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQProgressView.swift; sourceTree = "<group>"; };
 		FD5A1B731FC8E42200789626 /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftKeychainWrapper.h; sourceTree = "<group>"; };
 		FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoManager.swift; sourceTree = "<group>"; };
+		FD5E51C5202A3278006E4C7E /* TQRefreshView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQRefreshView.xib; sourceTree = "<group>"; };
+		FD5E51C7202A329D006E4C7E /* TQRefreshView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQRefreshView.swift; sourceTree = "<group>"; };
 		FD6443221FC8D855006CE187 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FD77E2991FDF4D7C00029503 /* TQReadArticlesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQReadArticlesManager.swift; sourceTree = "<group>"; };
 		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
@@ -95,9 +99,11 @@
 		FDA539E11F5A6542009C7526 /* check1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check1.png; sourceTree = "<group>"; };
 		FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoInputView.swift; sourceTree = "<group>"; };
 		FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQLoginViewController.swift; sourceTree = "<group>"; };
+		FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQGroupTableViewDataSource.swift; sourceTree = "<group>"; };
 		FDB6ED2D1FC4BC6200BACC8A /* TQNNTPGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPGroup.swift; sourceTree = "<group>"; };
 		FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticle.swift; sourceTree = "<group>"; };
 		FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticleForest.swift; sourceTree = "<group>"; };
+		FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQRefreshableTableView.swift; sourceTree = "<group>"; };
 		FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQAppDelegate.swift; sourceTree = "<group>"; };
 		FDD1D0681FCB8A0C0052B6B8 /* TQReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQReviewManager.swift; sourceTree = "<group>"; };
 		FDD365C31F5A007900A80106 /* news1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news1.png; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 		FD12F6301F57563100415514 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FD5E51C5202A3278006E4C7E /* TQRefreshView.xib */,
+				FD5E51C7202A329D006E4C7E /* TQRefreshView.swift */,
 				FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */,
 				FDE7CBAB1F7D7B9800E6E89E /* TQTextField.swift */,
 				FDE7CBAE1F7D993900E6E89E /* TQSearchBar.swift */,
@@ -204,9 +212,9 @@
 				FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */,
 				FDE86E771FC78CE6009C0466 /* TQReleaseNotesView.swift */,
 				FDA449121F672457004E7079 /* TQReleaseNotesView.xib */,
-				FD59B5CD1FD35E6F00B90E74 /* TQProgressView.swift */,
 				FDF3DECF1FD607B700F5BFDB /* TQReviewView.swift */,
 				FDF3DED11FD607CD00F5BFDB /* TQReviewView.xib */,
+				FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 		FD9CB64F1F4233E800BC2225 /* Turquoise */ = {
 			isa = PBXGroup;
 			children = (
+				FDB6761B2027A91300F9F654 /* DataSource */,
 				FD9CB6591F4233E800BC2225 /* Main.storyboard */,
 				FDF0F9641F58B493008FE181 /* Manager */,
 				FD9CB8E31F55271D000755D6 /* Keychain */,
@@ -272,6 +281,14 @@
 				FD9CB8EA1F552820000755D6 /* Security.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FDB6761B2027A91300F9F654 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		FDCC42E71F4BA844001EC1BC /* String */ = {
@@ -376,6 +393,7 @@
 				FDD365C41F5A052400A80106 /* news1.png in Resources */,
 				FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */,
 				FD9CB6601F4233E800BC2225 /* LaunchScreen.storyboard in Resources */,
+				FD5E51C6202A3278006E4C7E /* TQRefreshView.xib in Resources */,
 				FDD365D11F5A07F700A80106 /* news5.png in Resources */,
 				FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */,
 				FD9CB65D1F4233E800BC2225 /* Assets.xcassets in Resources */,
@@ -414,6 +432,7 @@
 			files = (
 				FDE86E811FC898F7009C0466 /* TQArticleViewController.swift in Sources */,
 				FD90FD9D1FC8F1B6005449F1 /* TQGroupSelectionTableViewCell.swift in Sources */,
+				FDB7DE73202A261B00273BE0 /* TQRefreshableTableView.swift in Sources */,
 				FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */,
 				FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */,
 				FDE86E721FC77F27009C0466 /* TQGroupViewController.swift in Sources */,
@@ -424,9 +443,9 @@
 				FDF3DED01FD607B700F5BFDB /* TQReviewView.swift in Sources */,
 				FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */,
 				FD7E83681FC517F500025211 /* TQNNTPManager.swift in Sources */,
-				FD59B5CE1FD35E6F00B90E74 /* TQProgressView.swift in Sources */,
 				FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */,
 				FD91EF671FCA17EA009CB0F5 /* TQLogger.swift in Sources */,
+				FD5E51C8202A329D006E4C7E /* TQRefreshView.swift in Sources */,
 				FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */,
 				FD833CB31FC89EDD003A9FA0 /* TQArticleComposerViewController.swift in Sources */,
 				FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */,
@@ -438,6 +457,7 @@
 				FDD1D0691FCB8A0C0052B6B8 /* TQReviewManager.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FD77E29A1FDF4D7C00029503 /* TQReadArticlesManager.swift in Sources */,
+				FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */,
 				FDE86E751FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
