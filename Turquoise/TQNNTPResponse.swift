@@ -112,6 +112,10 @@ import Foundation
 
     let messageStartIndex = message.index(newLineIndex, offsetBy: newline.count)
     let messageEndIndex = message.index(message.endIndex, offsetBy: -terminator.count)
+    guard messageStartIndex < messageEndIndex else {
+      return ""
+    }
+
     let messageRange = messageStartIndex..<messageEndIndex
     return message[messageRange]
   }
