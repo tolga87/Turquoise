@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 class TQNNTPArticle : NSObject {
   private(set) var articleNo = -1
@@ -131,6 +132,29 @@ class TQNNTPArticle : NSObject {
       self.references.append(contentsOf: parentArticle.references)
       self.references.append(parentArticle.messageId)
     }
+  }
+
+  init?(managedObject: NSManagedObject) {
+    super.init()
+
+    for key in TQNNTPArticle.dictionaryRepresentationKeys() {
+      let value = managedObject.value(forKey: key)
+      self.setValue(value, forKey: key)
+    }
+  }
+
+  class func dictionaryRepresentationKeys() -> [String] {  // Order of keys not important
+    return [ "articleNo", "messageId", "cancelingMessageId", "from", "decodedFrom", "subject", "decodedSubject",
+             "body", "date", "newsgroups", "references" ]
+  }
+
+  func dictionaryRepresentation() -> [String : Any?] {
+    var dictionary: [String : Any?] = [:]
+    for key in TQNNTPArticle.dictionaryRepresentationKeys() {
+      let value = self.value(forKey: key)
+      dictionary[key] = value
+    }
+    return dictionary
   }
 
   func addChildArticle(_ childArticle: TQNNTPArticle) {

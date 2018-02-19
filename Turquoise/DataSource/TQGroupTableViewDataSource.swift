@@ -2,41 +2,53 @@ import Foundation
 import UIKit
 
 class TQGroupTableViewDataSource : NSObject, UITableViewDataSource {
-  var refreshCallback: (() -> Void)?
+  var articleManager: TQArticleManager
 
-  weak var tableView: TQRefreshableTableView? {
-    didSet {
-      if let tableView = tableView {
-        tableView.refreshCallback = {
-          self.refreshGroup()
-        }
-      }
-    }
-  }
+  weak var tableView: TQRefreshableTableView?
 
-//  var nntpManager: TQNNTPManager!
-  var group: TQNNTPGroup?
+  var groupId: String
+  private(set) var group: TQNNTPGroup?
   var expandedArticleForest: [TQNNTPArticle]? {
     return self.group?.articleForest?.expandedForest()
   }
   var selectedArticle: TQNNTPArticle?
 
-  public init(tableView: TQRefreshableTableView?, group: TQNNTPGroup?) {
-    self.group = group
+  public init(tableView: TQRefreshableTableView?, groupId: String, articleManager: TQArticleManager) {
     self.tableView = tableView
+
+    self.groupId = groupId
+    self.articleManager = articleManager
+    self.group = self.articleManager.getGroup(id: self.groupId)
 
     super.init()
 
+    self.tableView?.refreshCallback = {
+      self.refreshGroup()
+    }
+
     NotificationCenter.default.addObserver(self,
-                                           selector: #selector(headersDidUpdate),
-                                           name: TQNNTPManager.NNTPGroupDidReceiveHeadersNotification,
+                                           selector: #selector(groupDidUpdate(_:)),
+                                           name: self.articleManager.groupDidUpdateNotification,
                                            object: nil)
+    self.refreshGroup()
+  }
+
+  func groupDidUpdate(_ notification: Notification) {
+    self.group = notification.userInfo?[self.articleManager.updatedGroupKey] as? TQNNTPGroup
+    self.tableView?.reloadData()
+    self.tableView?.endRefreshing()
   }
 
   private func refreshGroup() {
-    if let refreshCallback = self.refreshCallback {
-      refreshCallback()
+    guard let tableView = self.tableView else {
+      return
     }
+
+    if !tableView.isRefreshing() {
+      tableView.beginRefreshing()
+    }
+
+    self.articleManager.refreshGroupHeaders(groupId: self.groupId)
   }
 
   func articleAt(indexPath: IndexPath) -> TQNNTPArticle? {
@@ -50,11 +62,6 @@ class TQGroupTableViewDataSource : NSObject, UITableViewDataSource {
     }
 
     return forest[row]
-  }
-
-  func headersDidUpdate() {
-    self.tableView?.reloadData()
-    self.tableView?.endRefreshing()
   }
 
   // MARK: - UITableViewDataSource

@@ -239,6 +239,8 @@ class TQNNTPManager : NSObject {
   }
 
   func setGroup(groupId: String, completion: @escaping TQNNTPRequestCallback) {
+    printInfo("User selected new group: \(groupId)")
+
     let requestString = "GROUP \(groupId)\r\n"
 
     self.sendRequest(requestString) { (response, error) in
@@ -247,12 +249,12 @@ class TQNNTPManager : NSObject {
         completion(response, error)
       }
 
-      self.currentGroup?.downloadHeaders(completion: {
-        printInfo("All headers are downloaded")
-        NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupDidReceiveHeadersNotification,
-                                        object: self,
-                                        userInfo: nil)
-      })
+//      self.currentGroup?.downloadHeaders(completion: {
+//        printInfo("All headers are downloaded")
+//        NotificationCenter.default.post(name: TQNNTPManager.NNTPGroupDidReceiveHeadersNotification,
+//                                        object: self,
+//                                        userInfo: nil)
+//      })
     }
   }
 
@@ -266,6 +268,17 @@ class TQNNTPManager : NSObject {
   }
 
   func requestBody(of article: TQNNTPArticle, completion: @escaping TQNNTPRequestCallback) {
+    if let cachedArticle = TQCacheManager.sharedInstance.load(messageId: article.messageId) {
+      for (key, value) in cachedArticle.dictionaryRepresentation() {
+        article.setValue(value, forKey: key)
+      }
+
+      let response = TQNNTPResponse(responseCode: .articleBodyFollows)
+      completion(response, nil)
+      printInfo("Article \(article.messageId) was loaded from cache.")
+      return
+    }
+
     let requestString = "BODY \(article.messageId)\r\n"
     self.sendRequest(requestString) { (response, error) in
       if let response = response, response.isOk() {
@@ -274,6 +287,9 @@ class TQNNTPManager : NSObject {
                                         userInfo: nil)
         article.body = response.getArticleBody() ?? ""
         TQReadArticlesManager.sharedInstance.markAsRead(article)
+        if TQCacheManager.sharedInstance.save(article: article) {
+          printInfo("Article \(article.messageId) saved to cache.")
+        }
       }
       completion(response, error)
     }

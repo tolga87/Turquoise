@@ -105,6 +105,12 @@ class TQNNTPGroup : NSObject {
   }
 
   func downloadHeaders(completion: @escaping () -> Void) {
+    self.articles = []
+    self.articleForest = nil
+    self.headersDownloaded = false
+    self.articlesNos = [:]
+    self.messageIds = [:]
+
     guard self.minArticleNo >= 0 && self.maxArticleNo >= 0 else {
       completion()
       return

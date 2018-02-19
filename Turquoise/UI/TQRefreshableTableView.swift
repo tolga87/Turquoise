@@ -34,12 +34,17 @@ class TQRefreshableTableView : UITableView {
     }
   }
 
+  func isRefreshing() -> Bool {
+    return self.refreshControl!.isRefreshing
+  }
+
   func beginRefreshing() {
     self.setContentOffset(CGPoint(x: 0, y: -60),
                           animated: true)
     self.refreshControl!.beginRefreshing()
     self.refreshView.titleLabel.text = self.loadingMessage()
 
+    NotificationCenter.default.removeObserver(self)
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(didUpdateHeaderDownloadProgress(_:)),
                                            name: TQNNTPGroup.headerDownloadProgressNotification,

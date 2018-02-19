@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 class TQLoginViewController : UIViewController {
-
   @IBOutlet var userNameField: TQTextField!
   @IBOutlet var passwordField: TQTextField!
   @IBOutlet var loginButton: UIButton!
@@ -160,26 +159,19 @@ class TQLoginViewController : UIViewController {
                                       animated: true)
       }
 
-      let groupId = "metu.ceng.test"
-      // let groupId = "metu.ceng.ses"
-      // let groupId = "metu.ceng.announce.jobs"
-      // let groupId = "metu.ceng.announce.sales"
-      // let groupId = "metu.ceng.kult.kitap"
-      // let groupId = "metu.ceng.course.465"
-      // let groupId = "metu.ceng.course.140"
-      // let groupId = "metu.ceng.course.316"
-
-      manager.setGroup(groupId: groupId, completion: { (response, error) in
-        guard let response = response, response.isOk() else {
-          // TODO: what should we do here?..
-          return
-        }
-
-        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
-        self.connectionStatusLabel.text = nil
-        self.loginButton.isEnabled = true
-        self.activityIndicator.stopAnimating()
-      })
+      self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
+      self.connectionStatusLabel.text = nil
+      self.loginButton.isEnabled = true
+      self.activityIndicator.stopAnimating()
     }
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let segueId = segue.identifier, segueId == "ShowGroupSegueID" else {
+      return
+    }
+
+    let groupViewController = segue.destination as! TQGroupViewController
+    groupViewController.groupId = "metu.ceng.test"  // TODO: fix
   }
 }

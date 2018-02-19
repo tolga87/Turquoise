@@ -55,6 +55,10 @@ import Foundation
     return (firstDigit == TQNNTPResponseType.OK.rawValue && secondDigit == TQNNTPResponseCategory.articleSelection.rawValue)
   }
 
+  init(responseCode: TQNNTPResponseCode) {
+    self.responseCodeValue = responseCode.rawValue
+  }
+
   init?(string: String?) {
     guard let string = string, string.count > 0 else {
       return nil
