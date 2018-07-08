@@ -104,18 +104,6 @@ class TQGroupViewController : UIViewController, UITableViewDelegate {
                                          callbacks: callbacks)
   }
 
-
-//  func groupDidChange(_ notification: Notification) {
-//    if let currentGroup = self.nntpManager.currentGroup {
-//      printInfo("Group changed. Current group: '\(currentGroup)'")
-//    }
-//
-//    self.dataSource = TQGroupTableViewDataSource(tableView: self.tableView,
-//                                                 groupId: self.groupId)
-//    self.tableView.reloadData()
-//    self.groupNameLabel.text = self.nntpManager.currentGroup?.groupId
-//  }
-
   func userDidLogout(_ notification: Notification) {
     self.dismiss(animated: true, completion: nil)
   }

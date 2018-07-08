@@ -222,9 +222,7 @@ class TQNNTPManager : NSObject {
                                       minArticleNo: minArticleNo,
                                       maxArticleNo: maxArticleNo,
                                       moderated: moderated)
-              if let group = group {
-                self.allGroups.append(group)
-              }
+              self.allGroups.append(group)
             }
           }
         }

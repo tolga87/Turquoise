@@ -1,4 +1,5 @@
 import Foundation
+import CoreData
 
 class TQNNTPGroup : NSObject {
   static let headerDownloadProgressNotification = Notification.Name("headerDownloadProgressNotification")
@@ -8,7 +9,7 @@ class TQNNTPGroup : NSObject {
   private(set) var minArticleNo = -1
   private(set) var maxArticleNo = -1
   private(set) var moderated = false
-  private(set) var articles: [TQNNTPArticle]
+  var articles: [TQNNTPArticle]
   private(set) var articleForest: TQNNTPArticleForest?
   private(set) var headersDownloaded = false
 
@@ -40,10 +41,10 @@ class TQNNTPGroup : NSObject {
     // we don't know if this group is moderated at this point
   }
 
-  init?(groupId: String,
-        minArticleNo: Int,
-        maxArticleNo: Int,
-        moderated: Bool) {
+  init(groupId: String,
+       minArticleNo: Int,
+       maxArticleNo: Int,
+       moderated: Bool) {
     self.groupId = groupId
     self.minArticleNo = minArticleNo
     self.maxArticleNo = maxArticleNo
@@ -52,6 +53,41 @@ class TQNNTPGroup : NSObject {
     self.articlesNos = [:]
     self.messageIds = [:]
   }
+
+  init(groupId: String, articles:[TQNNTPArticle]) {
+    self.groupId = groupId
+    self.articles = articles
+    self.headersDownloaded = true
+
+    super.init()
+
+    for article in articles {
+      if self.minArticleNo == -1 {
+        self.minArticleNo = article.articleNo
+      } else {
+        self.minArticleNo = min(article.articleNo, self.minArticleNo)
+      }
+      if self.maxArticleNo == -1 {
+        self.maxArticleNo = article.articleNo
+      } else {
+        self.maxArticleNo = max(article.articleNo, self.maxArticleNo)
+      }
+    }
+
+    self.setupDependencies()
+    self.articleForest = TQNNTPArticleForest(articles: self.articles)
+  }
+
+//  init?(managedObject: NSManagedObject) {
+//    super.init()
+//
+//    self.groupId = managedObject.value(forKey: "groupId")
+//
+//    for key in TQNNTPArticle.dictionaryRepresentationKeys() {
+//      let value = managedObject.value(forKey: key)
+//      self.setValue(value, forKey: key)
+//    }
+//  }
 
   private func downloadHeader(currentArticle: Int,
                               completion: @escaping (() -> Void)) {

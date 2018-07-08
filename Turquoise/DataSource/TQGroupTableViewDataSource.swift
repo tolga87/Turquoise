@@ -30,7 +30,7 @@ class TQGroupTableViewDataSource : NSObject, UITableViewDataSource {
                                            selector: #selector(groupDidUpdate(_:)),
                                            name: self.articleManager.groupDidUpdateNotification,
                                            object: nil)
-    self.refreshGroup()
+    self.refreshGroup()  //~TA
   }
 
   func groupDidUpdate(_ notification: Notification) {

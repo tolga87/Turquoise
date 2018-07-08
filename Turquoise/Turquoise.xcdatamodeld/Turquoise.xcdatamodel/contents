@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Article" representedClassName="Article" syncable="YES" codeGenerationType="class">
         <attribute name="articleNo" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="body" attributeType="String" syncable="YES"/>
@@ -13,7 +13,12 @@
         <attribute name="references" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+        <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="messageIds" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Article" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Group" positionX="-263" positionY="-84" width="128" height="73"/>
     </elements>
 </model>

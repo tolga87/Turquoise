@@ -17,13 +17,19 @@ class TQArticleManager: NSObject {
   }
 
   func getGroup(id: String) -> TQNNTPGroup? {
-    return self.groups[id]
+    return self.cacheManager.load(groupId: id)
   }
 
   func refreshGroupHeaders(groupId: String) {
     let headersDownloadBlock = { (group: TQNNTPGroup) -> Void in
       group.downloadHeaders {
         printInfo("Headers downloaded for group `\(group.groupId)`")
+
+        for article in group.articles {
+          self.cacheManager.save(article: article)
+        }
+        self.cacheManager.save(group: group)
+
         NotificationCenter.default.post(name: self.groupDidUpdateNotification,
                                         object: self,
                                         userInfo: [self.updatedGroupKey : group])
