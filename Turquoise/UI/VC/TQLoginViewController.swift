@@ -9,15 +9,17 @@ class TQLoginViewController : UIViewController {
   @IBOutlet var activityIndicator: UIActivityIndicatorView!
   @IBOutlet var versionNumberLabel: UILabel!
 
+    let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
+
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     self.loginButton.isEnabled = true
-    // TODO: separate this logic from view lifecycle methods
-    if (TQNNTPManager.sharedInstance.networkReachable) {
+    // TODO: fix this code.
+//    if (TQNNTPManager.sharedInstance.networkReachable) {
       // don't attempt to connect if we appeared because of a network disconnection
       _ = self.loginWithSavedCredentialsIfPossible()
-    }
+//    }
   }
 
   override func viewDidLoad() {
@@ -111,59 +113,53 @@ class TQLoginViewController : UIViewController {
     // dismiss keyboard if necessary
     self.view.endEditing(true)
 
-    let manager = TQNNTPManager.sharedInstance
-    if !manager.networkReachable {
-      self.connectionStatusLabel.text = "No network connection"
-      self.loginButton.isEnabled = true
-      self.activityIndicator.stopAnimating()
-      return
-    }
+    // TODO: Handle network connectivity issues.
+//    let manager = TQNNTPManager.sharedInstance
+//    if !manager.networkReachable {
+//      self.connectionStatusLabel.text = "No network connection"
+//      self.loginButton.isEnabled = true
+//      self.activityIndicator.stopAnimating()
+//      return
+//    }
 
     self.connectionStatusLabel.text = "Connecting..."
     self.loginButton.isEnabled = false
     self.activityIndicator.startAnimating()
 
-    manager.login(userName: userName, password: password) { (response, error) in
-      guard let response = response else {
-        // TODO: error
-        return
-      }
+    let loginManager = LoginManager(usenetClient: self.usenetClient)
 
-      if response.isFailure() {
+    loginManager.loginFailureCallback = {
         printInfo("Login Failed!")
         self.connectionStatusLabel.text = "Invalid username/password"
         self.activityIndicator.stopAnimating()
         self.loginButton.isEnabled = true
-        return
-      } else if !response.isOk() {
-        // not sure what happened here.
-        self.loginButton.isEnabled = true
-        return
-      }
+    }
 
-      // login successful.
-      printInfo("Login Successful!")
-      self.connectionStatusLabel.text = "Login successful!"
+    loginManager.loginSuccessCallback = {
+        printInfo("Login Successful!")
+        self.connectionStatusLabel.text = "Login successful!"
 
-      if askUserInfo {
-        let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView
-        userInfoInputView.completionBlock = { (userFullName, userEmail) in
-          let userInfoManager = TQUserInfoManager.sharedInstance
-          userInfoManager.userName = userName
-          userInfoManager.password = password
-          userInfoManager.fullName = userFullName
-          userInfoManager.email = userEmail
+        if askUserInfo {
+            let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView
+            userInfoInputView.completionBlock = { (userFullName, userEmail) in
+              let userInfoManager = TQUserInfoManager.sharedInstance
+              userInfoManager.userName = userName
+              userInfoManager.password = password
+              userInfoManager.fullName = userFullName
+              userInfoManager.email = userEmail
         }
         TQOverlay.sharedInstance.show(with: userInfoInputView,
                                       relativeVerticalPosition: 0.3,
                                       animated: true)
-      }
+        }
 
-      self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
-      self.connectionStatusLabel.text = nil
-      self.loginButton.isEnabled = true
-      self.activityIndicator.stopAnimating()
+        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
+        self.connectionStatusLabel.text = nil
+        self.loginButton.isEnabled = true
+        self.activityIndicator.stopAnimating()
     }
+
+    loginManager.login(userName: userName, password: password)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -172,6 +168,7 @@ class TQLoginViewController : UIViewController {
     }
 
     let groupViewController = segue.destination as! TQGroupViewController
-    groupViewController.groupId = "metu.ceng.test"  // TODO: fix
+//    groupViewController.groupId = "metu.ceng.test"
+    groupViewController.groupId = "metu.ceng.announce.official"  // TODO: fix
   }
 }
