@@ -39,6 +39,9 @@
 		FDA539E31F5A6550009C7526 /* check1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA539E11F5A6542009C7526 /* check1.png */; };
 		FDA7D07420FBBB01002B3E4D /* GroupViewController_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */; };
 		FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */; };
+		FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07A20FBE8D7002B3E4D /* ArticleHeaders.swift */; };
+		FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07C20FC0290002B3E4D /* Article.swift */; };
+		FDA7D08120FC04F3002B3E4D /* ArticleForestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */; };
 		FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */; };
 		FDADC7561FC8CF0F00F76A94 /* TQLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */; };
 		FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */; };
@@ -116,6 +119,9 @@
 		FDA539E11F5A6542009C7526 /* check1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check1.png; sourceTree = "<group>"; };
 		FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController_New.swift; sourceTree = "<group>"; };
 		FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
+		FDA7D07A20FBE8D7002B3E4D /* ArticleHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaders.swift; sourceTree = "<group>"; };
+		FDA7D07C20FC0290002B3E4D /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleForestManager.swift; sourceTree = "<group>"; };
 		FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoInputView.swift; sourceTree = "<group>"; };
 		FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQLoginViewController.swift; sourceTree = "<group>"; };
 		FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQGroupTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -351,6 +357,8 @@
 				FDB6A96D20F2B5AA006EEE05 /* UsenetClientInterface.swift */,
 				FDB6A97D20F2F3FB006EEE05 /* NNTPGroupResponse.swift */,
 				FDB6A97F20F2F47B006EEE05 /* NNTPResponseFactory.swift */,
+				FDA7D07A20FBE8D7002B3E4D /* ArticleHeaders.swift */,
+				FDA7D07C20FC0290002B3E4D /* Article.swift */,
 			);
 			path = UsenetClient_New;
 			sourceTree = "<group>";
@@ -369,6 +377,7 @@
 			children = (
 				FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */,
 				FDB6A97920F2E439006EEE05 /* GroupViewModel.swift */,
+				FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -530,6 +539,7 @@
 				FDF3DED01FD607B700F5BFDB /* TQReviewView.swift in Sources */,
 				FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */,
 				FD7E83681FC517F500025211 /* TQNNTPManager.swift in Sources */,
+				FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */,
 				FDA7D07420FBBB01002B3E4D /* GroupViewController_New.swift in Sources */,
 				FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */,
 				FD91EF671FCA17EA009CB0F5 /* TQLogger.swift in Sources */,
@@ -550,6 +560,7 @@
 				FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */,
 				FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
+				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
 				FD77E29A1FDF4D7C00029503 /* TQReadArticlesManager.swift in Sources */,
 				FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */,
@@ -565,6 +576,7 @@
 				FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */,
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
 				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,
+				FDA7D08120FC04F3002B3E4D /* ArticleForestManager.swift in Sources */,
 				FDE86E7B1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

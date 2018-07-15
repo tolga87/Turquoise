@@ -316,13 +316,11 @@ class TQLoginViewController : UIViewController {
 
         let groupId = "metu.ceng.others.bunalim"
         self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
+        self.showGroupVC()
 
-        self.groupManager.downloadHeaders {
-            printDebug("Group headers downloaded.")
-            DispatchQueue.main.async {
-                self.showGroupVC()
-            }
-        }
+//        self.groupManager.downloadGroupHeaders(completion: { (groupHeaders) in
+//            printDebug("Group headers downloaded.")
+//        })
 
         if askUserInfo {
             let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView

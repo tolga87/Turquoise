@@ -10,12 +10,27 @@ import Foundation
 import UIKit
 
 class GroupViewController_New : UIViewController {
-
+    let groupManager: GroupManager
     var tableView: UITableView!
+    let groupViewModel: TQGroupTableViewDataSource
 
     init(groupManager: GroupManager) {
+        self.groupManager = groupManager
+        self.groupViewModel = TQGroupTableViewDataSource(groupManager: self.groupManager)
+
+        self.tableView = UITableView()
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.dataSource = self.groupViewModel
+        self.tableView.backgroundColor = .cyan
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+
         super.init(nibName: nil, bundle: nil)
 
+        self.groupViewModel.updateCallback = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -24,12 +39,6 @@ class GroupViewController_New : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-        self.tableView = UITableView()
-        self.tableView.backgroundColor = .cyan
-
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
 
         self.view.addSubview(self.tableView)
 
@@ -41,4 +50,7 @@ class GroupViewController_New : UIViewController {
         self.view.backgroundColor = .purple
     }
 
+    private func refreshGroupHeaders() {
+        self.groupManager.downloadGroupHeaders()
+    }
 }

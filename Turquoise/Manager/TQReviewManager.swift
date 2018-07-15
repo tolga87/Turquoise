@@ -13,7 +13,7 @@ class TQReviewManager : NSObject {
 
   private var listenedNotifications: [Notification.Name : Int] = [
     TQNNTPManager.didReceiveArticleBodyNotification : 10,
-    TQGroupViewController.userDidChangeGroupNotification: 10,
+//    TQGroupViewController.userDidChangeGroupNotification: 10,
     TQNNTPManager.didPostArticleNotification : 1,
   ]
   private var promptDisplayed = false {
