@@ -2,32 +2,206 @@ import Foundation
 import UIKit
 
 class TQLoginViewController : UIViewController {
-  @IBOutlet var userNameField: TQTextField!
-  @IBOutlet var passwordField: TQTextField!
-  @IBOutlet var loginButton: UIButton!
-  @IBOutlet var connectionStatusLabel: TQLabel!
-  @IBOutlet var activityIndicator: UIActivityIndicatorView!
-  @IBOutlet var versionNumberLabel: UILabel!
+    let contentView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = #colorLiteral(red: 0.3725490196, green: 0.6588235294, blue: 0.8117647059, alpha: 1)
+        return view
+    }()
+    let infoLabel: TQLabel = {
+        let label = TQLabel(frame: .zero)
+        label.fontSize = 12
+        label.minimumScaleFactor = 0.8
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Please enter your COW credentials below."
+        return label
+    }()
+    let userLabel: TQLabel = {
+        let label = TQLabel(frame: .zero)
+        label.fontSize = 12
+        label.minimumScaleFactor = 0.8
+        label.textColor = .black
+        label.textAlignment = .left
+        label.text = "User"
+        return label
+    }()
+    let passwordLabel: TQLabel = {
+        let label = TQLabel(frame: .zero)
+        label.fontSize = 12
+        label.minimumScaleFactor = 0.8
+        label.textColor = .black
+        label.textAlignment = .left
+        label.text = "Pass"
+        return label
+    }()
+
+    let userNameField: TQTextField = {
+        let field = TQTextField(frame: .zero)
+        field.layer.borderColor = UIColor.black.cgColor
+        field.layer.borderWidth = 1
+        return field
+    }()
+    let passwordField: TQTextField = {
+        let field = TQTextField(frame: .zero)
+        field.layer.borderColor = UIColor.black.cgColor
+        field.layer.borderWidth = 1
+        return field
+    }()
+
+    let loginButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.titleLabel?.font = UIFont(name: "dungeon", size: 14)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.01960784314, green: 0.1254901961, blue: 0.5647058824, alpha: 1)
+        button.setTitle("Proceed", for: .normal)
+        return button
+    }()
+
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    let connectionStatusLabel: TQLabel = {
+        let label = TQLabel(frame: .zero)
+        label.fontSize = 12
+        label.minimumScaleFactor = 0.8
+        label.textColor = .white
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    let versionNumberLabel: TQLabel = {
+        let label = TQLabel(frame: .zero)
+        label.fontSize = 12
+        label.textColor = .darkGray
+        label.textAlignment = .right
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
     var groupManager: GroupManager!
 
-  override func viewWillAppear(_ animated: Bool) {
-    super.viewWillAppear(animated)
-
-    self.loginButton.isEnabled = true
-    // TODO: fix this code.
-//    if (TQNNTPManager.sharedInstance.networkReachable) {
-      // don't attempt to connect if we appeared because of a network disconnection
-      _ = self.loginWithSavedCredentialsIfPossible()
-//    }
-  }
+//  override func viewWillAppear(_ animated: Bool) {
+//    super.viewWillAppear(animated)
+//
+//    self.loginButton.isEnabled = true
+//    // TODO: fix this code.
+////    if (TQNNTPManager.sharedInstance.networkReachable) {
+//      // don't attempt to connect if we appeared because of a network disconnection
+//      _ = self.loginWithSavedCredentialsIfPossible()
+////    }
+//  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    self.view.backgroundColor = .black
+
+    let contentXPadding: CGFloat = 8
+    let contentYPadding: CGFloat = 4
+
+    self.view.addSubview(self.contentView)
+    self.contentView.translatesAutoresizingMaskIntoConstraints = false
+    self.contentView.leadingAnchor.constraint(equalTo: self.view.safeLeadingAnchor, constant: 24).isActive = true
+    self.contentView.trailingAnchor.constraint(equalTo: self.view.safeTrailingAnchor, constant: -24).isActive = true
+    self.contentView.topAnchor.constraint(equalTo: self.view.safeTopAnchor, constant: 100).isActive = true
+    self.contentView.heightAnchor.constraint(equalToConstant: 140).isActive = true
+
+    for view in [ infoLabel, userLabel, userNameField, passwordLabel, passwordField, loginButton, activityIndicator ] {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.addSubview(view)
+    }
+
+    // INFO
+
+    self.infoLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
+                                            constant: contentXPadding).isActive = true
+    self.infoLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                             constant: -contentXPadding).isActive = true
+    self.infoLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor,
+                                        constant: contentYPadding).isActive = true
+    self.infoLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+    // USER LABEL
+
+    self.userLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
+                                            constant: contentXPadding).isActive = true
+    self.userLabel.trailingAnchor.constraint(equalTo: self.userNameField.leadingAnchor,
+                                             constant: -contentXPadding).isActive = true
+    self.userLabel.topAnchor.constraint(equalTo: self.userNameField.topAnchor).isActive = true
+    self.userLabel.widthAnchor.constraint(equalToConstant: 48).isActive = true
+    self.userLabel.heightAnchor.constraint(equalTo: self.userNameField.heightAnchor).isActive = true
+
+    // USER NAME
+
+    self.userNameField.leadingAnchor.constraint(equalTo: self.userLabel.trailingAnchor,
+                                                constant: contentXPadding).isActive = true
+    self.userNameField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                                 constant: -contentXPadding).isActive = true
+    self.userNameField.topAnchor.constraint(equalTo: self.infoLabel.bottomAnchor,
+                                            constant: contentYPadding).isActive = true
+    self.userNameField.bottomAnchor.constraint(equalTo: self.passwordField.topAnchor,
+                                                constant: 0).isActive = true
+
+    // PASSWORD LABEL
+
+    self.passwordLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
+                                                constant: contentXPadding).isActive = true
+    self.passwordLabel.trailingAnchor.constraint(equalTo: self.passwordField.leadingAnchor,
+                                                 constant: -contentXPadding).isActive = true
+    self.passwordLabel.bottomAnchor.constraint(equalTo: self.passwordField.bottomAnchor).isActive = true
+    self.passwordLabel.widthAnchor.constraint(equalTo: self.userLabel.widthAnchor).isActive = true
+    self.passwordLabel.heightAnchor.constraint(equalTo: self.passwordField.heightAnchor).isActive = true
+
+    // PASSWORD
+
+    self.passwordField.leadingAnchor.constraint(equalTo: self.passwordLabel.trailingAnchor,
+                                                constant: contentXPadding).isActive = true
+    self.passwordField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                                 constant: -contentXPadding).isActive = true
+    self.passwordField.topAnchor.constraint(equalTo: self.userNameField.bottomAnchor,
+                                            constant: 0).isActive = true
+    self.passwordField.bottomAnchor.constraint(equalTo: self.loginButton.topAnchor,
+                                               constant: -contentYPadding).isActive = true
+    self.userNameField.heightAnchor.constraint(equalTo: self.passwordField.heightAnchor).isActive = true
+
+    // LOGIN BUTTON
+
+    self.loginButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                               constant: -contentXPadding).isActive = true
+    self.loginButton.topAnchor.constraint(equalTo: self.passwordField.bottomAnchor,
+                                          constant: contentYPadding).isActive = true
+    self.loginButton.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor,
+                                             constant: -contentYPadding).isActive = true
+    self.loginButton.widthAnchor.constraint(equalToConstant: 120).isActive = true
+    self.loginButton.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+    // SPINNER
+
+    self.activityIndicator.trailingAnchor.constraint(equalTo: self.loginButton.leadingAnchor,
+                                                     constant: -contentXPadding).isActive = true
+    self.activityIndicator.centerYAnchor.constraint(equalTo: self.loginButton.centerYAnchor).isActive = true
+
+    // CONNECTION STATUS
+
+    self.view.addSubview(self.connectionStatusLabel)
+    self.connectionStatusLabel.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor,
+                                                    constant: 8).isActive = true
+    self.connectionStatusLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor).isActive = true
+    self.connectionStatusLabel.widthAnchor.constraint(equalTo: self.contentView.widthAnchor).isActive = true
+    self.connectionStatusLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+    // VERSION NUMBER LABEL
+
+    self.view.addSubview(self.versionNumberLabel)
+    self.versionNumberLabel.bottomAnchor.constraint(equalTo: self.view.safeBottomAnchor,
+                                                    constant: -contentYPadding).isActive = true
+    self.versionNumberLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+    self.versionNumberLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    self.versionNumberLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+
+
     // Make sure the review manager is instantiated and listening for notifications.
-    let _ = TQReviewManager.sharedInstance
+//    let _ = TQReviewManager.sharedInstance
 
     self.passwordField.isPassword = true
 
@@ -140,6 +314,16 @@ class TQLoginViewController : UIViewController {
         printInfo("Login Successful!")
         self.connectionStatusLabel.text = "Login successful!"
 
+        let groupId = "metu.ceng.others.bunalim"
+        self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
+
+        self.groupManager.downloadHeaders {
+            printDebug("Group headers downloaded.")
+            DispatchQueue.main.async {
+                self.showGroupVC()
+            }
+        }
+
         if askUserInfo {
             let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView
             userInfoInputView.completionBlock = { (userFullName, userEmail) in
@@ -153,54 +337,17 @@ class TQLoginViewController : UIViewController {
                                       relativeVerticalPosition: 0.3,
                                       animated: true)
         }
-
-//        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
-//        self.connectionStatusLabel.text = nil
-//        self.loginButton.isEnabled = true
-//        self.activityIndicator.stopAnimating()
-
-        self.test()
     }
 
     loginManager.login(userName: userName, password: password)
   }
 
     func showGroupVC() {
-//        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
-
-
         let groupVC = GroupViewController_New(groupManager: self.groupManager)
-        self.present(groupVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(groupVC, animated: true)
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true
         self.activityIndicator.stopAnimating()
     }
-
-    func test() {
-        let groupId = "metu.ceng.others.bunalim"
-        self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
-
-//        groupManager.setGroup(groupId: "metu.ceng.test")
-//        groupManager.updateCallback = {
-//            print("GROUP UPDATED!!!")
-//        }
-        self.groupManager.downloadHeaders {
-            print("GROUP UPDATED!!!")
-
-            DispatchQueue.main.async {
-                self.showGroupVC()
-            }
-        }
-    }
-
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    guard let segueId = segue.identifier, segueId == "ShowGroupSegueID" else {
-      return
-    }
-
-    let groupViewController = segue.destination as! TQGroupViewController
-//    groupViewController.groupId = "metu.ceng.test"
-    groupViewController.groupId = "metu.ceng.announce.official"  // TODO: fix
-  }
 }

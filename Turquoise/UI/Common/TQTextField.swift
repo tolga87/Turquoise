@@ -42,14 +42,19 @@ class TQTextField : UITextField, UITextFieldDelegate {
     }
   }
 
-  required init?(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    password = ""
-    delegate = self
-    autocorrectionType = UITextAutocorrectionType.no
-    addTarget(self, action: #selector(textUpdated), for: UIControlEvents.editingChanged)
-  }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
+        password = ""
+        delegate = self
+        autocorrectionType = UITextAutocorrectionType.no
+        addTarget(self, action: #selector(textUpdated), for: UIControlEvents.editingChanged)
+  }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
   func textUpdated() {
     if isPassword {
       text = password

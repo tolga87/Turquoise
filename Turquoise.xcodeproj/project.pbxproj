@@ -38,6 +38,7 @@
 		FDA449161F6725C7004E7079 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDA449151F6725C7004E7079 /* WebKit.framework */; };
 		FDA539E31F5A6550009C7526 /* check1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDA539E11F5A6542009C7526 /* check1.png */; };
 		FDA7D07420FBBB01002B3E4D /* GroupViewController_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */; };
+		FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */; };
 		FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */; };
 		FDADC7561FC8CF0F00F76A94 /* TQLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */; };
 		FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */; };
@@ -114,6 +115,7 @@
 		FDA449151F6725C7004E7079 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		FDA539E11F5A6542009C7526 /* check1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check1.png; sourceTree = "<group>"; };
 		FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewController_New.swift; sourceTree = "<group>"; };
+		FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
 		FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoInputView.swift; sourceTree = "<group>"; };
 		FDADC7551FC8CF0F00F76A94 /* TQLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQLoginViewController.swift; sourceTree = "<group>"; };
 		FDB6761C2027A93500F9F654 /* TQGroupTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQGroupTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 		FD9CB64F1F4233E800BC2225 /* Turquoise */ = {
 			isa = PBXGroup;
 			children = (
+				FDA7D07720FBCB70002B3E4D /* Utilities */,
 				FDB6A96620F2B4AF006EEE05 /* UsenetClient_New */,
 				FDB6761B2027A91300F9F654 /* DataSource */,
 				FD9CB6591F4233E800BC2225 /* Main.storyboard */,
@@ -321,6 +324,14 @@
 				FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */,
 			);
 			path = New;
+			sourceTree = "<group>";
+		};
+		FDA7D07720FBCB70002B3E4D /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		FDB6761B2027A91300F9F654 /* DataSource */ = {
@@ -544,6 +555,7 @@
 				FDB6761D2027A93500F9F654 /* TQGroupTableViewDataSource.swift in Sources */,
 				FDE86E751FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
+				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
 				FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
 				FDE86E781FC78CE6009C0466 /* TQReleaseNotesView.swift in Sources */,
@@ -696,7 +708,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Turquoise/TQPrefixHeader.pch;
 				INFOPLIST_FILE = Turquoise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.ayran;
@@ -719,7 +731,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Turquoise/TQPrefixHeader.pch;
 				INFOPLIST_FILE = Turquoise/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tolgaakin.ayran;
 				PRODUCT_NAME = "$(TARGET_NAME)";

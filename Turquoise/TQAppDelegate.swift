@@ -11,6 +11,20 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
     self.saveContext()
   }
 
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
+
+        window = UIWindow(frame: UIScreen.main.bounds)
+
+
+
+        let loginViewController = TQLoginViewController()
+        let navigationController = UINavigationController(rootViewController: loginViewController)
+
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        return true
+    }
+
   // MARK: - Core Data stack
 
   lazy var persistentContainer: NSPersistentContainer = {
