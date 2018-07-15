@@ -11,6 +11,7 @@ import Foundation
 class NNTPResponse : NSObject {
     let string: String
     private(set) var code: Int = 0
+    private(set) var body: String = ""
 
     init(string: String) {
         self.string = string
@@ -18,18 +19,22 @@ class NNTPResponse : NSObject {
         self.parse()
     }
 
-    private func parse() {
+    func parse() {
         guard !self.string.isEmpty else {
             return
         }
 
+        let components = self.string.components(separatedBy: .whitespacesAndNewlines)
+
         guard
-            let firstComponent = self.string.components(separatedBy: .whitespacesAndNewlines).first,
+            let firstComponent = components.first,
             let code = Int(firstComponent) else {
                 return
         }
 
         self.code = code
+        let bodyComponents = Array(components.dropFirst())
+        self.body = bodyComponents.joined(separator: " ")
     }
 
     override var description: String {

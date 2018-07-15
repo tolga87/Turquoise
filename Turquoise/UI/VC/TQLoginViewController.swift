@@ -10,6 +10,7 @@ class TQLoginViewController : UIViewController {
   @IBOutlet var versionNumberLabel: UILabel!
 
     let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
+    var groupManager: GroupManager!
 
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
@@ -153,14 +154,45 @@ class TQLoginViewController : UIViewController {
                                       animated: true)
         }
 
-        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
+//        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
+//        self.connectionStatusLabel.text = nil
+//        self.loginButton.isEnabled = true
+//        self.activityIndicator.stopAnimating()
+
+        self.test()
+    }
+
+    loginManager.login(userName: userName, password: password)
+  }
+
+    func showGroupVC() {
+//        self.performSegue(withIdentifier: "ShowGroupSegueID", sender: self)
+
+
+        let groupVC = GroupViewController_New(groupManager: self.groupManager)
+        self.present(groupVC, animated: true, completion: nil)
+
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true
         self.activityIndicator.stopAnimating()
     }
 
-    loginManager.login(userName: userName, password: password)
-  }
+    func test() {
+        let groupId = "metu.ceng.others.bunalim"
+        self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
+
+//        groupManager.setGroup(groupId: "metu.ceng.test")
+//        groupManager.updateCallback = {
+//            print("GROUP UPDATED!!!")
+//        }
+        self.groupManager.downloadHeaders {
+            print("GROUP UPDATED!!!")
+
+            DispatchQueue.main.async {
+                self.showGroupVC()
+            }
+        }
+    }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let segueId = segue.identifier, segueId == "ShowGroupSegueID" else {

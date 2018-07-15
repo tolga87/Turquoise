@@ -84,7 +84,7 @@ class UsenetClient : UsenetClientInterface {
                 return
             }
 
-            let response = NNTPResponse(string: responseString)
+            let response = NNTPResponseFactory.responseFrom(string: responseString)
             self.processQueueIfNecessary()
             responseCallback(response)
         }
@@ -121,7 +121,7 @@ extension UsenetClient {
                 let responseString = String(data: data, encoding: .utf8)
                 //                                let response = TQNNTPResponse(string: responseString)
 
-                let shouldTruncate = true
+                let shouldTruncate = false
                 let maxLengthToDisplay = shouldTruncate ? 150 : Int.max
                 let responseLength = Int(responseString?.count ?? 0)
 
