@@ -19,9 +19,11 @@ class GroupViewController_New : UIViewController {
         self.groupViewModel = TQGroupTableViewDataSource(groupManager: self.groupManager)
 
         self.tableView = UITableView()
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.register(TQArticleHeaderTableViewCell.self,
+                                forCellReuseIdentifier: TQArticleHeaderTableViewCell.reuseId)
         self.tableView.dataSource = self.groupViewModel
-        self.tableView.backgroundColor = .cyan
+        self.tableView.delegate = self.groupViewModel
+        self.tableView.backgroundColor = .clear
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
 
         super.init(nibName: nil, bundle: nil)
@@ -47,7 +49,7 @@ class GroupViewController_New : UIViewController {
         self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 
-        self.view.backgroundColor = .purple
+        self.view.backgroundColor = .black
     }
 
     private func refreshGroupHeaders() {

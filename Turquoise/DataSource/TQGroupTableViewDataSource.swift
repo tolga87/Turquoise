@@ -3,7 +3,7 @@ import UIKit
 
 typealias TQGroupTableViewDataSourceUpdateCallback = () -> Void
 
-protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource {
+protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableViewDelegate {
     func numberOfArticles() -> Int
     func articleHeadersAtIndexPath(_ indexPath: IndexPath) -> ArticleHeaders
 }
@@ -52,11 +52,23 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: TQArticleHeaderTableViewCell.reuseId,
+                                                 for: indexPath) as! TQArticleHeaderTableViewCell
         let articleHeaders = self.articleHeadersAtIndexPath(indexPath)
 
-        cell.textLabel?.text = articleHeaders.subject
+        cell.articleTitleLabel.text = articleHeaders.subject
+        cell.articleSenderLabel.text = articleHeaders.from
+
+        let isEvenRow = (indexPath.row % 2 == 0)
+        cell.backgroundColor = isEvenRow ? .articleHeaderDarkBackgroundColor : .articleHeaderLightBackgroundColor
+        cell.paddingLevel = articleHeaders.references.count
         return cell
+    }
+
+    // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }
 

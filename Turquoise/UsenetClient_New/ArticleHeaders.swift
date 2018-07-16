@@ -9,10 +9,11 @@
 import Foundation
 
 class ArticleHeaders {
-    static let requiredFields = ["Subject", "Message-ID"]
+    static let requiredFields = ["From", "Subject", "Message-ID"]
 
     var fields: [String: Any] = [:]
 
+    var from: String! { return self.fieldValue(forRequiredField: "From") }
     var subject: String! { return self.fieldValue(forRequiredField: "Subject") }
     var messageId: String! { return self.fieldValue(forRequiredField: "Message-ID") }
 
