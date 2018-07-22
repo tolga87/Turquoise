@@ -9,6 +9,7 @@ protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableVie
 }
 
 class TQGroupTableViewDataSource : NSObject {
+    static let loadingCellReuseId = "LoadingCell"
     let groupManager: GroupManager
     var updateCallback: TQGroupTableViewDataSourceUpdateCallback?
 
@@ -48,10 +49,29 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.numberOfArticles()
+        guard let articles = self.groupManager.articles else {
+            // Loading...
+            return 1
+        }
+        return articles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard self.groupManager.articles != nil else {
+            // Loading...
+            let cell = tableView.dequeueReusableCell(withIdentifier: TQGroupTableViewDataSource.loadingCellReuseId,
+                                                     for: indexPath)
+            cell.backgroundColor = .articleHeaderDarkBackgroundColor
+
+            if let textLabel = cell.textLabel {
+                textLabel.textAlignment = .center
+                textLabel.textColor = .readArticleTitleColor
+                textLabel.text = "Loading..."
+            }
+            cell.selectionStyle = .none
+            return cell
+        }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: TQArticleHeaderTableViewCell.reuseId,
                                                  for: indexPath) as! TQArticleHeaderTableViewCell
         let articleHeaders = self.articleHeadersAtIndexPath(indexPath)
@@ -71,4 +91,3 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
         return 60
     }
 }
-

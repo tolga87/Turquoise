@@ -90,9 +90,15 @@ class TQLoginViewController : UIViewController {
 ////    }
 //  }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    self.navigationController?.setNavigationBarHidden(true, animated: false)
     self.view.backgroundColor = .black
 
     let contentXPadding: CGFloat = 8

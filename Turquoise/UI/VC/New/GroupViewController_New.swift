@@ -21,6 +21,8 @@ class GroupViewController_New : UIViewController {
         self.tableView = UITableView()
         self.tableView.register(TQArticleHeaderTableViewCell.self,
                                 forCellReuseIdentifier: TQArticleHeaderTableViewCell.reuseId)
+        self.tableView.register(UITableViewCell.self,
+                                forCellReuseIdentifier: TQGroupTableViewDataSource.loadingCellReuseId)
         self.tableView.dataSource = self.groupViewModel
         self.tableView.delegate = self.groupViewModel
         self.tableView.backgroundColor = .clear
@@ -42,6 +44,7 @@ class GroupViewController_New : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.view.addSubview(self.tableView)
 
         self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true

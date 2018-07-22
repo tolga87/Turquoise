@@ -24,7 +24,18 @@ class LoginManager {
 
         let authUserRequest = NNTPRequest(string: "AUTHINFO USER \(userName)\r\n")
         self.usenetClient.makeRequest(authUserRequest) { (response) in
-            guard let response = response, response.okSoFar() else {
+            guard let response = response else {
+                self.loginFailureCallback?()
+                return
+            }
+
+            // This can happen if we are already logged in and trying to log in again.
+            if response.isAlreadyAuthenticated() {
+                self.loginSuccessCallback?()
+                return
+            }
+
+            guard response.okSoFar() else {
                 self.loginFailureCallback?()
                 return
             }

@@ -37,6 +37,10 @@ class NNTPResponse : NSObject {
         self.body = bodyComponents.joined(separator: " ")
     }
 
+    func isAlreadyAuthenticated() -> Bool {
+        return self.code == 502
+    }
+
     override var description: String {
         return "\(super.description) `\(self.string)`"
     }

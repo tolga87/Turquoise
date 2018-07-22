@@ -19,6 +19,7 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
 
         let loginViewController = TQLoginViewController()
         let navigationController = UINavigationController(rootViewController: loginViewController)
+        navigationController.navigationBar.barTintColor = .clear
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()

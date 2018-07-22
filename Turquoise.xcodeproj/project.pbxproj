@@ -51,7 +51,6 @@
 		FDB6A96C20F2B533006EEE05 /* NNTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A96B20F2B533006EEE05 /* NNTPResponse.swift */; };
 		FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A96D20F2B5AA006EEE05 /* UsenetClientInterface.swift */; };
 		FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A96F20F2B921006EEE05 /* LoginManager.swift */; };
-		FDB6A97320F2E367006EEE05 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97220F2E367006EEE05 /* NavigationController.swift */; };
 		FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */; };
 		FDB6A97A20F2E439006EEE05 /* GroupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97920F2E439006EEE05 /* GroupViewModel.swift */; };
 		FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97D20F2F3FB006EEE05 /* NNTPGroupResponse.swift */; };
@@ -132,7 +131,6 @@
 		FDB6A96B20F2B533006EEE05 /* NNTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPResponse.swift; sourceTree = "<group>"; };
 		FDB6A96D20F2B5AA006EEE05 /* UsenetClientInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsenetClientInterface.swift; sourceTree = "<group>"; };
 		FDB6A96F20F2B921006EEE05 /* LoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
-		FDB6A97220F2E367006EEE05 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		FDB6A97920F2E439006EEE05 /* GroupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupViewModel.swift; sourceTree = "<group>"; };
 		FDB6A97D20F2F3FB006EEE05 /* NNTPGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPGroupResponse.swift; sourceTree = "<group>"; };
@@ -370,7 +368,6 @@
 			isa = PBXGroup;
 			children = (
 				FDB6A97620F2E3B0006EEE05 /* Manager */,
-				FDB6A97220F2E367006EEE05 /* NavigationController.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -553,7 +550,6 @@
 				FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */,
 				FD833CB31FC89EDD003A9FA0 /* TQArticleComposerViewController.swift in Sources */,
 				FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */,
-				FDB6A97320F2E367006EEE05 /* NavigationController.swift in Sources */,
 				FDB6A98020F2F47B006EEE05 /* NNTPResponseFactory.swift in Sources */,
 				FDE7CBAF1F7D993900E6E89E /* TQSearchBar.swift in Sources */,
 				FDE7CBB21F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */,
