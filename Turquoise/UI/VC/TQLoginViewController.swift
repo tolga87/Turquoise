@@ -204,11 +204,6 @@ class TQLoginViewController : UIViewController {
     self.versionNumberLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
     self.versionNumberLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
 
-
-
-    // Make sure the review manager is instantiated and listening for notifications.
-//    let _ = TQReviewManager.sharedInstance
-
     self.passwordField.isPassword = true
 
     self.loginButton.addTarget(self,

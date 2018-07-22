@@ -19,6 +19,7 @@ class TQArticleViewController : UIViewController {
     self.articleSubjectLabel.text = self.article?.decodedSubject
     self.articleSenderLabel.text = self.article?.decodedFrom
     self.articleDateLabel.text = self.article?.date
+    
     self.articleBodyTextView.text = self.article?.body
 
     let shouldShowDeleteButton = self.canDeleteMessage()
