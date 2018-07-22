@@ -4,8 +4,8 @@ import UIKit
 class TQArticleHeaderTableViewCell : UITableViewCell {
     var paddingView: UIView
     var verticalBarView: UIView
-    var articleTitleLabel: UILabel
-    var articleSenderLabel: UILabel
+    var articleTitleLabel: TQLabel
+    var articleSenderLabel: TQLabel
     var paddingViewWidthConstraint: NSLayoutConstraint
 
     var paddingLevel: Int = 0 {
@@ -24,10 +24,12 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
         self.verticalBarView.backgroundColor = .articleHeaderCellVerticalBarColor
 
         self.articleTitleLabel = TQLabel(frame: .zero)
+        self.articleTitleLabel.fontSize = 14
         // TODO: Implement read/unread colors.
         self.articleTitleLabel.textColor = .readArticleTitleColor
 
         self.articleSenderLabel = TQLabel(frame: .zero)
+        self.articleSenderLabel.fontSize = 12
         self.articleSenderLabel.textColor = .articleSenderColor
 
         self.paddingViewWidthConstraint = self.paddingView.widthAnchor.constraint(equalToConstant: 0)

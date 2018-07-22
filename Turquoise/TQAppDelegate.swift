@@ -11,11 +11,9 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
     self.saveContext()
   }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
-
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-
-
 
         let loginViewController = TQLoginViewController()
         let navigationController = UINavigationController(rootViewController: loginViewController)
@@ -23,6 +21,7 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
 
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+
         return true
     }
 

@@ -53,6 +53,30 @@ class GroupViewController_New : UIViewController {
         self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 
         self.view.backgroundColor = .black
+
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings-32"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(settingsButtonTapped))
+        let composeButton = UIBarButtonItem(image: UIImage(named: "compose-32"),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(composeButtonTapped))
+        self.navigationItem.rightBarButtonItems = [settingsButton, composeButton]
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+    }
+
+    func settingsButtonTapped() {
+        let settingsVC = SettingsViewController()
+        self.present(settingsVC, animated: true, completion: nil)
+    }
+
+    func composeButtonTapped() {
+        print("composeButtonTapped")
     }
 
     private func refreshGroupHeaders() {

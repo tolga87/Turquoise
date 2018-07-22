@@ -348,7 +348,16 @@ class TQLoginViewController : UIViewController {
 
     func showGroupVC() {
         let groupVC = GroupViewController_New(groupManager: self.groupManager)
-        self.navigationController?.pushViewController(groupVC, animated: true)
+
+        let groupSelectorVC = GroupSelectorViewController()
+
+        if let navController = self.navigationController {
+//            navController.pushViewController(groupSelectorVC, animated: true)
+//            navController.pushViewController(groupVC, animated: true)
+            var controllers = navController.viewControllers
+            controllers.append(contentsOf: [groupSelectorVC, groupVC])
+            navController.setViewControllers(controllers, animated: true)
+        }
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true

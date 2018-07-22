@@ -76,8 +76,8 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
                                                  for: indexPath) as! TQArticleHeaderTableViewCell
         let articleHeaders = self.articleHeadersAtIndexPath(indexPath)
 
-        cell.articleTitleLabel.text = articleHeaders.subject
-        cell.articleSenderLabel.text = articleHeaders.from
+        cell.articleTitleLabel.text = articleHeaders.subject.tq_decodedString
+        cell.articleSenderLabel.text = articleHeaders.from.tq_decodedString
 
         let isEvenRow = (indexPath.row % 2 == 0)
         cell.backgroundColor = isEvenRow ? .articleHeaderDarkBackgroundColor : .articleHeaderLightBackgroundColor

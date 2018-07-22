@@ -59,6 +59,11 @@
 		FDB6ED311FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */; };
 		FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
 		FDB7DE73202A261B00273BE0 /* TQRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */; };
+		FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */; };
+		FDBCE59621052A7A00E261FB /* settings-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59521052A7A00E261FB /* settings-32.png */; };
+		FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE59721052B6500E261FB /* SettingsViewController.swift */; };
+		FDBCE59A21052DF500E261FB /* close-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59921052DF500E261FB /* close-32.png */; };
+		FDBCE59C21052F8F00E261FB /* compose-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59B21052F8F00E261FB /* compose-32.png */; };
 		FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */; };
 		FDD1D0691FCB8A0C0052B6B8 /* TQReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD1D0681FCB8A0C0052B6B8 /* TQReviewManager.swift */; };
 		FDD365C41F5A052400A80106 /* news1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C31F5A007900A80106 /* news1.png */; };
@@ -139,6 +144,11 @@
 		FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticle.swift; sourceTree = "<group>"; };
 		FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticleForest.swift; sourceTree = "<group>"; };
 		FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQRefreshableTableView.swift; sourceTree = "<group>"; };
+		FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController.swift; sourceTree = "<group>"; };
+		FDBCE59521052A7A00E261FB /* settings-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-32.png"; sourceTree = "<group>"; };
+		FDBCE59721052B6500E261FB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		FDBCE59921052DF500E261FB /* close-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-32.png"; sourceTree = "<group>"; };
+		FDBCE59B21052F8F00E261FB /* compose-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-32.png"; sourceTree = "<group>"; };
 		FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQAppDelegate.swift; sourceTree = "<group>"; };
 		FDD1D0681FCB8A0C0052B6B8 /* TQReviewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQReviewManager.swift; sourceTree = "<group>"; };
 		FDD365C31F5A007900A80106 /* news1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news1.png; sourceTree = "<group>"; };
@@ -328,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				FDA7D07320FBBB01002B3E4D /* GroupViewController_New.swift */,
+				FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */,
+				FDBCE59721052B6500E261FB /* SettingsViewController.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -393,6 +405,8 @@
 		FDD365C21F5A004200A80106 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				FDBCE59921052DF500E261FB /* close-32.png */,
+				FDBCE59B21052F8F00E261FB /* compose-32.png */,
 				FD9DAA0B1FD60972004B1A52 /* cow-120.png */,
 				FDD365C31F5A007900A80106 /* news1.png */,
 				FDD365C61F5A05DB00A80106 /* news2.png */,
@@ -400,6 +414,7 @@
 				FDD365CC1F5A075000A80106 /* news4.png */,
 				FDD365CF1F5A07F500A80106 /* news5.png */,
 				FDD365D21F5A08AD00A80106 /* settings1.png */,
+				FDBCE59521052A7A00E261FB /* settings-32.png */,
 				FDA539E11F5A6542009C7526 /* check1.png */,
 			);
 			path = Icons;
@@ -487,12 +502,15 @@
 				FDD365C41F5A052400A80106 /* news1.png in Resources */,
 				FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */,
 				FD9CB6601F4233E800BC2225 /* LaunchScreen.storyboard in Resources */,
+				FDBCE59621052A7A00E261FB /* settings-32.png in Resources */,
+				FDBCE59C21052F8F00E261FB /* compose-32.png in Resources */,
 				FD5E51C6202A3278006E4C7E /* TQRefreshView.xib in Resources */,
 				FDD365D11F5A07F700A80106 /* news5.png in Resources */,
 				FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */,
 				FD9CB65D1F4233E800BC2225 /* Assets.xcassets in Resources */,
 				FDD365CA1F5A06CB00A80106 /* news3.png in Resources */,
 				FD9CB65B1F4233E800BC2225 /* Main.storyboard in Resources */,
+				FDBCE59A21052DF500E261FB /* close-32.png in Resources */,
 				FDA449131F672457004E7079 /* TQReleaseNotesView.xib in Resources */,
 				FD0478031F4FA23400AD61BB /* dungeon.ttf in Resources */,
 				FDD365C71F5A05F100A80106 /* news2.png in Resources */,
@@ -547,6 +565,7 @@
 				FDB6A97A20F2E439006EEE05 /* GroupViewModel.swift in Sources */,
 				FD5E51C8202A329D006E4C7E /* TQRefreshView.swift in Sources */,
 				FDB6A96A20F2B500006EEE05 /* NNTPRequest.swift in Sources */,
+				FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */,
 				FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */,
 				FD833CB31FC89EDD003A9FA0 /* TQArticleComposerViewController.swift in Sources */,
 				FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */,
@@ -559,6 +578,7 @@
 				FDD1D0691FCB8A0C0052B6B8 /* TQReviewManager.swift in Sources */,
 				FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */,
 				FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */,
+				FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
