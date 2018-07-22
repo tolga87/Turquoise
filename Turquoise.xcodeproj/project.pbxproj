@@ -235,7 +235,6 @@
 		FD87460D1F4973B400C95C5A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FDB6A97120F2E355006EEE05 /* New */,
 				FD15CB9B1F6074D300C64B88 /* Overlay */,
 				FD12F6301F57563100415514 /* Common */,
 				FD12F6271F574BCC00415514 /* VC */,
@@ -270,6 +269,7 @@
 		FD9CB64F1F4233E800BC2225 /* Turquoise */ = {
 			isa = PBXGroup;
 			children = (
+				FDBCE59E2105336300E261FB /* ViewModel */,
 				FDA7D07720FBCB70002B3E4D /* Utilities */,
 				FDB6A96620F2B4AF006EEE05 /* UsenetClient_New */,
 				FDB6761B2027A91300F9F654 /* DataSource */,
@@ -277,7 +277,6 @@
 				FDF0F9641F58B493008FE181 /* Manager */,
 				FD9CB8E31F55271D000755D6 /* Keychain */,
 				FD0478011F4FA20C00AD61BB /* Resources */,
-				FDCC42E71F4BA844001EC1BC /* String */,
 				FD87460D1F4973B400C95C5A /* UI */,
 				FD44C5F61F423F1B003B3605 /* NNTPClient */,
 				FD9CB65C1F4233E800BC2225 /* Assets.xcassets */,
@@ -330,6 +329,7 @@
 		FDA7D07720FBCB70002B3E4D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				FD7E83641FC5159B00025211 /* String+TQEncoding.swift */,
 				FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */,
 				FDA7D08220FC1332002B3E4D /* UIColor+Turquoise.swift */,
 			);
@@ -359,30 +359,21 @@
 			path = UsenetClient_New;
 			sourceTree = "<group>";
 		};
-		FDB6A97120F2E355006EEE05 /* New */ = {
+		FDBCE59D2105330600E261FB /* New */ = {
 			isa = PBXGroup;
 			children = (
-				FDB6A97620F2E3B0006EEE05 /* Manager */,
+				FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */,
+				FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
 		};
-		FDB6A97620F2E3B0006EEE05 /* Manager */ = {
+		FDBCE59E2105336300E261FB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */,
 				FDB6A97920F2E439006EEE05 /* GroupViewModel.swift */,
-				FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */,
 			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
-		FDCC42E71F4BA844001EC1BC /* String */ = {
-			isa = PBXGroup;
-			children = (
-				FD7E83641FC5159B00025211 /* String+TQEncoding.swift */,
-			);
-			path = String;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		FDD365C21F5A004200A80106 /* Icons */ = {
@@ -406,6 +397,7 @@
 		FDF0F9641F58B493008FE181 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				FDBCE59D2105330600E261FB /* New */,
 				FD91EF631FCA0D23009CB0F5 /* Reachability.swift */,
 				FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */,
 				FD77E2991FDF4D7C00029503 /* TQReadArticlesManager.swift */,
