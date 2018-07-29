@@ -33,9 +33,8 @@ class TQLabel : UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-  override func drawText(in rect: CGRect) {
-    let insets = UIEdgeInsetsMake(verticalInset, horizontalInset, verticalInset, horizontalInset)
-    super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
-  }
-  
+    override func drawText(in rect: CGRect) {
+        let insets = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+        super.drawText(in: rect.inset(by: insets))
+    }
 }

@@ -121,7 +121,7 @@ import Foundation
     }
 
     let messageRange = messageStartIndex..<messageEndIndex
-    return message[messageRange]
+    return String(message[messageRange])
   }
 
   // MARK: - CustomDebugStringConvertible

@@ -36,7 +36,7 @@ class SettingsViewController: UIViewController {
         self.navigationBar.heightAnchor.constraint(equalToConstant: 32).isActive = true
     }
 
-    func dismissButtonTapped() {
+    @objc func dismissButtonTapped() {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

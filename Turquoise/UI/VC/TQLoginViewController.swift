@@ -63,7 +63,7 @@ class TQLoginViewController : UIViewController {
         return button
     }()
 
-    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    private let activityIndicator = UIActivityIndicatorView(style: .white)
     private let connectionStatusLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
@@ -236,23 +236,23 @@ class TQLoginViewController : UIViewController {
                                            object: nil)
   }
 
-  func networkConnectionLost(_ notification: Notification) {
+    @objc func networkConnectionLost(_ notification: Notification) {
     printInfo("Disconnected from server!")
     self.dismiss(animated: true, completion: nil)
     self.connectionStatusLabel.text = "Disconnected from server, please login again."
   }
 
-  func nntpManagerDidReset(_ notification: Notification) {
+    @objc func nntpManagerDidReset(_ notification: Notification) {
     printInfo("NNTP manager was reset")
     self.dismiss(animated: true, completion: nil)
   }
 
-  func userDidLogout(_ notification: Notification) {
+    @objc func userDidLogout(_ notification: Notification) {
     self.userNameField.text = ""
     self.passwordField.text = ""
   }
 
-  func loginButtonDidTap(_ sender: Any?) {
+    @objc func loginButtonDidTap(_ sender: Any?) {
     let foundUserCredentials = self.loginWithSavedCredentialsIfPossible()
     if !foundUserCredentials {
       let userName = self.userNameField.text?.tq_whitespaceAndNewlineStrippedString ?? ""

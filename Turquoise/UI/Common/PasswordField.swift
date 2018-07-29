@@ -33,14 +33,14 @@ class PasswordField : TextField, UITextFieldDelegate {
         self.password = ""
         self.delegate = self
         self.autocorrectionType = UITextAutocorrectionType.no
-        self.addTarget(self, action: #selector(textUpdated), for: UIControlEvents.editingChanged)
+        self.addTarget(self, action: #selector(textUpdated), for: UIControl.Event.editingChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func textUpdated() {
+    @objc func textUpdated() {
         self.text = self.password
     }
 

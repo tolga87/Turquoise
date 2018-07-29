@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 typealias TQNNTPRequestCallback = (_ response: TQNNTPResponse?, _ error: Error?) -> Void
 
@@ -48,14 +49,15 @@ class TQNNTPManager : NSObject {
       printError("Could not start reachability notifier: \(error)")
     }
 
+
     let notificationCenter = NotificationCenter.default
     notificationCenter.addObserver(self,
                                    selector: #selector(appDidEnterBackground),
-                                   name: Notification.Name.UIApplicationDidEnterBackground,
+                                   name: UIApplication.didEnterBackgroundNotification,
                                    object: nil)
     notificationCenter.addObserver(self,
                                    selector: #selector(appDidBecomeActive),
-                                   name: Notification.Name.UIApplicationDidBecomeActive,
+                                   name: UIApplication.didBecomeActiveNotification,
                                    object: nil)
   }
 

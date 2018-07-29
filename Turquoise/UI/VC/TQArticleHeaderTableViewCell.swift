@@ -16,7 +16,7 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
 
     static let reuseId: String = "TQArticleHeaderTableViewCell"
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.paddingView = UIView()
         self.paddingView.backgroundColor = .black
 

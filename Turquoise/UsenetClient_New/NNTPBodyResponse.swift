@@ -31,6 +31,6 @@ class NNTPBodyResponse : NNTPResponse {
             bodyEndIndex = self.string.index(bodyEndIndex, offsetBy: -bodyTerminator.count)
         }
 
-        self.articleBody = self.string[bodyStartIndex..<bodyEndIndex]
+        self.articleBody = String(self.string[bodyStartIndex..<bodyEndIndex])
     }
 }

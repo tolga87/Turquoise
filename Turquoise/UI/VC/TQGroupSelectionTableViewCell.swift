@@ -21,11 +21,11 @@ class TQGroupSelectionTableViewCell : UITableViewCell {
       let text = "\(group.groupId) \(numArticlesString)\(moderatedString ?? "")"
 
       let attributedText = NSMutableAttributedString(string: text)
-      attributedText.addAttribute(NSForegroundColorAttributeName,
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor,
                                   value: UIColor(displayP3Red: 0, green: 0.5, blue: 0, alpha: 1),
                                   range: (text as NSString).range(of: numArticlesString))
       if let moderatedString = moderatedString {
-        attributedText.addAttribute(NSForegroundColorAttributeName,
+        attributedText.addAttribute(NSAttributedString.Key.foregroundColor,
                                     value: UIColor.red,
                                     range: (text as NSString).range(of: moderatedString))
       }
@@ -77,7 +77,7 @@ class TQGroupSelectionTableViewCell : UITableViewCell {
 
 
 
-  func userSubscriptionsDidUpdate(_ notification: Notification) {
+    @objc func userSubscriptionsDidUpdate(_ notification: Notification) {
     self.updateSubscriptionStatus()
   }
 

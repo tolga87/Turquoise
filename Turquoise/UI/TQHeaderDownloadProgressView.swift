@@ -31,7 +31,7 @@ class TQHeaderDownloadProgressView : UIView {
     return view
   }
 
-  func progressDidUpdate(_ notification: Notification) {
+  @objc func progressDidUpdate(_ notification: Notification) {
     if let progress = notification.userInfo?[TQNNTPGroup.headerDownloadProgressAmountKey] {
       self.progressLabel.text = "\(progress)%"
     }

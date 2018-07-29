@@ -50,6 +50,7 @@ class GroupViewController : UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+
         self.view.addSubview(self.tableView)
 
         self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
@@ -82,12 +83,12 @@ class GroupViewController : UIViewController {
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
-    func settingsButtonTapped() {
+    @objc func settingsButtonTapped() {
         let settingsVC = SettingsViewController()
         self.present(settingsVC, animated: true, completion: nil)
     }
 
-    func composeButtonTapped() {
+    @objc func composeButtonTapped() {
         print("composeButtonTapped")
     }
 

@@ -59,7 +59,7 @@ class ArticleViewController: UIViewController {
         return field
     }()
     var spinner: UIActivityIndicatorView = {
-        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        let spinner = UIActivityIndicatorView(style: .white)
         spinner.translatesAutoresizingMaskIntoConstraints = false
         spinner.hidesWhenStopped = true
         return spinner
@@ -112,6 +112,8 @@ class ArticleViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .clear
+
         self.dataSource.updateCallback = { [weak self] in
             guard let strongSelf = self else {
                 return
@@ -122,7 +124,6 @@ class ArticleViewController: UIViewController {
             strongSelf.replyTapGestureRecognizer.isEnabled = true
         }
 
-        self.view.backgroundColor = .clear
 
         self.view.addSubview(self.bottomFillerView)
         self.bottomFillerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true

@@ -51,7 +51,7 @@ class TQRefreshableTableView : UITableView {
                                            object: nil)
   }
 
-  func didUpdateHeaderDownloadProgress(_ notification: Notification) {
+    @objc func didUpdateHeaderDownloadProgress(_ notification: Notification) {
     let progress = notification.userInfo?[TQNNTPGroup.headerDownloadProgressAmountKey] as? Int
     self.refreshView.titleLabel.text = self.loadingMessage(progress)
   }
@@ -67,7 +67,7 @@ class TQRefreshableTableView : UITableView {
     NotificationCenter.default.removeObserver(self)
   }
 
-  func didTriggerRefresh() {
+    @objc func didTriggerRefresh() {
     self.refreshView.titleLabel.text = self.loadingMessage()
     NotificationCenter.default.addObserver(self,
                                            selector: #selector(didUpdateHeaderDownloadProgress(_:)),

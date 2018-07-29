@@ -23,7 +23,7 @@ class TQGroupSelectionViewController : UIViewController, UISearchBarDelegate, UI
   }
 
 
-  func newsGroupsDidUpdate(_ notification: Notification) {
+    @objc func newsGroupsDidUpdate(_ notification: Notification) {
     self.tableView.reloadData()
   }
 

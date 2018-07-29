@@ -14,7 +14,7 @@ class TQArticleComposerViewController : UIViewController {
     let placeholderTextColor = UIColor(white: 0.6, alpha: 1)
     self.articleSubjectField.attributedPlaceholder =
       NSAttributedString(string: "Subject:",
-                         attributes: [ NSForegroundColorAttributeName : placeholderTextColor ])
+                         attributes: [ NSAttributedString.Key.foregroundColor : placeholderTextColor ])
     var subject = ""
     if let parentArticle = self.parentArticle {
       subject = parentArticle.decodedSubject
