@@ -19,14 +19,14 @@ class TQLabel : UILabel {
             return self.font.pointSize
         }
         set {
-            self.font = UIFont.init(name: "dungeon", size: newValue)
+            self.font = UIFont(name: "dungeon", size: newValue)
         }
 
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.font = UIFont.init(name: "dungeon", size: self.font.pointSize)
+        self.font = UIFont(name: "dungeon", size: self.font.pointSize)
     }
     
     required init?(coder aDecoder: NSCoder) {

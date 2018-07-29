@@ -1,17 +1,19 @@
 import Foundation
 import UIKit
 
-typealias TQGroupTableViewDataSourceUpdateCallback = () -> Void
+typealias GroupTableViewDataSourceUpdateCallback = () -> Void
+typealias GroupTableViewDataSourceArticleSelectionCallback = (ArticleHeaders, IndexPath) -> Void
 
 protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableViewDelegate {
     func numberOfArticles() -> Int
     func articleHeadersAtIndexPath(_ indexPath: IndexPath) -> ArticleHeaders
 }
 
-class TQGroupTableViewDataSource : NSObject {
+class GroupTableViewDataSource : NSObject {
     static let loadingCellReuseId = "LoadingCell"
     let groupManager: GroupManager
-    var updateCallback: TQGroupTableViewDataSourceUpdateCallback?
+    var updateCallback: GroupTableViewDataSourceUpdateCallback?
+    var articleSelectionCallback: GroupTableViewDataSourceArticleSelectionCallback?
 
     public init(groupManager: GroupManager) {
         self.groupManager = groupManager
@@ -28,7 +30,7 @@ class TQGroupTableViewDataSource : NSObject {
     }
 }
 
-extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
+extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
 
     // MARK: - TQGroupTableViewDataSourceInterface
 
@@ -59,7 +61,7 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard self.groupManager.articles != nil else {
             // Loading...
-            let cell = tableView.dequeueReusableCell(withIdentifier: TQGroupTableViewDataSource.loadingCellReuseId,
+            let cell = tableView.dequeueReusableCell(withIdentifier: GroupTableViewDataSource.loadingCellReuseId,
                                                      for: indexPath)
             cell.backgroundColor = .articleHeaderDarkBackgroundColor
 
@@ -86,6 +88,21 @@ extension TQGroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     }
 
     // MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        guard self.groupManager.articles != nil else {
+            // `Loading` cell.
+            return nil
+        }
+        return indexPath
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let articleHeaders = self.articleHeadersAtIndexPath(indexPath)
+        self.articleSelectionCallback?(articleHeaders, indexPath)
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60

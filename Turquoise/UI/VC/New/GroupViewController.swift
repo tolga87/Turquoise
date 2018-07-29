@@ -1,5 +1,5 @@
 //
-//  GroupViewController_New.swift
+//  GroupViewController.swift
 //  Turquoise
 //
 //  Created by tolga on 7/15/18.
@@ -9,20 +9,20 @@
 import Foundation
 import UIKit
 
-class GroupViewController_New : UIViewController {
+class GroupViewController : UIViewController {
     let groupManager: GroupManager
     var tableView: UITableView!
-    let groupViewModel: TQGroupTableViewDataSource
+    let groupViewModel: GroupTableViewDataSource
 
     init(groupManager: GroupManager) {
         self.groupManager = groupManager
-        self.groupViewModel = TQGroupTableViewDataSource(groupManager: self.groupManager)
+        self.groupViewModel = GroupTableViewDataSource(groupManager: self.groupManager)
 
         self.tableView = UITableView()
         self.tableView.register(TQArticleHeaderTableViewCell.self,
                                 forCellReuseIdentifier: TQArticleHeaderTableViewCell.reuseId)
         self.tableView.register(UITableViewCell.self,
-                                forCellReuseIdentifier: TQGroupTableViewDataSource.loadingCellReuseId)
+                                forCellReuseIdentifier: GroupTableViewDataSource.loadingCellReuseId)
         self.tableView.dataSource = self.groupViewModel
         self.tableView.delegate = self.groupViewModel
         self.tableView.backgroundColor = .clear
@@ -33,6 +33,11 @@ class GroupViewController_New : UIViewController {
         self.groupViewModel.updateCallback = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
+            }
+        }
+        self.groupViewModel.articleSelectionCallback = { [weak self] (articleHeaders, indexPath) in
+            DispatchQueue.main.async {
+                self?.showArticleVC(with: articleHeaders)
             }
         }
     }
@@ -68,6 +73,18 @@ class GroupViewController_New : UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+    }
+
+    private func showArticleVC(with articleHeaders: ArticleHeaders) {
+        guard let articleManager = ArticleManager(articleHeaders: articleHeaders,
+                                                  usenetClient: self.groupManager.usenetClient) else {
+            printError("Could not create article manager.")
+            return
+        }
+
+        let articleVCDataSource = ArticleViewDataSource(articleHeaders: articleHeaders, articleManager: articleManager)
+        let articleVC = ArticleViewController(dataSource: articleVCDataSource)
+        self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
     func settingsButtonTapped() {

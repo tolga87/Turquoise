@@ -31,10 +31,15 @@ class NNTPResponseFactory {
         switch responseCode {
         case .Headers:
             return NNTPGroupResponse(string: string)
+
+        case .Body:
+            return NNTPBodyResponse(string: string)
         }
+
     }
 }
 
 enum ResponseCode: Int {
     case Headers = 211
+    case Body = 222
 }

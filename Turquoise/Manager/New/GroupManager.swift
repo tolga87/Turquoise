@@ -20,7 +20,6 @@ class GroupManager {
     private var lastArticleNo = 0
     private(set) var articleForest: [Article]? = nil
 
-//    private(set) var groupHeaders: [ArticleHeaders]? = nil
     private(set) var articles: [Article]? = nil
 
     var groupHeadersUpdateCallback: GroupHeadersUpdateCallback?
@@ -30,18 +29,27 @@ class GroupManager {
         self.usenetClient = usenetClient
     }
 
-    func downloadGroupHeaders() {
+    func switchGroup(completion: ((NNTPGroupResponse?) -> Void)?) {
         let request = NNTPRequest(string: "GROUP \(self.groupId)\r\n")
         self.usenetClient.makeRequest(request) { (response) in
             guard let response = response as? NNTPGroupResponse, response.ok() else {
                 printError("Could not set the current group.")
+                completion?(nil)
+                return
+            }
+            completion?(response)
+        }
+    }
+
+    func downloadGroupHeaders() {
+        self.switchGroup { (response) in
+            guard let response = response else {
                 return
             }
 
             self.firstArticleNo = response.firstArticleNo
             self.lastArticleNo = response.lastArticleNo
 
-//            var groupHeaders: [ArticleHeaders] = []
             var articles: [Article] = []
 
             for articleNo in self.firstArticleNo...self.lastArticleNo {
@@ -52,7 +60,6 @@ class GroupManager {
                     }
 
                     if articleNo == self.lastArticleNo {
-//                        self.groupHeaders = groupHeaders
                         self.articles = articles
 
                         let articleForestManager = ArticleForestManager(articles: articles)
@@ -81,8 +88,4 @@ class GroupManager {
             completion?(articleHeaders)
         }
     }
-
-    
-
-
 }

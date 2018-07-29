@@ -342,7 +342,7 @@ class TQLoginViewController : UIViewController {
   }
 
     func showGroupVC() {
-        let groupVC = GroupViewController_New(groupManager: self.groupManager)
+        let groupVC = GroupViewController(groupManager: self.groupManager)
 
         let groupSelectorVC = GroupSelectorViewController()
 

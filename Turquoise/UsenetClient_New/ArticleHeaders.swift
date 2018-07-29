@@ -8,15 +8,17 @@
 
 import Foundation
 
-class ArticleHeaders {
-    static let requiredFields = ["From", "Subject", "Message-ID"]
+class ArticleHeaders: NSObject {
+    static let requiredFields = ["From", "Subject", "Message-ID", "Newsgroups"]
 
     var fields: [String: Any] = [:]
 
     var from: String! { return self.fieldValue(forRequiredField: "From") }
     var subject: String! { return self.fieldValue(forRequiredField: "Subject") }
     var messageId: String! { return self.fieldValue(forRequiredField: "Message-ID") }
+    var newsgroup: String! { return self.newsgroups.first! }
 
+    private(set) var newsgroups: [String] = []
     private(set) var references: [String] = []
 
     init?(response: NNTPResponse) {
@@ -45,6 +47,15 @@ class ArticleHeaders {
             }
         }
 
+        guard let newsgroupsString = self.fields["Newsgroups"] as? String, !newsgroupsString.isEmpty else {
+            return nil
+        }
+        self.newsgroups = newsgroupsString.tq_newlineStrippedString.components(separatedBy: CharacterSet.whitespaces)
+
+        guard !self.newsgroups.isEmpty else {
+            return nil
+        }
+
         if let referencesString = self.fields["References"] as? String, referencesString.count > 0 {
             self.references = referencesString.components(separatedBy: CharacterSet.whitespaces)
         }
@@ -52,5 +63,15 @@ class ArticleHeaders {
 
     private func fieldValue(forRequiredField requiredField: String) -> String! {
         return (self.fields[requiredField] as? String)!
+    }
+
+    override var description: String {
+        var string = "\(super.description)\n"
+
+        self.fields.forEach {
+            let (key, value) = $0
+            string += "\(key): `\(value)`\n"
+        }
+        return string
     }
 }
