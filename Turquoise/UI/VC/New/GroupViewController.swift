@@ -60,15 +60,17 @@ class GroupViewController : UIViewController {
 
         self.view.backgroundColor = .black
 
-        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings-32"),
+        let settingsButton = UIBarButtonItem(image: UIImage(named: "settings-16"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(settingsButtonTapped))
-        let composeButton = UIBarButtonItem(image: UIImage(named: "compose-32"),
+        let composeButton = UIBarButtonItem(image: UIImage(named: "compose-16"),
                                             style: .plain,
                                             target: self,
                                             action: #selector(composeButtonTapped))
         self.navigationItem.rightBarButtonItems = [settingsButton, composeButton]
+
+        self.navigationItem.title = self.groupManager.groupId
     }
 
     private func showArticleVC(with articleHeaders: ArticleHeaders) {

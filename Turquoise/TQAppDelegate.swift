@@ -23,6 +23,15 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
 
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor.white,
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
+        ]
+
+        UIBarButtonItem.appearance().setTitleTextAttributes([
+            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
+            ], for: .normal)
+
         return true
     }
 
