@@ -15,14 +15,14 @@ class ArticleManager {
     let groupManager: GroupManager
     let usenetClient: UsenetClientInterface
 
-    init?(articleHeaders: ArticleHeaders, usenetClient: UsenetClientInterface) {
-        guard let groupId = articleHeaders.newsgroup else {
+    init?(articleHeaders: ArticleHeaders, groupManager: GroupManager) {
+        guard let _ = articleHeaders.newsgroup else {
             return nil
         }
 
         self.articleHeaders = articleHeaders
-        self.groupManager = GroupManager(groupId: groupId, usenetClient: usenetClient)
-        self.usenetClient = usenetClient
+        self.groupManager = groupManager
+        self.usenetClient = groupManager.usenetClient
     }
 
     func downloadArticleBody(completion: ArticleBodyDownloadCallback?) {

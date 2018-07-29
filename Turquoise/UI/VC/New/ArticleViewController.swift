@@ -11,6 +11,7 @@ import UIKit
 
 class ArticleViewController: UIViewController {
     let dataSource: ArticleViewDataSource
+    let groupManager: GroupManager
 
     static func label() -> TQLabel {
         let label = TQLabel()
@@ -49,6 +50,7 @@ class ArticleViewController: UIViewController {
     var bodyField: UITextView = {
         let field = UITextView()
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.isUserInteractionEnabled = false
         field.backgroundColor = .clear
         field.textColor = Consts.bodyTextColor
         field.font = UIFont(name: "dungeon", size: Consts.bodyTextFontSize)
@@ -93,10 +95,14 @@ class ArticleViewController: UIViewController {
         return field
     }()
 
-    init(dataSource: ArticleViewDataSource) {
-        self.dataSource = dataSource
+    var replyTapGestureRecognizer: UITapGestureRecognizer!
 
+    init(dataSource: ArticleViewDataSource, groupManager: GroupManager) {
+        self.dataSource = dataSource
+        self.groupManager = groupManager
         super.init(nibName: nil, bundle: nil)
+
+        self.replyTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapReply))
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -113,6 +119,7 @@ class ArticleViewController: UIViewController {
 
             strongSelf.spinner.stopAnimating()
             strongSelf.bodyField.text = strongSelf.dataSource.bodyString
+            strongSelf.replyTapGestureRecognizer.isEnabled = true
         }
 
         self.view.backgroundColor = .clear
@@ -138,7 +145,7 @@ class ArticleViewController: UIViewController {
                                                   constant: -Consts.replyFieldPadding).isActive = true
         self.replyField.bottomAnchor.constraint(equalTo: self.footerView.bottomAnchor,
                                                 constant: -Consts.replyFieldPadding).isActive = true
-        self.replyField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapReply)))
+        self.replyField.addGestureRecognizer(self.replyTapGestureRecognizer)
 
         self.view.addSubview(self.scrollView)
         self.scrollView.topAnchor.constraint(equalTo: self.view.safeTopAnchor).isActive = true
@@ -195,7 +202,11 @@ class ArticleViewController: UIViewController {
     }
 
     @objc private func didTapReply() {
-        // TODO: Implement.
+        let articleComposerViewModel = ArticleComposerViewModel(subject: self.dataSource.titleString)
+        let articleComposer = ArticleComposerViewController(viewModel: articleComposerViewModel)
+        let navController = UINavigationController(rootViewController: articleComposer)
+        navController.navigationBar.barTintColor = .clear
+        self.present(navController, animated: true, completion: nil)
     }
 
     private struct Consts {

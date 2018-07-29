@@ -70,20 +70,15 @@ class GroupViewController : UIViewController {
         self.navigationItem.rightBarButtonItems = [settingsButton, composeButton]
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-
     private func showArticleVC(with articleHeaders: ArticleHeaders) {
         guard let articleManager = ArticleManager(articleHeaders: articleHeaders,
-                                                  usenetClient: self.groupManager.usenetClient) else {
+                                                  groupManager: self.groupManager) else {
             printError("Could not create article manager.")
             return
         }
 
         let articleVCDataSource = ArticleViewDataSource(articleHeaders: articleHeaders, articleManager: articleManager)
-        let articleVC = ArticleViewController(dataSource: articleVCDataSource)
+        let articleVC = ArticleViewController(dataSource: articleVCDataSource, groupManager: self.groupManager)
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
