@@ -86,14 +86,6 @@ class ArticleComposerViewController: UIViewController {
                                                constant: -Consts.verticalPadding).isActive = true
 
         self.subjectField.text = self.viewModel.subject
-
-//        self.tableView.register(ArticleComposerSubjectCell.self, forCellReuseIdentifier: ArticleComposerSubjectCell.reuseId)
-//        self.tableView.register(ArticleComposerBodyCell.self, forCellReuseIdentifier: ArticleComposerBodyCell.reuseId)
-//        self.tableView.dataSource = self.viewModel
-//        self.tableView.delegate = self.viewModel
-//        self.tableView.tableFooterView = UIView()
-//        self.tableView.bounces = false
-//        self.tableView.allowsSelection = false
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,7 +98,8 @@ class ArticleComposerViewController: UIViewController {
     }
 
     @objc private func didTapSend() {
-        self.viewModel.accept()
+        self.viewModel.accept(subject: self.subjectField.text ?? "",
+                              body: self.bodyField.text ?? "")
     }
 
     private struct Consts {

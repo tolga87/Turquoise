@@ -87,8 +87,6 @@
 		FDF0A86E210D52F400EE228F /* UIView+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A86D210D52F400EE228F /* UIView+Debug.swift */; };
 		FDF0A870210D6DBC00EE228F /* ArticleComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */; };
 		FDF0A872210D756800EE228F /* ArticleComposerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A871210D756800EE228F /* ArticleComposerViewModel.swift */; };
-		FDF0A875210D7E9800EE228F /* ArticleComposerSubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A874210D7E9800EE228F /* ArticleComposerSubjectCell.swift */; };
-		FDF0A877210D84D100EE228F /* ArticleComposerBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A876210D84D000EE228F /* ArticleComposerBodyCell.swift */; };
 		FDF0E17B1FC3FF42003AEA1B /* TQNNTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0E17A1FC3FF42003AEA1B /* TQNNTPResponse.swift */; };
 		FDFC2DB8203269480098B5F5 /* TQArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC2DB7203269480098B5F5 /* TQArticleManager.swift */; };
 /* End PBXBuildFile section */
@@ -177,8 +175,6 @@
 		FDF0A86D210D52F400EE228F /* UIView+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Debug.swift"; sourceTree = "<group>"; };
 		FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleComposerViewController.swift; sourceTree = "<group>"; };
 		FDF0A871210D756800EE228F /* ArticleComposerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleComposerViewModel.swift; sourceTree = "<group>"; };
-		FDF0A874210D7E9800EE228F /* ArticleComposerSubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleComposerSubjectCell.swift; sourceTree = "<group>"; };
-		FDF0A876210D84D000EE228F /* ArticleComposerBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleComposerBodyCell.swift; sourceTree = "<group>"; };
 		FDF0E17A1FC3FF42003AEA1B /* TQNNTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPResponse.swift; sourceTree = "<group>"; };
 		FDFC2DB7203269480098B5F5 /* TQArticleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQArticleManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,7 +254,6 @@
 		FD87460D1F4973B400C95C5A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FDF0A873210D7E7E00EE228F /* Cell */,
 				FD15CB9B1F6074D300C64B88 /* Overlay */,
 				FD12F6301F57563100415514 /* Common */,
 				FD12F6271F574BCC00415514 /* VC */,
@@ -426,15 +421,6 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
-		FDF0A873210D7E7E00EE228F /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				FDF0A874210D7E9800EE228F /* ArticleComposerSubjectCell.swift */,
-				FDF0A876210D84D000EE228F /* ArticleComposerBodyCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
 		FDF0F9641F58B493008FE181 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,7 +556,6 @@
 				FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FDADC7561FC8CF0F00F76A94 /* TQLoginViewController.swift in Sources */,
 				FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */,
-				FDF0A877210D84D100EE228F /* ArticleComposerBodyCell.swift in Sources */,
 				FD7E83681FC517F500025211 /* TQNNTPManager.swift in Sources */,
 				FD596A89210E49680013F99E /* UIFont+Default.swift in Sources */,
 				FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */,
@@ -581,7 +566,6 @@
 				FD596A87210E43DA0013F99E /* TextField.swift in Sources */,
 				FDB6A96A20F2B500006EEE05 /* NNTPRequest.swift in Sources */,
 				FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */,
-				FDF0A875210D7E9800EE228F /* ArticleComposerSubjectCell.swift in Sources */,
 				FDF0A870210D6DBC00EE228F /* ArticleComposerViewController.swift in Sources */,
 				FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */,
 				FD833CB31FC89EDD003A9FA0 /* TQArticleComposerViewController.swift in Sources */,
