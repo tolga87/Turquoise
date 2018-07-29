@@ -2,12 +2,14 @@ import Foundation
 import UIKit
 
 class TQLoginViewController : UIViewController {
-    let contentView: UIView = {
+    var autoLogin: Bool = false
+
+    private let contentView: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = #colorLiteral(red: 0.3725490196, green: 0.6588235294, blue: 0.8117647059, alpha: 1)
         return view
     }()
-    let infoLabel: TQLabel = {
+    private let infoLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
         label.minimumScaleFactor = 0.8
@@ -16,7 +18,7 @@ class TQLoginViewController : UIViewController {
         label.text = "Please enter your COW credentials below."
         return label
     }()
-    let userLabel: TQLabel = {
+    private let userLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
         label.minimumScaleFactor = 0.8
@@ -25,7 +27,7 @@ class TQLoginViewController : UIViewController {
         label.text = "User"
         return label
     }()
-    let passwordLabel: TQLabel = {
+    private let passwordLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
         label.minimumScaleFactor = 0.8
@@ -35,20 +37,24 @@ class TQLoginViewController : UIViewController {
         return label
     }()
 
-    let userNameField: TQTextField = {
-        let field = TQTextField(frame: .zero)
+    private let userNameField: TextField = {
+        let field = TextField()
+        field.horizontalInset = 10
+        field.fontSize = 12
         field.layer.borderColor = UIColor.black.cgColor
         field.layer.borderWidth = 1
         return field
     }()
-    let passwordField: TQTextField = {
-        let field = TQTextField(frame: .zero)
+    private let passwordField: PasswordField = {
+        let field = PasswordField()
+        field.horizontalInset = 10
+        field.fontSize = 12
         field.layer.borderColor = UIColor.black.cgColor
         field.layer.borderWidth = 1
         return field
     }()
 
-    let loginButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.font = UIFont(name: "dungeon", size: 14)
         button.setTitleColor(.white, for: .normal)
@@ -57,8 +63,8 @@ class TQLoginViewController : UIViewController {
         return button
     }()
 
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-    let connectionStatusLabel: TQLabel = {
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    private let connectionStatusLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
         label.minimumScaleFactor = 0.8
@@ -67,7 +73,7 @@ class TQLoginViewController : UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    let versionNumberLabel: TQLabel = {
+    private let versionNumberLabel: TQLabel = {
         let label = TQLabel(frame: .zero)
         label.fontSize = 12
         label.textColor = .darkGray
@@ -76,23 +82,24 @@ class TQLoginViewController : UIViewController {
         return label
     }()
 
-    let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
-    var groupManager: GroupManager!
-
-//  override func viewWillAppear(_ animated: Bool) {
-//    super.viewWillAppear(animated)
-//
-//    self.loginButton.isEnabled = true
-//    // TODO: fix this code.
-////    if (TQNNTPManager.sharedInstance.networkReachable) {
-//      // don't attempt to connect if we appeared because of a network disconnection
-//      _ = self.loginWithSavedCredentialsIfPossible()
-////    }
-//  }
+    private let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
+    private var groupManager: GroupManager!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+        self.loginButton.isEnabled = true
+
+        guard self.autoLogin else {
+            return
+        }
+
+        // TODO: Fix.
+        // Don't attempt to connect if we appeared because of a network disconnection
+
+        self.autoLogin = false
+        self.loginWithSavedCredentialsIfPossible()
     }
 
   override func viewDidLoad() {
@@ -204,8 +211,6 @@ class TQLoginViewController : UIViewController {
     self.versionNumberLabel.widthAnchor.constraint(equalToConstant: 80).isActive = true
     self.versionNumberLabel.heightAnchor.constraint(equalToConstant: 32).isActive = true
 
-    self.passwordField.isPassword = true
-
     self.loginButton.addTarget(self,
                                action: #selector(loginButtonDidTap(_:)),
                                for: .touchUpInside)
@@ -251,7 +256,7 @@ class TQLoginViewController : UIViewController {
     let foundUserCredentials = self.loginWithSavedCredentialsIfPossible()
     if !foundUserCredentials {
       let userName = self.userNameField.text?.tq_whitespaceAndNewlineStrippedString ?? ""
-      let password = self.passwordField.password?.tq_whitespaceAndNewlineStrippedString ?? ""
+      let password = self.passwordField.password.tq_whitespaceAndNewlineStrippedString
 
       if !userName.isEmpty && password.count > 1 {
         self.login(userName: userName, password: password, askUserInfo: true)

@@ -11,9 +11,8 @@ import UIKit
 
 extension UIView {
     func highlightBorders() {
-        self.layer.borderColor = UIColor.red.cgColor
-        self.layer.borderWidth = 1
-//        self.layer.cornerRadius = 4
+        self.borderColor = .red
+        self.borderWidth = 1
 
         self.subviews.forEach {
             $0.highlightBorders()

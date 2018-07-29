@@ -67,6 +67,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
 
             if let textLabel = cell.textLabel {
                 textLabel.textAlignment = .center
+                textLabel.font = UIFont.defaultFont(ofSize: 15)
                 textLabel.textColor = .readArticleTitleColor
                 textLabel.text = "Loading..."
             }

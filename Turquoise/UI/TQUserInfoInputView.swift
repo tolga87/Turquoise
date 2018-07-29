@@ -6,8 +6,8 @@ typealias TQUserInfoInputViewCompletionBlock = (String, String) -> Void
 class TQUserInfoInputView : UIView {
   var completionBlock: TQUserInfoInputViewCompletionBlock?
 
-  @IBOutlet var userFullNameTextField: TQTextField!
-  @IBOutlet var userEmailTextField: TQTextField!
+  @IBOutlet var userFullNameTextField: PasswordField!
+  @IBOutlet var userEmailTextField: PasswordField!
 
   @IBAction func proceedButtonDidTap(_ sender: Any?) {
     let userFullName = self.userFullNameTextField.text?.tq_whitespaceAndNewlineStrippedString ?? ""
