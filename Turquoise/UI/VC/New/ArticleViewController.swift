@@ -39,24 +39,57 @@ class ArticleViewController: UIViewController {
         label.fontSize = Consts.titleFontSize
         return label
     }()
-    var groupLabel: TQLabel = {
+    var metadataLabel: TQLabel = {
         let label = ArticleViewController.label()
+        label.numberOfLines = 2
         label.textColor = Consts.subtitleColor
         label.fontSize = Consts.subtitleFontSize
         return label
     }()
-    var senderLabel: TQLabel = {
-        let label = ArticleViewController.label()
-        label.textColor = Consts.subtitleColor
-        label.fontSize = Consts.subtitleFontSize
-        return label
-    }()
-    var bodyField: TQTextField = {
-        let field = TQTextField()
+    var bodyField: UITextView = {
+        let field = UITextView()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.font = UIFont(name: "dungeon", size: Consts.bodyTextFontSize)
+        field.backgroundColor = .clear
         field.textColor = Consts.bodyTextColor
-        field.contentVerticalAlignment = .top
+        field.font = UIFont(name: "dungeon", size: Consts.bodyTextFontSize)
+        field.textContainerInset = .zero
+        field.textContainer.lineFragmentPadding = 0
+        return field
+    }()
+    var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+
+    var bottomFillerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Consts.footerColor
+        return view
+    }()
+
+    var footerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Consts.footerColor
+        return view
+    }()
+
+    var replyField: TQLabel = {
+        let field = TQLabel()
+        field.translatesAutoresizingMaskIntoConstraints = false
+        field.isUserInteractionEnabled = true
+        field.numberOfLines = 1
+        field.horizontalInset = 4
+        field.fontSize = 12
+        field.backgroundColor = Consts.replyBackgroundColor
+        field.layer.borderColor = Consts.replyForegroundColor.cgColor
+        field.textColor = Consts.replyForegroundColor
+        field.layer.borderWidth = 1.0 / UIScreen.main.scale
+        field.layer.cornerRadius = 2
+        field.text = "Reply"
         return field
     }()
 
@@ -78,16 +111,41 @@ class ArticleViewController: UIViewController {
                 return
             }
 
+            strongSelf.spinner.stopAnimating()
             strongSelf.bodyField.text = strongSelf.dataSource.bodyString
         }
 
-        self.view.backgroundColor = .gray
+        self.view.backgroundColor = .clear
+
+        self.view.addSubview(self.bottomFillerView)
+        self.bottomFillerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.bottomFillerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.bottomFillerView.topAnchor.constraint(equalTo: self.view.safeBottomAnchor).isActive = true
+        self.bottomFillerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+
+        self.view.addSubview(self.footerView)
+        self.footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.footerView.bottomAnchor.constraint(equalTo: self.bottomFillerView.topAnchor).isActive = true
+        self.footerView.heightAnchor.constraint(equalToConstant: Consts.footerHeight).isActive = true
+
+        self.footerView.addSubview(self.replyField)
+        self.replyField.topAnchor.constraint(equalTo: self.footerView.topAnchor,
+                                             constant: Consts.replyFieldPadding).isActive = true
+        self.replyField.leadingAnchor.constraint(equalTo: self.footerView.leadingAnchor,
+                                                 constant: Consts.replyFieldPadding).isActive = true
+        self.replyField.trailingAnchor.constraint(equalTo: self.footerView.trailingAnchor,
+                                                  constant: -Consts.replyFieldPadding).isActive = true
+        self.replyField.bottomAnchor.constraint(equalTo: self.footerView.bottomAnchor,
+                                                constant: -Consts.replyFieldPadding).isActive = true
+        self.replyField.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapReply)))
 
         self.view.addSubview(self.scrollView)
         self.scrollView.topAnchor.constraint(equalTo: self.view.safeTopAnchor).isActive = true
         self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeLeadingAnchor).isActive = true
         self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeTrailingAnchor).isActive = true
-        self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeBottomAnchor).isActive = true
+        self.scrollView.bottomAnchor.constraint(equalTo: self.footerView.topAnchor,
+                                                constant: -4).isActive = true
 
         self.scrollView.addSubview(self.contentView)
         self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor).isActive = true
@@ -101,52 +159,66 @@ class ArticleViewController: UIViewController {
         self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor,
                                              constant: 8).isActive = true
         self.titleLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                 constant: 4).isActive = true
+                                                 constant: Consts.leadingPadding).isActive = true
         self.titleLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
-                                                  constant: -4).isActive = true
+                                                  constant: -Consts.trailingPadding).isActive = true
         self.titleLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
-        self.contentView.addSubview(self.groupLabel)
-        self.groupLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,
+        self.contentView.addSubview(self.metadataLabel)
+        self.metadataLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,
                                              constant: 2).isActive = true
-        self.groupLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                 constant: 4).isActive = true
-        self.groupLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
-                                                  constant: -4).isActive = true
-        self.groupLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-
-        self.contentView.addSubview(self.senderLabel)
-        self.senderLabel.topAnchor.constraint(equalTo: self.groupLabel.bottomAnchor,
-                                             constant: 2).isActive = true
-        self.senderLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                 constant: 4).isActive = true
-        self.senderLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
-                                                  constant: -4).isActive = true
-        self.senderLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        self.metadataLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
+                                                 constant: Consts.leadingPadding).isActive = true
+        self.metadataLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
+                                                  constant: -Consts.trailingPadding).isActive = true
+        self.metadataLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
         self.contentView.addSubview(self.bodyField)
-        self.bodyField.topAnchor.constraint(equalTo: self.senderLabel.bottomAnchor,
+        self.bodyField.topAnchor.constraint(equalTo: self.metadataLabel.bottomAnchor,
                                             constant: 2).isActive = true
         self.bodyField.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor,
-                                                constant: 4).isActive = true
+                                                constant: Consts.leadingPadding).isActive = true
         self.bodyField.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor,
-                                                 constant: -4).isActive = true
+                                                 constant: -Consts.trailingPadding).isActive = true
         self.bodyField.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor,
-                                               constant: -4).isActive = true
+                                               constant: -Consts.trailingPadding).isActive = true
+
+        self.bodyField.addSubview(self.spinner)
+        self.spinner.topAnchor.constraint(equalTo: self.bodyField.topAnchor,
+                                          constant: 0).isActive = true
+        self.spinner.centerXAnchor.constraint(equalTo: self.bodyField.centerXAnchor).isActive = true
+        self.spinner.startAnimating()
 
         self.titleLabel.text = self.dataSource.titleString
-        self.groupLabel.text = self.dataSource.newsgroupString
-        self.senderLabel.text = self.dataSource.senderString
+        self.metadataLabel.text = "in \(self.dataSource.newsgroupString)\nby \(self.dataSource.senderString)"
         self.bodyField.text = self.dataSource.bodyString
+    }
+
+    @objc private func didTapReply() {
+        // TODO: Implement.
     }
 
     private struct Consts {
         static let titleColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         static let subtitleColor: UIColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         static let bodyTextColor: UIColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        static let replyBackgroundColor = UIColor(black: 0.85)
+        static let replyForegroundColor = UIColor(black: 0.45)
+        static let footerColor = UIColor(black: 0.90)
 
         static let titleFontSize: CGFloat = 13
         static let subtitleFontSize: CGFloat = 10
         static let bodyTextFontSize: CGFloat = 12
+
+        static let leadingPadding: CGFloat = 8
+        static let trailingPadding: CGFloat = 8
+        static let replyFieldPadding: CGFloat = 6
+        static let footerHeight: CGFloat = 40
+    }
+}
+
+extension UIColor {
+    convenience init(black: CGFloat) {
+        self.init(white: 1.0 - black, alpha: 1)
     }
 }

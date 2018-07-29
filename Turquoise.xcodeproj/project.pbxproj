@@ -81,6 +81,7 @@
 		FDE86E7B1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE86E7A1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift */; };
 		FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE86E7D1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift */; };
 		FDE86E811FC898F7009C0466 /* TQArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE86E801FC898F7009C0466 /* TQArticleViewController.swift */; };
+		FDF0A86E210D52F400EE228F /* UIView+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0A86D210D52F400EE228F /* UIView+Debug.swift */; };
 		FDF0E17B1FC3FF42003AEA1B /* TQNNTPResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF0E17A1FC3FF42003AEA1B /* TQNNTPResponse.swift */; };
 		FDFC2DB8203269480098B5F5 /* TQArticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFC2DB7203269480098B5F5 /* TQArticleManager.swift */; };
 /* End PBXBuildFile section */
@@ -163,6 +164,7 @@
 		FDE86E7A1FC790A6009C0466 /* TQHeaderDownloadProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQHeaderDownloadProgressView.swift; sourceTree = "<group>"; };
 		FDE86E7D1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQArticleHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		FDE86E801FC898F7009C0466 /* TQArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQArticleViewController.swift; sourceTree = "<group>"; };
+		FDF0A86D210D52F400EE228F /* UIView+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Debug.swift"; sourceTree = "<group>"; };
 		FDF0E17A1FC3FF42003AEA1B /* TQNNTPResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPResponse.swift; sourceTree = "<group>"; };
 		FDFC2DB7203269480098B5F5 /* TQArticleManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQArticleManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -339,6 +341,7 @@
 				FD7E83641FC5159B00025211 /* String+TQEncoding.swift */,
 				FDA7D07820FBCB8E002B3E4D /* UIView+SafeArea.swift */,
 				FDA7D08220FC1332002B3E4D /* UIColor+Turquoise.swift */,
+				FDF0A86D210D52F400EE228F /* UIView+Debug.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
 				FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
 				FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */,
+				FDF0A86E210D52F400EE228F /* UIView+Debug.swift in Sources */,
 				FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FDFC2DB8203269480098B5F5 /* TQArticleManager.swift in Sources */,
 				FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */,

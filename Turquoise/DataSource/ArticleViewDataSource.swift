@@ -39,15 +39,15 @@ class ArticleViewDataSource: ArticleViewDataSourceInterface {
 
     // MARK: - ArticleViewDataSourceInterface
     var titleString: String {
-        return self.articleHeaders.subject
+        return self.articleHeaders.subject.tq_decodedString
     }
 
     var newsgroupString: String {
-        return "in \(self.articleHeaders.newsgroup ?? "(Unknown)")"
+        return "\(self.articleHeaders.newsgroup?.tq_decodedString ?? "(Unknown)")"
     }
 
     var senderString: String {
-        return "by \(self.articleHeaders.from ?? "(Unknown)")"
+        return "\(self.articleHeaders.from?.tq_decodedString ?? "(Unknown)")"
     }
 
     var bodyString: String? {

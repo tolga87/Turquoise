@@ -316,6 +316,7 @@ class TQLoginViewController : UIViewController {
         self.connectionStatusLabel.text = "Login successful!"
 
         let groupId = "metu.ceng.others.bunalim"
+//        let groupId = "metu.ceng.course.336"
         self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
         self.showGroupVC()
 
