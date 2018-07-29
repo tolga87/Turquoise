@@ -27,12 +27,10 @@ class UsenetClient : UsenetClientInterface {
     static let newsServerPort = 563
     static let timeout: TimeInterval = 10
 
-    var streamTask: URLSessionStreamTask!
-    var dataBuffer: Data?
-
+    fileprivate var streamTask: URLSessionStreamTask!
+    fileprivate var dataBuffer: Data?
     private var queue: [RequestResponseCallbackPair] = []
-
-
+    private var isInitialized = false
 
     private func enqueue(request: NNTPRequest, completion: NNTPRequestCompletion?) {
         let pair = RequestResponseCallbackPair(request: request, responseCallback: completion)
@@ -46,7 +44,7 @@ class UsenetClient : UsenetClientInterface {
         self.queue.removeFirst()
     }
 
-    init() {
+    public func connect() {
         self.setupStream()
     }
 
@@ -93,6 +91,11 @@ class UsenetClient : UsenetClientInterface {
     // MARK: - UsenetClientInterface
 
     func makeRequest(_ request: NNTPRequest, completion: NNTPRequestCompletion?) {
+        if !self.isInitialized {
+            self.isInitialized = true
+            self.setupStream()
+        }
+
         self.enqueue(request: request, completion: completion)
 
         if self.queue.count == 1 {
