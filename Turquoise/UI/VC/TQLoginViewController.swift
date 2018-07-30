@@ -350,11 +350,9 @@ class TQLoginViewController : UIViewController {
     func showGroupVC() {
         let groupVC = GroupViewController(groupManager: self.groupManager)
 
-        let groupSelectorVC = GroupSelectorViewController()
+        let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient)
 
         if let navController = self.navigationController {
-//            navController.pushViewController(groupSelectorVC, animated: true)
-//            navController.pushViewController(groupVC, animated: true)
             var controllers = navController.viewControllers
             controllers.append(contentsOf: [groupSelectorVC, groupVC])
             navController.setViewControllers(controllers, animated: true)

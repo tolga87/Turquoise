@@ -32,6 +32,9 @@ class NNTPResponseFactory {
         case .Headers:
             return NNTPGroupResponse(string: string)
 
+        case .MultiLine:
+            return NNTPMultiLineResponse(string: string)
+
         case .Body:
             return NNTPBodyResponse(string: string)
         }
@@ -41,5 +44,6 @@ class NNTPResponseFactory {
 
 enum ResponseCode: Int {
     case Headers = 211
+    case MultiLine = 215
     case Body = 222
 }

@@ -9,12 +9,53 @@
 import Foundation
 import UIKit
 
-class GroupSelectorViewController: UIViewController {
+class GroupSelectorViewController: UITableViewController {
+    let viewModel: GroupSelectorViewModelInterface
+    let searchController: UISearchController
+
+    init(usenetClient: UsenetClientInterface) {
+        self.viewModel = GroupSelectorViewModel(usenetClient: usenetClient)
+        self.searchController = UISearchController(searchResultsController: nil)
+        super.init(style: .plain)
+
+        self.viewModel.updateCallback = {
+            self.tableView.reloadData()
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
-    }
+        self.navigationItem.title = "Manage newsgroup subscriptions"
+        self.view.backgroundColor = .black
 
+        self.searchController.searchResultsUpdater = self
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.searchBar.placeholder = "Search newsgroups"
+        self.searchController.searchBar.autocapitalizationType = .none
+        self.searchController.hidesNavigationBarDuringPresentation = false
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.definesPresentationContext = true
+
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.viewModel.loadingCellReuseId)
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.viewModel.groupInfoCellReuseId)
+        self.tableView.dataSource = self.viewModel
+        self.tableView.delegate = self.viewModel
+        self.tableView.tableFooterView = UIView()
+
+        self.viewModel.reloadData()
+    }
+}
+
+extension GroupSelectorViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        let filterTerm = searchController.searchBar.text ?? ""
+        self.viewModel.filter(term: filterTerm)
+    }
 }
