@@ -19,11 +19,12 @@
 		FD596A8B210E4D4B0013F99E /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A8A210E4D4B0013F99E /* UIView+Border.swift */; };
 		FD596A8E210E6A940013F99E /* settings-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8C210E6A930013F99E /* settings-16.png */; };
 		FD596A8F210E6A940013F99E /* compose-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8D210E6A930013F99E /* compose-16.png */; };
-		FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */; };
+		FD596A93210E74F60013F99E /* SubscriptionSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */; };
 		FD596A95210E759C0013F99E /* GroupListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A94210E759C0013F99E /* GroupListManager.swift */; };
 		FD596A97210E79390013F99E /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A96210E79390013F99E /* GroupInfo.swift */; };
 		FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */; };
 		FD596A9C210E8ABB0013F99E /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A9B210E8ABB0013F99E /* Searchable.swift */; };
+		FD596A9E210EAF850013F99E /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A9D210EAF850013F99E /* SubscriptionManager.swift */; };
 		FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */; };
 		FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */; };
 		FD5E51C6202A3278006E4C7E /* TQRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5E51C5202A3278006E4C7E /* TQRefreshView.xib */; };
@@ -67,7 +68,7 @@
 		FDB6ED311FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */; };
 		FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
 		FDB7DE73202A261B00273BE0 /* TQRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */; };
-		FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */; };
+		FDBCE5942105218C00E261FB /* SubscriptionSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */; };
 		FDBCE59621052A7A00E261FB /* settings-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59521052A7A00E261FB /* settings-32.png */; };
 		FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE59721052B6500E261FB /* SettingsViewController.swift */; };
 		FDBCE59A21052DF500E261FB /* close-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59921052DF500E261FB /* close-32.png */; };
@@ -111,11 +112,12 @@
 		FD596A8A210E4D4B0013F99E /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		FD596A8C210E6A930013F99E /* settings-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-16.png"; sourceTree = "<group>"; };
 		FD596A8D210E6A930013F99E /* compose-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-16.png"; sourceTree = "<group>"; };
-		FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewModel.swift; sourceTree = "<group>"; };
+		FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSelectorViewModel.swift; sourceTree = "<group>"; };
 		FD596A94210E759C0013F99E /* GroupListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListManager.swift; sourceTree = "<group>"; };
 		FD596A96210E79390013F99E /* GroupInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
 		FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPMultiLineResponse.swift; sourceTree = "<group>"; };
 		FD596A9B210E8ABB0013F99E /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
+		FD596A9D210EAF850013F99E /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		FD5A1B731FC8E42200789626 /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftKeychainWrapper.h; sourceTree = "<group>"; };
 		FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoManager.swift; sourceTree = "<group>"; };
@@ -162,7 +164,7 @@
 		FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticle.swift; sourceTree = "<group>"; };
 		FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticleForest.swift; sourceTree = "<group>"; };
 		FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQRefreshableTableView.swift; sourceTree = "<group>"; };
-		FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController.swift; sourceTree = "<group>"; };
+		FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSelectorViewController.swift; sourceTree = "<group>"; };
 		FDBCE59521052A7A00E261FB /* settings-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-32.png"; sourceTree = "<group>"; };
 		FDBCE59721052B6500E261FB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDBCE59921052DF500E261FB /* close-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-32.png"; sourceTree = "<group>"; };
@@ -363,7 +365,7 @@
 			children = (
 				FDBCE59F2105368F00E261FB /* ArticleViewController.swift */,
 				FDA7D07320FBBB01002B3E4D /* GroupViewController.swift */,
-				FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */,
+				FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */,
 				FDBCE59721052B6500E261FB /* SettingsViewController.swift */,
 				FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */,
 			);
@@ -389,7 +391,7 @@
 				FDB6761C2027A93500F9F654 /* GroupTableViewDataSource.swift */,
 				FDBCE5A5210542FA00E261FB /* ArticleViewDataSource.swift */,
 				FDF0A871210D756800EE228F /* ArticleComposerViewModel.swift */,
-				FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */,
+				FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -460,6 +462,7 @@
 				FDFC2DB7203269480098B5F5 /* TQArticleManager.swift */,
 				FD2BA761203B656600246219 /* TQCacheManager.swift */,
 				FDB6A96F20F2B921006EEE05 /* LoginManager.swift */,
+				FD596A9D210EAF850013F99E /* SubscriptionManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD596A9E210EAF850013F99E /* SubscriptionManager.swift in Sources */,
 				FDB6A96C20F2B533006EEE05 /* NNTPResponse.swift in Sources */,
 				FDA7D08320FC1332002B3E4D /* UIColor+Turquoise.swift in Sources */,
 				FDE86E811FC898F7009C0466 /* TQArticleViewController.swift in Sources */,
@@ -613,7 +617,7 @@
 				FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */,
 				FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */,
 				FDF0A872210D756800EE228F /* ArticleComposerViewModel.swift in Sources */,
-				FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */,
+				FDBCE5942105218C00E261FB /* SubscriptionSelectorViewController.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
@@ -625,7 +629,7 @@
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
-				FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */,
+				FD596A93210E74F60013F99E /* SubscriptionSelectorViewModel.swift in Sources */,
 				FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
 				FD596A9C210E8ABB0013F99E /* Searchable.swift in Sources */,
 				FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */,

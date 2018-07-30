@@ -1,5 +1,5 @@
 //
-//  GroupSelectorViewModel.swift
+//  SubscriptionSelectorViewModel.swift
 //  Turquoise
 //
 //  Created by tolga on 7/29/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol GroupSelectorViewModelInterface: UITableViewDataSource, UITableViewDelegate {
+protocol SubscriptionSelectorViewModelInterface: UITableViewDataSource, UITableViewDelegate {
     var loadingCellReuseId: String { get }
     var groupInfoCellReuseId: String { get }
     var updateCallback: (() -> Void)? { get set }
@@ -18,18 +18,21 @@ protocol GroupSelectorViewModelInterface: UITableViewDataSource, UITableViewDele
     func reloadData()
 }
 
-class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
-    let loadingCellReuseId: String = "GroupSelectorLoadingCell"
-    let groupInfoCellReuseId: String = "GroupSelectorGroupInfoCell"
+class SubscriptionSelectorViewModel: NSObject, SubscriptionSelectorViewModelInterface {
+    let loadingCellReuseId: String = "SubscriptionSelectorLoadingCell"
+    let groupInfoCellReuseId: String = "SubscriptionSelectorGroupInfoCell"
 
     var updateCallback: (() -> Void)?
+
+    private let subscriptionManager: SubscriptionManagerInterface
     private let groupListManager: GroupListManager
     private var groupInfos: [GroupInfo]?
     private var filteredGroupInfos: [GroupInfo]?
     private var filterBy: String
 
-    init(usenetClient: UsenetClientInterface) {
+    init(usenetClient: UsenetClientInterface, subscriptionManager: SubscriptionManagerInterface) {
         self.groupListManager = GroupListManager(usenetClient: usenetClient)
+        self.subscriptionManager = subscriptionManager
         self.filterBy = ""
         super.init()
 
@@ -39,22 +42,26 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
         ]
     }
 
-    func numberOfGroups() -> Int? {
+    private func numberOfGroups() -> Int? {
         let isFiltering = !self.filterBy.isEmpty
         return isFiltering ? self.filteredGroupInfos?.count : self.groupInfos?.count
     }
 
-    func groupDescriptionAtIndex(_ index: Int) -> String {
+    private func groupDescriptionAtIndex(_ index: Int) -> String {
+        let groupInfo = self.groupInfoAtIndex(index)
+        return "\(groupInfo.groupId) (\(groupInfo.numberOfArticles))"
+    }
+
+    private func groupInfoAtIndex(_ index: Int) -> GroupInfo {
         let isFiltering = !self.filterBy.isEmpty
 
         guard
             let infos = isFiltering ? self.filteredGroupInfos : self.groupInfos,
             index < infos.count else {
-                fatalError("Invalid index in GroupSelectorViewModel.")
+                fatalError("Invalid index in SubscriptionSelectorViewModel.")
         }
 
-        let groupInfo = infos[index]
-        return "\(groupInfo.groupId) (\(groupInfo.numberOfArticles))"
+        return infos[index]
     }
 
     func reloadData() {
@@ -87,7 +94,7 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
     }
 }
 
-extension GroupSelectorViewModel: UITableViewDataSource {
+extension SubscriptionSelectorViewModel: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // If number is nil, we haven't finished fetching the list yet.
@@ -98,9 +105,12 @@ extension GroupSelectorViewModel: UITableViewDataSource {
         guard let _ = self.numberOfGroups() else {
             let cell = tableView.dequeueReusableCell(withIdentifier: self.loadingCellReuseId, for: indexPath)
             cell.backgroundColor = .clear
-            cell.textLabel?.textColor = .white
-            cell.textLabel?.font = .defaultFont(ofSize: 12)
+            cell.textLabel?.textColor = .lightGray
+            cell.textLabel?.font = .defaultFont(ofSize: 14)
+            cell.textLabel?.textAlignment = .center
             cell.textLabel?.text = "Loading..."
+            cell.selectionStyle = .none
+            cell.accessoryType = .none
             return cell
         }
 
@@ -108,7 +118,34 @@ extension GroupSelectorViewModel: UITableViewDataSource {
         cell.backgroundColor = .clear
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = .defaultFont(ofSize: 12)
+
         cell.textLabel?.text = self.groupDescriptionAtIndex(indexPath.row)
+
+        let groupId = self.groupInfoAtIndex(indexPath.row).groupId
+        let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
+        cell.accessoryType = isSubscribed ? .checkmark : .none
         return cell
+    }
+}
+
+extension SubscriptionSelectorViewModel: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let groupId = self.groupInfoAtIndex(indexPath.row).groupId
+        let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
+        if isSubscribed {
+            self.subscriptionManager.unsubscribe(fromGroup: groupId)
+        } else {
+            self.subscriptionManager.subscribe(toGroup: groupId)
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let _ = self.numberOfGroups() {
+            return indexPath
+        } else {
+            return nil
+        }
     }
 }

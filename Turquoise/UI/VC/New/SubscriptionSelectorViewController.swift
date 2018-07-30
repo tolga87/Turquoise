@@ -1,5 +1,5 @@
 //
-//  GroupSelectorViewController.swift
+//  SubscriptionSelectorViewController.swift
 //  Turquoise
 //
 //  Created by tolga on 7/22/18.
@@ -9,16 +9,19 @@
 import Foundation
 import UIKit
 
-class GroupSelectorViewController: UITableViewController {
-    let viewModel: GroupSelectorViewModelInterface
+class SubscriptionSelectorViewController: UITableViewController {
+    let viewModel: SubscriptionSelectorViewModelInterface
     let searchController: UISearchController
 
-    init(usenetClient: UsenetClientInterface) {
-        self.viewModel = GroupSelectorViewModel(usenetClient: usenetClient)
+    init(usenetClient: UsenetClientInterface, subscriptionManager: SubscriptionManagerInterface) {
+        self.viewModel = SubscriptionSelectorViewModel(usenetClient: usenetClient, subscriptionManager: subscriptionManager)
         self.searchController = UISearchController(searchResultsController: nil)
         super.init(style: .plain)
 
         self.viewModel.updateCallback = {
+            self.tableView.reloadData()
+        }
+        subscriptionManager.updateCallback = {
             self.tableView.reloadData()
         }
     }
@@ -52,7 +55,7 @@ class GroupSelectorViewController: UITableViewController {
     }
 }
 
-extension GroupSelectorViewController: UISearchResultsUpdating {
+extension SubscriptionSelectorViewController: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         let filterTerm = searchController.searchBar.text ?? ""

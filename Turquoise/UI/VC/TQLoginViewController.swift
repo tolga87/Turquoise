@@ -83,6 +83,7 @@ class TQLoginViewController : UIViewController {
     }()
 
     private let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
+    private let subscriptionManager = SubscriptionManager()
     private var groupManager: GroupManager!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -350,11 +351,12 @@ class TQLoginViewController : UIViewController {
     func showGroupVC() {
         let groupVC = GroupViewController(groupManager: self.groupManager)
 
-        let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient)
+        let subscriptionSelectorVC = SubscriptionSelectorViewController(usenetClient: self.usenetClient,
+                                                                        subscriptionManager: self.subscriptionManager)
 
         if let navController = self.navigationController {
             var controllers = navController.viewControllers
-            controllers.append(contentsOf: [groupSelectorVC, groupVC])
+            controllers.append(contentsOf: [subscriptionSelectorVC, groupVC])
             navController.setViewControllers(controllers, animated: true)
         }
 
