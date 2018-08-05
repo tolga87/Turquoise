@@ -49,8 +49,24 @@ class GroupManager {
 
             self.firstArticleNo = response.firstArticleNo
             self.lastArticleNo = response.lastArticleNo
-
             var articles: [Article] = []
+
+            func createForestAndNotify(articles: [Article]) {
+                self.articles = articles
+
+                let articleForestManager = ArticleForestManager(articles: articles)
+                self.articleForest = articleForestManager.expandedForest()
+
+                DispatchQueue.main.async {
+                    self.groupHeadersUpdateCallback?(true)
+                }
+            }
+
+            guard self.firstArticleNo <= self.lastArticleNo else {
+                // There are no articles in this group.
+                createForestAndNotify(articles: [])
+                return
+            }
 
             for articleNo in self.firstArticleNo...self.lastArticleNo {
                 self.downloadHeaders(forArticleNo: articleNo, completion: { (articleHeaders) in
@@ -60,14 +76,7 @@ class GroupManager {
                     }
 
                     if articleNo == self.lastArticleNo {
-                        self.articles = articles
-
-                        let articleForestManager = ArticleForestManager(articles: articles)
-                        self.articleForest = articleForestManager.expandedForest()
-
-                        DispatchQueue.main.async {
-                            self.groupHeadersUpdateCallback?(true)
-                        }
+                        createForestAndNotify(articles: articles)
                     }
                 })
             }

@@ -31,6 +31,11 @@ class NNTPBodyResponse : NNTPResponse {
             bodyEndIndex = self.string.index(bodyEndIndex, offsetBy: -bodyTerminator.count)
         }
 
+        guard bodyStartIndex <= bodyEndIndex else {
+            self.articleBody = ""
+            return
+        }
+
         self.articleBody = String(self.string[bodyStartIndex..<bodyEndIndex])
     }
 }

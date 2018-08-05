@@ -1,5 +1,5 @@
 //
-//  SubscriptionSelectorViewModel.swift
+//  GroupSelectorViewModel.swift
 //  Turquoise
 //
 //  Created by tolga on 7/29/18.
@@ -9,20 +9,26 @@
 import Foundation
 import UIKit
 
-protocol SubscriptionSelectorViewModelInterface: UITableViewDataSource, UITableViewDelegate {
+protocol GroupSelectorViewModelInterface: UITableViewDataSource, UITableViewDelegate {
     var loadingCellReuseId: String { get }
     var groupInfoCellReuseId: String { get }
+    var showsOnlySubscribedGroups: Bool { get set }
+
     var updateCallback: (() -> Void)? { get set }
+    var groupSelectionCallback: ((String) -> Void)? { get set }
 
     func filter(term: String)
     func reloadData()
 }
 
-class SubscriptionSelectorViewModel: NSObject, SubscriptionSelectorViewModelInterface {
-    let loadingCellReuseId: String = "SubscriptionSelectorLoadingCell"
-    let groupInfoCellReuseId: String = "SubscriptionSelectorGroupInfoCell"
+class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
+    var showsOnlySubscribedGroups = true
+
+    let loadingCellReuseId: String = "GroupSelectorLoadingCell"
+    let groupInfoCellReuseId: String = "GroupSelectorGroupInfoCell"
 
     var updateCallback: (() -> Void)?
+    var groupSelectionCallback: ((String) -> Void)?
 
     private let subscriptionManager: SubscriptionManagerInterface
     private let groupListManager: GroupListManager
@@ -58,7 +64,7 @@ class SubscriptionSelectorViewModel: NSObject, SubscriptionSelectorViewModelInte
         guard
             let infos = isFiltering ? self.filteredGroupInfos : self.groupInfos,
             index < infos.count else {
-                fatalError("Invalid index in SubscriptionSelectorViewModel.")
+                fatalError("Invalid index in GroupSelectorViewModel.")
         }
 
         return infos[index]
@@ -66,7 +72,14 @@ class SubscriptionSelectorViewModel: NSObject, SubscriptionSelectorViewModelInte
 
     func reloadData() {
         self.groupListManager.downloadGroupList { (groupInfos) in
-            self.groupInfos = groupInfos
+            if self.showsOnlySubscribedGroups {
+                self.groupInfos = groupInfos?.filter { groupInfo in
+                    return self.subscriptionManager.isSubscribed(toGroup: groupInfo.groupId)
+                }
+            } else {
+                self.groupInfos = groupInfos
+            }
+
             self.filterDataIfNecessary()
             self.updateCallback?()
         }
@@ -94,7 +107,7 @@ class SubscriptionSelectorViewModel: NSObject, SubscriptionSelectorViewModelInte
     }
 }
 
-extension SubscriptionSelectorViewModel: UITableViewDataSource {
+extension GroupSelectorViewModel: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // If number is nil, we haven't finished fetching the list yet.
@@ -123,20 +136,25 @@ extension SubscriptionSelectorViewModel: UITableViewDataSource {
 
         let groupId = self.groupInfoAtIndex(indexPath.row).groupId
         let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
-        cell.accessoryType = isSubscribed ? .checkmark : .none
+        let shouldHighlightSubscriptions = !self.showsOnlySubscribedGroups
+
+        cell.accessoryType = isSubscribed && shouldHighlightSubscriptions ? .checkmark : .none
         return cell
     }
 }
 
-extension SubscriptionSelectorViewModel: UITableViewDelegate {
+extension GroupSelectorViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let groupId = self.groupInfoAtIndex(indexPath.row).groupId
-        let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
-        if isSubscribed {
-            self.subscriptionManager.unsubscribe(fromGroup: groupId)
-        } else {
-            self.subscriptionManager.subscribe(toGroup: groupId)
-        }
+
+        self.groupSelectionCallback?(groupId)
+
+//        let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
+//        if isSubscribed {
+//            self.subscriptionManager.unsubscribe(fromGroup: groupId)
+//        } else {
+//            self.subscriptionManager.subscribe(toGroup: groupId)
+//        }
 
         tableView.deselectRow(at: indexPath, animated: true)
     }

@@ -14,7 +14,7 @@ class GroupViewController : UIViewController {
     var tableView: UITableView!
     let groupViewModel: GroupTableViewDataSource
 
-    init(groupManager: GroupManager) {
+    init(usenetClient: UsenetClientInterface, groupManager: GroupManager) {
         self.groupManager = groupManager
         self.groupViewModel = GroupTableViewDataSource(groupManager: self.groupManager)
 
@@ -85,13 +85,35 @@ class GroupViewController : UIViewController {
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
-    @objc func settingsButtonTapped() {
-        let settingsVC = SettingsViewController()
-        self.present(settingsVC, animated: true, completion: nil)
-    }
 
     @objc func composeButtonTapped() {
         print("composeButtonTapped")
+    }
+
+    @objc func settingsButtonTapped() {
+        let settingsViewModel = SettingsViewModel(options: [
+            SettingOption(title: "Manage Newsgroup Subscriptions") {
+                self.executeAfterDismissal {
+                    // TODO: Implement.
+                }
+            },
+            SettingOption(title: "Logout") {
+                self.executeAfterDismissal {
+                    // TODO: Implement.
+                }
+            }])
+        let settingsVC = SettingsViewController(viewModel: settingsViewModel)
+        self.present(DismissableViewController(rootViewController: settingsVC), animated: true, completion: nil)
+    }
+
+    private func executeAfterDismissal(block: @escaping () -> Void) {
+        if let _ = self.presentingViewController {
+            self.dismiss(animated: true) {
+                block()
+            }
+        } else {
+            block()
+        }
     }
 
     private func refreshGroupHeaders() {

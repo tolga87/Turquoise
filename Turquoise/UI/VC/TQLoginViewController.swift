@@ -84,7 +84,6 @@ class TQLoginViewController : UIViewController {
 
     private let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
     private let subscriptionManager = SubscriptionManager()
-    private var groupManager: GroupManager!
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -321,14 +320,8 @@ class TQLoginViewController : UIViewController {
         printInfo("Login Successful!")
         self.connectionStatusLabel.text = "Login successful!"
 
-        let groupId = "metu.ceng.others.bunalim"
-//        let groupId = "metu.ceng.course.336"
-        self.groupManager = GroupManager(groupId: groupId, usenetClient: self.usenetClient)
         self.showGroupVC()
 
-//        self.groupManager.downloadGroupHeaders(completion: { (groupHeaders) in
-//            printDebug("Group headers downloaded.")
-//        })
 
         if askUserInfo {
             let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView
@@ -349,16 +342,13 @@ class TQLoginViewController : UIViewController {
   }
 
     func showGroupVC() {
-        let groupVC = GroupViewController(groupManager: self.groupManager)
+        let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient,
+                                                          subscriptionManager: self.subscriptionManager)
 
-        let subscriptionSelectorVC = SubscriptionSelectorViewController(usenetClient: self.usenetClient,
-                                                                        subscriptionManager: self.subscriptionManager)
-
-        if let navController = self.navigationController {
-            var controllers = navController.viewControllers
-            controllers.append(contentsOf: [subscriptionSelectorVC, groupVC])
-            navController.setViewControllers(controllers, animated: true)
-        }
+        let navController = UINavigationController(rootViewController: groupSelectorVC)
+        navController.navigationBar.barTintColor = .clear
+        navController.modalTransitionStyle = .crossDissolve
+        self.present(navController, animated: true, completion: nil)
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true

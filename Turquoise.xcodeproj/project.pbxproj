@@ -13,13 +13,16 @@
 		FD1E839A1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */; };
 		FD2BA762203B656600246219 /* TQCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD2BA761203B656600246219 /* TQCacheManager.swift */; };
 		FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD2BA766203B66E000246219 /* Turquoise.xcdatamodeld */; };
+		FD3AF2C7211782510080041D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2C6211782510080041D /* SettingsViewModel.swift */; };
+		FD3AF2C921178B110080041D /* DismissableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2C821178B110080041D /* DismissableViewController.swift */; };
+		FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2CA2117AE670080041D /* SettingOption.swift */; };
 		FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */; };
 		FD596A87210E43DA0013F99E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A86210E43DA0013F99E /* TextField.swift */; };
 		FD596A89210E49680013F99E /* UIFont+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A88210E49680013F99E /* UIFont+Default.swift */; };
 		FD596A8B210E4D4B0013F99E /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A8A210E4D4B0013F99E /* UIView+Border.swift */; };
 		FD596A8E210E6A940013F99E /* settings-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8C210E6A930013F99E /* settings-16.png */; };
 		FD596A8F210E6A940013F99E /* compose-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8D210E6A930013F99E /* compose-16.png */; };
-		FD596A93210E74F60013F99E /* SubscriptionSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */; };
+		FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */; };
 		FD596A95210E759C0013F99E /* GroupListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A94210E759C0013F99E /* GroupListManager.swift */; };
 		FD596A97210E79390013F99E /* GroupInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A96210E79390013F99E /* GroupInfo.swift */; };
 		FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */; };
@@ -68,7 +71,7 @@
 		FDB6ED311FC4FDE200BACC8A /* TQNNTPArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */; };
 		FDB6ED341FC50C8D00BACC8A /* TQNNTPArticleForest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */; };
 		FDB7DE73202A261B00273BE0 /* TQRefreshableTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */; };
-		FDBCE5942105218C00E261FB /* SubscriptionSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */; };
+		FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */; };
 		FDBCE59621052A7A00E261FB /* settings-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59521052A7A00E261FB /* settings-32.png */; };
 		FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE59721052B6500E261FB /* SettingsViewController.swift */; };
 		FDBCE59A21052DF500E261FB /* close-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59921052DF500E261FB /* close-32.png */; };
@@ -106,13 +109,16 @@
 		FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlaySlidingMenu.swift; sourceTree = "<group>"; };
 		FD2BA761203B656600246219 /* TQCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TQCacheManager.swift; sourceTree = "<group>"; };
 		FD2BA767203B66E000246219 /* Turquoise.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Turquoise.xcdatamodel; sourceTree = "<group>"; };
+		FD3AF2C6211782510080041D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		FD3AF2C821178B110080041D /* DismissableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableViewController.swift; sourceTree = "<group>"; };
+		FD3AF2CA2117AE670080041D /* SettingOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOption.swift; sourceTree = "<group>"; };
 		FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TQUserInfoInputView.xib; sourceTree = "<group>"; };
 		FD596A86210E43DA0013F99E /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		FD596A88210E49680013F99E /* UIFont+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Default.swift"; sourceTree = "<group>"; };
 		FD596A8A210E4D4B0013F99E /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		FD596A8C210E6A930013F99E /* settings-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-16.png"; sourceTree = "<group>"; };
 		FD596A8D210E6A930013F99E /* compose-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-16.png"; sourceTree = "<group>"; };
-		FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSelectorViewModel.swift; sourceTree = "<group>"; };
+		FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewModel.swift; sourceTree = "<group>"; };
 		FD596A94210E759C0013F99E /* GroupListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListManager.swift; sourceTree = "<group>"; };
 		FD596A96210E79390013F99E /* GroupInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInfo.swift; sourceTree = "<group>"; };
 		FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPMultiLineResponse.swift; sourceTree = "<group>"; };
@@ -164,7 +170,7 @@
 		FDB6ED301FC4FDE200BACC8A /* TQNNTPArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticle.swift; sourceTree = "<group>"; };
 		FDB6ED331FC50C8D00BACC8A /* TQNNTPArticleForest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQNNTPArticleForest.swift; sourceTree = "<group>"; };
 		FDB7DE72202A261B00273BE0 /* TQRefreshableTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQRefreshableTableView.swift; sourceTree = "<group>"; };
-		FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSelectorViewController.swift; sourceTree = "<group>"; };
+		FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController.swift; sourceTree = "<group>"; };
 		FDBCE59521052A7A00E261FB /* settings-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-32.png"; sourceTree = "<group>"; };
 		FDBCE59721052B6500E261FB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDBCE59921052DF500E261FB /* close-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-32.png"; sourceTree = "<group>"; };
@@ -255,6 +261,23 @@
 			path = Overlay;
 			sourceTree = "<group>";
 		};
+		FD1DE30D21177E4C009B349E /* GroupSelector */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GroupSelector;
+			sourceTree = "<group>";
+		};
+		FD3AF2C5211782300080041D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				FDBCE59721052B6500E261FB /* SettingsViewController.swift */,
+				FD3AF2C6211782510080041D /* SettingsViewModel.swift */,
+				FD3AF2CA2117AE670080041D /* SettingOption.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		FD44C5F61F423F1B003B3605 /* NNTPClient */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +335,8 @@
 		FD9CB64F1F4233E800BC2225 /* Turquoise */ = {
 			isa = PBXGroup;
 			children = (
+				FD3AF2C5211782300080041D /* Settings */,
+				FD1DE30D21177E4C009B349E /* GroupSelector */,
 				FD596A9A210E8AAE0013F99E /* Protocols */,
 				FDBCE59E2105336300E261FB /* ViewModel */,
 				FDA7D07720FBCB70002B3E4D /* Utilities */,
@@ -365,9 +390,9 @@
 			children = (
 				FDBCE59F2105368F00E261FB /* ArticleViewController.swift */,
 				FDA7D07320FBBB01002B3E4D /* GroupViewController.swift */,
-				FDBCE5932105218C00E261FB /* SubscriptionSelectorViewController.swift */,
-				FDBCE59721052B6500E261FB /* SettingsViewController.swift */,
+				FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */,
 				FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */,
+				FD3AF2C821178B110080041D /* DismissableViewController.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -391,7 +416,7 @@
 				FDB6761C2027A93500F9F654 /* GroupTableViewDataSource.swift */,
 				FDBCE5A5210542FA00E261FB /* ArticleViewDataSource.swift */,
 				FDF0A871210D756800EE228F /* ArticleComposerViewModel.swift */,
-				FD596A92210E74F60013F99E /* SubscriptionSelectorViewModel.swift */,
+				FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -601,6 +626,7 @@
 				FD91EF671FCA17EA009CB0F5 /* TQLogger.swift in Sources */,
 				FD5E51C8202A329D006E4C7E /* TQRefreshView.swift in Sources */,
 				FD596A87210E43DA0013F99E /* TextField.swift in Sources */,
+				FD3AF2C921178B110080041D /* DismissableViewController.swift in Sources */,
 				FDB6A96A20F2B500006EEE05 /* NNTPRequest.swift in Sources */,
 				FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */,
 				FDF0A870210D6DBC00EE228F /* ArticleComposerViewController.swift in Sources */,
@@ -617,7 +643,7 @@
 				FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */,
 				FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */,
 				FDF0A872210D756800EE228F /* ArticleComposerViewModel.swift in Sources */,
-				FDBCE5942105218C00E261FB /* SubscriptionSelectorViewController.swift in Sources */,
+				FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
@@ -629,15 +655,17 @@
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
-				FD596A93210E74F60013F99E /* SubscriptionSelectorViewModel.swift in Sources */,
+				FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */,
 				FDB6ED2E1FC4BC6200BACC8A /* TQNNTPGroup.swift in Sources */,
 				FD596A9C210E8ABB0013F99E /* Searchable.swift in Sources */,
 				FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */,
 				FDF0A86E210D52F400EE228F /* UIView+Debug.swift in Sources */,
+				FD3AF2C7211782510080041D /* SettingsViewModel.swift in Sources */,
 				FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FDFC2DB8203269480098B5F5 /* TQArticleManager.swift in Sources */,
 				FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */,
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
+				FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */,
 				FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */,
 				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,
 				FDA7D08120FC04F3002B3E4D /* ArticleForestManager.swift in Sources */,

@@ -17,10 +17,8 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
 
         let loginViewController = TQLoginViewController()
         loginViewController.autoLogin = true
-        let navigationController = UINavigationController(rootViewController: loginViewController)
-        navigationController.navigationBar.barTintColor = .clear
 
-        window?.rootViewController = navigationController
+        window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()
 
         UINavigationBar.appearance().titleTextAttributes = [
