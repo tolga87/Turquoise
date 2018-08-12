@@ -15,7 +15,7 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-        let loginViewController = TQLoginViewController()
+        let loginViewController = LoginViewController()
         loginViewController.autoLogin = true
 
         window?.rootViewController = loginViewController

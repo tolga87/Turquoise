@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-class TQLoginViewController : UIViewController {
+class LoginViewController : UIViewController {
     var autoLogin: Bool = false
 
     private let contentView: UIView = {
