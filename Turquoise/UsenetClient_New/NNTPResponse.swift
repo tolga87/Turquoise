@@ -13,6 +13,17 @@ class NNTPResponse : NSObject {
     private(set) var code: Int = 0
     private(set) var body: String = ""
 
+    // TODO: Refactor this.
+    class func isMultiLine(_ statusCode: Int) -> Bool {
+        if statusCode == 215 {
+            // Information follows
+            return true
+        }
+
+        // OK & article selection
+        return statusCode.firstDigit == 2 && statusCode.secondDigit == 2
+    }
+
     init(string: String) {
         self.string = string
         super.init()
@@ -52,6 +63,9 @@ protocol ResponseType {
     func okSoFar() -> Bool
     func failed() -> Bool
     func error() -> Bool
+
+    func informationFollows() -> Bool
+    func articleSelection() -> Bool
 }
 
 extension NNTPResponse : ResponseType {
@@ -74,11 +88,23 @@ extension NNTPResponse : ResponseType {
     func error() -> Bool {
         return self.code.firstDigit == 5
     }
+
+    func informationFollows() -> Bool {
+        return self.code == 215
+    }
+
+    func articleSelection() -> Bool {
+        return self.code.secondDigit == 2
+    }
 }
 
 extension Int {
     var firstDigit: Int {
         return (self / 100)
+    }
+
+    var secondDigit: Int {
+        return (self / 10) % 10
     }
 
 }

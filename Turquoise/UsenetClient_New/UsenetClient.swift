@@ -185,7 +185,7 @@ extension UsenetClient {
                                         let responseCodeData = data.subdata(in: 0..<3)
                                         let responseCodeString = String(data: responseCodeData, encoding: .utf8) ?? ""
                                         statusCode = Int(responseCodeString) ?? 0
-                                        isMultiLine = TQNNTPResponse.isMultiLine(statusCode)
+                                        isMultiLine = NNTPResponse.isMultiLine(statusCode)
                                     } else {
                                         // TODO: we shouldn't receive fewer than 3 bytes in the first part.
                                         //       if this happens, something's wrong. look into this.

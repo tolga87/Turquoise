@@ -226,14 +226,14 @@ class TQLoginViewController : UIViewController {
                                            selector: #selector(userDidLogout(_:)),
                                            name: TQUserInfoManager.sharedInstance.userDidLogoutNotification,
                                            object: nil)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(networkConnectionLost(_:)),
-                                           name: TQNNTPManager.networkConnectionLostNotification,
-                                           object: nil)
-    NotificationCenter.default.addObserver(self,
-                                           selector: #selector(nntpManagerDidReset(_:)),
-                                           name: TQNNTPManager.networkStreamDidResetNotification,
-                                           object: nil)
+//    NotificationCenter.default.addObserver(self,
+//                                           selector: #selector(networkConnectionLost(_:)),
+//                                           name: TQNNTPManager.networkConnectionLostNotification,
+//                                           object: nil)
+//    NotificationCenter.default.addObserver(self,
+//                                           selector: #selector(nntpManagerDidReset(_:)),
+//                                           name: TQNNTPManager.networkStreamDidResetNotification,
+//                                           object: nil)
   }
 
     @objc func networkConnectionLost(_ notification: Notification) {
