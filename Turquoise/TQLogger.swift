@@ -17,16 +17,16 @@ enum TQLoggingLevel : Int {
     return x.rawValue >= y.rawValue
   }
 
-  func icon() -> String? {
-    switch self {
-    case .error:
-      return "⛔"
-    case .info:
-      return "⚠️"
-    default:
-      return nil
+    func icon() -> String? {
+        switch self {
+        case .error:
+            return "⛔"
+        case .info:
+            return "⚠️"
+        default:
+            return nil
+        }
     }
-  }
 }
 
 func printDebug(_ items: Any..., separator: String = " ", terminator: String = "\n") {

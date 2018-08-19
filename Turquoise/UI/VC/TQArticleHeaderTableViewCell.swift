@@ -7,10 +7,12 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
     var articleTitleLabel: TQLabel
     var articleSenderLabel: TQLabel
     var paddingViewWidthConstraint: NSLayoutConstraint
+    var verticalBarViewWidthConstraint: NSLayoutConstraint
 
     var paddingLevel: Int = 0 {
         didSet {
             self.paddingViewWidthConstraint.constant = CGFloat(4 * self.paddingLevel)
+            self.verticalBarViewWidthConstraint.constant = (paddingLevel > 0) ? 4 : 0
         }
     }
 
@@ -33,6 +35,7 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
         self.articleSenderLabel.textColor = .articleSenderColor
 
         self.paddingViewWidthConstraint = self.paddingView.widthAnchor.constraint(equalToConstant: 0)
+        self.verticalBarViewWidthConstraint = self.verticalBarView.widthAnchor.constraint(equalToConstant: 0)
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -49,7 +52,7 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
         self.verticalBarView.leadingAnchor.constraint(equalTo: self.paddingView.trailingAnchor).isActive = true
         self.verticalBarView.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         self.verticalBarView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
-        self.verticalBarView.widthAnchor.constraint(equalToConstant: 4).isActive = true
+        self.verticalBarViewWidthConstraint.isActive = true
 
         self.articleTitleLabel.leadingAnchor.constraint(equalTo: self.verticalBarView.trailingAnchor,
                                                         constant: 8).isActive = true

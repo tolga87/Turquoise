@@ -3,11 +3,14 @@ import CoreData
 import UIKit
 
 protocol CacheManagerProtocol {
-    func loadGroup(withId id: String) -> Group?
     func save(group: Group) -> Bool
+    func loadGroup(withId id: String) -> Group?
 
-    func loadArticle(withMessageId messageId: String) -> Article?
-    func save(article: Article) -> Bool
+    func save(articleHeaders: ArticleHeaders, articleNo: Int) -> Bool
+    func loadArticleHeaders(withArticleNo articleNo: Int) -> ArticleHeaders?
+
+    func save(articleBody: String, messageId: String) -> Bool
+    func loadArticleBody(withMessageId messageId: String) -> String?
 }
 
 class CacheManager {
@@ -21,17 +24,41 @@ class CacheManager {
 }
 
 extension CacheManager: CacheManagerProtocol {
-    func loadGroup(withId id: String) -> Group? {
-        return nil
-    }
-
     func save(group: Group) -> Bool {
+        assertionFailure("TODO: Implement")
         return false
     }
 
-    func loadArticle(withMessageId messageId: String) -> Article? {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleEntity")
-        fetchRequest.predicate = NSPredicate(format: "messageId == %@", messageId)
+    func loadGroup(withId id: String) -> Group? {
+        assertionFailure("TODO: Implement")
+        return nil
+    }
+
+    @discardableResult
+    func save(articleHeaders: ArticleHeaders, articleNo: Int) -> Bool {
+        guard
+            let jsonString = articleHeaders.convertToJson()?.toString(),
+            let entity = NSEntityDescription.entity(forEntityName: "ArticleHeadersEntity", in: self.managedContext) else {
+                return false
+        }
+
+        let managedArticleObject = NSManagedObject(entity: entity, insertInto: self.managedContext)
+        managedArticleObject.setValue(articleNo, forKey: "articleNo")
+        managedArticleObject.setValue(jsonString, forKey: "jsonString")
+
+        do {
+            try self.managedContext.save()
+        } catch {
+            printError("Could not save article object: \(error)")
+            return false
+        }
+
+        return true
+    }
+
+    func loadArticleHeaders(withArticleNo articleNo: Int) -> ArticleHeaders? {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleHeadersEntity")
+        fetchRequest.predicate = NSPredicate(format: "articleNo == %d", articleNo)
 
         var managedObjects: [NSManagedObject] = []
         do {
@@ -45,32 +72,53 @@ extension CacheManager: CacheManagerProtocol {
             let managedObject = managedObjects.first,
             let jsonString = managedObject.value(forKey: "jsonString") as? String,
             let json = jsonString.convertToJson() else {
-                // Article does not exist in cache.
+                // Article headers does not exist in cache.
                 return nil
         }
 
-        return Article(json: json)
+        return ArticleHeaders(json: json)
     }
 
-    func save(article: Article) -> Bool {
-        guard
-            let jsonString = article.convertToJson()?.toJSONString(),
-            let entity = NSEntityDescription.entity(forEntityName: "ArticleEntity", in: self.managedContext) else {
-                return false
+    @discardableResult
+    func save(articleBody: String, messageId: String) -> Bool {
+        guard let entity = NSEntityDescription.entity(forEntityName: "ArticleBodyEntity", in: self.managedContext) else {
+            return false
         }
 
         let managedArticleObject = NSManagedObject(entity: entity, insertInto: self.managedContext)
-        managedArticleObject.setValue(article.messageId, forKey: "messageId")
-        managedArticleObject.setValue(jsonString, forKey: "jsonString")
+        managedArticleObject.setValue(messageId, forKey: "messageId")
+        managedArticleObject.setValue(articleBody, forKey: "body")
 
         do {
-          try self.managedContext.save()
+            try self.managedContext.save()
         } catch {
-          printError("Could not save article object: \(error)")
-          return false
+            printError("Could not save article object: \(error)")
+            return false
         }
 
         return true
+    }
+
+    func loadArticleBody(withMessageId messageId: String) -> String? {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleBodyEntity")
+        fetchRequest.predicate = NSPredicate(format: "messageId == %@", messageId)
+
+        var managedObjects: [NSManagedObject] = []
+        do {
+            managedObjects = try self.managedContext.fetch(fetchRequest)
+        } catch {
+            // Something bad happened.
+            return nil
+        }
+
+        guard
+            let managedObject = managedObjects.first,
+            let body = managedObject.value(forKey: "body") as? String else {
+                // Article body does not exist in cache.
+                return nil
+        }
+
+        return body
     }
 }
 

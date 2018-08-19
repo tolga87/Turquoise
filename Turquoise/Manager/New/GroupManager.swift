@@ -15,6 +15,7 @@ typealias GroupHeadersUpdateCallback = (Bool) -> Void
 
 class GroupManager {
     let usenetClient: UsenetClientInterface
+    let cacheManager: CacheManager
     let groupId: String
     private var firstArticleNo = 0
     private var lastArticleNo = 0
@@ -27,6 +28,7 @@ class GroupManager {
     init(groupId: String, usenetClient: UsenetClientInterface) {
         self.groupId = groupId
         self.usenetClient = usenetClient
+        self.cacheManager = CacheManager.sharedInstance
     }
 
     func switchGroup(completion: ((NNTPGroupResponse?) -> Void)?) {
@@ -84,6 +86,11 @@ class GroupManager {
     }
 
     func downloadHeaders(forArticleNo articleNo: Int, completion: ArticleHeadersDownloadCallback?) {
+        if let articleHeaders = cacheManager.loadArticleHeaders(withArticleNo: articleNo) {
+            completion?(articleHeaders)
+            return
+        }
+
         let request = NNTPRequest(string: "HEAD \(articleNo)\r\n")
         self.usenetClient.makeRequest(request) { (response) in
 
@@ -94,6 +101,7 @@ class GroupManager {
                     return
             }
 
+            self.cacheManager.save(articleHeaders: articleHeaders, articleNo: articleNo)
             completion?(articleHeaders)
         }
     }

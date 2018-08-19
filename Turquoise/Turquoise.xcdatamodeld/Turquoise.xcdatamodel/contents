@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.2.4" systemVersion="18A336e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ArticleEntity" representedClassName="ArticleEntity" syncable="YES" codeGenerationType="class">
-        <attribute name="jsonString" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="ArticleBodyEntity" representedClassName="ArticleBodyEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ArticleHeadersEntity" representedClassName="ArticleHeadersEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="articleNo" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="jsonString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES" codeGenerationType="class">
         <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ArticleEntity" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="ArticleHeadersEntity" positionX="-63" positionY="-18" width="128" height="75"/>
         <element name="GroupEntity" positionX="-263" positionY="-84" width="128" height="75"/>
+        <element name="ArticleBodyEntity" positionX="-162" positionY="-27" width="128" height="75"/>
     </elements>
 </model>

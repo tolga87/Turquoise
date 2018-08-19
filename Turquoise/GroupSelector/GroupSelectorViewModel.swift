@@ -73,9 +73,11 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
     func reloadData() {
         self.groupListManager.downloadGroupList { (groupInfos) in
             if self.showsOnlySubscribedGroups {
-                self.groupInfos = groupInfos?.filter { groupInfo in
-                    return self.subscriptionManager.isSubscribed(toGroup: groupInfo.groupId)
-                }
+                // TODO: Fix
+//                self.groupInfos = groupInfos?.filter { groupInfo in
+//                    return self.subscriptionManager.isSubscribed(toGroup: groupInfo.groupId)
+//                }
+                self.groupInfos = groupInfos
             } else {
                 self.groupInfos = groupInfos
             }

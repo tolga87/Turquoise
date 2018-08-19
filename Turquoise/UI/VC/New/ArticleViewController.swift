@@ -36,6 +36,7 @@ class ArticleViewController: UIViewController {
 
     var titleLabel: TQLabel = {
         let label = ArticleViewController.label()
+        label.numberOfLines = 2
         label.textColor = Consts.titleColor
         label.fontSize = Consts.titleFontSize
         return label
@@ -50,7 +51,8 @@ class ArticleViewController: UIViewController {
     var bodyField: UITextView = {
         let field = UITextView()
         field.translatesAutoresizingMaskIntoConstraints = false
-        field.isUserInteractionEnabled = false
+        field.isEditable = false
+        field.autocapitalizationType = .none
         field.backgroundColor = .clear
         field.textColor = Consts.bodyTextColor
         field.font = UIFont(name: "dungeon", size: Consts.bodyTextFontSize)
@@ -200,6 +202,13 @@ class ArticleViewController: UIViewController {
         self.titleLabel.text = self.dataSource.titleString
         self.metadataLabel.text = "in \(self.dataSource.newsgroupString)\nby \(self.dataSource.senderString)"
         self.bodyField.text = self.dataSource.bodyString
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.dataSource.bodyString != nil {
+            self.spinner.stopAnimating()
+        }
     }
 
     @objc private func didTapReply() {

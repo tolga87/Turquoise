@@ -14,6 +14,7 @@ class ArticleManager {
     let articleHeaders: ArticleHeaders
     let groupManager: GroupManager
     let usenetClient: UsenetClientInterface
+    let cacheManager: CacheManager
 
     init?(articleHeaders: ArticleHeaders, groupManager: GroupManager) {
         guard let _ = articleHeaders.newsgroup else {
@@ -23,11 +24,17 @@ class ArticleManager {
         self.articleHeaders = articleHeaders
         self.groupManager = groupManager
         self.usenetClient = groupManager.usenetClient
+        self.cacheManager = CacheManager.sharedInstance
     }
 
     func downloadArticleBody(completion: ArticleBodyDownloadCallback?) {
         guard let messageId = self.articleHeaders.messageId else {
             completion?(nil)
+            return
+        }
+
+        if let articleBody = self.cacheManager.loadArticleBody(withMessageId: messageId) {
+            completion?(articleBody)
             return
         }
 
@@ -45,6 +52,9 @@ class ArticleManager {
                     return
                 }
 
+                if let articleBody = response.articleBody {
+                    self.cacheManager.save(articleBody: articleBody, messageId: messageId)
+                }
                 completion?(response.articleBody)
             }
         }

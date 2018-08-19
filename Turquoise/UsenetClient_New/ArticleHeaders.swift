@@ -26,6 +26,8 @@ class ArticleHeaders: NSObject {
     init?(json: JSON) {
         super.init()
         self.fields = json
+        self.parseNewsgroups()
+        self.parseReferences()
     }
 
     func convertToJson() -> JSON? {
@@ -36,6 +38,8 @@ class ArticleHeaders: NSObject {
         guard response.ok() else {
             return nil
         }
+
+        super.init()
 
         let lineBreakSequence = "\r\n"
         let lines = response.string.components(separatedBy: lineBreakSequence)
@@ -58,22 +62,29 @@ class ArticleHeaders: NSObject {
             }
         }
 
-        guard let newsgroupsString = self.fields["Newsgroups"] as? String, !newsgroupsString.isEmpty else {
-            return nil
-        }
-        self.newsgroups = newsgroupsString.tq_newlineStrippedString.components(separatedBy: CharacterSet.whitespaces)
+        self.parseNewsgroups()
+        self.parseReferences()
 
         guard !self.newsgroups.isEmpty else {
             return nil
-        }
-
-        if let referencesString = self.fields["References"] as? String, referencesString.count > 0 {
-            self.references = referencesString.components(separatedBy: CharacterSet.whitespaces)
         }
     }
 
     private func fieldValue(forRequiredField requiredField: String) -> String! {
         return (self.fields[requiredField] as? String)!
+    }
+
+    private func parseNewsgroups() {
+        guard let newsgroupsString = self.fields["Newsgroups"] as? String, !newsgroupsString.isEmpty else {
+            return
+        }
+        self.newsgroups = newsgroupsString.tq_newlineStrippedString.components(separatedBy: CharacterSet.whitespaces)
+    }
+
+    private func parseReferences() {
+        if let referencesString = self.fields["References"] as? String, referencesString.count > 0 {
+            self.references = referencesString.components(separatedBy: CharacterSet.whitespaces)
+        }
     }
 
     override var description: String {

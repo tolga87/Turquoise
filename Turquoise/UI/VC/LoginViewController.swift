@@ -3,6 +3,7 @@ import UIKit
 
 class LoginViewController : UIViewController {
     var autoLogin: Bool = false
+    var navController: UINavigationController?
 
     private let contentView: UIView = {
         let view = UIView(frame: .zero)
@@ -39,6 +40,7 @@ class LoginViewController : UIViewController {
 
     private let userNameField: TextField = {
         let field = TextField()
+        field.autocapitalizationType = .none
         field.horizontalInset = 10
         field.fontSize = 12
         field.layer.borderColor = UIColor.black.cgColor
@@ -47,6 +49,7 @@ class LoginViewController : UIViewController {
     }()
     private let passwordField: PasswordField = {
         let field = PasswordField()
+        field.autocapitalizationType = .none
         field.horizontalInset = 10
         field.fontSize = 12
         field.layer.borderColor = UIColor.black.cgColor
@@ -278,7 +281,7 @@ class LoginViewController : UIViewController {
       printInfo("Logging in with credentials found in Keychain...")
       self.userNameField.text = userName
       self.passwordField.text = password
-      self.login(userName: userName, password: password, askUserInfo: false)
+        self.login(userName: userName, password: password, askUserInfo: false)
       return true
     } else {
       printInfo("User credentials not found in Keychain; user must log in manually.")
@@ -322,24 +325,46 @@ class LoginViewController : UIViewController {
 
         self.showGroupVC()
 
-
         if askUserInfo {
-            let userInfoInputView = UIView.tq_load(from: "TQUserInfoInputView", owner: self) as! TQUserInfoInputView
-            userInfoInputView.completionBlock = { (userFullName, userEmail) in
-              let userInfoManager = TQUserInfoManager.sharedInstance
-              userInfoManager.userName = userName
-              userInfoManager.password = password
-              userInfoManager.fullName = userFullName
-              userInfoManager.email = userEmail
-        }
-        TQOverlay.sharedInstance.show(with: userInfoInputView,
-                                      relativeVerticalPosition: 0.3,
-                                      animated: true)
+            self.showUserInfoInputDialog()
         }
     }
 
     loginManager.login(userName: userName, password: password)
   }
+
+    private func showUserInfoInputDialog() {
+        let alertMessage = "Please enter your name and email address. This info will be visible to other users of the news server."
+        let alertController = UIAlertController(title: "",
+                                                message: alertMessage,
+                                                preferredStyle: .alert)
+        alertController.addTextField(configurationHandler: { (nameField) in
+            nameField.placeholder = "Name"
+        })
+        alertController.addTextField(configurationHandler: { (emailField) in
+            emailField.placeholder = "Email"
+        })
+        alertController.addAction(UIAlertAction(title: "Proceed", style: .default, handler: { (action) in
+            guard
+                let textFields = alertController.textFields,
+                textFields.count >= 2,
+                let name = textFields[0].text?.tq_whitespaceAndNewlineStrippedString,
+                let email = textFields[0].text?.tq_whitespaceAndNewlineStrippedString,
+                !name.isEmpty,
+                !email.isEmpty else {
+                    return
+            }
+
+            //              let userInfoManager = TQUserInfoManager.sharedInstance
+            //              userInfoManager.userName = userName
+            //              userInfoManager.password = password
+            //              userInfoManager.fullName = fullName
+            //              userInfoManager.email = email
+        }))
+
+        let presentingController = self.navController ?? self
+        presentingController.present(alertController, animated: true, completion: nil)
+    }
 
     func showGroupVC() {
         let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient,
@@ -349,6 +374,7 @@ class LoginViewController : UIViewController {
         navController.navigationBar.barTintColor = .clear
         navController.modalTransitionStyle = .crossDissolve
         self.present(navController, animated: true, completion: nil)
+        self.navController = navController
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true
