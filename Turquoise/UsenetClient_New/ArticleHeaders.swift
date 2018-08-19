@@ -21,6 +21,17 @@ class ArticleHeaders: NSObject {
     private(set) var newsgroups: [String] = []
     private(set) var references: [String] = []
 
+    // MARK: - JSONConvertible
+
+    init?(json: JSON) {
+        super.init()
+        self.fields = json
+    }
+
+    func convertToJson() -> JSON? {
+        return self.fields
+    }
+
     init?(response: NNTPResponse) {
         guard response.ok() else {
             return nil

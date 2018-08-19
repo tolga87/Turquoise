@@ -32,8 +32,8 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
 
     private let subscriptionManager: SubscriptionManagerInterface
     private let groupListManager: GroupListManager
-    private var groupInfos: [GroupInfo]?
-    private var filteredGroupInfos: [GroupInfo]?
+    private var groupInfos: [Group]?
+    private var filteredGroupInfos: [Group]?
     private var filterBy: String
 
     init(usenetClient: UsenetClientInterface, subscriptionManager: SubscriptionManagerInterface) {
@@ -58,7 +58,7 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
         return "\(groupInfo.groupId) (\(groupInfo.numberOfArticles))"
     }
 
-    private func groupInfoAtIndex(_ index: Int) -> GroupInfo {
+    private func groupInfoAtIndex(_ index: Int) -> Group {
         let isFiltering = !self.filterBy.isEmpty
 
         guard

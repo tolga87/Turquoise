@@ -1,5 +1,5 @@
 //
-//  GroupInfo.swift
+//  Group.swift
 //  Turquoise
 //
 //  Created by tolga on 7/29/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class GroupInfo: NSObject {
+class Group: NSObject {
     let numberOfArticles: Int
     let groupId: String
     let highestArticleNo: String
@@ -34,7 +34,7 @@ class GroupInfo: NSObject {
     }
 }
 
-extension GroupInfo: Searchable {
+extension Group: Searchable {
     func matches(searchTerm: String) -> Bool {
         return self.groupId.contains(searchTerm)
     }

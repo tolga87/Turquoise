@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14296.2" systemVersion="18A293u" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Article_Old" representedClassName="Article_Old" syncable="YES" codeGenerationType="class">
-        <attribute name="articleNo" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="body" attributeType="String" syncable="YES"/>
-        <attribute name="cancelingMessageId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" attributeType="String" syncable="YES"/>
-        <attribute name="decodedFrom" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="decodedSubject" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="from" optional="YES" attributeType="String" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.2.4" systemVersion="18A336e" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArticleEntity" representedClassName="ArticleEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="jsonString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="newsgroups" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
-        <attribute name="references" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
-        <attribute name="subject" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Group" representedClassName="Group" syncable="YES" codeGenerationType="class">
+    <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES" codeGenerationType="class">
         <attribute name="groupId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="messageIds" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="jsonString" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Article_Old" positionX="-63" positionY="-18" width="128" height="210"/>
-        <element name="Group" positionX="-263" positionY="-84" width="128" height="73"/>
+        <element name="ArticleEntity" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="GroupEntity" positionX="-263" positionY="-84" width="128" height="75"/>
     </elements>
 </model>

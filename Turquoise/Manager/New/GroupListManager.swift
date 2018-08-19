@@ -15,7 +15,7 @@ class GroupListManager {
         self.usenetClient = usenetClient
     }
 
-    func downloadGroupList(completion: (([GroupInfo]?) -> Void)?) {
+    func downloadGroupList(completion: (([Group]?) -> Void)?) {
         let request = NNTPRequest(string: "LIST\r\n")
         self.usenetClient.makeRequest(request) { (response) in
             guard let response = response as? NNTPMultiLineResponse, response.ok() else {
@@ -23,16 +23,16 @@ class GroupListManager {
                 return
             }
 
-            let groupInfos: [GroupInfo] = response.lines.compactMap { line in
+            let groupInfos: [Group] = response.lines.compactMap { line in
                 let components = line.components(separatedBy: .whitespaces)
                 guard components.count >= 4 else {
                     return nil
                 }
 
-                return GroupInfo(groupId: components[0],
-                                 highestArticleNo: components[1],
-                                 lowestArticleNo: components[2],
-                                 flags: components[3])
+                return Group(groupId: components[0],
+                             highestArticleNo: components[1],
+                             lowestArticleNo: components[2],
+                             flags: components[3])
             }
 
             completion?(groupInfos)

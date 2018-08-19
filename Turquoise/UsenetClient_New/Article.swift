@@ -25,6 +25,32 @@ class Article {
         }
     }
 
+    // MARK: - JSONConvertible
+
+    init?(json: JSON) {
+        guard
+            let articleNo = json["articleNo"] as? Int,
+            let headers = ArticleHeaders(json: json) else {
+                return nil
+        }
+
+        self.articleNo = articleNo
+        self.headers = headers
+    }
+
+    func convertToJson() -> JSON? {
+        guard var json = self.headers.convertToJson() else {
+            return nil
+        }
+
+        json["articleNo"] = self.articleNo
+        if let body = self.body {
+            json["body"] = body
+        }
+        return json
+    }
+
+
     var messageId: String {
         return self.headers.messageId
     }
@@ -45,5 +71,4 @@ class Article {
     func addChild(_ article: Article) {
         self.children.append(article)
     }
-
 }
