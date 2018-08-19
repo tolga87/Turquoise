@@ -16,7 +16,6 @@
 		FD3AF2C7211782510080041D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2C6211782510080041D /* SettingsViewModel.swift */; };
 		FD3AF2C921178B110080041D /* DismissableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2C821178B110080041D /* DismissableViewController.swift */; };
 		FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3AF2CA2117AE670080041D /* SettingOption.swift */; };
-		FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */; };
 		FD596A87210E43DA0013F99E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A86210E43DA0013F99E /* TextField.swift */; };
 		FD596A89210E49680013F99E /* UIFont+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A88210E49680013F99E /* UIFont+Default.swift */; };
 		FD596A8B210E4D4B0013F99E /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A8A210E4D4B0013F99E /* UIView+Border.swift */; };
@@ -34,6 +33,7 @@
 		FD6F469F2120BB6100351199 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F469E2120BB6100351199 /* JSONConvertible.swift */; };
 		FD6F46A12120C20800351199 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F46A02120C20800351199 /* Dictionary+JSON.swift */; };
 		FD6F46A32120C21B00351199 /* String+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F46A22120C21B00351199 /* String+JSON.swift */; };
+		FD7B53D2212A016E00FB01DE /* UIView+Traversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */; };
 		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
 		FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E83641FC5159B00025211 /* String+TQEncoding.swift */; };
 		FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD91EF631FCA0D23009CB0F5 /* Reachability.swift */; };
@@ -50,7 +50,6 @@
 		FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D07C20FC0290002B3E4D /* Article.swift */; };
 		FDA7D08120FC04F3002B3E4D /* ArticleForestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */; };
 		FDA7D08320FC1332002B3E4D /* UIColor+Turquoise.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDA7D08220FC1332002B3E4D /* UIColor+Turquoise.swift */; };
-		FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */; };
 		FDADC7561FC8CF0F00F76A94 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDADC7551FC8CF0F00F76A94 /* LoginViewController.swift */; };
 		FDB6761D2027A93500F9F654 /* GroupTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6761C2027A93500F9F654 /* GroupTableViewDataSource.swift */; };
 		FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A96720F2B4C6006EEE05 /* UsenetClient.swift */; };
@@ -77,6 +76,7 @@
 		FDD365CD1F5A075300A80106 /* news4.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365CC1F5A075000A80106 /* news4.png */; };
 		FDD365D11F5A07F700A80106 /* news5.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365CF1F5A07F500A80106 /* news5.png */; };
 		FDD365D31F5A08AF00A80106 /* settings1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365D21F5A08AD00A80106 /* settings1.png */; };
+		FDE1C0282129F4E500EB9501 /* UserInfoInputController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE1C0272129F4E500EB9501 /* UserInfoInputController.swift */; };
 		FDE7CBA91F7D73F100E6E89E /* TQLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */; };
 		FDE7CBAC1F7D7B9800E6E89E /* PasswordField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBAB1F7D7B9800E6E89E /* PasswordField.swift */; };
 		FDE7CBB21F7DA08100E6E89E /* UIView+NibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */; };
@@ -97,7 +97,6 @@
 		FD3AF2C6211782510080041D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		FD3AF2C821178B110080041D /* DismissableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableViewController.swift; sourceTree = "<group>"; };
 		FD3AF2CA2117AE670080041D /* SettingOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingOption.swift; sourceTree = "<group>"; };
-		FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TQUserInfoInputView.xib; sourceTree = "<group>"; };
 		FD596A86210E43DA0013F99E /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		FD596A88210E49680013F99E /* UIFont+Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Default.swift"; sourceTree = "<group>"; };
 		FD596A8A210E4D4B0013F99E /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
@@ -116,6 +115,7 @@
 		FD6F469E2120BB6100351199 /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		FD6F46A02120C20800351199 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		FD6F46A22120C21B00351199 /* String+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+JSON.swift"; sourceTree = "<group>"; };
+		FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Traversal.swift"; sourceTree = "<group>"; };
 		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
 		FD7E83641FC5159B00025211 /* String+TQEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TQEncoding.swift"; sourceTree = "<group>"; };
 		FD91EF631FCA0D23009CB0F5 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -134,7 +134,6 @@
 		FDA7D07C20FC0290002B3E4D /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		FDA7D08020FC04F3002B3E4D /* ArticleForestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleForestManager.swift; sourceTree = "<group>"; };
 		FDA7D08220FC1332002B3E4D /* UIColor+Turquoise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Turquoise.swift"; sourceTree = "<group>"; };
-		FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoInputView.swift; sourceTree = "<group>"; };
 		FDADC7551FC8CF0F00F76A94 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FDB6761C2027A93500F9F654 /* GroupTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewDataSource.swift; sourceTree = "<group>"; };
 		FDB6A96720F2B4C6006EEE05 /* UsenetClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsenetClient.swift; sourceTree = "<group>"; };
@@ -161,6 +160,7 @@
 		FDD365CC1F5A075000A80106 /* news4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news4.png; sourceTree = "<group>"; };
 		FDD365CF1F5A07F500A80106 /* news5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news5.png; sourceTree = "<group>"; };
 		FDD365D21F5A08AD00A80106 /* settings1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings1.png; sourceTree = "<group>"; };
+		FDE1C0272129F4E500EB9501 /* UserInfoInputController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoInputController.swift; sourceTree = "<group>"; };
 		FDE7CBA81F7D73F100E6E89E /* TQLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQLabel.swift; sourceTree = "<group>"; };
 		FDE7CBAB1F7D7B9800E6E89E /* PasswordField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordField.swift; sourceTree = "<group>"; };
 		FDE7CBB11F7DA08100E6E89E /* UIView+NibLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+NibLoader.swift"; sourceTree = "<group>"; };
@@ -258,10 +258,9 @@
 				FD15CB9B1F6074D300C64B88 /* Overlay */,
 				FD12F6301F57563100415514 /* Common */,
 				FD12F6271F574BCC00415514 /* VC */,
-				FDADC7521FC8BD0C00F76A94 /* TQUserInfoInputView.swift */,
-				FD5047FC1F5747800064466D /* TQUserInfoInputView.xib */,
 				FDE86E741FC78A63009C0466 /* TQLogoutConfirmationView.swift */,
 				FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */,
+				FDE1C0272129F4E500EB9501 /* UserInfoInputController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -355,6 +354,7 @@
 				FD596A88210E49680013F99E /* UIFont+Default.swift */,
 				FD6F46A02120C20800351199 /* Dictionary+JSON.swift */,
 				FD6F46A22120C21B00351199 /* String+JSON.swift */,
+				FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -495,7 +495,6 @@
 				FDD365CD1F5A075300A80106 /* news4.png in Resources */,
 				FDD365D31F5A08AF00A80106 /* settings1.png in Resources */,
 				FDD365C41F5A052400A80106 /* news1.png in Resources */,
-				FD5047FD1F5747800064466D /* TQUserInfoInputView.xib in Resources */,
 				FD9CB6601F4233E800BC2225 /* LaunchScreen.storyboard in Resources */,
 				FDBCE59621052A7A00E261FB /* settings-32.png in Resources */,
 				FDBCE59C21052F8F00E261FB /* compose-32.png in Resources */,
@@ -538,6 +537,7 @@
 			files = (
 				FD596A9E210EAF850013F99E /* SubscriptionManager.swift in Sources */,
 				FDB6A96C20F2B533006EEE05 /* NNTPResponse.swift in Sources */,
+				FDE1C0282129F4E500EB9501 /* UserInfoInputController.swift in Sources */,
 				FDA7D08320FC1332002B3E4D /* UIColor+Turquoise.swift in Sources */,
 				FD596A97210E79390013F99E /* Group.swift in Sources */,
 				FD2BA762203B656600246219 /* CacheManager.swift in Sources */,
@@ -546,7 +546,6 @@
 				FD596A8B210E4D4B0013F99E /* UIView+Border.swift in Sources */,
 				FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FDADC7561FC8CF0F00F76A94 /* LoginViewController.swift in Sources */,
-				FDADC7531FC8BD0C00F76A94 /* TQUserInfoInputView.swift in Sources */,
 				FD596A95210E759C0013F99E /* GroupListManager.swift in Sources */,
 				FD596A89210E49680013F99E /* UIFont+Default.swift in Sources */,
 				FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */,
@@ -580,6 +579,7 @@
 				FDE86E751FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
+				FD7B53D2212A016E00FB01DE /* UIView+Traversal.swift in Sources */,
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
 				FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */,
 				FD596A9C210E8ABB0013F99E /* Searchable.swift in Sources */,

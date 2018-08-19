@@ -326,45 +326,24 @@ class LoginViewController : UIViewController {
         self.showGroupVC()
 
         if askUserInfo {
-            self.showUserInfoInputDialog()
+            let userInfoInputController =
+                UserInfoInputController(message: "Please enter your name and email address. This info will be visible to other users of the news server.")
+
+            userInfoInputController.completionBlock = { (userFullName, userEmail) in
+                let userInfoManager = TQUserInfoManager.sharedInstance
+                userInfoManager.userName = userName
+                userInfoManager.password = password
+                userInfoManager.fullName = userFullName
+                userInfoManager.email = userEmail
+            }
+
+            let presentingController = self.navController ?? self
+            userInfoInputController.show(in: presentingController)
         }
     }
 
     loginManager.login(userName: userName, password: password)
   }
-
-    private func showUserInfoInputDialog() {
-        let alertMessage = "Please enter your name and email address. This info will be visible to other users of the news server."
-        let alertController = UIAlertController(title: "",
-                                                message: alertMessage,
-                                                preferredStyle: .alert)
-        alertController.addTextField(configurationHandler: { (nameField) in
-            nameField.placeholder = "Name"
-        })
-        alertController.addTextField(configurationHandler: { (emailField) in
-            emailField.placeholder = "Email"
-        })
-        alertController.addAction(UIAlertAction(title: "Proceed", style: .default, handler: { (action) in
-            guard
-                let textFields = alertController.textFields,
-                textFields.count >= 2,
-                let name = textFields[0].text?.tq_whitespaceAndNewlineStrippedString,
-                let email = textFields[0].text?.tq_whitespaceAndNewlineStrippedString,
-                !name.isEmpty,
-                !email.isEmpty else {
-                    return
-            }
-
-            //              let userInfoManager = TQUserInfoManager.sharedInstance
-            //              userInfoManager.userName = userName
-            //              userInfoManager.password = password
-            //              userInfoManager.fullName = fullName
-            //              userInfoManager.email = email
-        }))
-
-        let presentingController = self.navController ?? self
-        presentingController.present(alertController, animated: true, completion: nil)
-    }
 
     func showGroupVC() {
         let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient,
