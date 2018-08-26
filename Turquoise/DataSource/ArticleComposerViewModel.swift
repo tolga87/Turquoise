@@ -37,13 +37,7 @@ class ArticleComposerViewModel: ArticleComposerViewModelInterface {
     }
 
     func accept(subject: String, body: String) {
-        let sanitizedSubject = subject.tq_whitespaceAndNewlineStrippedString
-        let sanitizedBody = body.tq_whitespaceAndNewlineStrippedString
-        guard !sanitizedSubject.isEmpty, !sanitizedBody.isEmpty else {
-            return
-        }
-
-        self.postMessage(subject: sanitizedSubject, body: sanitizedBody)
+        self.postMessage(subject: subject, body: body)
     }
 
     private func postMessage(subject: String, body: String) {

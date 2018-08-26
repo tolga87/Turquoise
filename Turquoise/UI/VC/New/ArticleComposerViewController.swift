@@ -41,6 +41,22 @@ class ArticleComposerViewController: UIViewController {
         return field
     }()
 
+    private var sendButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .defaultFont(ofSize: 12)
+        button.setTitle("SEND", for: .normal)
+        button.addTarget(self, action: #selector(didTapSend), for: .touchUpInside)
+        return button
+    }()
+
+    private var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .white)
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
+
     init(viewModel: ArticleComposerViewModelInterface) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -57,19 +73,24 @@ class ArticleComposerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = .black
+
         let cancelButtonItem = UIBarButtonItem(image: UIImage(named: "close-32"),
                                                style: .plain,
                                                target: self,
                                                action: #selector(didTapCancel))
         self.navigationItem.leftBarButtonItem = cancelButtonItem
 
-        let sendButtonItem = UIBarButtonItem(title: "SEND",
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(didTapSend))
-        self.navigationItem.rightBarButtonItem = sendButtonItem
+        self.sendButton.setTitleColor(self.view.tintColor, for: .normal)
+        self.sendButton.setTitleColor(self.view.tintColor.withAlphaComponent(0.7), for: .highlighted)
+        self.sendButton.setTitleColor(UIColor.lightGray, for: .disabled)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.sendButton)
 
-        self.view.backgroundColor = .black
+        self.sendButton.addSubview(self.spinner)
+        self.spinner.centerXAnchor.constraint(equalTo: self.sendButton.centerXAnchor).isActive = true
+        self.spinner.centerYAnchor.constraint(equalTo: self.sendButton.centerYAnchor).isActive = true
+        self.spinner.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        self.spinner.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
         self.view.addSubview(self.subjectField)
         self.subjectField.leadingAnchor.constraint(equalTo: self.view.safeLeadingAnchor,
@@ -103,8 +124,20 @@ class ArticleComposerViewController: UIViewController {
     }
 
     @objc private func didTapSend() {
-        self.viewModel.accept(subject: self.subjectField.text ?? "",
-                              body: self.bodyField.text ?? "")
+        guard let subject = self.subjectField.text, let body = self.bodyField.text else {
+            return
+        }
+
+        let sanitizedSubject = subject.tq_whitespaceAndNewlineStrippedString
+        let sanitizedBody = body.tq_whitespaceAndNewlineStrippedString
+        guard !sanitizedSubject.isEmpty, !sanitizedBody.isEmpty else {
+            return
+        }
+
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.view.isUserInteractionEnabled = false
+        self.spinner.startAnimating()
+        self.viewModel.accept(subject: sanitizedSubject, body: sanitizedBody)
     }
 
     private struct Consts {
