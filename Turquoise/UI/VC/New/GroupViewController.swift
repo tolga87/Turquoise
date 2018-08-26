@@ -85,9 +85,12 @@ class GroupViewController : UIViewController {
         self.navigationController?.pushViewController(articleVC, animated: true)
     }
 
-
     @objc func composeButtonTapped() {
-        print("composeButtonTapped")
+        let articleComposerViewModel = ArticleComposerViewModel(subject: "", groupManager: self.groupManager)
+        let articleComposer = ArticleComposerViewController(viewModel: articleComposerViewModel)
+        let navController = UINavigationController(rootViewController: articleComposer)
+        navController.navigationBar.barTintColor = .clear
+        self.present(navController, animated: true, completion: nil)
     }
 
     @objc func settingsButtonTapped() {

@@ -10,6 +10,7 @@ import Foundation
 
 typealias ArticleHeadersDownloadCallback = (ArticleHeaders?) -> Void
 typealias GroupHeadersDownloadCallback = ([ArticleHeaders]?) -> Void
+typealias ArticlePostingCompletionCallback = (Bool) -> Void
 
 typealias GroupHeadersUpdateCallback = (Bool) -> Void
 
@@ -103,6 +104,38 @@ class GroupManager {
 
             self.cacheManager.save(articleHeaders: articleHeaders, articleNo: articleNo)
             completion?(articleHeaders)
+        }
+    }
+
+    func postMessage(headers: [String : String], body: String, completion: ArticlePostingCompletionCallback?) {
+        let request = NNTPRequest(string: "POST\r\n")
+        self.usenetClient.makeRequest(request) { response in
+            guard
+                let response = response,
+                response.okSoFar() else {
+                    completion?(false)
+                    return
+            }
+
+            let headersString = headers.compactMap { key, value in
+                guard !key.isEmpty, !value.isEmpty else {
+                    return nil
+                }
+                return "\(key): \(value)"
+            }.joined(separator: "\r\n")
+
+            let postPayload = "\(headersString)\r\n\r\n\(body)\r\n\r\n.\r\n"
+            let postPayloadRequest = NNTPRequest(string: postPayload)
+
+            self.usenetClient.makeRequest(postPayloadRequest) { response in
+                guard let response = response else {
+                    completion?(false)
+                    return
+                }
+
+                let success = response.ok()
+                completion?(success)
+            }
         }
     }
 }

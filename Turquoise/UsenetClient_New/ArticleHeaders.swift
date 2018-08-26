@@ -11,7 +11,7 @@ import Foundation
 class ArticleHeaders: NSObject {
     static let requiredFields = ["From", "Subject", "Message-ID", "Newsgroups"]
 
-    var fields: [String: Any] = [:]
+    private(set) var fields: [String: Any] = [:]
 
     var from: String! { return self.fieldValue(forRequiredField: "From") }
     var subject: String! { return self.fieldValue(forRequiredField: "Subject") }

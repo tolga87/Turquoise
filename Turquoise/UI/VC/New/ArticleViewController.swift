@@ -212,7 +212,9 @@ class ArticleViewController: UIViewController {
     }
 
     @objc private func didTapReply() {
-        let articleComposerViewModel = ArticleComposerViewModel(subject: self.dataSource.titleString)
+        let title = self.dataSource.titleString
+        let subject = title.hasPrefix("Re:") ? title : "Re: \(title)"
+        let articleComposerViewModel = ArticleComposerViewModel(subject: subject, groupManager: self.groupManager)
         let articleComposer = ArticleComposerViewController(viewModel: articleComposerViewModel)
         let navController = UINavigationController(rootViewController: articleComposer)
         navController.navigationBar.barTintColor = .clear

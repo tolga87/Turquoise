@@ -26,9 +26,12 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
             NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
         ]
 
-        UIBarButtonItem.appearance().setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
-            ], for: .normal)
+        let barButtonItemStates: [UIControl.State] = [ .normal, .selected, .highlighted, .disabled ]
+        barButtonItemStates.forEach { state in
+            UIBarButtonItem.appearance().setTitleTextAttributes([
+                NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
+                ], for: state)
+        }
 
         return true
     }

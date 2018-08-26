@@ -15,9 +15,12 @@ class ArticleComposerViewController: UIViewController {
     private var subjectField: TextField = {
         let field = TextField()
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
         field.horizontalInset = 4
         field.fontSize = 14
         field.textColor = .white
+        field.attributedPlaceholder = NSAttributedString(string: "Subject", attributes: [.foregroundColor : UIColor.darkGray])
         field.borderColor = UIColor(black: 0.80)
         field.borderWidth = 1
         field.cornerRadius = 2
@@ -27,6 +30,8 @@ class ArticleComposerViewController: UIViewController {
     private var bodyField: UITextView = {
         let field = UITextView()
         field.translatesAutoresizingMaskIntoConstraints = false
+        field.autocapitalizationType = .none
+        field.autocorrectionType = .no
         field.font = UIFont.defaultFont(ofSize: 12)
         field.backgroundColor = .clear
         field.textColor = UIColor(white: 0.85, alpha: 1)
