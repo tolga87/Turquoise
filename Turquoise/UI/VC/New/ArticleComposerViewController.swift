@@ -112,11 +112,13 @@ class ArticleComposerViewController: UIViewController {
                                                constant: -Consts.verticalPadding).isActive = true
 
         self.subjectField.text = self.viewModel.subject
+        self.bodyField.text = self.viewModel.body ?? ""
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.bodyField.becomeFirstResponder()
+        self.bodyField.selectedRange = NSRange(location: 0, length: 0)
     }
 
     @objc private func didTapCancel() {

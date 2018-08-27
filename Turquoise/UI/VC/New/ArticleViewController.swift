@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class ArticleViewController: UIViewController {
-    let dataSource: ArticleViewDataSource
+    let dataSource: ArticleViewDataSourceInterface
     let groupManager: GroupManager
 
     static func label() -> TQLabel {
@@ -99,7 +99,7 @@ class ArticleViewController: UIViewController {
 
     var replyTapGestureRecognizer: UITapGestureRecognizer!
 
-    init(dataSource: ArticleViewDataSource, groupManager: GroupManager) {
+    init(dataSource: ArticleViewDataSourceInterface, groupManager: GroupManager) {
         self.dataSource = dataSource
         self.groupManager = groupManager
         super.init(nibName: nil, bundle: nil)
@@ -214,7 +214,17 @@ class ArticleViewController: UIViewController {
     @objc private func didTapReply() {
         let title = self.dataSource.titleString
         let subject = title.hasPrefix("Re:") ? title : "Re: \(title)"
-        let articleComposerViewModel = ArticleComposerViewModel(subject: subject, groupManager: self.groupManager)
+        var body: String?
+        if let bodyString = self.dataSource.bodyString, !bodyString.tq_isEmpty {
+            body = "\n\n> \(self.dataSource.senderString) wrote:\n> \(bodyString.replacingOccurrences(of: "\n", with: "\n> "))"
+        }
+        let referenceMessageIds: [String] = [self.dataSource.messageId] + self.dataSource.references
+
+        let articleComposerViewModel = ArticleComposerViewModel(groupManager: self.groupManager,
+                                                                subject: subject,
+                                                                body: body,
+                                                                referenceMessageIds: referenceMessageIds,
+                                                                referenceMessageSender: self.dataSource.senderString)
         let articleComposer = ArticleComposerViewController(viewModel: articleComposerViewModel)
         let navController = UINavigationController(rootViewController: articleComposer)
         navController.navigationBar.barTintColor = .clear

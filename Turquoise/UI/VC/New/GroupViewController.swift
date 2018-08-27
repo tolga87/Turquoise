@@ -86,7 +86,7 @@ class GroupViewController : UIViewController {
     }
 
     @objc func composeButtonTapped() {
-        let articleComposerViewModel = ArticleComposerViewModel(subject: "", groupManager: self.groupManager)
+        let articleComposerViewModel = ArticleComposerViewModel(groupManager: self.groupManager)
         let articleComposer = ArticleComposerViewController(viewModel: articleComposerViewModel)
         let navController = UINavigationController(rootViewController: articleComposer)
         navController.navigationBar.barTintColor = .clear

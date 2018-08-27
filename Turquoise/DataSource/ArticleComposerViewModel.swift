@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 protocol ArticleComposerViewModelInterface: AnyObject {
-    var subject: String { get }
+    var subject: String? { get }
+    var body: String? { get }
+    var referenceMessageIds: [String] { get }
+    var referenceMessageSender: String? { get }
     var completionBlock: (() -> Void)? { get set }
 
     func accept(subject: String, body: String)
@@ -18,8 +21,11 @@ protocol ArticleComposerViewModelInterface: AnyObject {
 }
 
 class ArticleComposerViewModel: ArticleComposerViewModelInterface {
-    let subject: String
     let groupManager: GroupManager
+    let subject: String?
+    let body: String?
+    let referenceMessageIds: [String]
+    let referenceMessageSender: String?
 
     var completionBlock: (() -> Void)?
 
@@ -27,9 +33,12 @@ class ArticleComposerViewModel: ArticleComposerViewModelInterface {
     fileprivate var subjectField: UITextField!
     fileprivate var bodyField: UITextView!
 
-    init(subject: String, groupManager: GroupManager) {
-        self.subject = subject
+    init(groupManager: GroupManager, subject: String? = nil, body: String? = nil, referenceMessageIds: [String] = [], referenceMessageSender: String? = nil) {
         self.groupManager = groupManager
+        self.subject = subject
+        self.body = body
+        self.referenceMessageIds = referenceMessageIds
+        self.referenceMessageSender = referenceMessageSender
     }
 
     func cancel() {
@@ -54,11 +63,17 @@ class ArticleComposerViewModel: ArticleComposerViewModelInterface {
             userInfoString = "<Unknown User>"
         }
 
-        let headers: [String : String] = [
+        var headers: [String : String] = [
             "Subject" : subject,
             "From" : userInfoString,
             "Newsgroups": self.groupManager.groupId
         ]
+
+        let referencesString = self.referenceMessageIds.joined(separator: " ")
+        if !referencesString.isEmpty {
+            headers["References"] = referencesString
+        }
+
         self.groupManager.postMessage(headers: headers, body: body) { messagePosted in
             print("Message posted: \(messagePosted)")
             self.completionBlock?()
