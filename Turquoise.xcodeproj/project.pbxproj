@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD0478031F4FA23400AD61BB /* dungeon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FD0478021F4FA23400AD61BB /* dungeon.ttf */; };
+		FD0890652145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD0890642145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift */; };
 		FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83901FC36910007227D0 /* TQOverlay.swift */; };
 		FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */; };
 		FD1E839A1FC370FA007227D0 /* TQOverlaySlidingMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */; };
@@ -89,6 +90,7 @@
 
 /* Begin PBXFileReference section */
 		FD0478021F4FA23400AD61BB /* dungeon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dungeon.ttf; sourceTree = "<group>"; };
+		FD0890642145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQArticleHeaderTableViewLoadingCell.swift; sourceTree = "<group>"; };
 		FD1E83901FC36910007227D0 /* TQOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlay.swift; sourceTree = "<group>"; };
 		FD1E83961FC36FB7007227D0 /* TQOverlayBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlayBackgroundView.swift; sourceTree = "<group>"; };
 		FD1E83991FC370FA007227D0 /* TQOverlaySlidingMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQOverlaySlidingMenu.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				FDA7D07220FBBAEE002B3E4D /* New */,
 				FDE86E7D1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift */,
 				FDADC7551FC8CF0F00F76A94 /* LoginViewController.swift */,
+				FD0890642145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */,
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
+				FD0890652145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift in Sources */,
 				FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */,
 				FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */,
 				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,

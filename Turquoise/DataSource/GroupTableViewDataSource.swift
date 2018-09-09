@@ -10,16 +10,17 @@ protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableVie
 }
 
 class GroupTableViewDataSource : NSObject {
-    static let loadingCellReuseId = "LoadingCell"
     let groupManager: GroupManager
     var updateCallback: GroupTableViewDataSourceUpdateCallback?
     var articleSelectionCallback: GroupTableViewDataSourceArticleSelectionCallback?
+    private var downloadProgress: DownloadProgress?
 
     public init(groupManager: GroupManager) {
         self.groupManager = groupManager
         super.init()
 
-        self.groupManager.groupHeadersUpdateCallback = { success in
+        self.groupManager.groupHeadersUpdateCallback = { downloadProgress in
+            self.downloadProgress = downloadProgress
             self.updateCallback?()
         }
         self.refreshGroup()
@@ -41,7 +42,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     func articleHeadersAtIndexPath(_ indexPath: IndexPath) -> ArticleHeaders {
         guard
             let articleForest = self.groupManager.articleForest,
-            indexPath.section == 0, indexPath.row < articleForest.count else {
+            indexPath.section == 1, indexPath.row < articleForest.count else {
                 fatalError("Invalid index path in TQGroupTableViewDataSource.")
         }
 
@@ -50,28 +51,51 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
 
     // MARK: - UITableViewDataSource
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        // Section 0: "Loading" cell
+        // Section 1: Article rows
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = self.groupManager.articles else {
-            // Loading...
-            return 1
+        switch section {
+        case 0:
+            return self.groupManager.isLoading ? 1 : 0
+        case 1:
+            guard !self.groupManager.isLoading else {
+                return 0
+            }
+            return self.groupManager.articles?.count ?? 0
+        default:
+            return 0
         }
-        return articles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard self.groupManager.articles != nil else {
+        if indexPath.section == 0 {
             // Loading...
-            let cell = tableView.dequeueReusableCell(withIdentifier: GroupTableViewDataSource.loadingCellReuseId,
-                                                     for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: TQArticleHeaderTableViewLoadingCell.reuseId,
+                                                     for: indexPath) as! TQArticleHeaderTableViewLoadingCell
             cell.backgroundColor = .articleHeaderDarkBackgroundColor
-
-            if let textLabel = cell.textLabel {
-                textLabel.textAlignment = .center
-                textLabel.font = UIFont.defaultFont(ofSize: 15)
-                textLabel.textColor = .readArticleTitleColor
-                textLabel.text = "Loading..."
-            }
             cell.selectionStyle = .none
+
+            var progressString: String?
+            if let progress = self.downloadProgress {
+                let numItems = progress.maxItemId - progress.minItemId + 1
+                if numItems > 0 &&
+                    progress.minItemId <= progress.maxItemId &&
+                    progress.minItemId <= progress.currentItemId &&
+                    progress.currentItemId <= progress.maxItemId {
+                        let itemNo = progress.currentItemId - progress.minItemId + 1
+                        progressString = "\(itemNo) of \(numItems)"
+                }
+            }
+
+            if let progressString = progressString {
+                cell.title = "Loading (\(progressString))..."
+            } else {
+                cell.title = "Loading..."
+            }
             return cell
         }
 
@@ -91,7 +115,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
     // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        guard self.groupManager.articles != nil else {
+        if indexPath.section == 0 {
             // `Loading` cell.
             return nil
         }

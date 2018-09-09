@@ -19,14 +19,15 @@ class GroupViewController : UIViewController {
         self.groupViewModel = GroupTableViewDataSource(groupManager: self.groupManager)
 
         self.tableView = UITableView()
+        self.tableView.register(TQArticleHeaderTableViewLoadingCell.self,
+                                forCellReuseIdentifier: TQArticleHeaderTableViewLoadingCell.reuseId)
         self.tableView.register(TQArticleHeaderTableViewCell.self,
                                 forCellReuseIdentifier: TQArticleHeaderTableViewCell.reuseId)
-        self.tableView.register(UITableViewCell.self,
-                                forCellReuseIdentifier: GroupTableViewDataSource.loadingCellReuseId)
         self.tableView.dataSource = self.groupViewModel
         self.tableView.delegate = self.groupViewModel
         self.tableView.backgroundColor = .clear
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.tableFooterView = UIView()
 
         super.init(nibName: nil, bundle: nil)
 
