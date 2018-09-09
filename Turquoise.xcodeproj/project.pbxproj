@@ -195,17 +195,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		FD12F6271F574BCC00415514 /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				FDA7D07220FBBAEE002B3E4D /* New */,
-				FDE86E7D1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift */,
-				FDADC7551FC8CF0F00F76A94 /* LoginViewController.swift */,
-				FD0890642145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift */,
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
 		FD12F6301F57563100415514 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,9 +247,12 @@
 		FD87460D1F4973B400C95C5A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				FDAC62982145C9DA000CFC69 /* Login */,
+				FDEC9C042145AACA00196D09 /* Group */,
+				FDEC9C052145AAE900196D09 /* Article */,
 				FD15CB9B1F6074D300C64B88 /* Overlay */,
 				FD12F6301F57563100415514 /* Common */,
-				FD12F6271F574BCC00415514 /* VC */,
+				FD3AF2C821178B110080041D /* DismissableViewController.swift */,
 				FDE86E741FC78A63009C0466 /* TQLogoutConfirmationView.swift */,
 				FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */,
 				FDE1C0272129F4E500EB9501 /* UserInfoInputController.swift */,
@@ -335,17 +327,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FDA7D07220FBBAEE002B3E4D /* New */ = {
-			isa = PBXGroup;
-			children = (
-				FDBCE59F2105368F00E261FB /* ArticleViewController.swift */,
-				FDA7D07320FBBB01002B3E4D /* GroupViewController.swift */,
-				FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */,
-				FD3AF2C821178B110080041D /* DismissableViewController.swift */,
-			);
-			path = New;
-			sourceTree = "<group>";
-		};
 		FDA7D07720FBCB70002B3E4D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,6 +341,14 @@
 				FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		FDAC62982145C9DA000CFC69 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FDADC7551FC8CF0F00F76A94 /* LoginViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		FDB6761B2027A91300F9F654 /* DataSource */ = {
@@ -419,6 +408,25 @@
 				FDA539E11F5A6542009C7526 /* check1.png */,
 			);
 			path = Icons;
+			sourceTree = "<group>";
+		};
+		FDEC9C042145AACA00196D09 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				FDA7D07320FBBB01002B3E4D /* GroupViewController.swift */,
+				FDE86E7D1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift */,
+				FD0890642145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift */,
+			);
+			path = Group;
+			sourceTree = "<group>";
+		};
+		FDEC9C052145AAE900196D09 /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				FDBCE59F2105368F00E261FB /* ArticleViewController.swift */,
+				FDF0A86F210D6DBC00EE228F /* ArticleComposerViewController.swift */,
+			);
+			path = Article;
 			sourceTree = "<group>";
 		};
 		FDF0F9641F58B493008FE181 /* Manager */ = {
