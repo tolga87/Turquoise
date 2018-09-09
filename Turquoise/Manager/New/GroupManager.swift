@@ -8,11 +8,11 @@
 
 import Foundation
 
-typealias ArticleHeadersDownloadCallback = (ArticleHeaders?) -> Void
-typealias GroupHeadersDownloadCallback = ([ArticleHeaders]?) -> Void
+typealias ArticleHeadersDownloadCallback = (Int, ArticleHeaders?) -> Void
 typealias ArticlePostingCompletionCallback = (Bool) -> Void
 
-typealias GroupHeadersUpdateCallback = (_ progress: DownloadProgress?) -> Void
+typealias GroupHeadersUpdateCallback = () -> Void
+typealias GroupHeadersProgressUpdateCallback = () -> Void
 
 class GroupManager {
     let usenetClient: UsenetClientInterface
@@ -24,8 +24,10 @@ class GroupManager {
 
     private(set) var articles: [Article]? = nil
     private(set) var isLoading = true
+    private(set) var downloadProgress: DownloadProgress?
 
     var groupHeadersUpdateCallback: GroupHeadersUpdateCallback?
+    var groupHeadersProgressUpdateCallback: GroupHeadersUpdateCallback?
 
     init(groupId: String, usenetClient: UsenetClientInterface) {
         self.groupId = groupId
@@ -58,48 +60,64 @@ class GroupManager {
             guard self.firstArticleNo <= self.lastArticleNo else {
                 // There are no articles in this group.
                 self.isLoading = false
-                self.createForestAndNotify(withArticles: [], currentArticleNo: -1, finished: true)
+                self.createForestAndNotify(withArticles: [])
                 return
             }
 
             self.isLoading = true
-            for articleNo in self.firstArticleNo...self.lastArticleNo {
-                self.downloadHeaders(forArticleNo: articleNo, completion: { (articleHeaders) in
-                    if let articleHeaders = articleHeaders {
-                        let article = Article(articleNo: articleNo, headers: articleHeaders)
-                        articles.append(article)
-                    }
 
-                    let finished = (articleNo == self.lastArticleNo)
-                    self.isLoading = !finished
-                    self.notifyProgress(currentArticleNo: articleNo)
+            self.downloadHeaders(forArticleNo: self.firstArticleNo,
+                                 maxArticleNo: self.lastArticleNo,
+                                 articleHeadersCallback: { articleNo, articleHeaders in
 
-                    if articleNo == self.lastArticleNo {
-                        self.createForestAndNotify(withArticles: articles, currentArticleNo: articleNo, finished: true)
-                    }
-                })
-            }
+                                    if let articleHeaders = articleHeaders {
+                                        let article = Article(articleNo: articleNo, headers: articleHeaders)
+                                        articles.append(article)
+                                    }
+                                    self.notifyProgress(currentArticleNo: articleNo)
+            }, completionCallback: {
+                self.isLoading = false
+                self.createForestAndNotify(withArticles: articles)
+            })
         }
     }
 
-    func downloadHeaders(forArticleNo articleNo: Int, completion: ArticleHeadersDownloadCallback?) {
-        if let articleHeaders = cacheManager.loadArticleHeaders(withArticleNo: articleNo) {
-            completion?(articleHeaders)
+    private func downloadHeaders(forArticleNo articleNo: Int,
+                                 maxArticleNo: Int,
+                                 articleHeadersCallback: @escaping ArticleHeadersDownloadCallback,
+                                 completionCallback: @escaping () -> Void) {
+
+        func downloadNextArticle() {
+            self.downloadHeaders(forArticleNo: articleNo + 1,
+                                 maxArticleNo: maxArticleNo,
+                                 articleHeadersCallback: articleHeadersCallback,
+                                 completionCallback: completionCallback)
+        }
+
+        if articleNo > maxArticleNo {
+            // Finished
+            completionCallback()
             return
         }
 
+        if let articleHeaders = cacheManager.loadArticleHeaders(withArticleNo: articleNo) {
+            // Article headers found in cache.
+            articleHeadersCallback(articleNo, articleHeaders)
+            downloadNextArticle()
+            return
+        }
+
+        // Article headers not in cache. Initiate request to the server.
         let request = NNTPRequest(string: "HEAD \(articleNo)\r\n")
         self.usenetClient.makeRequest(request) { (response) in
 
-            guard
-                let response = response,
-                let articleHeaders = ArticleHeaders(response: response) else {
-                    completion?(nil)
-                    return
+            if let response = response, let articleHeaders = ArticleHeaders(response: response) {
+                self.cacheManager.save(articleHeaders: articleHeaders, articleNo: articleNo)
+                articleHeadersCallback(articleNo, articleHeaders)
+            } else {
+                articleHeadersCallback(-1, nil)
             }
-
-            self.cacheManager.save(articleHeaders: articleHeaders, articleNo: articleNo)
-            completion?(articleHeaders)
+            downloadNextArticle()
         }
     }
 
@@ -136,24 +154,22 @@ class GroupManager {
     }
 
     private func notifyProgress(currentArticleNo: Int) {
-        let downloadProgress = DownloadProgress(minItemId: self.firstArticleNo,
-                                                maxItemId: self.lastArticleNo,
-                                                currentItemId: currentArticleNo)
+        self.downloadProgress = DownloadProgress(minItemId: self.firstArticleNo,
+                                                 maxItemId: self.lastArticleNo,
+                                                 currentItemId: currentArticleNo)
         DispatchQueue.main.async {
-            self.groupHeadersUpdateCallback?(downloadProgress)
+            self.groupHeadersUpdateCallback?()
         }
     }
 
-    private func createForestAndNotify(withArticles articles: [Article], currentArticleNo: Int, finished: Bool) {
+    private func createForestAndNotify(withArticles articles: [Article]) {
         self.articles = articles
 
         let articleForestManager = ArticleForestManager(articles: articles)
         self.articleForest = articleForestManager.expandedForest()
-        let downloadProgress: DownloadProgress? = finished ? nil : DownloadProgress(minItemId: self.firstArticleNo,
-                                                                                    maxItemId: self.lastArticleNo,
-                                                                                    currentItemId: currentArticleNo)
+        self.downloadProgress = nil
         DispatchQueue.main.async {
-            self.groupHeadersUpdateCallback?(downloadProgress)
+            self.groupHeadersProgressUpdateCallback?()
         }
     }
 }

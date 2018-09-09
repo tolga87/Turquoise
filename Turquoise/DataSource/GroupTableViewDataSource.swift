@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 typealias GroupTableViewDataSourceUpdateCallback = () -> Void
+typealias GroupTableViewDataSourceProgressUpdateCallback = () -> Void
 typealias GroupTableViewDataSourceArticleSelectionCallback = (ArticleHeaders, IndexPath) -> Void
 
 protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableViewDelegate {
@@ -12,17 +13,20 @@ protocol TQGroupTableViewDataSourceInterface : UITableViewDataSource, UITableVie
 class GroupTableViewDataSource : NSObject {
     let groupManager: GroupManager
     var updateCallback: GroupTableViewDataSourceUpdateCallback?
+    var progressUpdateCallback: GroupTableViewDataSourceProgressUpdateCallback?
     var articleSelectionCallback: GroupTableViewDataSourceArticleSelectionCallback?
-    private var downloadProgress: DownloadProgress?
 
     public init(groupManager: GroupManager) {
         self.groupManager = groupManager
         super.init()
 
-        self.groupManager.groupHeadersUpdateCallback = { downloadProgress in
-            self.downloadProgress = downloadProgress
+        self.groupManager.groupHeadersUpdateCallback = {
             self.updateCallback?()
         }
+        self.groupManager.groupHeadersProgressUpdateCallback = {
+            self.progressUpdateCallback?()
+        }
+
         self.refreshGroup()
     }
 
@@ -80,7 +84,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
             cell.selectionStyle = .none
 
             var progressString: String?
-            if let progress = self.downloadProgress {
+            if let progress = self.groupManager.downloadProgress {
                 let numItems = progress.maxItemId - progress.minItemId + 1
                 if numItems > 0 &&
                     progress.minItemId <= progress.maxItemId &&

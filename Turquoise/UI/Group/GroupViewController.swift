@@ -36,6 +36,12 @@ class GroupViewController : UIViewController {
                 self?.tableView.reloadData()
             }
         }
+        self.groupViewModel.progressUpdateCallback = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadSections(IndexSet(integer: 0), with: .none)
+            }
+        }
+
         self.groupViewModel.articleSelectionCallback = { [weak self] (articleHeaders, indexPath) in
             DispatchQueue.main.async {
                 self?.showArticleVC(with: articleHeaders)
