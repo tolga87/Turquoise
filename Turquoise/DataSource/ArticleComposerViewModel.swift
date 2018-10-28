@@ -76,6 +76,7 @@ class ArticleComposerViewModel: ArticleComposerViewModelInterface {
 
         self.groupManager.postMessage(headers: headers, body: body) { messagePosted in
             print("Message posted: \(messagePosted)")
+            self.groupManager.downloadGroupHeaders()
             self.completionBlock?()
         }
     }
