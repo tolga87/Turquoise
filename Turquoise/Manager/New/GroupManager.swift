@@ -20,7 +20,8 @@ class GroupManager {
     let groupId: String
     private var firstArticleNo = 0
     private var lastArticleNo = 0
-    private(set) var articleForest: [Article]? = nil
+    private(set) var articleForestManager: ArticleForestManager?
+    private(set) var articleForest: [Article]?
 
     private(set) var articles: [Article]? = nil
     private(set) var isLoading = true
@@ -153,6 +154,14 @@ class GroupManager {
         }
     }
 
+    func removeMessage(withMessageId messageId: String) {
+        guard let article = self.articleForestManager?.article(withMessageId: messageId) else { return }
+
+        self.cacheManager.deleteArticleHeaders(withArticleNo: article.articleNo)
+        self.cacheManager.deleteArticleBody(withMessageId: messageId)
+        self.downloadGroupHeaders()
+    }
+
     func markAllAsRead() {
         guard let articles = self.articles else {
             return
@@ -174,8 +183,8 @@ class GroupManager {
     private func createForestAndNotify(withArticles articles: [Article]) {
         self.articles = articles
 
-        let articleForestManager = ArticleForestManager(articles: articles)
-        self.articleForest = articleForestManager.expandedForest()
+        self.articleForestManager = ArticleForestManager(articles: articles)
+        self.articleForest = self.articleForestManager!.expandedForest()
         self.downloadProgress = nil
         DispatchQueue.main.async {
             self.groupHeadersProgressUpdateCallback?()

@@ -47,6 +47,10 @@ class ArticleForestManager {
         self.rootArticles.sort { $1.articleNo < $0.articleNo }
     }
 
+    func article(withMessageId messageId: String) -> Article? {
+        return self.allArticles[messageId]
+    }
+
     func expandedForest() -> [Article] {
         var forest: [Article] = []
         for rootArticle in self.rootArticles {
@@ -92,19 +96,3 @@ class ArticleForestManager {
         }
     }
 }
-
-//private class ArticleNode {
-//    let articleHeaders: ArticleHeaders
-//    var children: [ArticleHeaders]
-//    var parent: ArticleHeaders?
-//
-//    init(articleHeaders: ArticleHeaders) {
-//        self.articleHeaders = articleHeaders
-//        self.children = []
-//        self.parent = nil
-//    }
-//}
-
-//private class ArticleForest {
-//    var rootArticleHeaders: ArticleHeaders?
-//}

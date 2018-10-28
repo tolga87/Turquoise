@@ -199,9 +199,38 @@ class ArticleViewController: UIViewController {
         self.spinner.centerXAnchor.constraint(equalTo: self.bodyField.centerXAnchor).isActive = true
         self.spinner.startAnimating()
 
+        if self.dataSource.allowsCancel {
+            let cancelButton = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(didTapCancel))
+            cancelButton.tintColor = .red
+            self.navigationItem.rightBarButtonItem = cancelButton
+        }
+
         self.titleLabel.text = self.dataSource.titleString
         self.metadataLabel.text = "in \(self.dataSource.newsgroupString)\nby \(self.dataSource.senderString)"
         self.bodyField.text = self.dataSource.bodyString
+    }
+
+    @objc private func didTapCancel() {
+        let alertController = UIAlertController(title: "Are you sure you want to delete this message?", message: nil, preferredStyle: .actionSheet)
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.cancelMessage()
+        }
+        alertController.addAction(deleteAction)
+
+        self.present(alertController, animated: true)
+    }
+
+    private func cancelMessage() {
+        let cancelManager = ArticleCancelManager(usenetClient: self.groupManager.usenetClient, messageId: self.dataSource.messageId)
+        cancelManager.cancelMessage { canceled in
+            if canceled {
+                self.groupManager.removeMessage(withMessageId: self.dataSource.messageId)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

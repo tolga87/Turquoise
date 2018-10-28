@@ -48,6 +48,19 @@ class TQUserInfoManager {
       self.setUserInfo(value: newValue as NSCoding?, forKey: kEmailKey)
     }
   }
+
+    var userInfoString: String {
+        if let email = self.email, let fullName = self.fullName {
+            return "\(email) (\(fullName))"
+        } else if let email = self.email {
+            return email
+        } else if let fullName = self.fullName {
+            return fullName
+        } else {
+            return "<Unknown User>"
+        }
+    }
+
   var sortedSubscribedGroupIds: [String]? {
     get {
       guard let subscribedGroups = self.subscribedGroups else {

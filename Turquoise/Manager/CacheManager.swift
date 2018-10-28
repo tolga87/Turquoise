@@ -80,6 +80,60 @@ extension CacheManager: CacheManagerProtocol {
     }
 
     @discardableResult
+    func deleteArticleHeaders(withArticleNo articleNo: Int) -> Bool {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleHeadersEntity")
+        fetchRequest.predicate = NSPredicate(format: "articleNo == %d", articleNo)
+
+        var managedObjects: [NSManagedObject] = []
+        do {
+            managedObjects = try self.managedContext.fetch(fetchRequest)
+        } catch {
+            // Something bad happened.
+            return false
+        }
+
+        for object in managedObjects {
+            self.managedContext.delete(object)
+        }
+
+        do {
+            try self.managedContext.save()
+        } catch {
+            printError("Could not delete article headers: \(error)")
+            return false
+        }
+
+        return true
+    }
+
+    @discardableResult
+    func deleteArticleBody(withMessageId messageId: String) -> Bool {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "ArticleBodyEntity")
+        fetchRequest.predicate = NSPredicate(format: "messageId == %d", messageId)
+
+        var managedObjects: [NSManagedObject] = []
+        do {
+            managedObjects = try self.managedContext.fetch(fetchRequest)
+        } catch {
+            // Something bad happened.
+            return false
+        }
+
+        for object in managedObjects {
+            self.managedContext.delete(object)
+        }
+
+        do {
+            try self.managedContext.save()
+        } catch {
+            printError("Could not delete article body: \(error)")
+            return false
+        }
+
+        return true
+    }
+
+    @discardableResult
     func save(articleBody: String, messageId: String) -> Bool {
         guard let entity = NSEntityDescription.entity(forEntityName: "ArticleBodyEntity", in: self.managedContext) else {
             return false

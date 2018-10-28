@@ -89,7 +89,8 @@ class GroupViewController : UIViewController {
             return
         }
 
-        let articleVCDataSource = ArticleViewDataSource(articleHeaders: articleHeaders, articleManager: articleManager)
+        let allowsCancel = articleHeaders.from == TQUserInfoManager.sharedInstance.userInfoString
+        let articleVCDataSource = ArticleViewDataSource(articleHeaders: articleHeaders, articleManager: articleManager, allowsCancel: allowsCancel)
         let articleVC = ArticleViewController(dataSource: articleVCDataSource, groupManager: self.groupManager)
         self.navigationController?.pushViewController(articleVC, animated: true)
     }

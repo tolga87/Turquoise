@@ -18,6 +18,7 @@ protocol ArticleViewDataSourceInterface: NSObjectProtocol {
     var bodyString: String? { get }
     var references: [String] { get }
     var updateCallback: ArticleViewDataSourceUpdateCallback? { get set }
+    var allowsCancel: Bool { get set }
 }
 
 class ArticleViewDataSource: NSObject, ArticleViewDataSourceInterface {
@@ -25,9 +26,10 @@ class ArticleViewDataSource: NSObject, ArticleViewDataSourceInterface {
     let articleManager: ArticleManager
     var articleBodyString: String?
 
-    init(articleHeaders: ArticleHeaders, articleManager: ArticleManager) {
+    init(articleHeaders: ArticleHeaders, articleManager: ArticleManager, allowsCancel: Bool = false) {
         self.articleHeaders = articleHeaders
         self.articleManager = articleManager
+        self.allowsCancel = allowsCancel
         super.init()
 
         self.articleManager.downloadArticleBody { [weak self] (articleBody) in
@@ -67,4 +69,6 @@ class ArticleViewDataSource: NSObject, ArticleViewDataSourceInterface {
     }
 
     var updateCallback: ArticleViewDataSourceUpdateCallback?
+
+    var allowsCancel: Bool
 }

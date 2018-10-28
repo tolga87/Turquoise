@@ -50,22 +50,9 @@ class ArticleComposerViewModel: ArticleComposerViewModelInterface {
     }
 
     private func postMessage(subject: String, body: String) {
-        let userInfoManager = TQUserInfoManager.sharedInstance
-
-        let userInfoString: String
-        if let email = userInfoManager.email, let fullName = userInfoManager.fullName {
-            userInfoString = "\(email) (\(fullName))"
-        } else if let email = userInfoManager.email {
-            userInfoString = email
-        } else if let fullName = userInfoManager.fullName {
-            userInfoString = fullName
-        } else {
-            userInfoString = "<Unknown User>"
-        }
-
         var headers: [String : String] = [
             "Subject" : subject,
-            "From" : userInfoString,
+            "From" : TQUserInfoManager.sharedInstance.userInfoString,
             "Newsgroups": self.groupManager.groupId
         ]
 
