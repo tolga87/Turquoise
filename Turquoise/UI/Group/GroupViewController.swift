@@ -31,6 +31,8 @@ class GroupViewController : UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
+        ReadArticleManager.sharedInstance.delegate = self
+
         self.groupViewModel.updateCallback = { [weak self] in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -107,6 +109,11 @@ class GroupViewController : UIViewController {
                     // TODO: Implement.
                 }
             },
+            SettingOption(title: "Mark All as Read") {
+                self.executeAfterDismissal { [weak self] in
+                    self?.groupManager.markAllAsRead()
+                }
+            },
             SettingOption(title: "Logout") {
                 self.executeAfterDismissal {
                     // TODO: Implement.
@@ -130,3 +137,18 @@ class GroupViewController : UIViewController {
         self.groupManager.downloadGroupHeaders()
     }
 }
+
+extension GroupViewController: ArticleReadStatusChangeHandler {
+    func articleDidMarkAsRead(_ messageId: String) {
+        self.tableView.reloadData()
+    }
+
+    func articleDidMarkAsUnread(_ messageId: String) {
+        self.tableView.reloadData()
+    }
+
+    func articlesDidUpdate() {
+        self.tableView.reloadData()
+    }
+}
+

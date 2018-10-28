@@ -109,6 +109,8 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
 
         cell.articleTitleLabel.text = articleHeaders.subject.tq_decodedString
         cell.articleSenderLabel.text = articleHeaders.from.tq_decodedString
+        let isArticleRead = ReadArticleManager.sharedInstance.isArticleRead(articleHeaders.messageId)
+        cell.articleTitleLabel.textColor = isArticleRead ? Consts.readArticleTitleColor : Consts.unreadArticleTitleColor
 
         let isEvenRow = (indexPath.row % 2 == 0)
         cell.backgroundColor = isEvenRow ? .articleHeaderDarkBackgroundColor : .articleHeaderLightBackgroundColor
@@ -135,5 +137,12 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+}
+
+private extension GroupTableViewDataSource {
+    struct Consts {
+        static let unreadArticleTitleColor = UIColor.white
+        static let readArticleTitleColor = UIColor(white: 0.5, alpha: 1)
     }
 }

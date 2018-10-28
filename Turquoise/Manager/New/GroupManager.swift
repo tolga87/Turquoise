@@ -153,6 +153,15 @@ class GroupManager {
         }
     }
 
+    func markAllAsRead() {
+        guard let articles = self.articles else {
+            return
+        }
+
+        let messageIds = articles.map { $0.messageId }
+        ReadArticleManager.sharedInstance.markArticlesAsRead(messageIds)
+    }
+
     private func notifyProgress(currentArticleNo: Int) {
         self.downloadProgress = DownloadProgress(minItemId: self.firstArticleNo,
                                                  maxItemId: self.lastArticleNo,

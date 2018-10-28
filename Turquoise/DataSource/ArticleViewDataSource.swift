@@ -35,6 +35,7 @@ class ArticleViewDataSource: NSObject, ArticleViewDataSourceInterface {
                 return
             }
 
+            ReadArticleManager.sharedInstance.markArticleAsRead(strongSelf.messageId)
             strongSelf.articleBodyString = articleBody
             strongSelf.updateCallback?()
         }
