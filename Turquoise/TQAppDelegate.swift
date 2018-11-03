@@ -3,7 +3,12 @@ import UIKit
 
 @UIApplicationMain
 class TQAppDelegate : UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
+    private var window: UIWindow?
+    private var mainCoordinator: Coordinator!
+
+    private let rootViewController: UIViewController = {
+        UIViewController()
+    }()
 
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
@@ -13,13 +18,10 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
 
-        let loginViewController = LoginViewController()
-        loginViewController.autoLogin = true
-
-        window?.rootViewController = loginViewController
-        window?.makeKeyAndVisible()
+        self.window?.rootViewController = self.rootViewController
+        self.window?.makeKeyAndVisible()
 
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -32,6 +34,9 @@ class TQAppDelegate : UIResponder, UIApplicationDelegate {
                 NSAttributedString.Key.font: UIFont.defaultFont(ofSize: 12)
                 ], for: state)
         }
+
+        self.mainCoordinator = MainCoordinator(presenter: self.rootViewController)
+        self.mainCoordinator.start()
 
         return true
     }

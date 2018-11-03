@@ -72,6 +72,9 @@
 		FDBCE5A6210542FA00E261FB /* ArticleViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5A5210542FA00E261FB /* ArticleViewDataSource.swift */; };
 		FDBCE5A821054FAD00E261FB /* NNTPBodyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5A721054FAD00E261FB /* NNTPBodyResponse.swift */; };
 		FDC4FB1C2186503D00C06BD6 /* ArticleCancelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC4FB1B2186503D00C06BD6 /* ArticleCancelManager.swift */; };
+		FDC4FB1F218E4F9600C06BD6 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC4FB1E218E4F9600C06BD6 /* Coordinator.swift */; };
+		FDC4FB21218E4FD900C06BD6 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC4FB20218E4FD900C06BD6 /* MainCoordinator.swift */; };
+		FDC4FB23218E550F00C06BD6 /* BackgroundTimeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC4FB22218E550F00C06BD6 /* BackgroundTimeManager.swift */; };
 		FDCECEF91FCA24B7006D5A66 /* TQAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */; };
 		FDD365C41F5A052400A80106 /* news1.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C31F5A007900A80106 /* news1.png */; };
 		FDD365C71F5A05F100A80106 /* news2.png in Resources */ = {isa = PBXBuildFile; fileRef = FDD365C61F5A05DB00A80106 /* news2.png */; };
@@ -159,6 +162,9 @@
 		FDBCE5A5210542FA00E261FB /* ArticleViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewDataSource.swift; sourceTree = "<group>"; };
 		FDBCE5A721054FAD00E261FB /* NNTPBodyResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPBodyResponse.swift; sourceTree = "<group>"; };
 		FDC4FB1B2186503D00C06BD6 /* ArticleCancelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCancelManager.swift; sourceTree = "<group>"; };
+		FDC4FB1E218E4F9600C06BD6 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		FDC4FB20218E4FD900C06BD6 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		FDC4FB22218E550F00C06BD6 /* BackgroundTimeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundTimeManager.swift; sourceTree = "<group>"; };
 		FDCECEF81FCA24B7006D5A66 /* TQAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQAppDelegate.swift; sourceTree = "<group>"; };
 		FDD365C31F5A007900A80106 /* news1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news1.png; sourceTree = "<group>"; };
 		FDD365C61F5A05DB00A80106 /* news2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = news2.png; sourceTree = "<group>"; };
@@ -291,6 +297,7 @@
 				FDB6A96620F2B4AF006EEE05 /* UsenetClient_New */,
 				FDB6761B2027A91300F9F654 /* DataSource */,
 				FDF0F9641F58B493008FE181 /* Manager */,
+				FDC4FB1D218E4F8200C06BD6 /* Coordinator */,
 				FD9CB8E31F55271D000755D6 /* Keychain */,
 				FD0478011F4FA20C00AD61BB /* Resources */,
 				FD87460D1F4973B400C95C5A /* UI */,
@@ -392,8 +399,18 @@
 				FD596A94210E759C0013F99E /* GroupListManager.swift */,
 				FD241FA4217D5584000B4386 /* ReadArticleManager.swift */,
 				FDC4FB1B2186503D00C06BD6 /* ArticleCancelManager.swift */,
+				FDC4FB22218E550F00C06BD6 /* BackgroundTimeManager.swift */,
 			);
 			path = New;
+			sourceTree = "<group>";
+		};
+		FDC4FB1D218E4F8200C06BD6 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				FDC4FB1E218E4F9600C06BD6 /* Coordinator.swift */,
+				FDC4FB20218E4FD900C06BD6 /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		FDD365C21F5A004200A80106 /* Icons */ = {
@@ -596,6 +613,7 @@
 				FDBCE5A821054FAD00E261FB /* NNTPBodyResponse.swift in Sources */,
 				FDB6761D2027A93500F9F654 /* GroupTableViewDataSource.swift in Sources */,
 				FDE86E751FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,
+				FDC4FB23218E550F00C06BD6 /* BackgroundTimeManager.swift in Sources */,
 				FDE86E7E1FC794E5009C0466 /* TQArticleHeaderTableViewCell.swift in Sources */,
 				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
 				FD7B53D2212A016E00FB01DE /* UIView+Traversal.swift in Sources */,
@@ -609,11 +627,13 @@
 				FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */,
 				FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */,
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
+				FDC4FB21218E4FD900C06BD6 /* MainCoordinator.swift in Sources */,
 				FD0890652145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift in Sources */,
 				FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */,
 				FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */,
 				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,
 				FDA7D08120FC04F3002B3E4D /* ArticleForestManager.swift in Sources */,
+				FDC4FB1F218E4F9600C06BD6 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
