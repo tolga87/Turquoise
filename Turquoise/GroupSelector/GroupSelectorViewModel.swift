@@ -9,10 +9,15 @@
 import Foundation
 import UIKit
 
+enum GroupSelectorDisplaySetting {
+    case subscribedOnly
+    case all
+}
+
 protocol GroupSelectorViewModelInterface: UITableViewDataSource, UITableViewDelegate {
     var loadingCellReuseId: String { get }
     var groupInfoCellReuseId: String { get }
-    var showsOnlySubscribedGroups: Bool { get set }
+    var displaySetting: GroupSelectorDisplaySetting { get }
 
     var updateCallback: (() -> Void)? { get set }
     var groupSelectionCallback: ((String) -> Void)? { get set }
@@ -22,10 +27,9 @@ protocol GroupSelectorViewModelInterface: UITableViewDataSource, UITableViewDele
 }
 
 class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
-    var showsOnlySubscribedGroups = true
-
     let loadingCellReuseId: String = "GroupSelectorLoadingCell"
     let groupInfoCellReuseId: String = "GroupSelectorGroupInfoCell"
+    let displaySetting: GroupSelectorDisplaySetting
 
     var updateCallback: (() -> Void)?
     var groupSelectionCallback: ((String) -> Void)?
@@ -36,10 +40,11 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
     private var filteredGroupInfos: [Group]?
     private var filterBy: String
 
-    init(usenetClient: UsenetClientInterface, subscriptionManager: SubscriptionManagerInterface) {
+    init(usenetClient: UsenetClientInterface, displaySetting: GroupSelectorDisplaySetting, subscriptionManager: SubscriptionManagerInterface) {
         self.groupListManager = GroupListManager(usenetClient: usenetClient)
         self.subscriptionManager = subscriptionManager
         self.filterBy = ""
+        self.displaySetting = displaySetting
         super.init()
 
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).defaultTextAttributes = [
@@ -72,13 +77,13 @@ class GroupSelectorViewModel: NSObject, GroupSelectorViewModelInterface {
 
     func reloadData() {
         self.groupListManager.downloadGroupList { (groupInfos) in
-            if self.showsOnlySubscribedGroups {
-                // TODO: Fix
-//                self.groupInfos = groupInfos?.filter { groupInfo in
-//                    return self.subscriptionManager.isSubscribed(toGroup: groupInfo.groupId)
-//                }
-                self.groupInfos = groupInfos
-            } else {
+            switch self.displaySetting {
+            case .subscribedOnly:
+                self.groupInfos = groupInfos?.filter { groupInfo in
+                    return self.subscriptionManager.isSubscribed(toGroup: groupInfo.groupId)
+                }
+
+            case .all:
                 self.groupInfos = groupInfos
             }
 
@@ -136,11 +141,14 @@ extension GroupSelectorViewModel: UITableViewDataSource {
 
         cell.textLabel?.text = self.groupDescriptionAtIndex(indexPath.row)
 
-        let groupId = self.groupInfoAtIndex(indexPath.row).groupId
-        let isSubscribed = self.subscriptionManager.isSubscribed(toGroup: groupId)
-        let shouldHighlightSubscriptions = !self.showsOnlySubscribedGroups
+        var shouldHighlight = false
+        if self.displaySetting == .all {
+            let groupId = self.groupInfoAtIndex(indexPath.row).groupId
+            let isSubscribed = subscriptionManager.isSubscribed(toGroup: groupId)
+            shouldHighlight = isSubscribed
+        }
 
-        cell.accessoryType = isSubscribed && shouldHighlightSubscriptions ? .checkmark : .none
+        cell.accessoryType = shouldHighlight ? .checkmark : .none
         return cell
     }
 }

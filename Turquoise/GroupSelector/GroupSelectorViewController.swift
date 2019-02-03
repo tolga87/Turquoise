@@ -13,27 +13,19 @@ class GroupSelectorViewController: UITableViewController {
     let viewModel: GroupSelectorViewModelInterface
     let searchController: UISearchController
 
-    init(usenetClient: UsenetClientInterface, subscriptionManager: SubscriptionManagerInterface) {
-        self.viewModel = GroupSelectorViewModel(usenetClient: usenetClient, subscriptionManager: subscriptionManager)
+    init(viewModel: GroupSelectorViewModel) {
+        self.viewModel = viewModel
         self.searchController = UISearchController(searchResultsController: nil)
+
         super.init(style: .plain)
-
-        self.viewModel.updateCallback = {
-            self.tableView.reloadData()
-        }
-        self.viewModel.groupSelectionCallback = { groupId in
-            let groupManager = GroupManager(groupId: groupId, usenetClient: usenetClient)
-            let groupVC = GroupViewController(usenetClient: usenetClient, groupManager: groupManager)
-            self.navigationController?.pushViewController(groupVC, animated: true)
-        }
-
-        subscriptionManager.updateCallback = {
-            self.tableView.reloadData()
-        }
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func reloadData() {
+        self.tableView.reloadData()
     }
 
     override func viewDidLoad() {

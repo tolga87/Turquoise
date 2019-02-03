@@ -14,7 +14,10 @@ class GroupViewController : UIViewController {
     var tableView: UITableView!
     let groupViewModel: GroupTableViewDataSource
 
+    private let usenetClient: UsenetClientInterface
+
     init(usenetClient: UsenetClientInterface, groupManager: GroupManager) {
+        self.usenetClient = usenetClient
         self.groupManager = groupManager
         self.groupViewModel = GroupTableViewDataSource(groupManager: self.groupManager)
 
@@ -105,17 +108,20 @@ class GroupViewController : UIViewController {
 
     @objc func settingsButtonTapped() {
         let settingsViewModel = SettingsViewModel(options: [
-            SettingOption(title: "Manage Newsgroup Subscriptions") {
-                self.executeAfterDismissal {
-                    // TODO: Implement.
+            SettingOption(title: "Manage Newsgroup Subscriptions") { controller in
+                guard let viewController = controller else {
+                    self.executeAfterDismissal {}
+                    return
                 }
+
+                self.showSubscriptionsPicker(inViewController: viewController)
             },
-            SettingOption(title: "Mark All as Read") {
+            SettingOption(title: "Mark All as Read") { _ in
                 self.executeAfterDismissal { [weak self] in
                     self?.groupManager.markAllAsRead()
                 }
             },
-            SettingOption(title: "Logout") {
+            SettingOption(title: "Logout") { _ in
                 self.executeAfterDismissal {
                     // TODO: Implement.
                 }
@@ -136,6 +142,27 @@ class GroupViewController : UIViewController {
 
     private func refreshGroupHeaders() {
         self.groupManager.downloadGroupHeaders()
+    }
+
+    private func showSubscriptionsPicker(inViewController viewController: UIViewController) {
+        let groupSelectorViewModel = GroupSelectorViewModel(usenetClient: self.usenetClient,
+                                                            displaySetting: .all,
+                                                            subscriptionManager: SubscriptionManager.sharedInstance)
+        let groupSelectorVC = GroupSelectorViewController(viewModel: groupSelectorViewModel)
+
+        groupSelectorViewModel.updateCallback = {
+            groupSelectorVC.reloadData()
+        }
+        groupSelectorViewModel.groupSelectionCallback = { groupId in
+            let subscriptionManager = SubscriptionManager.sharedInstance
+            if subscriptionManager.isSubscribed(toGroup: groupId) {
+                subscriptionManager.unsubscribe(fromGroup: groupId)
+            } else {
+                subscriptionManager.subscribe(toGroup: groupId)
+            }
+        }
+
+        viewController.navigationController?.pushViewController(groupSelectorVC, animated: true)
     }
 }
 

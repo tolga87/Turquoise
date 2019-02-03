@@ -23,6 +23,8 @@ class SubscriptionManager: SubscriptionManagerInterface {
 
     private static let UserDefaultsSubscriptionsKey = "Subscriptions"
 
+    static let sharedInstance = SubscriptionManager()
+
     private static func userDefaultsKey(for groupId: String) -> String {
         return "\(UserDefaultsSubscriptionsKey).\(groupId)"
     }

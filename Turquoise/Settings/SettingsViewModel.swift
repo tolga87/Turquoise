@@ -11,6 +11,8 @@ import UIKit
 
 class SettingsViewModel: NSObject {
     static let tableViewCellReuseId = "SettingCell"
+    weak var controller: UIViewController?
+
     private let options: [SettingOption]
 
     required init(options: [SettingOption]) {
@@ -39,7 +41,7 @@ extension SettingsViewModel: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let option = self.options[indexPath.row]
 
-        option.callback()
+        option.callback(self.controller)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }

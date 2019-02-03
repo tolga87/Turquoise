@@ -7,17 +7,20 @@
 //
 
 import Foundation
+import UIKit
+
+typealias SettingOptionCallback = ((UIViewController?) -> Void)
 
 protocol SettingOptionProtocol {
     var title: String { get }
-    var callback: (() -> Void) { get }
+    var callback: SettingOptionCallback { get }
 }
 
 class SettingOption {
     let title: String
-    let callback: (() -> Void)
+    let callback: SettingOptionCallback
 
-    init(title: String, callback: @escaping (() -> Void)) {
+    init(title: String, callback: @escaping SettingOptionCallback) {
         self.title = title
         self.callback = callback
     }

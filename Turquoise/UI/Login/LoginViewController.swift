@@ -86,7 +86,6 @@ class LoginViewController : UIViewController {
     }()
 
     private let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
-    private let subscriptionManager = SubscriptionManager()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -346,14 +345,26 @@ class LoginViewController : UIViewController {
   }
 
     func showGroupVC() {
-        let groupSelectorVC = GroupSelectorViewController(usenetClient: self.usenetClient,
-                                                          subscriptionManager: self.subscriptionManager)
+        let groupSelectorViewModel = GroupSelectorViewModel(usenetClient: usenetClient,
+                                                            displaySetting: .all,
+                                                            subscriptionManager: SubscriptionManager.sharedInstance)
+        let groupSelectorVC = GroupSelectorViewController(viewModel: groupSelectorViewModel)
 
         let navController = UINavigationController(rootViewController: groupSelectorVC)
         navController.navigationBar.barTintColor = .clear
         navController.modalTransitionStyle = .crossDissolve
         self.present(navController, animated: true, completion: nil)
         self.navController = navController
+
+        groupSelectorViewModel.updateCallback = {
+            groupSelectorVC.reloadData()
+        }
+        groupSelectorViewModel.groupSelectionCallback = { [weak self] groupId in
+            guard let strongSelf = self else { return }
+            let groupManager = GroupManager(groupId: groupId, usenetClient: strongSelf.usenetClient)
+            let groupVC = GroupViewController(usenetClient: strongSelf.usenetClient, groupManager: groupManager)
+            strongSelf.navController?.pushViewController(groupVC, animated: true)
+        }
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true

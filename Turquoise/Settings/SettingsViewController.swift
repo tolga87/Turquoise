@@ -15,6 +15,7 @@ class SettingsViewController: UITableViewController {
     init(viewModel: SettingsViewModel) {
         self.viewModel = viewModel
         super.init(style: .plain)
+        self.viewModel.controller = self
     }
 
     required init?(coder aDecoder: NSCoder) {
