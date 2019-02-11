@@ -104,6 +104,7 @@ class GroupSelectorViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let section = GroupSelectorTableViewSection(rawValue: indexPath.section) else { return UITableViewCell() }
 
+        let cell: UITableViewCell
         switch section {
         case .loading:
             let loadingCell = tableView.dequeueReusableCell(withIdentifier: Consts.loadingCellReuseId, for: indexPath)
@@ -112,15 +113,15 @@ class GroupSelectorViewController: UITableViewController {
             loadingCell.textLabel?.font = .defaultFont(ofSize: 12)
             loadingCell.textLabel?.text = "Loading..."
             loadingCell.selectionStyle = .none
-            return loadingCell
+            cell = loadingCell
 
         case .manage:
             let manageCell = tableView.dequeueReusableCell(withIdentifier: Consts.manageCellReuseId, for: indexPath)
             manageCell.backgroundColor = .clear
-            manageCell.textLabel?.textColor = .white
-            manageCell.textLabel?.font = .defaultFont(ofSize: 12)
+            manageCell.textLabel?.textColor = UIColor.tq_lightGray
+            manageCell.textLabel?.font = .defaultFont(ofSize: 11)
             manageCell.textLabel?.text = "Manage Subscriptions..."
-            return manageCell
+            cell = manageCell
 
         case .group:
             guard let viewModel = self.viewModel else {
@@ -128,10 +129,10 @@ class GroupSelectorViewController: UITableViewController {
                 return UITableViewCell()
             }
 
-            let cell = tableView.dequeueReusableCell(withIdentifier: Consts.groupCellReuseId, for: indexPath)
-            cell.backgroundColor = .clear
-            cell.textLabel?.textColor = .white
-            cell.textLabel?.font = .defaultFont(ofSize: 12)
+            let groupCell = tableView.dequeueReusableCell(withIdentifier: Consts.groupCellReuseId, for: indexPath)
+            groupCell.backgroundColor = .clear
+            groupCell.textLabel?.textColor = .white
+            groupCell.textLabel?.font = .defaultFont(ofSize: 12)
 
             let newsgroupTitlePresentable = viewModel.titleForNewsgroup(atIndex: indexPath.row)
             let title: String
@@ -141,10 +142,13 @@ class GroupSelectorViewController: UITableViewController {
                 title = newsgroupTitlePresentable.groupId
             }
 
-            cell.textLabel?.text = title
-            cell.accessoryType = newsgroupTitlePresentable.isChecked ? .checkmark : .none
-            return cell
+            groupCell.textLabel?.text = title
+            groupCell.accessoryType = newsgroupTitlePresentable.isChecked ? .checkmark : .none
+            cell = groupCell
         }
+
+        cell.backgroundColor = indexPath.isEven() ? UIColor.tq_veryDarkGray : UIColor.tq_darkBlue
+        return cell
     }
 
     // MARK: - UITableViewDelegate

@@ -23,16 +23,16 @@ class TQArticleHeaderTableViewCell : UITableViewCell {
         self.paddingView.backgroundColor = .black
 
         self.verticalBarView = UIView()
-        self.verticalBarView.backgroundColor = .articleHeaderCellVerticalBarColor
+        self.verticalBarView.backgroundColor = .tq_lightBlue
 
         self.articleTitleLabel = TQLabel(frame: .zero)
         self.articleTitleLabel.fontSize = 14
         // TODO: Implement read/unread colors.
-        self.articleTitleLabel.textColor = .readArticleTitleColor
+        self.articleTitleLabel.textColor = .tq_lightGray
 
         self.articleSenderLabel = TQLabel(frame: .zero)
         self.articleSenderLabel.fontSize = 12
-        self.articleSenderLabel.textColor = .articleSenderColor
+        self.articleSenderLabel.textColor = .tq_darkGray
 
         self.paddingViewWidthConstraint = self.paddingView.widthAnchor.constraint(equalToConstant: 0)
         self.verticalBarViewWidthConstraint = self.verticalBarView.widthAnchor.constraint(equalToConstant: 0)

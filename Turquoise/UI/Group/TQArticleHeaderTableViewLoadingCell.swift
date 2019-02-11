@@ -31,7 +31,7 @@ class TQArticleHeaderTableViewLoadingCell : UITableViewCell {
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.textAlignment = .left
         self.titleLabel.font = UIFont.defaultFont(ofSize: 15)
-        self.titleLabel.textColor = .readArticleTitleColor
+        self.titleLabel.textColor = .tq_lightGray
 
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 

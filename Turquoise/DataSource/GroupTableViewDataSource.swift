@@ -80,7 +80,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
             // Loading...
             let cell = tableView.dequeueReusableCell(withIdentifier: TQArticleHeaderTableViewLoadingCell.reuseId,
                                                      for: indexPath) as! TQArticleHeaderTableViewLoadingCell
-            cell.backgroundColor = .articleHeaderDarkBackgroundColor
+            cell.backgroundColor = .tq_veryDarkGray
             cell.selectionStyle = .none
 
             var progressString: String?
@@ -112,8 +112,7 @@ extension GroupTableViewDataSource: TQGroupTableViewDataSourceInterface {
         let isArticleRead = ReadArticleManager.sharedInstance.isArticleRead(articleHeaders.messageId)
         cell.articleTitleLabel.textColor = isArticleRead ? Consts.readArticleTitleColor : Consts.unreadArticleTitleColor
 
-        let isEvenRow = (indexPath.row % 2 == 0)
-        cell.backgroundColor = isEvenRow ? .articleHeaderDarkBackgroundColor : .articleHeaderLightBackgroundColor
+        cell.backgroundColor = indexPath.isEven() ? .tq_veryDarkGray : .tq_darkBlue
         cell.paddingLevel = articleHeaders.references.count
         return cell
     }

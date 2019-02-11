@@ -37,6 +37,7 @@
 		FD6F469F2120BB6100351199 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F469E2120BB6100351199 /* JSONConvertible.swift */; };
 		FD6F46A12120C20800351199 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F46A02120C20800351199 /* Dictionary+JSON.swift */; };
 		FD6F46A32120C21B00351199 /* String+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F46A22120C21B00351199 /* String+JSON.swift */; };
+		FD737F63221125DD00591DB1 /* IndexPath+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD737F62221125DD00591DB1 /* IndexPath+Extensions.swift */; };
 		FD7B53D2212A016E00FB01DE /* UIView+Traversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */; };
 		FD7DE1C71F64B21C006200D8 /* TQLogoutConfirmationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */; };
 		FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7E83641FC5159B00025211 /* String+TQEncoding.swift */; };
@@ -126,6 +127,7 @@
 		FD6F469E2120BB6100351199 /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		FD6F46A02120C20800351199 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		FD6F46A22120C21B00351199 /* String+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+JSON.swift"; sourceTree = "<group>"; };
+		FD737F62221125DD00591DB1 /* IndexPath+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IndexPath+Extensions.swift"; sourceTree = "<group>"; };
 		FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Traversal.swift"; sourceTree = "<group>"; };
 		FD7DE1C61F64B21C006200D8 /* TQLogoutConfirmationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TQLogoutConfirmationView.xib; sourceTree = "<group>"; };
 		FD7E83641FC5159B00025211 /* String+TQEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+TQEncoding.swift"; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				FD6F46A02120C20800351199 /* Dictionary+JSON.swift */,
 				FD6F46A22120C21B00351199 /* String+JSON.swift */,
 				FD7B53D1212A016E00FB01DE /* UIView+Traversal.swift */,
+				FD737F62221125DD00591DB1 /* IndexPath+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				FD1E83911FC36910007227D0 /* TQOverlay.swift in Sources */,
 				FDC4FB21218E4FD900C06BD6 /* MainCoordinator.swift in Sources */,
 				FD0890652145A26500444621 /* TQArticleHeaderTableViewLoadingCell.swift in Sources */,
+				FD737F63221125DD00591DB1 /* IndexPath+Extensions.swift in Sources */,
 				FD3AF2CB2117AE670080041D /* SettingOption.swift in Sources */,
 				FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */,
 				FD91EF641FCA0D24009CB0F5 /* Reachability.swift in Sources */,
