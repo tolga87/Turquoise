@@ -11,7 +11,7 @@ import UIKit
 
 class GroupSelectorViewController: UITableViewController {
     let viewModel: GroupSelectorViewModelInterface
-    let searchController: UISearchController
+    let searchController: UISearchController!
 
     init(viewModel: GroupSelectorViewModel) {
         self.viewModel = viewModel

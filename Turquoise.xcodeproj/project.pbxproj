@@ -31,6 +31,9 @@
 		FD596A9E210EAF850013F99E /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A9D210EAF850013F99E /* SubscriptionManager.swift */; };
 		FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */; };
 		FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */; };
+		FD5F90C022078D4B00E286DF /* NewsgroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */; };
+		FD5F90C322078DC700E286DF /* GroupSelectorViewController_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */; };
+		FD5F90C52207932500E286DF /* NewsgroupTitlePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */; };
 		FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6443221FC8D855006CE187 /* KeychainWrapper.swift */; };
 		FD6F469F2120BB6100351199 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F469E2120BB6100351199 /* JSONConvertible.swift */; };
 		FD6F46A12120C20800351199 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F46A02120C20800351199 /* Dictionary+JSON.swift */; };
@@ -119,6 +122,9 @@
 		FD5A1B731FC8E42200789626 /* SwiftKeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftKeychainWrapper.h; sourceTree = "<group>"; };
 		FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoManager.swift; sourceTree = "<group>"; };
+		FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsgroupsListViewModel.swift; sourceTree = "<group>"; };
+		FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController_New.swift; sourceTree = "<group>"; };
+		FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsgroupTitlePresentable.swift; sourceTree = "<group>"; };
 		FD6443221FC8D855006CE187 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FD6F469E2120BB6100351199 /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
 		FD6F46A02120C20800351199 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
@@ -229,8 +235,11 @@
 		FD1DE30D21177E4C009B349E /* GroupSelector */ = {
 			isa = PBXGroup;
 			children = (
+				FD5F90C122078DAF00E286DF /* New */,
 				FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */,
 				FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */,
+				FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */,
+				FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */,
 			);
 			path = GroupSelector;
 			sourceTree = "<group>";
@@ -252,6 +261,14 @@
 				FD6F469E2120BB6100351199 /* JSONConvertible.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		FD5F90C122078DAF00E286DF /* New */ = {
+			isa = PBXGroup;
+			children = (
+				FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */,
+			);
+			path = New;
 			sourceTree = "<group>";
 		};
 		FD87460D1F4973B400C95C5A /* UI */ = {
@@ -582,6 +599,7 @@
 				FD1E83971FC36FB7007227D0 /* TQOverlayBackgroundView.swift in Sources */,
 				FDADC7561FC8CF0F00F76A94 /* LoginViewController.swift in Sources */,
 				FD596A95210E759C0013F99E /* GroupListManager.swift in Sources */,
+				FD5F90C022078D4B00E286DF /* NewsgroupsListViewModel.swift in Sources */,
 				FD596A89210E49680013F99E /* UIFont+Default.swift in Sources */,
 				FD241FA5217D5584000B4386 /* ReadArticleManager.swift in Sources */,
 				FDA7D07D20FC0290002B3E4D /* Article.swift in Sources */,
@@ -592,6 +610,7 @@
 				FD6F46A32120C21B00351199 /* String+JSON.swift in Sources */,
 				FD6F46A12120C20800351199 /* Dictionary+JSON.swift in Sources */,
 				FD3AF2C921178B110080041D /* DismissableViewController.swift in Sources */,
+				FD5F90C322078DC700E286DF /* GroupSelectorViewController_New.swift in Sources */,
 				FDB6A96A20F2B500006EEE05 /* NNTPRequest.swift in Sources */,
 				FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */,
 				FDF0A870210D6DBC00EE228F /* ArticleComposerViewController.swift in Sources */,
@@ -610,6 +629,7 @@
 				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
 				FDBCE5A6210542FA00E261FB /* ArticleViewDataSource.swift in Sources */,
+				FD5F90C52207932500E286DF /* NewsgroupTitlePresentable.swift in Sources */,
 				FDBCE5A821054FAD00E261FB /* NNTPBodyResponse.swift in Sources */,
 				FDB6761D2027A93500F9F654 /* GroupTableViewDataSource.swift in Sources */,
 				FDE86E751FC78A63009C0466 /* TQLogoutConfirmationView.swift in Sources */,

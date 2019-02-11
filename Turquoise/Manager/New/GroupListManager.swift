@@ -8,7 +8,11 @@
 
 import Foundation
 
-class GroupListManager {
+protocol GroupListManagerInterface {
+    func downloadGroupList(completion: (([Group]?) -> Void)?)
+}
+
+class GroupListManager: GroupListManagerInterface {
     let usenetClient: UsenetClientInterface
 
     init(usenetClient: UsenetClientInterface) {

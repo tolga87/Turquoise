@@ -86,6 +86,7 @@ class LoginViewController : UIViewController {
     }()
 
     private let usenetClient: UsenetClientInterface = UsenetClient.sharedInstance
+    private let subscriptionManager: SubscriptionManager = SubscriptionManager.sharedInstance
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -322,7 +323,7 @@ class LoginViewController : UIViewController {
         printInfo("Login Successful!")
         self.connectionStatusLabel.text = "Login successful!"
 
-        self.showGroupVC()
+        self.showSubscribedGroupsVC()
 
         if askUserInfo {
             let userInfoInputController =
@@ -344,27 +345,44 @@ class LoginViewController : UIViewController {
     loginManager.login(userName: userName, password: password)
   }
 
-    func showGroupVC() {
-        let groupSelectorViewModel = GroupSelectorViewModel(usenetClient: usenetClient,
-                                                            displaySetting: .all,
-                                                            subscriptionManager: SubscriptionManager.sharedInstance)
-        let groupSelectorVC = GroupSelectorViewController(viewModel: groupSelectorViewModel)
+    func showSubscribedGroupsVC() {
+        let subscribedGroupsViewModel = NewsgroupsListViewModel(mode: .subscribed, subscriptionManager: self.subscriptionManager, shouldShowManageButton: true)
+
+        subscribedGroupsViewModel.groupSelectionCallback = { [weak self] groupId in
+            guard let strongSelf = self else { return }
+
+            let groupManager = GroupManager(groupId: groupId, usenetClient: strongSelf.usenetClient)
+            let groupVC = GroupViewController(usenetClient: strongSelf.usenetClient, groupManager: groupManager)
+            strongSelf.navController?.pushViewController(groupVC, animated: true)
+        }
+
+        subscribedGroupsViewModel.groupManagementCallback = { [weak self] in
+            guard let strongSelf = self else { return }
+
+            let groupManagerVC = GroupSelectorViewController_New(title: "Manage Favorite Groups")
+            strongSelf.navController?.pushViewController(groupManagerVC, animated: true)
+
+            let groupListManager = GroupListManager(usenetClient: strongSelf.usenetClient)
+            let allGroupsViewModel = NewsgroupsListViewModel(mode: .all,
+                                                             subscriptionManager: strongSelf.subscriptionManager,
+                                                             groupListManager: groupListManager,
+                                                             shouldShowSearchBar: true)
+
+            allGroupsViewModel.groupSelectionCallback = { [weak strongSelf] groupId in
+                strongSelf?.subscriptionManager.toggleSubscription(forGroup: groupId)
+            }
+
+            groupManagerVC.viewModel = allGroupsViewModel
+       }
+
+        let groupSelectorVC = GroupSelectorViewController_New(title: "Select Newsgroup to Display",
+                                                              viewModel: subscribedGroupsViewModel)
 
         let navController = UINavigationController(rootViewController: groupSelectorVC)
         navController.navigationBar.barTintColor = .clear
         navController.modalTransitionStyle = .crossDissolve
         self.present(navController, animated: true, completion: nil)
         self.navController = navController
-
-        groupSelectorViewModel.updateCallback = {
-            groupSelectorVC.reloadData()
-        }
-        groupSelectorViewModel.groupSelectionCallback = { [weak self] groupId in
-            guard let strongSelf = self else { return }
-            let groupManager = GroupManager(groupId: groupId, usenetClient: strongSelf.usenetClient)
-            let groupVC = GroupViewController(usenetClient: strongSelf.usenetClient, groupManager: groupManager)
-            strongSelf.navController?.pushViewController(groupVC, animated: true)
-        }
 
         self.connectionStatusLabel.text = nil
         self.loginButton.isEnabled = true
