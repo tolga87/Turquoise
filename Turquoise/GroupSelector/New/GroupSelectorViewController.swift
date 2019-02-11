@@ -44,6 +44,7 @@ class GroupSelectorViewController: UITableViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = .black
+        self.tableView.indicatorStyle = .white
 
         // Show search bar if we don't have a viewModel (loading...)
         let shouldHideSearchBar = (self.viewModel?.shouldShowSearchBar == false)
@@ -152,6 +153,29 @@ class GroupSelectorViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDelegate
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let section = GroupSelectorTableViewSection(rawValue: section), section == .group else { return nil }
+
+        let separator = UIView()
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        separator.backgroundColor = UIColor.tq_veryDarkGray
+
+        let header = UIView()
+        header.addSubview(separator)
+
+        separator.leadingAnchor.constraint(equalTo: header.leadingAnchor).isActive = true
+        separator.trailingAnchor.constraint(equalTo: header.trailingAnchor).isActive = true
+        separator.topAnchor.constraint(equalTo: header.topAnchor).isActive = true
+        separator.bottomAnchor.constraint(equalTo: header.bottomAnchor).isActive = true
+        return header
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        guard let section = GroupSelectorTableViewSection(rawValue: section), section == .group else { return 0 }
+
+        return 2.0
+    }
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if let section = GroupSelectorTableViewSection(rawValue: indexPath.section), section == .loading {
