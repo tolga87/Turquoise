@@ -1,5 +1,5 @@
 //
-//  GroupSelectorViewController_New.swift
+//  GroupSelectorViewController.swift
 //  Turquoise
 //
 //  Created by tolga on 2/3/19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupSelectorViewController_New: UITableViewController {
+class GroupSelectorViewController: UITableViewController {
     var viewModel: NewsgroupsListViewModelInterface? {
         didSet {
             viewModel?.groupInfoUpdateCallback = { [weak self] in
@@ -185,13 +185,13 @@ class GroupSelectorViewController_New: UITableViewController {
     }
 }
 
-extension GroupSelectorViewController_New: UISearchResultsUpdating {
+extension GroupSelectorViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         self.viewModel?.filterTerm = searchController.searchBar.text?.tq_whitespaceAndNewlineStrippedString
     }
 }
 
-private extension GroupSelectorViewController_New {
+private extension GroupSelectorViewController {
     struct Consts {
         static let groupCellReuseId = "groupCellReuseId"
         static let manageCellReuseId = "manageCellReuseId"

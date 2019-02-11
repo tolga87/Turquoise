@@ -15,6 +15,7 @@ class GroupViewController : UIViewController {
     let groupViewModel: GroupTableViewDataSource
 
     private let usenetClient: UsenetClientInterface
+    private let subscriptionManager = SubscriptionManager.sharedInstance
 
     init(usenetClient: UsenetClientInterface, groupManager: GroupManager) {
         self.usenetClient = usenetClient
@@ -145,24 +146,20 @@ class GroupViewController : UIViewController {
     }
 
     private func showSubscriptionsPicker(inViewController viewController: UIViewController) {
-        let groupSelectorViewModel = GroupSelectorViewModel(usenetClient: self.usenetClient,
-                                                            displaySetting: .all,
-                                                            subscriptionManager: SubscriptionManager.sharedInstance)
-        let groupSelectorVC = GroupSelectorViewController(viewModel: groupSelectorViewModel)
+        let groupManagerVC = GroupSelectorViewController(title: "Manage Favorite Groups")
+        viewController.navigationController?.pushViewController(groupManagerVC, animated: true)
 
-        groupSelectorViewModel.updateCallback = {
-            groupSelectorVC.reloadData()
-        }
-        groupSelectorViewModel.groupSelectionCallback = { groupId in
-            let subscriptionManager = SubscriptionManager.sharedInstance
-            if subscriptionManager.isSubscribed(toGroup: groupId) {
-                subscriptionManager.unsubscribe(fromGroup: groupId)
-            } else {
-                subscriptionManager.subscribe(toGroup: groupId)
-            }
+        let groupListManager = GroupListManager(usenetClient: self.usenetClient)
+        let allGroupsViewModel = NewsgroupsListViewModel(mode: .all,
+                                                         subscriptionManager: self.subscriptionManager,
+                                                         groupListManager: groupListManager,
+                                                         shouldShowSearchBar: true)
+
+        allGroupsViewModel.groupSelectionCallback = { [weak self] groupId in
+            self?.subscriptionManager.toggleSubscription(forGroup: groupId)
         }
 
-        viewController.navigationController?.pushViewController(groupSelectorVC, animated: true)
+        groupManagerVC.viewModel = allGroupsViewModel
     }
 }
 

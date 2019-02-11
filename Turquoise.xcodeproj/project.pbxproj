@@ -23,7 +23,6 @@
 		FD596A8B210E4D4B0013F99E /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A8A210E4D4B0013F99E /* UIView+Border.swift */; };
 		FD596A8E210E6A940013F99E /* settings-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8C210E6A930013F99E /* settings-16.png */; };
 		FD596A8F210E6A940013F99E /* compose-16.png in Resources */ = {isa = PBXBuildFile; fileRef = FD596A8D210E6A930013F99E /* compose-16.png */; };
-		FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */; };
 		FD596A95210E759C0013F99E /* GroupListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A94210E759C0013F99E /* GroupListManager.swift */; };
 		FD596A97210E79390013F99E /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A96210E79390013F99E /* Group.swift */; };
 		FD596A99210E7E550013F99E /* NNTPMultiLineResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */; };
@@ -32,7 +31,7 @@
 		FD5A1B751FC8E42B00789626 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */; };
 		FD5A1B781FC8E4C300789626 /* TQUserInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */; };
 		FD5F90C022078D4B00E286DF /* NewsgroupsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */; };
-		FD5F90C322078DC700E286DF /* GroupSelectorViewController_New.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */; };
+		FD5F90C322078DC700E286DF /* GroupSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90C222078DC700E286DF /* GroupSelectorViewController.swift */; };
 		FD5F90C52207932500E286DF /* NewsgroupTitlePresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */; };
 		FD6443231FC8D855006CE187 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6443221FC8D855006CE187 /* KeychainWrapper.swift */; };
 		FD6F469F2120BB6100351199 /* JSONConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F469E2120BB6100351199 /* JSONConvertible.swift */; };
@@ -65,7 +64,6 @@
 		FDB6A97820F2E3C1006EEE05 /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */; };
 		FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97D20F2F3FB006EEE05 /* NNTPGroupResponse.swift */; };
 		FDB6A98020F2F47B006EEE05 /* NNTPResponseFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB6A97F20F2F47B006EEE05 /* NNTPResponseFactory.swift */; };
-		FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */; };
 		FDBCE59621052A7A00E261FB /* settings-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59521052A7A00E261FB /* settings-32.png */; };
 		FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDBCE59721052B6500E261FB /* SettingsViewController.swift */; };
 		FDBCE59A21052DF500E261FB /* close-32.png in Resources */ = {isa = PBXBuildFile; fileRef = FDBCE59921052DF500E261FB /* close-32.png */; };
@@ -113,7 +111,6 @@
 		FD596A8A210E4D4B0013F99E /* UIView+Border.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		FD596A8C210E6A930013F99E /* settings-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-16.png"; sourceTree = "<group>"; };
 		FD596A8D210E6A930013F99E /* compose-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "compose-16.png"; sourceTree = "<group>"; };
-		FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewModel.swift; sourceTree = "<group>"; };
 		FD596A94210E759C0013F99E /* GroupListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListManager.swift; sourceTree = "<group>"; };
 		FD596A96210E79390013F99E /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		FD596A98210E7E550013F99E /* NNTPMultiLineResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPMultiLineResponse.swift; sourceTree = "<group>"; };
@@ -123,7 +120,7 @@
 		FD5A1B741FC8E42B00789626 /* KeychainItemAccessibility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItemAccessibility.swift; sourceTree = "<group>"; };
 		FD5A1B771FC8E4C300789626 /* TQUserInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TQUserInfoManager.swift; sourceTree = "<group>"; };
 		FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsgroupsListViewModel.swift; sourceTree = "<group>"; };
-		FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController_New.swift; sourceTree = "<group>"; };
+		FD5F90C222078DC700E286DF /* GroupSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController.swift; sourceTree = "<group>"; };
 		FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsgroupTitlePresentable.swift; sourceTree = "<group>"; };
 		FD6443221FC8D855006CE187 /* KeychainWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		FD6F469E2120BB6100351199 /* JSONConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConvertible.swift; sourceTree = "<group>"; };
@@ -158,7 +155,6 @@
 		FDB6A97720F2E3C1006EEE05 /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		FDB6A97D20F2F3FB006EEE05 /* NNTPGroupResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPGroupResponse.swift; sourceTree = "<group>"; };
 		FDB6A97F20F2F47B006EEE05 /* NNTPResponseFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTPResponseFactory.swift; sourceTree = "<group>"; };
-		FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectorViewController.swift; sourceTree = "<group>"; };
 		FDBCE59521052A7A00E261FB /* settings-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings-32.png"; sourceTree = "<group>"; };
 		FDBCE59721052B6500E261FB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FDBCE59921052DF500E261FB /* close-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-32.png"; sourceTree = "<group>"; };
@@ -236,8 +232,6 @@
 			isa = PBXGroup;
 			children = (
 				FD5F90C122078DAF00E286DF /* New */,
-				FD596A92210E74F60013F99E /* GroupSelectorViewModel.swift */,
-				FDBCE5932105218C00E261FB /* GroupSelectorViewController.swift */,
 				FD5F90BF22078D4B00E286DF /* NewsgroupsListViewModel.swift */,
 				FD5F90C42207932500E286DF /* NewsgroupTitlePresentable.swift */,
 			);
@@ -266,7 +260,7 @@
 		FD5F90C122078DAF00E286DF /* New */ = {
 			isa = PBXGroup;
 			children = (
-				FD5F90C222078DC700E286DF /* GroupSelectorViewController_New.swift */,
+				FD5F90C222078DC700E286DF /* GroupSelectorViewController.swift */,
 			);
 			path = New;
 			sourceTree = "<group>";
@@ -610,7 +604,7 @@
 				FD6F46A32120C21B00351199 /* String+JSON.swift in Sources */,
 				FD6F46A12120C20800351199 /* Dictionary+JSON.swift in Sources */,
 				FD3AF2C921178B110080041D /* DismissableViewController.swift in Sources */,
-				FD5F90C322078DC700E286DF /* GroupSelectorViewController_New.swift in Sources */,
+				FD5F90C322078DC700E286DF /* GroupSelectorViewController.swift in Sources */,
 				FDB6A96A20F2B500006EEE05 /* NNTPRequest.swift in Sources */,
 				FDBCE59821052B6500E261FB /* SettingsViewController.swift in Sources */,
 				FDF0A870210D6DBC00EE228F /* ArticleComposerViewController.swift in Sources */,
@@ -624,7 +618,6 @@
 				FD2BA768203B66E000246219 /* Turquoise.xcdatamodeld in Sources */,
 				FDB6A97020F2B921006EEE05 /* LoginManager.swift in Sources */,
 				FDF0A872210D756800EE228F /* ArticleComposerViewModel.swift in Sources */,
-				FDBCE5942105218C00E261FB /* GroupSelectorViewController.swift in Sources */,
 				FD7E83651FC5159B00025211 /* String+TQEncoding.swift in Sources */,
 				FDA7D07B20FBE8D7002B3E4D /* ArticleHeaders.swift in Sources */,
 				FDB6A96E20F2B5AA006EEE05 /* UsenetClientInterface.swift in Sources */,
@@ -638,7 +631,6 @@
 				FDA7D07920FBCB8E002B3E4D /* UIView+SafeArea.swift in Sources */,
 				FD7B53D2212A016E00FB01DE /* UIView+Traversal.swift in Sources */,
 				FDB6A96820F2B4C6006EEE05 /* UsenetClient.swift in Sources */,
-				FD596A93210E74F60013F99E /* GroupSelectorViewModel.swift in Sources */,
 				FD596A9C210E8ABB0013F99E /* Searchable.swift in Sources */,
 				FDB6A97E20F2F3FB006EEE05 /* NNTPGroupResponse.swift in Sources */,
 				FDF0A86E210D52F400EE228F /* UIView+Debug.swift in Sources */,

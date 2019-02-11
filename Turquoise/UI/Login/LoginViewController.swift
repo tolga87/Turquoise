@@ -359,7 +359,7 @@ class LoginViewController : UIViewController {
         subscribedGroupsViewModel.groupManagementCallback = { [weak self] in
             guard let strongSelf = self else { return }
 
-            let groupManagerVC = GroupSelectorViewController_New(title: "Manage Favorite Groups")
+            let groupManagerVC = GroupSelectorViewController(title: "Manage Favorite Groups")
             strongSelf.navController?.pushViewController(groupManagerVC, animated: true)
 
             let groupListManager = GroupListManager(usenetClient: strongSelf.usenetClient)
@@ -375,7 +375,7 @@ class LoginViewController : UIViewController {
             groupManagerVC.viewModel = allGroupsViewModel
        }
 
-        let groupSelectorVC = GroupSelectorViewController_New(title: "Select Newsgroup to Display",
+        let groupSelectorVC = GroupSelectorViewController(title: "Select Newsgroup to Display",
                                                               viewModel: subscribedGroupsViewModel)
 
         let navController = UINavigationController(rootViewController: groupSelectorVC)
